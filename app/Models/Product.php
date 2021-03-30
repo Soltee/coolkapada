@@ -18,7 +18,7 @@ class Product extends Model
 
     public function images()
     {
-    	return $this->hasMany(Product_Image::class);
+    	return $this->hasMany(ProductImages::class);
     }
 
     public function stock_level()

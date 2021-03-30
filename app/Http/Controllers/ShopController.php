@@ -53,18 +53,11 @@ class ShopController extends Controller
         $product          =  Product::where('slug', $slug)->first();
         $images           =  $product->images;
         $image_count      =  count($images);
-        $ratings          =  $product->ratings()->with([
-                                    'customer' => function($query)
-                                        {
-                                            $query->select('id', 'avatar', 'first_name', 'last_name');
-                                         }
-                                    ])->get();
-        $average          = abs(round($product->ratings()->avg('rating'), 1));
-        $count_rating     =  count($ratings);
+
         $auth             = Auth::guard('customer')->user() ? Auth::guard('customer')->user()->id : null;
 
         $similar          =  $product->category->products()->inRandomOrder()->where('id', '!=' , $product->id)->take(10)->get();
 		// dd($average);
-		return view('product', compact('product', 'image_count', 'images', 'auth', 'ratings', 'count_rating', 'average', 'similar'));
+		return view('show', compact('product', 'image_count', 'images', 'auth', 'similar'));
 	}
 }
