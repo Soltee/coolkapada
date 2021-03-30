@@ -4,6 +4,7 @@
     <style>
         .custom_radio input:checked + .radio_btn{border: 2px solid #347474;}
         .custom_radio2 input:checked + .radio_btn2{border: 2px solid #347474;}
+        .imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}
 
         #heroImage {
         /*clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);*/
@@ -49,26 +50,32 @@
               ">
               @forelse($new as $p)
                 <div class="flex flex-col items-center">
+                  <div 
+	        					class="imgBlock relative w-full  cursor-pointer">
+	        					<div class="overflow-hidden">
+			        				<a class="" href="{{ route('product', $p->slug)}}">
+				        				<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->image_url) }}" alt="{{ $p->slug }}">
+				        			</a>
+				        		</div>
+			        			@if($p->prev_price)	        				
+			        				<span class="bg-red-600 text-center rounded-lg text-white p-3 absolute top-0 right-0">{{ $p->price_level() }}% off</span>
+			        			@endif
+			        	
+
+                </div>
+
+                <a href="/product/{{ $p->slug }}">
+                  <h4 class="text-md font-semibold mt-4 text-c-light-black">{{ $p->name }}</h4>
+                </a>
+
                   <form method="POST" action="{{ route('bag.store') }}">
                       @csrf
                       <input type="text" class="hidden" name="generateId" value="{{ $p->id }}">
                  
-                      <a href="/product/{{ $p->slug }}">
-                        <img src="{{ asset($p->image_url) }}" class="w-full sm:48 md:h-56 first:h-64  object-cover rounded object-top hero" alt="">
-                      </a>
-                      <a href="/product/{{ $p->slug }}">
-                        <h4 class="text-md font-semibold mt-4 text-c-light-black">{{ $p->name }}</h4>
-                      </a>
-                      <div class="flex justify-between items-center mt-2">
-                        <!-- Ratings -->
-                        {{-- <div class="flex items-center mt-2">
-                          @for ($i = 1; $i <= $p->ratings()->avg('rating'); $i++)
-                            <svg class=" h-6 w-6 text-yellow-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                          @endfor
-                        </div> --}}
-
-                        {{-- <span class="p-3 border-1 border-c-light-gray {{ $p->prev_price ?? 'text-lg' }}">Rs {{ $p->price }}</span> --}}
-                      </div>
+                      {{-- <a href="/product/{{ $p->slug }}">
+                        <img src="{{ asset($p->image_url) }}" class="w-full sm:48 md:h-56 first:h-64  object-cover rounded object-top hero hover:" alt="">
+                      </a> --}}
+                      
 
                       <!-- Colors & Sizes-->
                       <div class="w-full px-3  my-2 flex flex-col">
@@ -135,14 +142,14 @@
        
         <!--- Newsletter -->
         <div class="mt-24 px-6  bg-gray-900">
-            <div class="max-w-lg mx-auto rounded py-8  md:px-6 flex flex-col items-center">
+            <div class="max-w-2xl mx-auto rounded py-8  md:px-6 flex flex-col items-center">
               <div class="flex flex-col mb-3 w-full">
                 <h2 class="text-white z-20 text-xl md:text-2xl mb-2 font-bold">Join Our Newsletter</h2>
                 <p class="text-md text-white">Latest news and updates in your inbox.</p>
               </div>
 
       
-              <div class="mt-4 max-w-lg w-full flex flex-row items-center justify-center">
+              <div class="mt-4 max-w-2xl w-full flex flex-row items-center justify-center">
                 <input id="news_email" type="email"  class="focus:outline-none w-full bg-white rounded  px-3 py-3 pr-24 sm:mb-0 border"  placeholder="Enter your email" >
                 <button id="news_btn" class="focus:outline-none w-40   bg-gray-900 hover:opacity-75 rounded uppercase text-white font-bold tracking-wide py-3 px-3 md:px-6 text-center cursor-pointer"
                   style="margin-left:-10.1rem;">Join Now</button>
@@ -172,18 +179,18 @@
             responsive: {
             640: {
                 edgePadding: 20,
-                gutter: 10,
-                items: 2
+                gutter: 12,
+                items: 1
             },
             700: {
                 // gutter: 30
             },
             900: {
-                items: 3,
+                items: 2,
                 gutter: 20
             },
             1200: {
-                items: 4
+                items: 3
             }
             },
             controls : false,
