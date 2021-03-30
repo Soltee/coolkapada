@@ -40,7 +40,15 @@ Route::post('/newsletter', [WelcomeController::class, 'newsletter']);
 
 Route::group(['middleware' => 'auth:customer'], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+    Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+    Route::get('/order/{order}', [HomeController::class, 'show'])
+                            ->name('customer.order');
+
+    Route::patch('/home/{user}', [HomeController::class, 'update'])
+                            ->name('customer.reset');
     
+
 });
 
 require __DIR__.'/auth.php';

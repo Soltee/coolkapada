@@ -39,7 +39,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         //get the request data
-        // dd($request->all());
+
         $this->validate($request, [
             'first_name'        =>  'required|string' ,
             'last_name'         =>  'required|string' ,
@@ -50,7 +50,7 @@ class CheckoutController extends Controller
             'house_number'      =>  'required|numeric' ,
             'payment_method'    =>  'required|string'   
         ]);
-        // dd($request->all());
+
         //store order
         $user     = auth('customer')->user() ? auth('customer')->user()->id : null;
 
@@ -97,7 +97,8 @@ class CheckoutController extends Controller
         }
         
 
-        // Cart::clear();
+        Cart::clear();
+
         return redirect()
                     ->route('thankyou', ['order' => $order->id])
                     ->with('success_message', 'Thank you for purchasing our products.');
@@ -112,9 +113,9 @@ class CheckoutController extends Controller
      */
     public function show(Order $order)
     {
-        // if(!session('success_message')){
-        //     return redirect('/shop');
-        // }
+        if(!session('success_message')){
+            return redirect('/shop');
+        }
 
         $items    = $order->items;
         $products = Product::latest()

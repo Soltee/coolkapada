@@ -73,8 +73,8 @@
 
                                         <li class="list-none mb-3">
                                             <a class="hover:opacity-75 mr-3  text-md font-thin text-white {{ 
-                                                (Route::currentRouteName() == 'home') ? 'opacity-75' : ''
-                                            }}" href="/home">Dashboard</a>
+                                                (Route::currentRouteName() == 'dashboard') ? 'opacity-75' : ''
+                                            }}" href="/dashboard">Dashboard</a>
                                         </li> 
                                         <li class="list-none mb-3">
                                             <a class="hover:opacity-75 text-md text-white font-thin {{ 
@@ -130,8 +130,8 @@
                             @auth('customer')
                                 <li class="list-none mb-3">
                                     <a class="hover:opacity-75 mr-3  text-md font-thin text-white {{ 
-                                        (Route::currentRouteName() == 'home') ? 'opacity-75' : ''
-                                    }}" href="/home">Dashboard</a>
+                                        (Route::currentRouteName() == 'dashboard') ? 'opacity-75' : ''
+                                    }}" href="/dashboard">Dashboard</a>
                                 </li> 
                                 <li class="list-none mb-3">
                                     <a class="hover:opacity-75 text-md text-white font-thin {{ 
