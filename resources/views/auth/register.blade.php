@@ -7,30 +7,36 @@
         </x-slot>
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
+            <!-- First Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="first" :value="__('Firstname')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="first" class="block mt-1 w-full border border-transparent @error('first_name') border-red-600 @enderror" type="text" name="first_name" :value="old('first_name')" required  />
+            </div>
+             <!-- Lasts Name -->
+             <div class="mt-4">
+                <x-label for="last" :value="__('Lastname')" />
+
+                <x-input id="last" class="block mt-1 w-full border border-transparent @error('last_name') border-red-600 @enderror" type="text" name="last_name" :value="old('last_name')" required  />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full border border-transparent @error('email') border-red-600 @enderror" type="email" name="email" :value="old('email')" required />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
+                <x-input id="password" class="block mt-1 w-full border border-transparent @error('password') border-red-600 @enderror"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
@@ -44,15 +50,18 @@
                                 type="password"
                                 name="password_confirmation" required />
             </div>
+            <div class="g-recaptcha mt-4 w-full" data-sitekey="{{ env('RECAPTCHA_V2_SITE_KEY') }}"></div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex flex-col items-center justify-end mt-4">
+                <x-button class="ml-4 px-3 py-3 w-full text-center mb-2">
+                    {{ __('Register') }}
+                </x-button>
+
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+                
             </div>
         </form>
     </x-auth-card>
