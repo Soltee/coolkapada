@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         
         <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>

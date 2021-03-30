@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-// use App\Models\Order;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -14,8 +14,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $new  = Order::latest()
-                    // ->paginate(10);
-        return view('customer.dashboard');
+        $orders  = Order::latest()
+                    ->paginate(10);
+        return view('customers.dashboard');
     }
 }
