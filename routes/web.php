@@ -1,15 +1,20 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\BagController;
+use App\Http\Controllers\Customer\HomeController;
 
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
+//Bag
+Route::post('/bag/store', [BagController::class, 'store'])->name('bag.store');
+
+//Newsletter 
+Route::post('/newsletter', [WelcomeController::class, 'newsletter']);
+
+Route::group(['middleware' => 'auth:customer'], function(){
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     
 });
 

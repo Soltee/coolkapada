@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                Coolkapada
             </a>
         </x-slot>
 
@@ -16,27 +16,27 @@
             <div>
                 <x-label for="first" :value="__('Firstname')" />
 
-                <x-input id="first" class="block mt-1 w-full border border-transparent @error('first_name') border-red-600 @enderror" type="text" name="first_name" :value="old('first_name')" required  />
+                <x-input id="first" class="block mt-1 w-full border border-transparent @error('first_name')  @enderror" type="text" name="first_name" :value="old('first_name')" required  />
             </div>
              <!-- Lasts Name -->
              <div class="mt-4">
                 <x-label for="last" :value="__('Lastname')" />
 
-                <x-input id="last" class="block mt-1 w-full border border-transparent @error('last_name') border-red-600 @enderror" type="text" name="last_name" :value="old('last_name')" required  />
+                <x-input id="last" class="block mt-1 w-full border border-transparent @error('last_name')  @enderror" type="text" name="last_name" :value="old('last_name')" required  />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full border border-transparent @error('email') border-red-600 @enderror" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full border border-transparent @error('email')  @enderror" type="email" name="email" :value="old('email')" required />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full border border-transparent @error('password') border-red-600 @enderror"
+                <x-input id="password" class="block mt-1 w-full border border-transparent @error('password')  @enderror"
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />

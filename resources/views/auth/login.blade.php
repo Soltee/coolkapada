@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                Coolkapada
             </a>
         </x-slot>
 
@@ -39,13 +39,12 @@
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
-            
-            <div class="g-recaptcha mt-4 w-full" data-sitekey="{{ env('RECAPTCHA_V2_SITE_KEY') }}"></div>
 
             <div class="flex flex-col items-center justify-center mt-4">
-                <x-button class="px-3 py-3 w-full text-center mb-2">
-                    {{ __('Login') }}
+                <x-button class="ml-3 px-3 py-3 w-full mb-2">
+                    {{ __('Log in') }}
                 </x-button>
+
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
                         {{ __("Haven't registered yet?") }}

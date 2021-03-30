@@ -12,14 +12,23 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        
         <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body>
-        @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            {{-- @include('layouts.navigation') --}}
+            @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])            
+            
+            <!-- Page Content -->
+            <main>
+                {{ $slot }}
+            </main>
         </div>
+        <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script>
+
     </body>
 </html>
