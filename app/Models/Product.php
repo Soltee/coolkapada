@@ -21,6 +21,11 @@ class Product extends Model
     	return $this->hasMany(ProductImages::class);
     }
 
+    // public function images()
+    // {
+    // 	return $this->hasMany(ProductImages::class);
+    // }
+
     public function stock_level()
     {
         if($this->qty < 1){

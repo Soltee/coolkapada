@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BagController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Customer\HomeController;
 
@@ -17,6 +18,14 @@ Route::patch('/cart/{product}', [BagController::class, 'update'])
 Route::delete('/cart/{item}', [BagController::class, 'remove'])
                                             ->name('cart.remove');
 Route::delete('/cart', [BagController::class, 'destroy'])->name('cart.destroy');
+
+/*Checkout*/
+Route::get('/checkout', [CheckoutController::class, 'index'])
+                            ->name('checkout');
+Route::post('/checkout', [CheckoutController::class, 'store'])
+                            ->name('checkout.store');
+
+Route::get('/thankyou/{order}', [CheckoutController::class, 'show'])->name('thankyou');
 
 
 //Shop & Product 
