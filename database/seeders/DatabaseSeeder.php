@@ -13,6 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\Admin::factory()->create([
+            'first_name'         => 'Kamal',
+	        'last_name'          => 'Grg',
+	        'email'              => 'kamal@gmail.com',
+	        'email_verified_at'  => now(),
+	        'password'           => bcrypt('11111111'),
+	        // 'password' => bcrypt('#$rvU_@$%URT'),
+	        'remember_token'     => \Illuminate\Support\Str::random(10),
+        ]);
+        
         \App\Models\Customer::factory(10)->create();
         \App\Models\Category::factory(5)->create();
         \App\Models\Product::factory(40)->create();

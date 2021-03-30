@@ -17,6 +17,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        if(auth()->guard('customer')->user())
+        {
+            return redirect('/dashboard');
+        }
         return view('auth.login');
     }
 
@@ -32,8 +36,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()
-                    ->route('dashboard')
+        return redirect('/dashboard')
                     ->with('success', 'Logged in.');
     }
 

@@ -92,8 +92,13 @@
                                             }}" href="/contact">Contact</a>
                                         </li>
                                         <li class="list-none ">
-                                                <a  href="{{ route('logout') }}" class="hover:opacity-75 mr-3  text-md font-thin text-white" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                                <a  href="{{ route('logout') }}" class="hover:opacity-75 mr-3  text-md font-thin text-white" 
+                                                onclick="
+                                                    event.preventDefault();
+                                                    if(confirm('Are you sure?')){
+                                                     document.getElementById('logout-form').submit();
+                                                    }
+                                                ">
                                                     
                                                     Logout
                                                 </a>
@@ -145,8 +150,14 @@
                                 </li>
                                     
                                 <li class="list-none">
-                                        <a  href="{{ route('logout') }}" class="hover:opacity-75 mr-3  text-md font-thin text-white" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                        <a  href="{{ route('logout') }}" class="hover:opacity-75 mr-3  text-md font-thin text-white" 
+                                        onclick="
+                                            event.preventDefault();
+                                            if(confirm('Are you sure?'))
+                                            {
+                                                document.getElementById('logout-form').submit();
+                                            }
+                                        ">
                                             
                                             Logout
                                         </a>

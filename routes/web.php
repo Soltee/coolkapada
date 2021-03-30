@@ -6,6 +6,8 @@ use App\Http\Controllers\BagController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Customer\HomeController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\DashboardController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
@@ -47,8 +49,28 @@ Route::group(['middleware' => 'auth:customer'], function(){
 
     Route::patch('/home/{user}', [HomeController::class, 'update'])
                             ->name('customer.reset');
-    
+});
+
+//Admin
+Route::get('/admin/login', [LoginController::class, 'index'])
+                            ->name('admin.login');
+Route::post('/admin/login', [LoginController::class, 'login'])
+                            ->name('admin.login');
+
+                            
+Route::group(['middleware' => 'auth:admin'], function(){
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+                            ->name('admin.dashboard');
+    Route::get('/admin/profile', [DashboardController::class, 'show'])
+                            ->name('admin.profile');
+                            Route::post('/admin/logout', [LoginController::class, 'logout'])
+                            ->name('admin.logout');
+
+    Route::patch('/admin/profile/{id}', [DashboardController::class, 'update'])
+                            ->name('admin.update');             
 
 });
 
 require __DIR__.'/auth.php';
+
+

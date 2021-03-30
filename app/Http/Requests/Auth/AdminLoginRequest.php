@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Http;
 
-class LoginRequest extends FormRequest
+class AdminLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,6 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'g-recaptcha-response'  => 'required',
             'email'                 => 'required|string|email',
             'password'              => 'required|string',
         ];
@@ -45,18 +44,10 @@ class LoginRequest extends FormRequest
      */
     public function authenticate()
     {
-        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            'secret'     => env('RECAPTCHA_V2_SECRET_KEY'),
-            'response'   => $this->input('g-recaptcha-response')
-        ]);
-
-        if($response->failed()){
-            return redirect()->back()->with('errors', 'Reacaptcha error.');
-        }
 
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::guard('customer')->attempt($this->only('email', 'password'), $this->filled('remember'))) {
+        if (! Auth::guard('admin')->attempt($this->only('email', 'password'), $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
