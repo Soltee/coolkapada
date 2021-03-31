@@ -6,6 +6,7 @@ use App\Http\Controllers\BagController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Customer\HomeController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
@@ -53,14 +54,20 @@ Route::group(['middleware' => 'auth:customer'], function(){
                             ->name('customer.reset');
 });
 
-//Admin
+//Admin Pages
 Route::get('/admin/login', [LoginController::class, 'index'])
                             ->name('admin.login');
 Route::post('/admin/login', [LoginController::class, 'login'])
                             ->name('admin.login');
-
                             
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
+
+    //Categories
+	Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories');
+	Route::post('/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
+	Route::patch('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+	Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+
 
     //Customers
     Route::get('/customers', [CustomerController::class, 'index'])
