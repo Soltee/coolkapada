@@ -62,16 +62,26 @@
 			      <td class="border px-4 py-4">{{$order->phone_number}}</td>
 			      <td class="border px-4 py-4">{{$order->created_at->diffForHumans()}}</td>
 			      <td class="border px-4 py-4">
-			      	@if($order->is_paid)
-			      		
-			      	@else
-			      		<form action="{{ route('admin.orders.update', $order->id) }}" method="POST" accept-charset="utf-8">
-			      			
-			      			@csrf
-			      			@method('PATCH')
-			      			<button type="submit" class="px-4 py-3 rounded-lg text-white bg-green-600">Set as Paid</button>
-			      		</form>
-			      	@endif
+					@if(!$order->is_paid)
+					
+						<a  
+							href="{{ route('admin.orders.update', $order->id) }}" 
+							class="border px-4 py-3 text-white bg-yellow-900 hover:bg-yellow-700 rounded" 
+							onClick="
+								event.preventDefault();
+								if(confirm('Are you sure?')){
+									document.getElementById('order-update-form').submit();
+								}
+						">
+							Set as Completed
+						</a>
+						<form id="order-update-form" action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="hidden">
+							@csrf
+							@method('PATCH')
+						</form>
+				
+					@endif
+
 
 			      </td>
 			    </tr>

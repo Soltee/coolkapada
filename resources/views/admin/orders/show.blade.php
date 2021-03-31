@@ -6,25 +6,35 @@
     	<div class="flex flex-col md:flex-row justify-between   mb-6">
        		<div class="flex items-start flex-col w-full mb-2 md:mb-0">
        			<div class="flex items-center mb-2 w-full">
-	       			@if($order->customer)
-	       				{{-- <a href="{{ route('admin.customer', $order->customer->id) }}"class=" text-blue-500 hover:text-blue-500 w-1/2 md:w-auto">
-	       					is a customer.
-	       				</a> --}}
-	       			@endif
+	       			{{-- @if($customer)
+	       				<a href="{{ route('admin.customer', $order->customer->id) }}"class=" text-blue-500 hover:text-blue-500 w-1/2 md:w-auto">
+							   {{ $customer->first_name }} 
+							   {{ $customer->last_name }}
+	       				</a>
+	       			@endif --}}
 	       		</div>
        			<div class="flex items-center w-full">
        				<label for="" class=" border rounded-l px-4 py-3 w-1/2 md:w-auto">Status</label>
 	    			@if($order->is_paid)
 		      			<button class="border px-4 py-3 text-white bg-green-600 rounded-r cursor-auto">Completed</button>
 		      		@else
+						<a  
+							href="{{ route('admin.orders.update', $order->id) }}" 
+							class="border px-4 py-3 text-white bg-yellow-900 hover:bg-yellow-700 rounded" 
+				   			onClick="
+								event.preventDefault();
+								if(confirm('Are you sure?')){
+									document.getElementById('order-update-form').submit();
+								}
+				   		">
+					   		Set as Completed
+				   		</a>
+						<form id="order-update-form" action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="hidden">
+							@csrf
+							@method('PATCH')
+						</form>
 
-			      		<form action="{{ route('admin.orders.update', $order->id) }}" method="POST" accept-charset="utf-8">
-			      			
-			      			@csrf
-			      			@method('PATCH')
-		      				<button class="border px-4 py-3 text-white bg-yellow-900 hover:bg-yellow-700 rounded-r">Set as Paid</button>
-			      		</form>
-
+			      		
 		      		@endif
        			</div>
        		</div>
@@ -32,6 +42,7 @@
        		<div class="flex items-center">
 				<h4 class="border rounded px-4 py-3 font-bold text-lg flex mr-3"><span>Rs</span> {{ $order->grand_total   }}</h4>
 
+				<!-- Delete Order -->
 				<a  href="{{ route('admin.orders.delete', $order->id) }}" class="
 					 px-6 py-2 bg-red-600 hover:opacity-75 text-white rounded" 
 				onclick="
@@ -58,8 +69,14 @@
     		<div class="w-full md:w-1/3">
     			<h5 class="mb-4 text-lg text-gray-800 px-2">General Info</h5>
 	    		<div class="flex items-center mb-6">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-1/2">Name</label>
-		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">{{ $order->first_name  . ' ' . $order->last_name }}</h4>
+					<label for="" class=" border rounded px-4 py-3 md:w-1/2">Name</label>
+					@if($customer)
+						<a href="{{ route('admin.customer', $customer->id) }}">
+							<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1 hover:text-blue-600">{{ $order->first_name  . ' ' . $order->last_name }}</h4>
+						</a>
+					@else
+						<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1 ">{{ $order->first_name  . ' ' . $order->last_name }}</h4>
+					@endif
 		    	</div>
 		    	<div class="flex items-center mb-6">
 		    		<label for="" class=" border rounded px-4 py-3 md:w-1/2">Email</label>

@@ -6,8 +6,9 @@ use App\Http\Controllers\BagController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Customer\HomeController;
-use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\OrderController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -60,6 +61,15 @@ Route::post('/admin/login', [LoginController::class, 'login'])
 
                             
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
+
+    //Customers
+    Route::get('/customers', [CustomerController::class, 'index'])
+                        ->name('admin.customers.view');
+	Route::get('/customers/{customer}', [CustomerController::class, 'show'])                    ->name('admin.customer');
+    Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])
+                        ->name('admin.customers.destroy');
+
+
     Route::get('/dashboard', [DashboardController::class, 'index'])
                             ->name('admin.dashboard');
     Route::get('/profile', [DashboardController::class, 'show'])

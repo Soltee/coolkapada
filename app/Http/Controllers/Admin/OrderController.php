@@ -19,7 +19,7 @@ class OrderController extends Controller
         $search = request()->search;
 
 
-        $query = Order::latest();
+        $query = Order::latest()->with('customer');
         if($search){
             $query = $query->where('first_name', 'LIKE', '%'.$search.'%')
                             ->orWhere('last_name', 'LIKE', '%'.$search.'%')
@@ -33,7 +33,7 @@ class OrderController extends Controller
         $next     = $paginate->appends(request()->input())->nextPageUrl();
         $total    = $paginate->total();
 
-    return view('admin.orders.index', compact('orders', 'next', 'previous', 'total'));
+        return view('admin.orders.index', compact('orders', 'next', 'previous', 'total'));
     }
 
 
@@ -46,8 +46,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $items = $order->items;
-        return view('admin.orders.show', compact('order', 'items'));
+        $customer = $order->customer;
+        $items    = $order->items;
+        return view('admin.orders.show', compact('order', 'customer', 'items'));
     }
 
     /**
