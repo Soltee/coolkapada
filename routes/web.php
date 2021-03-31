@@ -8,6 +8,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Customer\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
@@ -58,16 +59,27 @@ Route::post('/admin/login', [LoginController::class, 'login'])
                             ->name('admin.login');
 
                             
-Route::group(['middleware' => 'auth:admin'], function(){
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
+    Route::get('/dashboard', [DashboardController::class, 'index'])
                             ->name('admin.dashboard');
-    Route::get('/admin/profile', [DashboardController::class, 'show'])
+    Route::get('/profile', [DashboardController::class, 'show'])
                             ->name('admin.profile');
                             Route::post('/admin/logout', [LoginController::class, 'logout'])
                             ->name('admin.logout');
 
-    Route::patch('/admin/profile/{id}', [DashboardController::class, 'update'])
-                            ->name('admin.update');             
+    Route::patch('/profile/{id}', [DashboardController::class, 'update'])
+                            ->name('admin.update');     
+                            
+    //Orders
+    Route::get('/orders', [OrderController::class, 'index'])
+                                ->name('admin.orders.view');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])
+                                ->name('admin.order');
+    Route::patch('/orders/{order}', [OrderController::class, 'update'])
+                                ->name('admin.orders.update');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])
+                                ->name('admin.orders.delete');
+
 
 });
 
