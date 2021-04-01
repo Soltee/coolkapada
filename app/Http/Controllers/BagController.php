@@ -36,9 +36,24 @@ class BagController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $pd = Product::findOrfail(request()->generateId);
         $qty = request()->qty ?? 1;
+            Cart::add([
+                'id'         => $pd->id,
+                'name'       => $pd->name,
+                'price'      => $this->price,
+                'quantity'   => $qty,
+                'attributes' => [
+                    'product_id'  => $pd->id,
+                    'slug'        => $pd->slug,
+                    'image_url'   => $pd->image_url,
+                    'colorId'     => $this->colorId,
+                    'color'       => $this->color,
+                    'attributeId' => $this->attributeId,
+                    'size'        => $this->size,
+                ]
+        ]);
         Cart::add([
                 'id'         => $pd->id,
                 'name'       => $pd->name,

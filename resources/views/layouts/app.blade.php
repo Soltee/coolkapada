@@ -16,6 +16,7 @@
         <!-- Scripts -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
+        @livewireStyles
     </head>
     <body>
         @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
@@ -276,39 +277,40 @@
         </footer>
 
         <!-- Scripts -->
-        <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js"></script>
+        {{-- <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script> --}}
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js"></script> --}}
+        @livewireScripts
         @stack('scripts')
         <script>
         
             document.addEventListener('DOMContentLoaded', function(){
                 const observer = window.lozad();
                 observer.observe();
-                var scroll = new SmoothScroll('a[href*="#"]',{
-                    speed: 400
+                // var scroll = new SmoothScroll('a[href*="#"]',{
+            //         speed: 400
                 });
 
 
 
-                const links = document.querySelectorAll(".page-header ul a");
+            //     const links = document.querySelectorAll(".page-header ul a");
 
-                for (const link of links) {
-                link.addEventListener("click", clickHandler);
-                }
+            //     for (const link of links) {
+            //     link.addEventListener("click", clickHandler);
+            //     }
 
-                function clickHandler(e) {
-                e.preventDefault();
-                const href = this.getAttribute("href");
-                const offsetTop = document.querySelector(href).offsetTop;
+            //     function clickHandler(e) {
+            //     e.preventDefault();
+            //     const href = this.getAttribute("href");
+            //     const offsetTop = document.querySelector(href).offsetTop;
 
-                scroll({
-                    top: offsetTop,
-                    behavior: "smooth"
-                });
-                }
+            //     scroll({
+            //         top: offsetTop,
+            //         behavior: "smooth"
+            //     });
+            //     }
 
 
-            });
+            // });
         </script>
     </body>
 </html>

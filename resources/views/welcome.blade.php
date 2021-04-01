@@ -2,8 +2,12 @@
 @section('head')
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
     <style>
-        .custom_radio input:checked + .radio_btn{border: 2px solid #347474;}
-        .custom_radio2 input:checked + .radio_btn2{border: 2px solid #347474;}
+        .custom_radio input:checked + .radio_btn{border: 3px solid #black;}
+        .custom_radio2 input:checked + .radio_btn2{
+          border: 2px solid #black;
+          background-color: rgb(17, 24, 39);
+          color: #fff;
+        }
         .imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}
 
         #heroImage {
@@ -46,94 +50,25 @@
             </div>
           </div>
             <div class="  
-                arrivals hover:cursor-move           
+                arrivals
+                {{-- grid grid-cols-1 md:grid-cols-3 gap-5 --}}
+                hover:cursor-move           
               ">
               @forelse($new as $p)
                 <div class="flex flex-col items-center">
                   <div 
-	        					class="imgBlock relative w-full  cursor-pointer">
-	        					<div class="overflow-hidden">
-			        				<a class="" href="{{ route('product', $p->slug)}}">
-				        				<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->image_url) }}" alt="{{ $p->slug }}">
-				        			</a>
-				        		</div>
-			        			@if($p->prev_price)	        				
-			        				<span class="bg-red-600 text-center rounded-lg text-white p-3 absolute top-0 right-0">{{ $p->price_level() }}% off</span>
-			        			@endif
-			        	
-
-                </div>
-
-                <a href="/product/{{ $p->slug }}">
-                  <h4 class="text-md font-semibold mt-4 text-c-light-black">{{ $p->name }}</h4>
-                </a>
-
-                  <form method="POST" action="{{ route('bag.store') }}">
-                      @csrf
-                      <input type="text" class="hidden" name="generateId" value="{{ $p->id }}">
-                 
-                      {{-- <a href="/product/{{ $p->slug }}">
-                        <img src="{{ asset($p->image_url) }}" class="w-full sm:48 md:h-56 first:h-64  object-cover rounded object-top hero hover:" alt="">
-                      </a> --}}
-                      
-
-                      <!-- Colors & Sizes-->
-                      <div class="w-full px-3  my-2 flex flex-col">
-                        {{-- <h4 class="mb-2">Color</h4> --}}
-                        <div class="flex flex-row items-center">
-                          @forelse(explode(',', $p->colors) as $c)
-        
-                            <label  class="custom_radio relative flex flex-col">
-                              <input class="hidden" type="radio"  
-                              {{ ($loop->first) ? 'checked' : '' }} 
-                              name="color" value="{{ $c }}">
-                              <span  class="radio_btn mr-2 px-3 py-3 rounded-full  border-2 border-white text-gray-900 cursor-pointer" style="background-color: {{ $c }}"
-                              >
-                                
-                              </span>
-                              
-                            </label>
-                            
-                          @empty
-        
-                          @endforelse
-                        </div>							
-                      </div>
-                    
-                      <div class="w-full  my-3 flex flex-col">
-                        {{-- <h4 class="mb-2">Size</h4> --}}
-                        <div class="flex flex-row items-center">
-                          @forelse(explode(', ', $p->sizes) as $s)
-        
-                            <label  class="custom_radio2 relative flex flex-col">
-                              <input class="hidden" type="radio"  
-                              {{ ($loop->first) ? 'checked' : '' }}  
-                              name="size" value="{{ $s }}">
-                              <span  class="radio_btn2 mr-2 px-3 py-2 rounded-lg  border-2 border-white text-gray-900 cursor-pointer hover:border-gray-400"
-                              >
-                                {{ $s }}
-                              </span>
-                              
-                            </label>
-                            
-                          @empty
-        
-                          @endforelse
-                        </div>							
-                      </div>
-
-                      @if($p->qty > 1)
-                        
-                        <button type="submit" class="w-full my-4 px-8 py-4 rounded bg-gray-900 hover:opacity-75 text-white ">Add To Bag</button>
-                          
-                      @else
-                        <button class="w-full my-4 px-8 py-4" >Out of Stock</button>
-                      @endif
-                
-                  </form>
-                
+                    class="imgBlock relative w-full  cursor-pointer">
+                    <div class="overflow-hidden">
+                        <a class="" href="{{ route('product', $p->slug)}}">
+                            <img  class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->image_url) }}" alt="{{ $p->slug }}">
+                        </a>
+                    </div>
+                  </div>
+                  
+                  <livewire:customer.product :p="$p->id" url="/" />
                 </div>
               @empty
+
                   <p class="ext-lg text-gray-900 font-semibold text-center">No products yet.</p>
 
               @endforelse
@@ -203,6 +138,11 @@
             arrowKeys: true
         });
 
+        // colorIds.addEventListener('click', function(e){
+        //   alet(e.target);
+        // });
+
+        //Newsletter
         let news_email = document.getElementById('news_email');
         const news_btn = document.getElementById('news_btn');
         const messageOutput = document.getElementById('messageOutput');
@@ -251,3 +191,7 @@
     </script>
 
 @endpush
+
+{{-- <div class="mb-4">
+  <input type="number" wire:model.defer="qty" class="px-4 py-4 md:py-2 rounded border-1 border-c-light-gray  w-full md:w-40 text-gray-900" value="1" min="1" max="{{ $quantity }}">
+</div> --}}

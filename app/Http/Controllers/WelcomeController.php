@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductImage;
 
 class WelcomeController extends Controller
 {
@@ -12,10 +13,15 @@ class WelcomeController extends Controller
      */
     public function index()
     {
+        // dd(ProductImage::first());
         $new  = Product::latest()
+                    ->with('images')
                     ->where('price', '>', '0')
-                    ->take(6)
+                    ->take(3)
                     ->get();
+        echo "<pre>";
+        // dd($new);
+        echo "</pre>";
         return view('welcome', compact('new'));
     }
 

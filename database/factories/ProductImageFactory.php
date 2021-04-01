@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\ProductImages;
+use App\Models\ProductImage;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class ProductImagesFactory extends Factory
+class ProductImageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = ProductImages::class;
+    protected $model = ProductImage::class;
 
     /**
      * Define the model's default state.
@@ -63,7 +63,6 @@ class ProductImagesFactory extends Factory
             },
             'color' =>  function(){
                 $cs = ['#000000', '#DEDCD9', '#FF0000', '#00FF10', '#DEC66C'];
-    
                 return \Illuminate\Support\Arr::random($cs);
             }
         ];

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -85,7 +86,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
                             ->name('admin.logout');
 
     Route::patch('/profile/{id}', [DashboardController::class, 'update'])
-                            ->name('admin.update');     
+                            ->name('admin.update');  
+                            
+    //Products
+	Route::get('/products', [ProductController::class, 'index'])->name('admin.products.view');
+	Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+	Route::get('/products/{product}', [ProductController::class, 'show'])->name('admin.product');
+	Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+	Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('admin.products.edit');
+	Route::patch('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
+	Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+
                             
     //Orders
     Route::get('/orders', [OrderController::class, 'index'])

@@ -77,85 +77,10 @@
 					@endif
 					
 				</div>
-				<div class="md:ml-8 w-full md:w-1/2 mt-3  md:py-0 flex flex-col">
+				<div class="md:ml-8 w-full md:w-1/2 mt-4  md:py-0 flex flex-col">
 
-					<form method="POST" action="{{ route('cart.store') }}">
-						@csrf
-						<div class="flex flex-col mt-6">
-							<input type="text" class="hidden" name="generateId" value="{{ $product->id }}">
-		        			<h5 class="mb-3 text-lg text-c-dark-blue">{{ $product->name }}</h5>
-							<div class="flex items-center mb-3">
-								@if($product->qty < 1)
-							            <span class="px-2 py-2 rounded-lg text-white bg-red-600">Out of Stock</span>'
-			        			@else
-		        					@if($product->prev_price)
-		        					<span class=" line-through mr-4">Rs {{ $product->prev_price }}</span>
-		        					@endif
-		        					<span class="p-3 border-1 border-c-light-gray {{ $product->prev_price ?? 'text-lg' }}">Rs {{ $product->price }}</span>
-		        				@endif
-							</div>
+					<livewire:customer.product :p="$product->id" :url="'/product/'.$product->slug"/>
 
-							{{-- <div class="w-full  my-3 flex md:flex-row md:items-center">
-								<h4 class="md:mr-3 text-sm">Category</h4>
-								<span class="text-md">{{ $product->category->name }}</span>
-							</div> --}}
-							<div class="w-full  my-4 flex flex-col">
-								<h4 class="mb-2">Color</h4>
-								<div class="flex flex-row items-center">
-									@forelse(explode(',', $product->colors) as $c)
-
-										<label  class="custom_radio relative flex flex-col">
-											<input class="hidden" type="radio"  
-											{{ ($loop->first) ? 'checked' : '' }} 
-											name="color" value="{{ $c }}">
-											<span  class="radio_btn mr-2 
-											px-3 py-3 rounded-full  border-2 border-white text-gray-900 cursor-pointer hover:border-gray-400" style="background-color: {{ $c }}"
-											>
-												
-											</span>
-											
-										</label>
-										
-									@empty
-
-									@endforelse
-								</div>							
-							</div>
-						 
-							<div class="w-full  my-4 flex flex-col">
-								<h4 class="mb-2">Size</h4>
-								<div class="flex flex-row items-center">
-									@forelse(explode(', ', $product->sizes) as $s)
-
-										<label  class="custom_radio2 relative flex flex-col">
-											<input class="hidden" type="radio"  
-											{{ ($loop->first) ? 'checked' : '' }} 
-											name="size" value="{{ $s }}">
-											<span  class="radio_btn2 mr-2 px-3 py-3 rounded-lg  border-2 border-white text-gray-900 cursor-pointer hover:border-gray-400"
-											>
-												{{ $s }}
-											</span>
-											
-										</label>
-										
-									@empty
-
-									@endforelse
-								</div>							
-							</div>
-							
-							<div class="mb-4">
-								<input type="number" name="qty" class="px-4 py-4 rounded border-1 border-c-light-gray  w-40" value="1" min:="1" max="{{ $product->qty }}">
-							</div>
-								
-						</div> 
-						@if($product->qty > 1)
-						<div class="flex items-start">
-							<button type="submit" class="w-auto my-4 px-8 py-4 rounded bg-gray-900 hover:opacity-75 text-white ">Add To Bag</button>
-							
-						</div>
-						@endif
-					</form>
 				</div>
 			</div>
 
@@ -188,36 +113,26 @@
               ">
               @forelse($similar as $p)
                 <div class="flex flex-col items-center">
-                  <div 
-	        					class="imgBlock relative w-full  cursor-pointer">
-	        					<div class="overflow-hidden">
-			        				<a class="" href="{{ route('product', $p->slug)}}">
-				        				<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->image_url) }}" alt="{{ $p->slug }}">
-				        			</a>
-				        		</div>
-			        			@if($p->prev_price)	        				
-			        				<span class="bg-red-600 text-center rounded-lg text-white p-3 absolute top-0 right-0">{{ $p->price_level() }}% off</span>
-			        			@endif
-			        	
+                    <div 
+						class="imgBlock relative w-full  cursor-pointer">
+						<div class="overflow-hidden">
+							<a class="" href="{{ route('product', $p->slug)}}">
+								<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->image_url) }}" alt="{{ $p->slug }}">
+							</a>
+						</div>
+					</div>
+					
+					<livewire:customer.product :p="$p->id" :url="'/product/'.$p->slug"/>
 
-                </div>
-
-                <a href="/product/{{ $p->slug }}">
+                {{-- <a href="/product/{{ $p->slug }}">
                   <h4 class="text-md font-semibold mt-4 text-c-light-black">{{ $p->name }}</h4>
                 </a>
 
                   <form method="POST" action="{{ route('bag.store') }}">
                       @csrf
-                      <input type="text" class="hidden" name="generateId" value="{{ $p->id }}">
-                 
-                      {{-- <a href="/product/{{ $p->slug }}">
-                        <img src="{{ asset($p->image_url) }}" class="w-full sm:48 md:h-56 first:h-64  object-cover rounded object-top hero hover:" alt="">
-                      </a> --}}
-                      
+                      <input type="text" class="hidden" name="generateId" value="{{ $p->id }}"> 
 
-                      <!-- Colors & Sizes-->
                       <div class="w-full px-3  my-2 flex flex-col">
-                        {{-- <h4 class="mb-2">Color</h4> --}}
                         <div class="flex flex-row items-center">
                           @forelse(explode(',', $p->colors) as $c)
         
@@ -239,7 +154,6 @@
                       </div>
                     
                       <div class="w-full  my-3 flex flex-col">
-                        {{-- <h4 class="mb-2">Size</h4> --}}
                         <div class="flex flex-row items-center">
                           @forelse(explode(', ', $p->sizes) as $s)
         
@@ -269,7 +183,7 @@
                       @endif
                 
                   </form>
-                
+                 --}}
                 </div>
               @empty
               @endforelse
