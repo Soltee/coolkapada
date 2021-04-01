@@ -135,7 +135,7 @@
 	    	</div>
 	        <div class="relative w-full md:w-1/2  p-5 ">
 	        	
-	        	<h5 class="">Check out our recommended products.</h5>
+	        	<h5 class="">You may also like.</h5>
 	           	<div class="mt-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-6 ">
 	           		@forelse($products as $product)
 	           			<div class="w-full flex flex-col items-center mb-6">
@@ -146,22 +146,11 @@
 										<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($product->image_url) }}" alt="{{ $product->slug }}">
 									</a>
 								</div>
-								@if($product->prev_price)	        				
-									<span class="bg-red-600 text-center rounded-lg text-white p-3 absolute top-0 right-0">{{ $product->price_level() }}% off</span>
-								@endif
-					
-
+						
 							</div>
 
-		        			<div class="flex flex-col items-start justify-between">
-		        				<h5 class="mb-3 text-lg text-c-dark-gray">{{ $product->name }}</h5>
-		        				<div class="flex items-center mb-3">
-		        					@if($product->prev_price)
-		        					<span class=" line-through mr-4">Rs {{ $product->prev_price }}</span>
-		        					@endif
-		        					<span class="p-3 border-1 border-c-light-gray {{ $product->prev_price ?? 'text-lg' }}">Rs {{ $product->price }}</span>
-								</div>
-		        			</div>
+							<livewire:customer.product :p="$product->id" url="/bag" />
+
 	           			</div>
 	           		@empty
 	           		@endforelse

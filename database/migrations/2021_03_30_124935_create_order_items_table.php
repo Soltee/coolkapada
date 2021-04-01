@@ -22,7 +22,9 @@ class CreateOrderItemsTable extends Migration
             $table->string('name');
             $table->string('price');
             $table->string('qty');
+            $table->string('colorId')->nullable();
             $table->string('color')->nullable();
+            $table->string('attributeId')->nullable();
             $table->string('size')->nullable();
             $table->string('total');
             $table->timestamps();

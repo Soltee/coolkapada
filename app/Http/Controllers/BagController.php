@@ -81,6 +81,7 @@ class BagController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        
         if(request()->quantity < 1){
             Cart::remove($product->id);
         } else {

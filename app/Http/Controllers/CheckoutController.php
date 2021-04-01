@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Attribute;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -84,15 +85,15 @@ class CheckoutController extends Controller
                 'price'          => $item->price,
                 'qty'            => $item->quantity,
                 'total'          => $item->price * $item->quantity,
+                'attributeId'    => $item->attributes->attributeId,
                 'size'           => $item->attributes->size,
+                'colorId'        => $item->attributes->colorId,
                 'color'          => $item->attributes->color
             ]);
 
-            $found     = Product::findOrFail($item->attributes->product_id);
+            $found     = Attribute::findOrfail($item->attributes->attributeId);
 
-            $remaining   = $found->qty - $item->quantity;
-            $found->sold = $found->qty - $remaining;
-            $found->qty  = $remaining;
+            $found->quantity   = $found->quantity - $item->quantity;
             $found->save();
         }
         
@@ -101,7 +102,7 @@ class CheckoutController extends Controller
 
         return redirect()
                     ->route('thankyou', ['order' => $order->id])
-                    ->with('success_message', 'Thank you for purchasing our products.');
+                    ->with('success', 'Thank you for purchasing our products.');
     }
 
 

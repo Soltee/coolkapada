@@ -22,6 +22,16 @@ class DatabaseSeeder extends Seeder
 	        // 'password' => bcrypt('#$rvU_@$%URT'),
 	        'remember_token'     => \Illuminate\Support\Str::random(10),
         ]);
+
+        \App\Models\Customer::factory()->create([
+            'first_name'         => 'Test',
+	        'last_name'          => 'test',
+	        'email'              => 'test@gmail.com',
+	        'email_verified_at'  => now(),
+	        'password'           => bcrypt('11111111'),
+	        // 'password' => bcrypt('#$rvU_@$%URT'),
+	        'remember_token'     => \Illuminate\Support\Str::random(10),
+        ]);
         
         \App\Models\Customer::factory(10)->create();
         \App\Models\Category::factory(5)->create();

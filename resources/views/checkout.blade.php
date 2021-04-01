@@ -121,7 +121,7 @@
 				    		</div>
 			    			<div class="box-content flex  flex-col lg:flex-row lg:items-center mb-4">
 				    			<div class="lg:w-1/2 lg:mr-2 flex flex-col mb-4 lg:mb-0">
-				    				<label for="street_address" class="mb-2 text-c-lighter-black text-sm">Street Address</label>
+				    				<label for="street_address" class="mb-2 text-c-lighter-black text-sm">Full Street(Tol) Address</label>
 				    				<input type="text" name="street_address" value="{{ old('street_address') ?? '' }}" class="px-6 py-3 rounded-lg border border-gray-300 @error('street_address') border-red-500  @enderror" placeholder="Birauta, 17 Smaj Ghar">
 				    				<div class="md:hidden mb-2  flex flex-col">
 						    			@error('street_address')
@@ -214,7 +214,7 @@
 		        					<span class=""> {{ $item->name }}</span> 
 		        				</h3>
 		        				<div class="flex items-center">
-		        					<span class="text-sm text-gray-800 text-lg mr-5">{{ $item->quantity }} * {{ $item->price }} </span>
+		        					<span class="text-sm text-gray-800 text-lg mr-5">{{ $item->quantity }}</span>
 			        				<span class="text-xl font-bold text-gray-800">Rs {{ $item->quantity * $item->price }}</span>
 			        			</div>
 		        			</div>
