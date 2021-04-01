@@ -19,7 +19,7 @@
                     @if($order->is_paid)
                         <button class="border px-4 py-3 text-white bg-green-600 rounded-r">Paid</button>
                     @else
-                        <button class="border px-4 py-3 text-white bg-yellow-600 rounded-r">On you way</button>
+                        <button class="border px-4 py-3 text-white bg-yellow-600 rounded-r">On your way</button>
                     @endif
                 </div>
             </div>

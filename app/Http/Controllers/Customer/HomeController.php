@@ -27,14 +27,9 @@ class HomeController extends Controller
 
         $query = Order::latest()->withCount('items')->where('customer_id', $auth->id);
 
-        $paginate = $query->paginate(8);
-        $orders   = $paginate->items();
-        $previous = $paginate->appends(request()->input())->previousPageUrl();
-        $next     = $paginate->appends(request()->input())->nextPageUrl();
-        $total    = $paginate->total();
-
-
-        return view('customers.dashboard', compact('auth', 'orders', 'previous', 'next', 'total'));
+        $orders = $query->paginate(8);
+    
+        return view('customers.dashboard', compact('auth', 'orders'));
     }
 
     /**

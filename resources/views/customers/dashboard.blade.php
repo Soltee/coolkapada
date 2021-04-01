@@ -37,7 +37,7 @@
 			      		@if($order->is_paid)
 			      			<button class="px-2 py-2 text-white bg-green-600 rounded-lg">Completed</button>
 			      		@else
-			      			<button class="px-2 py-2 text-white bg-red-600 rounded-lg">On Way</button>
+			      			<button class="px-2 py-2 text-white bg-red-600 rounded-lg">On your Way</button>
 			      		@endif
 			      </td>
 			      <td class="border px-4 py-4">
@@ -65,17 +65,14 @@
 			    @endforelse
 
 			  </tbody>
-			</table>
-            @if($total > 8)
-			<div class="my-6 flex justify-between items-center w-full px-4">
-				<a  class="px-4 py-3 rounded-lg bg-indigo-500 text-white text-lg" href="{{ $previous }}">
-					Prev
-				</a>
-				<a  class="px-4 py-3 rounded-lg bg-indigo-500 text-white text-lg" href="{{ $next }}">
-					Next
-				</a>
-			</div>
-            @endif
+            </table>
+            
+
+            <div class="mt-5">
+
+                {{ $orders->links() }}
+
+            </div>
 		</div>
 
       
