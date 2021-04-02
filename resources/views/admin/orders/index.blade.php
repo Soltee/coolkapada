@@ -12,8 +12,6 @@
 			    </div>
 
     		</form>
-    		<span class="ml-6 text-lg font-bold">{{ $total }} Orders</span>
-
     	
     	</div>
 
@@ -76,26 +74,8 @@
 			</table>
 		</div>
 
-		<div class="my-6 flex justify-between items-center w-full px-4">
-			@if($previous)
-			<a  class="px-4 py-3 rounded-lg text-indigo-500 text-lg" href="{{ $previous }}">
-				Prev
-			</a>
-			@else
-			<span  class="px-4 py-3 rounded-lg  text-white text-lg">
-				
-			</span>
-			@endif
-
-			@if($next)
-			<a  class="px-4 py-3 rounded-lg text-indigo-500 text-lg" href="{{ $next }}">
-				Next
-			</a>
-			@else
-			<span  class="px-4 py-3 rounded-lg   text-white text-lg">
-				
-			</span>
-			@endif
+		<div class="my-6 flex justify-center items-center w-full px-4">
+			{{  $orders->links() }}
 		</div>
-    </div>
+	</div>
 @endsection

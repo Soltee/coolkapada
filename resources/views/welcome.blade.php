@@ -51,7 +51,6 @@
           </div>
             <div class="  
                 arrivals
-                {{-- grid grid-cols-1 md:grid-cols-3 gap-5 --}}
                 hover:cursor-move           
               ">
               @forelse($new as $p)
@@ -60,7 +59,7 @@
                     class="imgBlock relative w-full  cursor-pointer">
                     <div class="overflow-hidden">
                         <a class="" href="{{ route('product', $p->slug)}}">
-                            <img  class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->image_url) }}" alt="{{ $p->slug }}">
+                            <img  class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->media->image_url) }}" alt="{{ $p->slug }}">
                         </a>
                     </div>
                   </div>

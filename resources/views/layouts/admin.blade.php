@@ -8,6 +8,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         @yield('head')
+        @livewireStyles
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -42,6 +43,8 @@
                                     </svg>
                                         <ul 
                                             x-show.transition.50ms="lgmenu"
+                                            x-on:click.away="lgmenu = false"
+
                                             class="absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start px-4 py-3 rounded w-40 z-30">
          
                                                 <li class="list-none mb-3">
@@ -77,6 +80,13 @@
                                                         (Route::currentRouteName() == 'admin.customers') ? 'underline' : 'text-white'
                                                     }}" href="/admin/customers">
                                                     Customers
+                                                    </a>
+                                                </li>
+                                                <li class="list-none mb-3">
+                                                    <a class="hover:underline text-md text-white font-thin {{ 
+                                                        (Route::currentRouteName() == 'medias') ? 'underline' : 'text-white'
+                                                    }}" href="/admin/medias">
+                                                    Media
                                                     </a>
                                                 </li>
                                                 <li class="list-none mb-3">
@@ -126,17 +136,18 @@
         @endauth
         
         <!-- Scripts -->
-        <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script>
+        {{-- <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script> --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js"></script>
         @stack('scripts')
+        @livewireScripts
         <script>
         
             document.addEventListener('DOMContentLoaded', function(){
                 const observer = window.lozad();
                 observer.observe();
-                var scroll = new SmoothScroll('a[href*="#"]',{
-                    speed: 400
-                });
+                // var scroll = new SmoothScroll('a[href*="#"]',{
+                //     speed: 400
+                // });
 
             });
         </script>

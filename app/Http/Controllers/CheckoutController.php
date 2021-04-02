@@ -114,16 +114,15 @@ class CheckoutController extends Controller
      */
     public function show(Order $order)
     {
-        if(!session('success_message')){
+        if(!session('success')){
             return redirect('/shop');
         }
 
         $items    = $order->items;
         $products = Product::latest()
+                            ->with('media')
                             ->take(6)
                             ->get();
-
-        // dd(count($items));
       
         return view('thankyou', compact('order', 'items', 'products'));
     }

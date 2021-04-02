@@ -28,7 +28,7 @@ class AttributeFactory extends Factory
                 $prod = Product::inRandomOrder()->pluck('id')->toArray();
                 return  \Illuminate\Support\Arr::random($prod);
             },
-            'productImage_id' => function(){
+            'product_image_id' => function(){
                 $image = ProductImage::inRandomOrder()->pluck('id')->toArray();
                 return  \Illuminate\Support\Arr::random($image);
             },

@@ -20,7 +20,8 @@ class ShopController extends Controller
         $search   = request()->keyword;
         $sort     = request()->sort;
 
-        $query    = Product::latest();
+        $query    = Product::latest()
+                        ->with('media');
 
         if($category){
             $categories =   Category::latest()->paginate(6);
@@ -39,8 +40,6 @@ class ShopController extends Controller
         $first      =   $products->firstItem();
         $last       =   $products->lastItem();
     	
-    	// dd($categories);
-        // \Cart::clear();
         return view('shop', compact('categories', 'products', 'first', 'last', 'count'));
 
     }
@@ -50,14 +49,24 @@ class ShopController extends Controller
     */
 	public function show($slug)
 	{   
-        $product          =  Product::where('slug', $slug)->first();
-        $images           =  $product->images;
-        $image_count      =  count($images);
+        $product          =  Product::where('slug', $slug)
+                                ->with('media')
+                                ->first();
+        $images           =  $product->images()
+                                    ->with('media')
+                                    ->get();
+        // dd($images->count());
+        $image_count      =  $images->count();
 
         $auth             = Auth::guard('customer')->user() ? Auth::guard('customer')->user()->id : null;
 
-        $similar          =  $product->category->products()->inRandomOrder()->where('id', '!=' , $product->id)->take(10)->get();
-		// dd($average);
+        $similar          =  $product->category
+                                    ->products()
+                                        ->inRandomOrder()
+                                        ->where('id', '!=' , $product->id)
+                                        ->with('media')
+                                        ->take(10)
+                                        ->get();
 		return view('show', compact('product', 'image_count', 'images', 'auth', 'similar'));
 	}
 }

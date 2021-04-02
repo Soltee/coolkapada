@@ -112,16 +112,9 @@
 				</table>
 			</div>
 
-				@if($total > 8)
-				<div class="my-6 flex justify-between items-center w-full px-4">
-					<a  class="px-4 py-3 rounded-lg bg-gray-700 text-white text-lg" href="{{ $previous }}">
-						Prev
-					</a>
-					<a  class="px-4 py-3 rounded-lg bg-indigo-500 text-white text-lg" href="{{ $next }}">
-						Next
-					</a>
+				<div class="my-6 flex justify-center items-center w-full px-4">
+					{{  $categories->links() }}
 				</div>
-				@endif
 
 			</div>
 

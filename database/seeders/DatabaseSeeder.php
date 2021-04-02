@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
         
         \App\Models\Customer::factory(10)->create();
         \App\Models\Category::factory(5)->create();
+        \App\Models\Media::factory(100)->create();
+        
 
         $pds = \App\Models\Product::factory(40)->create();
         foreach($pds as $p){
@@ -46,10 +48,18 @@ class DatabaseSeeder extends Seeder
 
             foreach($imgs as $i){
                 \App\Models\Attribute::factory(3)->create([
-                    'productImage_id'   => $i->id,
-                    'product_id'        => $p->id
-                ]);
+                        'product_image_id'   => $i->id,
+                        'product_id'        => $p->id
+                    ]);   
             }
+
+            //Min Max Price
+            $min = $p->attributes()->min('price');
+            $max = $p->attributes()->max('price');
+            $p->update([
+                'min'   => $min,
+                'max'   => $max
+            ]);
 
             $cs    = \App\Models\Customer::inRandomOrder()
                                         ->pluck('id')

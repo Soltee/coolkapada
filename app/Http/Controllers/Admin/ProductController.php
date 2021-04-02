@@ -22,7 +22,8 @@ class ProductController extends Controller
         $search = request()->search;
 
 
-        $query = Product::latest();
+        $query = Product::latest()
+                        ->with('media');
         if($search){
             $query = $query->where('name', 'LIKE', '%'.$search.'%')
                             ->orWhere('price', 'LIKE', '%'.$search.'%');
@@ -56,66 +57,22 @@ class ProductController extends Controller
             
         $data = $request->validate([
             'category'     => 'required|string',
-            'name'         => 'required|string',
-            'prev_price'   => 'int|min:0',
-            'price'        => 'required|int|min:1',
-            'qty'          => 'required|int|min:1',
-            'sizes'        => 'required|string',
-            'colors'       => 'required|string',
+            'name'         => 'required|string|unique:products',
             'description'  => 'required'
         ]);
         
-
-        $allowedfileExtension = ['jpeg','jpg','png'];
-        $images      = $request->file('files'); 
-        foreach($images as $file){
-            $filename = $file->getClientOriginalName();
-
-            $extension = $file->getClientOriginalExtension();
-
-            $check = in_array($extension,$allowedfileExtension);
-            
-            if(!$check){
-                return back()
-                    ->with('errors', 'Please select only jpeg, jpg and png images.');
-            }
-        }
-
-        foreach ($images as $image) {
-            $basename  = Str::random();
-            $original  = 'pd-' . $basename . '.' . $image->getClientOriginalExtension();
-            $image->move(storage_path('app/public/products'), $original);
-
-            $paths[] = [
-                'url'    => 'storage/products/'. $original,
-                'thumb'  => $original
-            ];
-        }
-
-        // echo $data['colors'];
-
         $product = Product::create([
-            'image_url'    => $paths[0]['url'],
             'category_id'  => $data['category'],
             'name'         => $data['name'],
             'slug'         => Str::slug($data['name'], '-'),
-            'prev_price'   => $data['prev_price'],
-            'price'        => $data['price'],
-            'qty'          => $data['qty'],
-            'sizes'        => $data['sizes'],
-            'colors'       => $data['colors'],
             'description'  => $data['description'] 
         ]);
 
-        foreach ($paths as $data) {
-                ProductImage::create([
-                    'product_id'  => $product->id,
-                    'image_url'   => $data['url'],
-                    'thumbnail'   => $data['thumb']
-                ]);
-        }
-
-        return back()->with('toast_success', 'Product uploaded.');
+        return redirect()
+                ->route('product.image.create', [
+                    'product' => $product->id
+                ])
+                ->with('toast_success', 'Product uploaded.');
     }
 
     /**
@@ -242,12 +199,15 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         foreach ($product->images as $image) {
-            File::delete($image->thumbnail);
+            foreach($image->attributes as $a){
+                $a->delete();
+            }
+            
             $image->delete();
         }
 
-
         $product->delete();
+
         return redirect()->route('admin.products.view')->with('toast_success', 'Product deleted.');
     }
 

@@ -13,15 +13,11 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        // dd(ProductImage::first());
         $new  = Product::latest()
-                    ->with('images')
+                    ->with('media', 'images')
                     ->where('price', '>', '0')
                     ->take(3)
                     ->get();
-        echo "<pre>";
-        // dd($new);
-        echo "</pre>";
         return view('welcome', compact('new'));
     }
 

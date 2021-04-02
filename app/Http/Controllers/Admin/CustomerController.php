@@ -9,16 +9,7 @@ use App\Models\Customer;
 
 class CustomerController extends Controller
 {   
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +17,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-         $search = request()->search;
+        $search = request()->search;
 
 
         $query = Customer::latest();
@@ -36,13 +27,10 @@ class CustomerController extends Controller
                             ->orWhere('email', 'LIKE', '%'.$search.'%');
          }
 
-        $paginate = $query->paginate(8);
-        $customers = $paginate->items();
-        $previous = $paginate->appends(request()->input())->previousPageUrl();
-        $next     = $paginate->appends(request()->input())->nextPageUrl();
-        $total    = $paginate->total();
+        $customers  = $query->paginate(8);
+        $total    = $customers->total();
 
-        return view('admin.customers.index', compact('customers', 'next', 'previous', 'total'));
+        return view('admin.customers.index', compact('customers', 'total'));
     }
 
 

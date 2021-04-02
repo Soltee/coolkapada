@@ -11,7 +11,6 @@ use Cart;
 class Product extends Component
 {   
     public $url;
-    public $display;
     public $min;
     public $max;
     public $p;
@@ -36,17 +35,13 @@ class Product extends Component
 
     public function mount(P $p, $url)
     {
-        
-        if($url !== '/') {
-            $this->display = true;
-        }
 
         $this->url    = $url;
         $this->p      = $p;
         $this->images = $p->images;
 
-        $this->min = $p->attributes()->min('price');
-        $this->max = $p->attributes()->max('price');
+        $this->min = $p->min;
+        $this->max = $p->max;
 
     }
 
@@ -66,7 +61,7 @@ class Product extends Component
         $this->quantity       = 0;
 
         //Set Color And Attributes
-        $this->attributes = Attribute::where('productImage_id', $color)->get();
+        $this->attributes = Attribute::where('product_image_id', $color)->get();
         $this->colorId    = $color;
     }
 
@@ -89,8 +84,6 @@ class Product extends Component
             $this->qty
         ];
 
-        // dd(url()->current());
-
         $pd = P::findOrfail($this->p->id);
         $qty = $this->qty ?? 1;
 
@@ -102,7 +95,7 @@ class Product extends Component
                 'attributes' => [
                     'product_id'  => $pd->id,
                     'slug'        => $pd->slug,
-                    'image_url'   => $pd->image_url,
+                    'image_url'   => $pd->media->image_url,
                     'colorId'     => $this->colorId,
                     'color'       => $this->color,
                     'attributeId' => $this->attributeId,

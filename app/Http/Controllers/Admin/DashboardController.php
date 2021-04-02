@@ -26,12 +26,12 @@ class DashboardController extends Controller
         $paid_orders = Order::where('is_paid', true)->count();
         $paid_orders_amount = Order::where('is_paid', true)->sum('grand_total');
 
-        $paginate = Order::latest()->where('is_paid', false)->paginate(10);
+        $orders = Order::latest()->where('is_paid', false)->paginate(10);
 
-        $orders = $paginate->items();
-        $previous = $paginate->previousPageUrl();
-        $next = $paginate->nextPageUrl();
-        $total = $paginate->total();
+        // $orders = $paginate->items();
+        $previous = $orders->previousPageUrl();
+        $next     = $orders->nextPageUrl();
+        $total    = $orders->total();
         
         //Products
         $get_products = Product::all()->count();

@@ -17,7 +17,7 @@
 	    		<div class=" mx-4 mt-6">
 	        		<div class="flex items-center my-3">
 		    			<svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-c-light-green mr-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-	    				<p class="text-c-dark-gray leading-relaxed">{{ session('success_message') }}</p>
+	    				<p class="text-c-dark-gray leading-relaxed">{{ session('success') }}</p>
 	    			</div>
 
 	    			<div class="my-5 border border-gray-400 rounded">
@@ -143,7 +143,7 @@
 							class="imgBlock relative w-full  cursor-pointer">
 								<div class="overflow-hidden">
 									<a class="" href="{{ route('product', $product->slug)}}">
-										<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($product->image_url) }}" alt="{{ $product->slug }}">
+										<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($product->media->image_url) }}" alt="{{ $product->slug }}">
 									</a>
 								</div>
 						

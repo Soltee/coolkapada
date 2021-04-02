@@ -16,7 +16,7 @@ class CreateAttributesTable extends Migration
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id');
-            $table->foreignId('productImage_id');
+            $table->foreignId('product_image_id');
             $table->string('size');
             $table->integer('quantity');
             $table->integer('price');

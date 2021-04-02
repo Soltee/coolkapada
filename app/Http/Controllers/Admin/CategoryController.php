@@ -24,13 +24,10 @@ class CategoryController extends Controller
             $query = $query->where('name', 'LIKE', '%'.$search.'%');
          }
 
-        $paginate     =   $query->paginate(8);
-        $categories   =   $paginate->items();
-        $previous     =   $paginate->appends(request()->input())->previousPageUrl();
-        $next         =   $paginate->appends(request()->input())->nextPageUrl();
+        $categories  =   $query->paginate(2);
+        $total       =   $categories->total();
 
-        $total        = $paginate->total();
-        return view('admin.categories.index', compact('categories', 'next', 'previous', 'total'));
+        return view('admin.categories.index', compact('categories', 'total'));
     }
 
 

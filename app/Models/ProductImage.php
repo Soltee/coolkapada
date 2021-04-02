@@ -16,6 +16,11 @@ class ProductImage extends Model
     	return $this->belongsTo(Product::class);
     }
 
+    public function media()
+    {
+    	return $this->belongsTo(Media::class);
+    }
+
     public function attributes(){
         return $this->hasMany(Attribute::class);
     }

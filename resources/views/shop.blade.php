@@ -41,53 +41,51 @@
       </div>
 
       <!-- Products -->
-			<div class="w-full grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-columns-4">
+		<div class="w-full grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-columns-4">
 		    @forelse($products as $product)
-          <div class="flex flex-col items-center mb-8">
-            <div 
-	        					class="imgBlock relative w-full  cursor-pointer">
-	        					<div class="overflow-hidden">
-			        				<a class="" href="{{ route('product', $product->slug)}}">
-				        				<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($product->image_url) }}" alt="{{ $product->slug }}">
-				        			</a>
-				        		</div>
-			        		
-			        	
-
-            </div>
-            
-            <livewire:customer.product :p="$product->id" :url="'/product/'.$product->slug"/>
-			
-		      </div>
-		    @empty
-	    	@endforelse
-		  </div>
+			<div class="flex flex-col items-center mb-8">
+				<div 
+					class="imgBlock relative w-full  cursor-pointer">
+					<div class="overflow-hidden">
+						<a class="" href="{{ route('product', $product->slug)}}">
+							<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($product->media->image_url) }}" alt="{{ $product->slug }}">
+						</a>
+					</div>
+							
+				</div>
+				
+					<livewire:customer.product :p="$product->id" :url="'/product/'.$product->slug"/>
+				
+			</div>
+				@empty
+				@endforelse
+			</div>
 
           
-		  <div class=" flex justify-center items-center my-6">
-		    @if($products->appends(request()->input())->previousPageUrl())
-		        	<a class="px-6 py-3 rounded text-c-dark-gray border-1 hover:bg-gray-900 hover:text-white" href="{{ $products->appends(request()->input())->previousPageUrl()}}">
-		        		Prev
-		        	</a>
-		    @else
-		        	<span class="px-6 py-3 rounded text-transparent ">
-		        		Prev
-		        	</span>
-		        	
-        @endif
-        
-        <span class="px-6 py-3 mx-4 rounded  border-1 bg-gray-900 text-white">{{ $products->appends(request()->input())->currentPage() }}</span>
-        
-		    @if($products->appends(request()->input())->nextPageUrl())
-		        	<a class="px-6 py-3 rounded text-c-dark-gray border-1 hover:bg-gray-900 hover:text-white" href="{{ $products->appends(request()->input())->nextPageUrl()}}">
-		        		Next
-		        	</a>
-		    @else
-		        	<span class="px-6 py-3 rounded text-transparent ">
-		        		Next
-		        	</span>
-		    @endif
-		  </div>
+		    <div class=" flex justify-center items-center my-6">
+				@if($products->appends(request()->input())->previousPageUrl())
+					<a class="px-6 py-3 rounded text-c-dark-gray border-1 hover:bg-gray-900 hover:text-white" href="{{ $products->appends(request()->input())->previousPageUrl()}}">
+							Prev
+						</a>
+				@else
+					<span class="px-6 py-3 rounded text-transparent ">
+							Prev
+						</span>
+						
+				@endif
+			
+				<span class="px-6 py-3 mx-4 rounded  border-1 bg-gray-900 text-white">{{ $products->appends(request()->input())->currentPage() }}</span>
+			
+				@if($products->appends(request()->input())->nextPageUrl())
+							<a class="px-6 py-3 rounded text-c-dark-gray border-1 hover:bg-gray-900 hover:text-white" href="{{ $products->appends(request()->input())->nextPageUrl()}}">
+							Next
+						</a>
+				@else
+						<span class="px-6 py-3 rounded text-transparent ">
+							Next
+						</span>
+				@endif
+			</div>
     </div>
       
 @endsection

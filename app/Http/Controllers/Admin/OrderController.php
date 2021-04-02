@@ -27,13 +27,10 @@ class OrderController extends Controller
                             ->orWhere('phone_number', 'LIKE', '%'.$search.'%');
          }
 
-        $paginate = $query->paginate(8);
-        $orders   = $paginate->items();
-        $previous = $paginate->appends(request()->input())->previousPageUrl();
-        $next     = $paginate->appends(request()->input())->nextPageUrl();
-        $total    = $paginate->total();
+        $orders   = $query->paginate(8);
+        $total    = $orders->total();
 
-        return view('admin.orders.index', compact('orders', 'next', 'previous', 'total'));
+        return view('admin.orders.index', compact('orders', 'total'));
     }
 
 

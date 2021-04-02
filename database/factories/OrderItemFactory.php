@@ -25,6 +25,10 @@ class OrderItemFactory extends Factory
      */
     public function definition()
     {
+        $product = Product::inRandomOrder()->with('media')->first();
+
+        $price = Arr::random([8,4,10,20,329.9,899.9]);
+        $qty   = Arr::random([1,2,3]);
         return [
             'customer_id' => function(){
                 $customers = Customer::inRandomOrder()->pluck('id')->toArray();
@@ -34,33 +38,13 @@ class OrderItemFactory extends Factory
                 $orders = Order::inRandomOrder()->pluck('id')->toArray();
                 return  Arr::random($orders);
             },
-            'product_id' => function(){
-                $product = Product::inRandomOrder()->pluck('id')->toArray();
-                return  Arr::random($product);
-            },
-            'image_url' => function(){
-                $url = Product::inRandomOrder()->pluck('image_url')->toArray();
-                return  Arr::random($url);
-            },
-            'name' => function(){
-                $names = Product::inRandomOrder()->pluck('name')->toArray();
-                return  Arr::random($names);
-            },
-            'price' => function(){
-                $prices = Product::inRandomOrder()->pluck('price')->toArray();
-                return  Arr::random($prices);
-            },
-            'qty' => function(){
-                $quantities = Product::inRandomOrder()->pluck('qty')->toArray();
-                return  Arr::random($quantities);
-            },
-            'total' => function(){
-                $price = Product::inRandomOrder()->pluck('price')->toArray();
-                $quantities = Product::inRandomOrder()->pluck('qty')->toArray();
-                $p = Arr::random($price);
-                $q = Arr::random($quantities);
-    
-                return $p * $q;
+            'product_id' => $product->id,
+            'image_url'  => $product->media->image_url,
+            'name'  => $product->name,
+            'price' => $price,
+            'qty'   => $qty,
+            'total' => function() use($price, $qty) {
+                return $price * $qty;
             },
             'created_at' => function(){
                 return \Carbon\Carbon::now()->subDays(rand(0, 20))->format('Y-m-d');

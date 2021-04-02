@@ -9,7 +9,7 @@ class Attribute extends Model
 {
     use HasFactory;
 
-    protected $guraded = [];
+    protected $guarded = [];
 
     public function image(){
         return $this->belongsTo(ProductImages::class);

@@ -131,6 +131,7 @@
                             xmlns="http://www.w3.org/2000/svg" class="cursor-pointer w-8 h-8 text-gray-900 hover:opacity-75 ml-3 md:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                         <ul 
                             x-show.transition.50ms="menu"
+                            x-on:click.away="menu = false"
                             class="md:hidden absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start  px-4 py-3 w-auto z-30">
                             <!-- Mobile User Auth COntrol -->
                             @auth('customer')
@@ -224,12 +225,18 @@
                 <!-- Menus -->
                 <ul class="m-0 flex flex-col md:flex-row md:justify-center my-6 md:items-center">
                     <li class="list-none mb-3 md:mb-0">
-                        <a href="/" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
+                        <a href="/" 
+                            class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
+                            {{ Route::currentRouteName() == 'welcome' ? 'border-b border-gray-900' : ''}}"
+                            >
                             Home
                         </a>
                     </li>
                     <li class="list-none mb-3 md:mb-0">
-                        <a href="/shop" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
+                        <a href="/shop" 
+                            class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
+                            {{ Route::currentRouteName() == 'shop' ? 'border-b border-gray-900' : ''}}
+                            ">
                             Shop
                         </a>
                     </li>

@@ -40,7 +40,7 @@
 
 				    				<div class="md:hidden mb-2  flex flex-col">
 						    			@error('first_name')
-					    					<p class="text-c-red">{{ $message }}</p>
+					    					<p class="text-red-600">{{ $message }}</p>
 					    				@enderror
 				    				</div>
 					    			
@@ -57,7 +57,7 @@
 
 				    				<div class="md:hidden mb-2  flex flex-col">
 						    			@error('last_name')
-					    					<p class="text-c-red">{{ $message }}</p>
+					    					<p class="text-red-600">{{ $message }}</p>
 					    				@enderror
 				    				</div>
 				    			</div>
@@ -65,12 +65,12 @@
 			    			<div class="hidden md:block md:flex  md:flex-row md:items-center mb-6">
 			    				<div class="md:w-1/2 md:mr-2 flex flex-col">
 					    			@error('first_name')
-				    					<p class="text-c-red">{{ $message }}</p>
+				    					<p class="text-red-600">{{ $message }}</p>
 				    				@enderror
 			    				</div>
 				    			<div class="md:hidden mb-2  flex flex-col">
 					    			@error('last_name')
-				    					<p class="text-c-red">{{ $message }}</p>
+				    					<p class="text-red-600">{{ $message }}</p>
 				    				@enderror
 			    				</div>
 			    			</div>
@@ -86,7 +86,7 @@
 
 			    				<div class="hidden md:block w-full mt-3">
 					    			@error('email')
-				    					<p class="text-c-red">{{ $message }}</p>
+				    					<p class="text-red-600">{{ $message }}</p>
 				    				@enderror
 			    				</div>
 				    		</div>
@@ -98,7 +98,7 @@
 				    			</div>
 			    				<div class=" w-full mt-3">
 					    			@error('phone_number')
-				    					<p class="text-c-red">{{ $message }}</p>
+				    					<p class="text-red-600">{{ $message }}</p>
 				    				@enderror
 
 			    				</div>
@@ -125,7 +125,7 @@
 				    				<input type="text" name="street_address" value="{{ old('street_address') ?? '' }}" class="px-6 py-3 rounded-lg border border-gray-300 @error('street_address') border-red-500  @enderror" placeholder="Birauta, 17 Smaj Ghar">
 				    				<div class="md:hidden mb-2  flex flex-col">
 						    			@error('street_address')
-					    					<p class="text-c-red">{{ $message }}</p>
+					    					<p class="text-red-600">{{ $message }}</p>
 					    				@enderror
 				    				</div>
 				    			</div>
@@ -134,7 +134,7 @@
 				    				<input type="number" name="house_number" class="px-6 py-3 rounded-lg border border-gray-300 @error('house_number') border-red-500  @enderror" placeholder="4598" value="{{ old('house_number') ?? '' }}">	
 				    				<div class="md:hidden mb-2  flex flex-col">
 						    			@error('house_number')
-					    					<p class="text-c-red">{{ $message }}</p>
+					    					<p class="text-red-600">{{ $message }}</p>
 					    				@enderror
 				    				</div>
 				    			</div>
@@ -143,12 +143,12 @@
 			    			<div class="hidden md:block md:flex  md:flex-row md:items-center mb-4">
 			    				<div class="md:w-1/2 md:mr-2 flex flex-col">
 					    			@error('street_address')
-				    					<p class="text-c-red">{{ $message }}</p>
+				    					<p class="text-red-600">{{ $message }}</p>
 				    				@enderror
 			    				</div>
 				    			<div class="md:w-1/2 md:mr-2 flex flex-col">
 					    			@error('house_number')
-				    					<p class="text-c-red">{{ $message }}</p>
+				    					<p class="text-red-600">{{ $message }}</p>
 				    				@enderror
 			    				</div>
 			    			</div>

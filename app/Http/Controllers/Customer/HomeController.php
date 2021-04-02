@@ -22,7 +22,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $search = request()->search;
         $auth = $this->guard()->user();
 
         $query = Order::latest()->withCount('items')->where('customer_id', $auth->id);

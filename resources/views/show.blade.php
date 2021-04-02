@@ -49,7 +49,7 @@
 					<div class="relative imageDiv
 						 ">
 						<img id="featured" 
-						  class="focus-img  cursor-move grabbable featured w-full object-cover object-center" src="{{ asset($product->image_url) }}">
+						  class="focus-img shadow-lg cursor-move grabbable featured w-full object-cover object-center" src="{{ asset($product->media->image_url) }}">
 						<p 
 							class="text absolute top-0 right-0 flex justify-center items-center text-c-pink text-md">
 							Scroll in or out to zoom
@@ -67,7 +67,7 @@
 								<img  
 								 class="thumbnail glightbox3 cursor-pointer w-16 h-16 border border-gray-300 md:w-24 md:h-24 object-cover object-center
 									" 
-									src="{{ asset($img->image_url) }}"/>
+									src="{{ asset($img->media->image_url) }}"/>
 							@empty
 							@endforelse
 
@@ -117,73 +117,13 @@
 						class="imgBlock relative w-full  cursor-pointer">
 						<div class="overflow-hidden">
 							<a class="" href="{{ route('product', $p->slug)}}">
-								<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->image_url) }}" alt="{{ $p->slug }}">
+								<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->media->image_url) }}" alt="{{ $p->slug }}">
 							</a>
 						</div>
 					</div>
 					
 					<livewire:customer.product :p="$p->id" :url="'/product/'.$p->slug"/>
 
-                {{-- <a href="/product/{{ $p->slug }}">
-                  <h4 class="text-md font-semibold mt-4 text-c-light-black">{{ $p->name }}</h4>
-                </a>
-
-                  <form method="POST" action="{{ route('bag.store') }}">
-                      @csrf
-                      <input type="text" class="hidden" name="generateId" value="{{ $p->id }}"> 
-
-                      <div class="w-full px-3  my-2 flex flex-col">
-                        <div class="flex flex-row items-center">
-                          @forelse(explode(',', $p->colors) as $c)
-        
-                            <label  class="custom_radio relative flex flex-col">
-                              <input class="hidden" type="radio"  
-                              {{ ($loop->first) ? 'checked' : '' }} 
-                              name="color" value="{{ $c }}">
-                              <span  class="radio_btn mr-2 px-3 py-3 rounded-full  border-2 border-white text-gray-900 cursor-pointer" style="background-color: {{ $c }}"
-                              >
-                                
-                              </span>
-                              
-                            </label>
-                            
-                          @empty
-        
-                          @endforelse
-                        </div>							
-                      </div>
-                    
-                      <div class="w-full  my-3 flex flex-col">
-                        <div class="flex flex-row items-center">
-                          @forelse(explode(', ', $p->sizes) as $s)
-        
-                            <label  class="custom_radio2 relative flex flex-col">
-                              <input class="hidden" type="radio"  
-                              {{ ($loop->first) ? 'checked' : '' }}  
-                              name="size" value="{{ $s }}">
-                              <span  class="radio_btn2 mr-2 px-3 py-2 rounded-lg  border-2 border-white text-gray-900 cursor-pointer hover:border-gray-400"
-                              >
-                                {{ $s }}
-                              </span>
-                              
-                            </label>
-                            
-                          @empty
-        
-                          @endforelse
-                        </div>							
-                      </div>
-
-                      @if($p->qty > 1)
-                        
-                        <button type="submit" class="w-full my-4 px-8 py-4 rounded bg-gray-900 hover:opacity-75 text-white ">Add To Bag</button>
-                          
-                      @else
-                        <button class="w-full my-4 px-8 py-4" >Out of Stock</button>
-                      @endif
-                
-                  </form>
-                 --}}
                 </div>
               @empty
               @endforelse
