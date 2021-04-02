@@ -22,20 +22,12 @@
 
         <!-- Content -->
         @auth('admin')
-            <div class="flex flex-col md:flex-row px-3 md:px-0 py-3 md:py-0">
-                <!-- Navigation-->
-                <div id="menus" class="fixed h-screen hidden md:block  left-0 top-0 px-6 py-6 md:py-6 bg-gray-900 z-10 md:z-0 md:px-3  flex flex-col w-full md:w-32">
-                    
-                    <li class="list-none mb-3">
-                        <a class="text-white pr-3 text-lg    border-transparent hover:opacity-80 {{ Route::currentRouteName() == 'admin.dashboard' ? ' underline' : ''}}" href="{{ route('admin.dashboard') }}">Dashboard</a>
-                    </li>
-                   
-                    
-                </div>
-                <div class="w-32 hidden md:block"></div>
+            <div class="flex flex-col px-6 py-4 w-full">
+            
+                <div class="flex flex-row justify-between w-full">
+                    <a class="hover:underline text-md text-white font-thin" href="/">Back to Site</a>
 
-                <div class="md:ml-4 flex-1 px-3 py-3 md:py-6">
-                    <nav class="mb-4">
+                    <nav class="mb-4 flex-1">
                         <div class="flex items-center justify-between md:justify-end">
                             <svg
                                id="menuIcon"
@@ -53,8 +45,40 @@
                                             class="absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start px-4 py-3 rounded w-40 z-30">
          
                                                 <li class="list-none mb-3">
-                                                    <a class="hover:underline text-md text-white font-thin" href="/">Back to Site</a>
+                                                    <a class="hover:underline text-md text-white font-thin {{ 
+                                                        (Route::currentRouteName() == 'admin.dashboard') ? 'underline' : 'text-white'
+                                                    }}" href="/admin/dashboard">
+                                                    Dashboard
+                                                    </a>
                                                 </li> 
+                                                <li class="list-none mb-3">
+                                                    <a class="hover:underline text-md text-white font-thin {{ 
+                                                        (Route::currentRouteName() == 'admin.categories') ? 'underline' : 'text-white'
+                                                    }}" href="/admin/categories">
+                                                    Category
+                                                    </a>
+                                                </li>
+                                                <li class="list-none mb-3">
+                                                    <a class="hover:underline text-md text-white font-thin {{ 
+                                                        (Route::currentRouteName() == 'admin.products') ? 'underline' : 'text-white'
+                                                    }}" href="/admin/products">
+                                                    Products
+                                                    </a>
+                                                </li>
+                                                <li class="list-none mb-3">
+                                                    <a class="hover:underline text-md text-white font-thin {{ 
+                                                        (Route::currentRouteName() == 'admin.orders') ? 'underline' : 'text-white'
+                                                    }}" href="/admin/orders">
+                                                    Orders
+                                                    </a>
+                                                </li>
+                                                <li class="list-none mb-3">
+                                                    <a class="hover:underline text-md text-white font-thin {{ 
+                                                        (Route::currentRouteName() == 'admin.customers') ? 'underline' : 'text-white'
+                                                    }}" href="/admin/customers">
+                                                    Customers
+                                                    </a>
+                                                </li>
                                                 <li class="list-none mb-3">
                                                     <a class="hover:underline text-md text-white font-thin {{ 
                                                         (Route::currentRouteName() == 'admin.profile') ? 'underline' : 'text-white'
@@ -88,8 +112,9 @@
                         </div>
                     </nav>
 
-                    @yield('content')
                 </div>
+
+                @yield('content')
 
             </div>
         
@@ -112,26 +137,6 @@
                 var scroll = new SmoothScroll('a[href*="#"]',{
                     speed: 400
                 });
-
-
-
-                const links = document.querySelectorAll(".page-header ul a");
-
-                for (const link of links) {
-                link.addEventListener("click", clickHandler);
-                }
-
-                function clickHandler(e) {
-                e.preventDefault();
-                const href = this.getAttribute("href");
-                const offsetTop = document.querySelector(href).offsetTop;
-
-                scroll({
-                    top: offsetTop,
-                    behavior: "smooth"
-                });
-                }
-
 
             });
         </script>

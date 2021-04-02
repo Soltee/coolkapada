@@ -35,10 +35,44 @@ class DatabaseSeeder extends Seeder
         
         \App\Models\Customer::factory(10)->create();
         \App\Models\Category::factory(5)->create();
-        \App\Models\Product::factory(40)->create();
-        \App\Models\ProductImage::factory(80)->create();
-        \App\Models\Attribute::factory(400)->create();
-        \App\Models\Order::factory(100)->create();
-        \App\Models\OrderItem::factory(200)->create();
+
+        $pds = \App\Models\Product::factory(40)->create();
+        foreach($pds as $p){
+            $rm = \Illuminate\Support\Arr::random([0,1,2,3]);
+
+            $imgs = \App\Models\ProductImage::factory(3)->create([
+                'product_id' => $p->id
+            ]);
+
+            foreach($imgs as $i){
+                \App\Models\Attribute::factory(3)->create([
+                    'productImage_id'   => $i->id,
+                    'product_id'        => $p->id
+                ]);
+            }
+
+            $cs    = \App\Models\Customer::inRandomOrder()
+                                        ->pluck('id')
+                                        ->toArray();
+            $csRm =  \Illuminate\Support\Arr::random($cs);
+
+            $ods = \App\Models\Order::factory($rm)->create([
+                'customer_id' => $csRm
+            ]);
+
+            foreach($ods as $o){
+                $rm = \Illuminate\Support\Arr::random([0,1,2,3]);
+                \App\Models\OrderItem::factory($rm)->create([
+                    'order_id'      => $o->id,
+                    'product_id'    => $p->id,
+                    'customer_id'   => $csRm
+                ]);
+            }
+        }
+
+        // \App\Models\ProductImage::factory(80)->create();
+        // \App\Models\Attribute::factory(400)->create();
+        // \App\Models\Order::factory(200)->create();
+        // \App\Models\OrderItem::factory(200)->create();
     }
 }

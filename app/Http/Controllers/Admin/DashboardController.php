@@ -19,7 +19,6 @@ class DashboardController extends Controller
         $today_orders       = Order::whereDate('created_at', today())->count();
         $today_orders_amount = Order::whereDate('created_at', today())->sum('grand_total');
 
-        // dd($today_orders_amount);
 
         $pending_orders = Order::where('is_paid', false)->count();
         $pending_orders_amount = Order::where('is_paid', false)->sum('grand_total');

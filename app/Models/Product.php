@@ -26,6 +26,7 @@ class Product extends Model
     	return $this->hasMany(Attribute::class);
     }
 
+
     public function stock_level()
     {
         if($this->qty < 1){

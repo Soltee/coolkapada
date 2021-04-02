@@ -2,9 +2,9 @@
 @section('head')
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
     <style>
-        .custom_radio input:checked + .radio_btn{border: 3px solid #black;}
+        .custom_radio input:checked + .radio_btn{border: 2px solid green;}
         .custom_radio2 input:checked + .radio_btn2{
-          border: 2px solid #black;
+          border: 2px solid rgb(17, 24, 39);
           background-color: rgb(17, 24, 39);
           color: #fff;
         }
@@ -36,7 +36,7 @@
 
           <div class="absolute bottom-0 left-0 right-0 bg-gray-900 px-6 py-4 mt-12 max-w-lg mx-auto flex items-center rounded-tl rounded-tr">
             <p class="text-lg text-center text-white">
-              With a vision to empower women, Coolkapada has been set up currently in Pokhara, providing various ranges of apparels and lingerie.
+              With a vision to empower women, Coolkapada has been set up currently in Pokhara, providing various ranges of undergarments.
             </p>
           </div>
         </div>

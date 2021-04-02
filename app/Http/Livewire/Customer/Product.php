@@ -17,6 +17,7 @@ class Product extends Component
     public $p;
     public $images;
     public $attributes;
+    public $sizes = ['S', 'M', 'L'];
 
     public $color;
     public $colorId;

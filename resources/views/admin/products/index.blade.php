@@ -30,19 +30,14 @@
 	      	<table class=" w-full" >
 			  <thead>
 			    <tr>
-			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Stock</th>
-
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Image</th>
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Name</th>
-			      <th class="px-2 py-2 text-left text-capitalize text-gray-600 hidden md:block">Price</th>
-			      <th class="px-2 py-2 text-left text-capitalize text-gray-600 hidden md:block">Previous Price</th>
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600"></th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			  	@forelse($products as $product)
 			    <tr>
-			      <td class="border px-2 py-4 ">{!! $product->stock_level () !!} </td>
 			      <td class="border px-2 py-4">
 			      	<a href="{{ route('admin.product', $product->id) }}">
 				      	<img class="w-16 h-16  rounded-lg object-cover" src="{{ asset( $product->image_url) }}">
@@ -53,13 +48,7 @@
 				      		{{$product->name}}
 				      	</a>
 			        </td>
-			      <td class="border px-2 py-4 hidden md:block text-lg font-bold">
-			      	<p>
-				      	
-				      	Rs {{$product->price}}
-				      </p>
-			      </td>
-			      <td class="border px-2 py-4  line-through hidden md:block">Rs {{$product->prev_price}}</td>
+			      
 			      <td class="border px-2 py-4">
 			      	<div class="flex flex-col">
 				      	<a href="{{ route('admin.products.edit', $product->id) }}" class="px-2 py-3  text-center rounded-lg text-white bg-yellow-600 mb-3">Edit</a>

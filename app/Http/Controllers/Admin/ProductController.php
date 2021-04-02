@@ -54,7 +54,6 @@ class ProductController extends Controller
     {
         // dd($request->all(
             
-        ));
         $data = $request->validate([
             'category'     => 'required|string',
             'name'         => 'required|string',
