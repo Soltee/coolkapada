@@ -12,7 +12,7 @@ class Create extends Component
     use WithFileUploads;
     protected $listeners = ['mediaId', 'fromAttribute'];
     protected $rules = [
-            'color'     => 'required|string|unique:product_images'
+            'color'     => 'required|string'
         ];
         
     public $product;
