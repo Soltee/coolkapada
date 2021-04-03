@@ -86,17 +86,4 @@ class Create extends Component
         $this->message  = 'Attribute Deleted';
     }
 
-    /**
-     * Publish & Unpublish product for the world to see
-     */
-    public function toggleProductVisibility()
-    {
-        $this->product->update([
-            'published'  => !$this->product->published
-        ]);
-
-        session()->flash('success', 'Product visibility updated.');
-        return redirect('admin/products/'. $this->product->id);
-    }
-   
 }

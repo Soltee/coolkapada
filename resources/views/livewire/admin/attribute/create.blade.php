@@ -87,22 +87,4 @@
         @endforelse
     </div>
 
-    <div class="flex justify-end items-center mt-6">
-        @if($published)
-            <button 
-                wire:click="toggleProductVisibility"
-                class="
-                    w-32  text-center px-3 py-2 rounded-lg text-white bg-gray-900 hover:bg-gray-700">
-                Unpublish {{ $product->name }}
-            </button>
-        @else
-            <button 
-                wire:click="toggleProductVisibility"
-                class="
-                    w-32  text-center px-3 py-2 rounded-lg text-white bg-gray-900 hover:bg-gray-700">
-                Publish {{ $product->name }}
-            </button>
-        @endif
-    </div>
-    
 </div>
