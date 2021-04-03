@@ -102,7 +102,7 @@
 			    	@forelse($images as $image)
 
 			    		<div class="w-full sm:w-auto flex flex-col items-start mb-6">
-				        	<img  class="w-full mb-5 rounded " src="{{ asset($image->image_url) }}" >
+				        	<img  class="w-full mb-5 rounded " src="{{ asset($image->media->image_url) }}" >
 		        		</div>
 
 			    	@empty

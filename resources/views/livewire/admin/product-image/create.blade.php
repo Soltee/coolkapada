@@ -1,60 +1,36 @@
-<div>
-    <form method="POST" wire:submit.prevent="store">
-        @csrf
+<div class="h-auto">
+    
+    @if($step === 1)
 
-        @if($message)
-            <p class="text-r=green-600"> {{ $message }} </p>
-        @endif
-        <div class="">
-            <div class="mb-4 flex flex-col">
-                <label for="image" class="mb-1">image</label>
-                <input id=""
-                    type="file" 
-                    class="px-3 py-2 border rounded border-gray-300"
-                    wire:model.defer="image" />
-                @error('image') <span class="text-red-600">{{ $message }}</span> @enderror
-            </div>
-            <div class="mb-4 flex flex-col">
-                <label for="color" class="mb-1">Color</label>
-                <input id=""
-                    type="text" 
-                    class="px-3 py-2 border rounded border-gray-300"
-                    wire:model.defer="color" />
-                @error('color') <span class="text-red-600">{{ $message }}</span> @enderror
+        <form method="POST" wire:submit.prevent="saveImage">
+            @csrf
 
-            </div>
+            <h3 class="text-sm font-thin"> Product Image </h3>
+            
+                <div class="flex flex-col mt-3">
+                    <div class="mb-5 w-full">
+                        <x-label for="color" :value="__('Color')" />
 
-            <div class="mb-4 flex flex-col">
-                <label for="size" class="mb-1">Size</label>
-                <input id=""
-                    type="text" 
-                    class="px-3 py-2 border rounded border-gray-300"
-                    wire:model.defer="size" />
-                    @error('size') <span class="text-red-600">{{ $message }}</span> @enderror
+                        <input id="color" class="block border border-gray-300 py-2 px-3 rounded mt-1 w-full" type="text" wire:model.defer="color" value="{{ old('color') }}"  />
+                        @error('color')
+                            <p class="text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-            </div>
+                    <div class="mb-5 w-full">
+                        <livewire:admin.helpers.media  from="productImage"/>
+                    </div>
 
-            <div class="mb-4 flex flex-col">
-                <label for="price" class="mb-1">Price</label>
-                <input id=""
-                    type="text" 
-                    class="px-3 py-2 border rounded border-gray-300"
-                    wire:model.defer="price" />
-                    @error('price') <span class="text-red-600">{{ $message }}</span> @enderror
+                    <button type="submit" class="mb-12 px-6 py-3 w-56 text-center text-gray-900 hover:bg-gray-900 hover:text-white cursor-pointer rounded-lg border border-gray-300" >
+                        Next Step
+                    </button>
+        
+                
+                </div>
+        </form>
 
-            </div>
-            <div class="mb-4 flex flex-col">
-                <label for="quantity" class="mb-1">Quantity</label>
-                <input type="text" 
-                    class="px-3 py-2 border rounded border-gray-300"
-                    wire:model.defer="quantity" />
-                    @error('quantity') <span class="text-red-600">{{ $message }}</span> @enderror
-
-            </div>
-
-        </div>
-        <button type="submit" class="w-full mt-8 px-8 py-3 rounded bg-gray-900 hover:opacity-75 text-white ">Upload</button>
-
-    </form>        
+    @else
+         <livewire:admin.attribute.create key="{{ now() }}"  :productImage="$image"/> 
+    @endif      
 
 </div>

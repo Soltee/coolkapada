@@ -25,7 +25,7 @@
 				
 				<div class="">
 		
-					<!-- Email Address -->
+					
 					<div class="mb-3 w-full">
 						<x-label for="name" :value="__('Name')" />
 		
@@ -58,9 +58,8 @@
 
 					<!-- Email Address -->
 					<div class="mb-3 w-full">
-						<x-label for="media" :value="__('Cover')" />
 						
-						<livewire:admin.helpers.media />
+						<livewire:admin.helpers.media from="products"/>
 
 					</div>
 		

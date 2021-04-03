@@ -20,42 +20,25 @@ class ProductImageController extends Controller
         return view('admin.images.create', compact('product'));
     }
 
-    public function store()
-    {
-        $allowedfileExtension = ['jpeg','jpg','png'];
-        $images      = $request->file('files'); 
-        foreach($images as $file){
-            $filename = $file->getClientOriginalName();
+    // public function store()
+    // {
+    //     $request->validate([
+    //         'product_id'    => 'required|string',
+    //         'media_id'      => 'required|string',
+    //         'color'         => 'required|string',
+    //     ]);
+    //     foreach ($images as $image) {
+    //         ProductImage::create([
+    //             'product_id'  => $product->id,
+    //             'image_url'   => $data['url'],
+    //             'thumbnail'   => $data['thumb']
+    //         ]);
+    //     }
 
-            $extension = $file->getClientOriginalExtension();
-
-            $check = in_array($extension,$allowedfileExtension);
+    //     foreach ($paths as $data) {
             
-            if(!$check){
-                return back()
-                    ->with('errors', 'Please select only jpeg, jpg and png images.');
-            }
-        }
+    //     }
 
-        foreach ($images as $image) {
-            $basename  = Str::random();
-            $original  = 'pd-' . $basename . '.' . $image->getClientOriginalExtension();
-            $image->move(storage_path('app/public/products'), $original);
-
-            $paths[] = [
-                'url'    => 'storage/products/'. $original,
-                'thumb'  => $original
-            ];
-        }
-
-        foreach ($paths as $data) {
-            ProductImage::create([
-                'product_id'  => $product->id,
-                'image_url'   => $data['url'],
-                'thumbnail'   => $data['thumb']
-            ]);
-        }
-
-    }
+    // }
 
 }

@@ -89,10 +89,20 @@
             <!-- Stock or Out of Stock -->
             @if($price)    
                 @if($quantity > 0)
-                        <div class="mt-6">
-                            <input type="number" wire:model.defer="qty" class="px-4 py-4 md:py-2 rounded border-1 border-c-light-gray  w-full md:w-56 text-gray-900" value="1" min="1" max="{{ $quantity }}">
-                            <span class="text-gray-700 font-thin text-xs mt-2">*Optional</span>
-                        </div>
+                    <div class="mt-6 flex flex-col">
+                        <input 
+                            type="number" 
+                            wire:model="qty" 
+                            class="px-4 py-4 md:py-2 rounded border-1 border-c-light-gray  w-full md:w-56 text-gray-900" value="1" 
+                            min="1"
+                            max="{{ $quantity }}"
+                            >
+                            
+                        <span class="text-gray-700 font-thin text-xs mt-2">*Optional</span>
+                        @if($qty > $quantity)
+                            <p class="text-red-600 mt-2">Sorry! We donot have more than that right now.</p>
+                        @endif
+                    </div>
 
                     <button type="submit" class="w-full md:w-56 mt-8 px-8 py-3 rounded bg-gray-900 hover:opacity-75 text-white ">Add To Bag</button>
                     

@@ -10,29 +10,22 @@ use Livewire\WithFileUploads;
 class Create extends Component
 {
     use WithFileUploads;
-
-    public $product;
+    protected $listeners = ['mediaId', 'fromAttribute'];
     protected $rules = [
-        'size'      => 'required|string',
-        'price'     => 'required|int',
-        'quantity'  => 'required|int'
-    ];
-
-
-    public $image;
+            'color'     => 'required|string|unique:product_images'
+        ];
+        
+    public $product;
+    
+    public $media;
     public $color;
+    public $image;
+    
+    public $step = 1;
 
-    public $image_id;
-
-    public $size;
-    public $quantity;
-    public $price;
-
-    public $message;
-
-    public function mount(Product $product)
+    public function mount($product)
     {
-        $this->product    = $product->id;
+        $this->product    = $product;
 
     }
     public function render()
@@ -40,63 +33,36 @@ class Create extends Component
         return view('livewire.admin.product-image.create');
     }
 
-    public function store()
+    public function saveImage()
     {
-        $this->validate([
-            'image'     => 'required|image',
-            'color'     => 'required|string',
-            'size'      => 'required|string',
-            'price'     => 'required|int',
-            'quantity'  => 'required|int',
-        ]);
+        $this->validate();
         
         $p = Product::findOrfail($this->product);
         
         $image = $p->images()->create([
-            'image_url'   =>  $img,
-            'color'       => $this->color
-        ]);
-    
-        $this->image_id     = $image;
-        $this->saveAttribute($image);
-    }
-
-    public function saveAttribute($image)
-    {
-        
-        $image->attributes()->create([
-            'product_id'      => $this->product,
-            'size'      => $this->size,
-            'price'     => $this->price,
-            'quantity'  => $this->quantity
+            'media_id'    =>  $this->media,
+            'color'       =>  $this->color
         ]);
 
-        $this->size     = '';
-        $this->price    = '';
-        $this->quantity = '';
-
-        $this->message   = 'Image Created';
-
+        $this->image        = $image->id;
+        $this->step         = 2;
     }
 
-    public function nextAttribute()
+    /**
+     * Get MediaId from Media Component
+     */
+    public function mediaId($id)
     {
-        if($this->image_id)
-        {
-            $this->validate();
-            $this->image->attributes()->create([
-                'size'      => $this->size,
-                'price'     => $this->price,
-                'quantity'  => $this->quantity
-            ]);
-
-            $this->size     = '';
-            $this->price    = '';
-            $this->quantity = '';
-
-            $this->message   = 'Image Created';
-
-
-        }
+        $this->media = $id;
     }
+
+    /**
+     * Get Return Signal from Attribute Create Component
+     */
+    public function fromAttribute()
+    {
+        $this->step = 1;
+    }
+
+
 }
