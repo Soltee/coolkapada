@@ -2,9 +2,6 @@
 
 @section('content')
    <div>
-
-      @include('admin.inc.sidebar')
-
       <form action="{{ route('admin.update', $auth->id) }}" method="POST" accept-charset="utf-8">
                      
          @csrf
