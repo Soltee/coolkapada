@@ -56,6 +56,7 @@ class ProductController extends Controller
         // dd($request->all(
             
         $data = $request->validate([
+            'media'        => 'required|string',
             'category'     => 'required|string',
             'name'         => 'required|string|unique:products',
             'description'  => 'required'
@@ -63,6 +64,7 @@ class ProductController extends Controller
         
         $product = Product::create([
             'category_id'  => $data['category'],
+            'media_id'     => $data['media'],
             'name'         => $data['name'],
             'slug'         => Str::slug($data['name'], '-'),
             'description'  => $data['description'] 

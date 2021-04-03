@@ -102,7 +102,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
 	Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
     //product Image
-    Route::get('/products/images/{product}/create',[ProductImageController::class, 'create'])               
+    Route::get('/products/{product}/images/create',[ProductImageController::class, 'create'])               
         ->name('product.image.create');
 
     //Medias

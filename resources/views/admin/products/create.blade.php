@@ -1,20 +1,24 @@
 @extends('layouts.admin')
 
 @section('head')
-	{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/> <!-- 'nano' theme --> --}}
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/trix@1.3.1/dist/trix.css">
-  	<script src="https://cdn.jsdelivr.net/npm/trix@1.3.1/dist/trix.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/trix@1.3.1/dist/trix.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
+    <style>
+        .custom_radio input:checked + .radio_btn{border: 3px solid green;}
+        
+	</style>
 @endsection
 
 @section('content')
     <div class="">
-    	<div class=" mb-6">
+    	<div class="">
 
 			<form method="POST" action="/admin/products">
 				@csrf
 		
 				<div class="flex justify-between items-center">
-					<h4 class="text-md mb-6 text-gray-700">New Product</h4>
+					<h4 class="text-md mb-3 text-gray-700">New Product</h4>
 					<button type="submit" class="px-3 py-3 bg-gray-900 hover:bg-gray-700 text-white  rounded-lg mb-12">Upload</button>
 		
 				</div>
@@ -25,7 +29,7 @@
 					<div class="mb-3 w-full">
 						<x-label for="name" :value="__('Name')" />
 		
-						<input id="name" class="block border border-gray-300 py-2 px-3 rounded mt-1 w-full" type="name" name="name" value="{{ old('name') }}"  />
+						<input id="name" class="block border border-gray-300 py-2 px-3 rounded mt-1 w-full" type="text" name="name" value="{{ old('name') }}"  />
 					</div>
 					<div class="mb-3 w-full">
 						<x-label for="category" :value="__('Category')" />
@@ -51,6 +55,14 @@
 						<trix-editor input="description"></trix-editor>
 		
 					</div>
+
+					<!-- Email Address -->
+					<div class="mb-3 w-full">
+						<x-label for="media" :value="__('Cover')" />
+						
+						<livewire:admin.helpers.media />
+
+					</div>
 		
 					
 				</div>
@@ -60,3 +72,31 @@
     	
     </div>
 @endsection
+{{-- 
+@push('scripts')
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function(){
+
+            document.getElementById('media').addEventListener('change', (e) => {
+                if (e.target.files[0]) {
+					const fsize = e.target.files[0].size;
+					const file = Math.round((fsize / 1024));
+					if (file >= 2048) {
+						swal('File size too big. Please select less than 2mb.');
+						return;
+					} 
+
+					const t = e.target.files[0].type.split('/').pop().toLowerCase();
+					if (t != "jpeg" && t != "jpg" && t != "png") {
+						swal('Only jpeg, jpg and png file.');
+						return;
+					} 
+                }
+            });
+
+        });
+	</script>
+
+@endpush --}}
