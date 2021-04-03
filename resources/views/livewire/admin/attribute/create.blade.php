@@ -14,9 +14,14 @@
                         wire:click="$emitUp('fromAttribute')">Back</span>
                     <p class="text-gray-700 ml-2 font-thin text-sm"> Attribute </p>
                 </div>
-                    <button type="submit" class="px-2 py-2 bg-gray-900 hover:bg-gray-700 text-white text-center w-24  rounded-lg">
+                <div class="">
+                    <button type="submit" 
+                        class="
+                            mt-6 px-2 py-2  w-32 bg-gray-900 hover:bg-gray-700 text-white text-center  rounded-lg">
                         Add
                     </button>
+                </div>
+                
             </div>
 
             <div class="flex mb-5 w-full">
@@ -38,7 +43,7 @@
                         <p class="text-red-600 mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="mb-3 w-full sm:w-1/3">
+                <div class="mb-3 w-full sm:w-1/3 pr-3">
                     <x-label for="quantity" :value="__('Quantity')" />
 
                     <input id="quantity" class="block border border-gray-300 py-2 px-3 rounded mt-1 w-full" type="text" wire:model.defer="quantity" value="{{ old('quantity') }}"  />
@@ -47,6 +52,8 @@
                         <p class="text-red-600 mt-1">{{ $message }}</p>
                     @enderror
                 </div>
+                
+        
             </div>
 
         </div>
@@ -78,6 +85,24 @@
 
         @empty
         @endforelse
+    </div>
+
+    <div class="flex justify-end items-center mt-6">
+        @if($published)
+            <button 
+                wire:click="toggleProductVisibility"
+                class="
+                    w-32  text-center px-3 py-2 rounded-lg text-white bg-gray-900 hover:bg-gray-700">
+                Unpublish {{ $product->name }}
+            </button>
+        @else
+            <button 
+                wire:click="toggleProductVisibility"
+                class="
+                    w-32  text-center px-3 py-2 rounded-lg text-white bg-gray-900 hover:bg-gray-700">
+                Publish {{ $product->name }}
+            </button>
+        @endif
     </div>
     
 </div>

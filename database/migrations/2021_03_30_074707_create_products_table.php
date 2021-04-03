@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->integer('max')->nullable();
             $table->text('description')->nullable();
             $table->boolean('featured')->default(false);
+            $table->boolean('published')->default(false);
             $table->timestamps();
         });
     }

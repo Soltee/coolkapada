@@ -21,7 +21,8 @@ class ShopController extends Controller
         $sort     = request()->sort;
 
         $query    = Product::latest()
-                        ->with('media');
+                    ->where('published', true)
+                    ->with('media');
 
         if($category){
             $categories =   Category::latest()->paginate(6);

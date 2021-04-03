@@ -63,20 +63,13 @@
 				  </td>
 				  	<td class="border px-2 py-4">
 					<div class="flex flex-col">
-						<a  
-							href="{{ route('admin.products.destroy', $product->id) }}" class="
-							hover:opacity-75 text-white rounded" 
-							onclick="
-								event.preventDefault();
-								if(confirm('Are you sure?')){
-								document.getElementById('product-delete-form').submit();
-								}
-							">
-								<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash h-8 w-8 text-red-600 hover:opacity-80 cursor-pointer"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-						</a>
-						<form id="product-delete-form" action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="hidden">
+						<form id="product-delete-form" action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="">
 							@csrf
 							@method('DELETE')
+							<button type="submit">
+								<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash h-8 w-8 text-red-600 hover:opacity-80 cursor-pointer"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+							</button>
+
 						</form>
 		
 				  	</div>

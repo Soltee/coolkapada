@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\ProductImage;
 
 use Livewire\Component;
 use App\Models\Product;
-use App\Models\Category;
+use App\Models\ProductImage as I;
 use Livewire\WithFileUploads;
 
 class Create extends Component
@@ -16,30 +16,37 @@ class Create extends Component
         ];
         
     public $product;
-    
+    public $published;
+
     public $media;
     public $color;
     public $image;
     
     public $step = 1;
+    public $message;
 
-    public function mount($product)
+
+    public function mount(Product $product)
     {
         $this->product    = $product;
-
+        $this->published  = $product->published;
     }
     public function render()
     {
-        return view('livewire.admin.product-image.create');
+        $this->message = '';
+        return view('livewire.admin.product-image.create', [
+            'images'   => $this->product->images()->with('media')->get()
+        ]);
     }
 
     public function saveImage()
     {
+        $this->message = '';
         $this->validate();
         
-        $p = Product::findOrfail($this->product);
+        // $p = Product::findOrfail($this->product);
         
-        $image = $p->images()->create([
+        $image = $this->product->images()->create([
             'media_id'    =>  $this->media,
             'color'       =>  $this->color
         ]);
@@ -57,11 +64,48 @@ class Create extends Component
     }
 
     /**
+     * Next Step -Got o Create Attribute for Image
+     */
+    public function nextStep($img)
+    {
+        $this->image = $img;
+        $this->step  = 2;
+    }
+
+    /**
      * Get Return Signal from Attribute Create Component
      */
     public function fromAttribute()
     {
         $this->step = 1;
+    }
+
+    /**
+     * Delete Product Image
+     */
+    public function deleteImage($id)
+    {
+        $i = I::findOrfail($id);
+        foreach($i->attributes as $att)
+        {
+            $att->delete();
+        }
+
+        $i->delete();
+        $this->message  = 'Image Deleted';
+    }
+
+    /**
+     * Publish & Unpublish product for the world to see
+     */
+    public function toggleProductVisibility()
+    {
+        $this->product->update([
+            'published'  => !$this->product->published
+        ]);
+
+        session()->flash('success', 'Product visibility updated.');
+        return redirect('admin/products/'. $this->product->id . '/images/create');
     }
 
 

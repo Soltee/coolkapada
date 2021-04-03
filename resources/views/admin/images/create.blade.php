@@ -9,7 +9,7 @@
 @section('content')
     <div class="w-full">
 			
-		<livewire:admin.product-image.create :product="$product->id" />
+        <livewire:admin.product-image.create key="{{ now() }}" :product="$product" />
    			    	
     </div>
 @endsection

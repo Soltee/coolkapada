@@ -14,6 +14,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $new  = Product::latest()
+                    ->where('published', true)
                     ->with('media', 'images')
                     ->where('price', '>', '0')
                     ->take(3)

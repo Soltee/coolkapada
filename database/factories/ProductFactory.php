@@ -46,6 +46,9 @@ class ProductFactory extends Factory
             'featured'    => function(){
                 $bools = [true, false];
                 return \Illuminate\Support\Arr::random($bools);
+            },
+            'published'    => function(){
+                return \Illuminate\Support\Arr::random([0,1]);
             }
         ];
     }
