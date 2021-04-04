@@ -38,8 +38,8 @@
 			    <tr>
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Image</th>
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Name</th>
-			      <th class="px-2 py-2 text-left text-capitalize text-gray-600"></th>
-			      <th class="px-2 py-2 text-left text-capitalize text-gray-600"></th>
+			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Price</th>
+			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Qty</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -56,26 +56,17 @@
 				      	</a>
 			        </td>
 			      
-			      <td class="border px-2 py-4">
-			      	<div class="flex flex-col">
-				      	<a href="{{ route('admin.products.edit', $product->id) }}" class="px-2 py-3 w-32 text-center rounded-lg text-white bg-yellow-600 mb-3">Edit</a>
-				    </div>
-				  </td>
-				  	<td class="border px-2 py-4">
-					<div class="flex flex-col">
-						<form id="product-delete-form" action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="">
-							@csrf
-							@method('DELETE')
-							<button type="submit">
-								<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash h-8 w-8 text-red-600 hover:opacity-80 cursor-pointer"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-							</button>
-
-						</form>
-		
-				  	</div>
-					</td>
-			  
-			    </tr>
+					<td class="border px-2 py-4">
+						<div class="flex flex-col font-bold">
+							Rs {{$product->min}} @if($product->max) - {{ $product->max }} @endif
+					  </div>
+					</td>			  
+					<td class="border px-2 py-4">
+						<div class="flex flex-col font-bold">
+							{{ $product->attributes()->sum('quantity') }}
+					  	</div>
+					</td>			  
+				  </tr>
 			    @empty
 			    @endforelse
 

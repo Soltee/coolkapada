@@ -53,19 +53,12 @@ class Create extends Component
             'quantity'   => $this->quantity
         ]);
 
-        //Update Product mIn and max value
-        $min = $this->product->attributes()->min('price');
-        $max = $this->product->attributes()->max('price');
+        $this->updateProductMinMax();
 
-        $this->product->update([
-            'min'   => $min,
-            'max'   => $max
-        ]);
-
-            $this->size     = '';
-            $this->price    = '';
-            $this->quantity = '';
-            $this->message   = 'Attribute Added';
+        $this->size     = '';
+        $this->price    = '';
+        $this->quantity = '';
+        $this->message   = 'Attribute Added';
     }
 
     /**
@@ -76,14 +69,26 @@ class Create extends Component
         $a = Attribute::findOrfail($id);
         $a->delete();
 
-        //Remove Min Max from product if no attributes
-        if($this->product->doesnthave('attributes')){
-            $this->product->update([
-                'min' => 0,
-                'max' => 0,
-            ]);
+        if($this->product->has('attributes')){
+            $this->updateProductMinMax();
         }
+
         $this->message  = 'Attribute Deleted';
     }
 
+    /**
+     * Update Product Min and Max value 
+     */
+    public function updateProductMinMax()
+    {
+        //Update Product mIn and max value
+        $min = $this->product->attributes()->min('price');
+        $max = $this->product->attributes()->max('price');
+
+        $this->product->update([
+            'min'   => $min,
+            'max'   => $max
+        ]);
+
+    }
 }

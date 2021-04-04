@@ -90,8 +90,12 @@ class Create extends Component
         {
             $att->delete();
         }
-
         $i->delete();
+
+        if($this->product->has('attributes')){
+            $this->updateProductMinMax();
+        }
+
         $this->message  = 'Image Deleted';
     }
 
@@ -106,6 +110,22 @@ class Create extends Component
 
         session()->flash('success', 'Product visibility updated.');
         return redirect('admin/products/'. $this->product->id . '/images/create');
+    }
+
+    /**
+     * Update Product Min and Max value 
+     */
+    public function updateProductMinMax()
+    {
+        //Update Product mIn and max value
+        $min = $this->product->attributes()->min('price');
+        $max = $this->product->attributes()->max('price');
+
+        $this->product->update([
+            'min'   => $min,
+            'max'   => $max
+        ]);
+
     }
 
 

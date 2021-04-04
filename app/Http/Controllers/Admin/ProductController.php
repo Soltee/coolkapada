@@ -85,10 +85,12 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        // $categories = Category::latest()->get();
-        $cat = $product->category;
-        $images = $product->images;
-        return view('admin.products.show', compact('product', 'images', 'cat'));
+        $cat        = $product->category;
+        $images     = $product->images;
+        $quantity   = $product->attributes()->sum('quantity');
+        $sizes      = $product->attributes()->groupBy('size')->pluck('size');
+
+        return view('admin.products.show', compact('product', 'images', 'cat', 'quantity', 'sizes'));
     }
 
     /**
@@ -101,95 +103,10 @@ class ProductController extends Controller
     {
         $categories = Category::latest()->get();
         $cat        = $product->category;
-        $images     = $product->images;
+        $images     = $product->images()->with('attributes');
+        $qty        = $product->attributes()->sum('quantity');
 
-        return view('admin.products.edit', compact('product', 'categories', 'cat', 'images'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        // dd($request->all());
-        $data = $request->validate([
-            'category'     => 'required|string',
-            'name'         => 'required|string',
-            'prev_price'   => 'int|min:0',
-            'price'        => 'required|int|min:1',
-            'qty'          => 'required|int|min:1',
-            'sizes'        => 'required|string',
-            'colors'       => 'required|string',
-            'excerpt'       => 'nullable|required',
-            'description'   => 'required',
-        ]);
-        
-        
-        // dd($request->file('files'));
-        if($request->hasFile('files')){
-
-            $allowedfileExtension = ['jpeg','jpg','png','gif'];
-            $images      = $request->file('files'); 
-            foreach($images as $file){
-                $filename = $file->getClientOriginalName();
-
-                $extension = $file->getClientOriginalExtension();
-
-                $check = in_array($extension,$allowedfileExtension);
-                
-                if(!$check){
-                    return back()
-                        ->with('error', 'Please select only jpeg, jpg and png images.');
-                }
-            }
-
-            foreach ($images as $image) {
-                $basename  = Str::random();
-                $original  = 'pd-' . $basename . '.' . $image->getClientOriginalExtension();
-                $image->move(storage_path('app/public/products'), $original);
-                $paths[] = [
-                    'url'    => 'storage/products/'. $original,
-                    'thumb'  => $original
-                ];
-            }
-
-            $cover = ['image_url' => $paths[0]['url']];
-            
-        }
-
-        $excerptArr  = ['excerpt' => $data['excerpt']];
-        $descriptArr = ['description' => $data['description']];
-
-        $update = $product->update(array_merge([
-            'category_id'  => $data['category'],
-            'name'         => $data['name'],
-            'slug'         => Str::slug($data['name'], '-'),
-            'prev_price'   => $data['prev_price'],
-            'price'        => $data['price'],
-            'qty'          => $data['qty'],
-            'sizes'        => $data['sizes'],
-            'colors'       => $data['colors']
-        ]), 
-            $cover       ?? [],
-            $excerptArr  ?? [],
-            $descriptArr ?? []
-        );
-
-        if($request->hasFile('files')){
-            foreach ($paths as $data) {
-                    ProductImage::create([
-                        'product_id'  => $product->id,
-                        'image_url'   => $data['url'],
-                        'thumbnail'   => $data['thumb']
-                    ]);
-            }
-        }
-
-        return redirect()->back()->with('toast_success', 'Product updated.');
+        return view('admin.products.edit', compact('product', 'categories', 'cat', 'qty', 'images'));
     }
 
     /**

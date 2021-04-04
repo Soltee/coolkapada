@@ -86,7 +86,14 @@
                         @method('PATCH')
                         <div class="flex items-center">
                           <input type="number" name="quantity" class=" w-40  mr-3 px-4 py-2 rounded-l border  border-c-light-gray " value="{{ $item->quantity }}" >
-                          <button type="submit" class="px-3 py-2  w-40 rounded-r bg-gray-900  text-white text-xl cursor-pointer hover:opacity-50">Update</button>
+                          
+                          <button type="submit" class="px-3 py-2  w-40 rounded-r bg-gray-900  text-white text-xl cursor-pointer hover:opacity-50">
+                            <svg 
+                              xmlns="http://www.w3.org/2000/svg" 
+                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" 
+                              class="h-8 w-8 cursor-pointer text-yellow-600"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+				
+                          </button>
                         </div>
                       </form>
                     </td>

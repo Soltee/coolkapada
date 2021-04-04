@@ -34,9 +34,13 @@
         <div class="relative">
           <img data-src="/img/hero3.jpg" class="lozad h-96  object-cover object-top  w-full hero mt-3" alt="">
 
-          <div class="absolute bottom-0 left-0 right-0 bg-gray-900 px-6 py-4 mt-12 max-w-lg mx-auto flex items-center rounded-tl rounded-tr">
-            <p class="text-lg text-center text-white">
-              With a vision to empower women, Coolkapada has been set up currently in Pokhara, providing various ranges of undergarments.
+          <div class="absolute bottom-0 left-0 right-0 bg-gray-900 px-8 py-8 max-w-xl mx-auto flex flex-col items-center rounded-tl rounded-tr">
+            <h1 class="text-2xl md:text-4xl font-bold text-white uppercase">
+              Express your Intention
+            </h1>
+            <p class="mt-2 text-lg text-center text-white">
+              Wide varieties of undergarments right at your doorstep.
+              {{-- With a vision to empower women, Coolkapada has been set up currently in Pokhara, providing various ranges of undergarments. --}}
             </p>
           </div>
         </div>

@@ -91,15 +91,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
                             ->name('admin.update');  
                             
     //Products
-    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.view');
+    Route::get('/products', [ProductController::class, 'index'])
+            ->name('admin.products.view');
     Route::get('/products/create', [ProductController::class, 'create'])               
-        ->name('product.create');
+            ->name('product.create');
 
-	Route::get('/products/{product}', [ProductController::class, 'show'])->name('admin.product');
-	Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
-	Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('admin.products.edit');
-	Route::patch('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
-	Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+    Route::get('/products/{product}', [ProductController::class, 'show'])
+            ->name('admin.product');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
+            ->name('admin.product.edit');
+    Route::post('/products', [ProductController::class, 'store'])
+            ->name('admin.products.store');
+    Route::patch('/products/{product}', [ProductController::class, 'update'])
+            ->name('admin.products.update');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])
+            ->name('admin.products.destroy');
 
     //product Image
     Route::get('/products/{product}/images/create',[ProductImageController::class, 'create'])               
@@ -111,7 +117,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
     Route::post('/medias', [MediaController::class, 'store'])
                             ->name('media.store');         
     Route::delete('/medias/{media}', [MediaController::class, 'destroy'])
-                            ->name('media.destroy');         
+                            ->name('media.destroy');   
+
     //Orders
     Route::get('/orders', [OrderController::class, 'index'])
                                 ->name('admin.orders.view');
