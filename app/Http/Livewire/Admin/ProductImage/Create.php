@@ -43,9 +43,7 @@ class Create extends Component
     {
         $this->message = '';
         $this->validate();
-        
-        // $p = Product::findOrfail($this->product);
-        
+                
         $image = $this->product->images()->create([
             'media_id'    =>  $this->media,
             'color'       =>  $this->color

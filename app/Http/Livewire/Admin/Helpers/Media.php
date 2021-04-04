@@ -30,9 +30,14 @@ class Media extends Component
         ]);
     }
 
-    public function passMediaId($id)
+    public function passMedia($id)
     {
-        $this->emit('mediaId', $id);
+        $this->emit('receiveMedia', $id);
+    }
+
+    public function goBack()
+    {
+        $this->emit('closeMedia');
     }
 
     public function previousPage()

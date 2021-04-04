@@ -1,4 +1,12 @@
 @extends('layouts.admin')
+@section('head')
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/trix@1.3.1/dist/trix.css">
+	<script src="https://cdn.jsdelivr.net/npm/trix@1.3.1/dist/trix.min.js"></script>
+    <style>
+        .custom_radio input:checked + .radio_btn{border: 3px solid green;}
+	</style>
+@endsection
+
 
 @section('content')
     <div class="w-full">
@@ -8,12 +16,8 @@
 	       	<h3 class="text-gray-900 text-lg">{{ $product->name }}</h3>
 
        		<div class="flex items-center">
-				<a href="/admins/products/{{ $product->id }}/edit" class="mr-4 text-md font-semibold">
-					<svg 
-						xmlns="http://www.w3.org/2000/svg" 
-						viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" 
-						class="h-8 w-8 cursor-pointer text-yellow-600"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-				</a>
+				<livewire:admin.products.edit :product="$product" />
+
 				<form method="POST" action="{{ route('admin.products.destroy', $product->id) }}">
 					@csrf
 					@method('DELETE')
@@ -37,7 +41,14 @@
 	    		<div class="flex items-center mb-6">
 		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Name</label>
 		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">{{ $product->name  }}</h4>
+				</div>
+				<div class="flex items-center mb-6">
+		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Category</label>
+		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">
+						{{ $cat->name }} 
+					</h4>
 		    	</div>
+		    	
 		    	<div class="flex items-center mb-6">
 		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Price</label>
 		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">

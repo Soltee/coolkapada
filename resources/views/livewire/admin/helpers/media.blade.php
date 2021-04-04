@@ -1,6 +1,11 @@
 <div>
     <div class="flex justify-between items-center mb-3">
-        <x-label for="Image" :value="__('Image')" />
+        <div class="flex">
+            <span
+                wire:click="goBack" 
+                class="font-thin hover:font-bold text-gray-900 mr-3 cursor-pointer">Back</span>
+            <x-label for="Image" :value="__('Image')" />
+        </div>
         <div class="lex justify-end items-center">
 
             @if($medias->previousPageUrl())
@@ -29,7 +34,7 @@
                         value="{{ $media->id }}">
                                               
                     <img 
-                        wire:click="passMediaId({{ $media->id }})"
+                        wire:click="passMedia({{ $media->id }})"
                         class="radio_btn w-full shadow-lg hover:opacity-75 border border-transparent hover:border-green-600 rounded-lg object-cover" 
                         src="{{ asset( $media->image_url) }}">
                 </label>
