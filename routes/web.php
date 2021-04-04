@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -116,6 +117,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
                             ->name('media.store');         
     Route::delete('/medias/{media}', [MediaController::class, 'destroy'])
                             ->name('media.destroy');   
+
+    //Newsletter
+    Route::get('/newsletters', [NewsletterController::class, 'index']);
+    Route::delete('/newsletters/{newsletter}', [NewsletterController::class, 'destroy'])
+        ->name('newsletter.destroy');   
 
     //Orders
     Route::get('/orders', [OrderController::class, 'index'])
