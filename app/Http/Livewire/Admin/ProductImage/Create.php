@@ -5,11 +5,9 @@ namespace App\Http\Livewire\Admin\ProductImage;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\ProductImage as I;
-use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    use WithFileUploads;
     protected $listeners = ['mediaId', 'fromAttribute'];
     protected $rules = [
             'color'     => 'required|string'
@@ -31,6 +29,7 @@ class Create extends Component
         $this->product    = $product;
         $this->published  = $product->published;
     }
+    
     public function render()
     {
         $this->message = '';

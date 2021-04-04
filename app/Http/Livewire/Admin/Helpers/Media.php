@@ -15,9 +15,9 @@ class Media extends Component
     public $page = 1;
     public $totalPages;
     
-    public function mount($from)
+    public function mount()
     {
-        $this->from = $from;
+
     }
 
     public function render()

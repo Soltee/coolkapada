@@ -58,6 +58,9 @@
 				
 			</div>
 				@empty
+					<p class="font-thin text-md text-gray-900">
+						Oops! No products match the search term.
+					</p>
 				@endforelse
 			</div>
 

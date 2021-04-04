@@ -112,15 +112,14 @@
 
 		    <div class="md:ml-4 w-full md:w-1/2">
 		    	
-		    	<div class="w-full flex flex-wrap">
+		    	<div class="w-full flex ">
 			    	@forelse($images as $image)
 
-			    		<div class="w-full w-32 h-32 mr-3 flex flex-col items-start mb-6">
-							<img  
-								style="border-color: {{ $image->color}}"
-								class="w-full h-full object-contain mb-5 rounded-lg border-2" src="{{ asset($image->media->image_url) }}" >
-		        		</div>
-
+						<livewire:admin.product-image.edit 
+							:product="$product"
+							:i="$image"
+						/>
+						
 			    	@empty
 
 			    	@endforelse

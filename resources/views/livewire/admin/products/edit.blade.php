@@ -10,7 +10,7 @@
     <!-- Edit -->
 
     <div
-        {{-- x-show.transition.50ms="editProduct" --}}
+        x-show.transition.50ms="editProduct"
         class="fixed h-screen inset-0 z-30 overflow-y-scroll bg-gray-300">
 
         <div class="px-6 py-4">
@@ -18,7 +18,11 @@
                 @csrf
 
                 <div class="flex justify-between items-center">
-                    <h4 class="text-md text-gray-700">Edit {{$product->name}}</h4>
+                    <span
+                        x-on:click="editProduct = false;" 
+                        class="font-thin hover:font-bold text-gray-900 mr-3 cursor-pointer">Back</span>
+            
+                    <h4 class="text-md text-gray-700">{{$product->name}}</h4>
                     <button type="submit" class="px-3 py-3 bg-gray-900 hover:bg-gray-700 text-white  rounded-lg">Edit</button>
 
                 </div>
@@ -62,11 +66,9 @@
                             >
 
                         </textarea>
-                        {{-- <trix-editor input="description"></trix-editor> --}}
 
                     </div>
 
-                    <!-- Email Address -->
                     <div
                         x-data="{openImages : @entangle('showImages')}" 
                         class="mb-3 w-full flex flex-wrap">

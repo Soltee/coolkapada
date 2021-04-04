@@ -35,7 +35,7 @@
                                               
                     <img 
                         wire:click="passMedia({{ $media->id }})"
-                        class="radio_btn w-full shadow-lg hover:opacity-75 border border-transparent hover:border-green-600 rounded-lg object-cover" 
+                        class="radio_btn w-full shadow-lg hover:opacity-75 border border-transparent hover:border-green-600 rounded-lg object-cover cursor-pointer" 
                         src="{{ asset( $media->image_url) }}">
                 </label>
 
