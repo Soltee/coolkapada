@@ -43,7 +43,7 @@ Route::get('/product/{slug}', [ShopController::class, 'show'])->name('product');
 //Bag
 Route::post('/bag/store', [BagController::class, 'store'])->name('bag.store');
 
-//Newsletter 
+//Newsletter
 Route::post('/newsletter', [WelcomeController::class, 'newsletter']);
 
 Route::group(['middleware' => 'auth:customer'], function(){
