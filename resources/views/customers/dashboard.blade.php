@@ -12,7 +12,7 @@
             </button>
             <a href="{{ route('profile') }}"
                 class="pb-3 mr-4 font-medium text-md border-b-2 hover:border-c-light-blue hover:font-bold">
-                    Profile
+                    Change Password
             </a>
         </div>
 

@@ -37,20 +37,20 @@ class HomeController extends Controller
     public function update(Request $request, Customer $customer)
     {
         $data = $request->validate([
-            'first_name'    => 'required|string',
-            'last_name'     => 'required|string',
-            'email'         => 'nullable|email|unique:customers',
+            // 'first_name'    => 'required|string',
+            // 'last_name'     => 'required|string',
+            // 'email'         => 'nullable|email|unique:customers',
             'password'      => 'required|string:min:8|confirmed'
         ]);
 
         $this->guard()->user()->update([
-            'first_name'    => $data['first_name'],
-            'last_name'     => $data['last_name'],
+            // 'first_name'    => $data['first_name'],
+            // 'last_name'     => $data['last_name'],
             // 'email'         => $data['email'],
             'password'      => bcrypt($data['password']),
         ]);
         
-        return back()->with('success', 'Profile updated');
+        return back()->with('success', 'Password changed.');
 
     }
 

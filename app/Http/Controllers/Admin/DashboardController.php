@@ -55,21 +55,21 @@ class DashboardController extends Controller
     public function update(Request $request)
     {
         $data = $request->validate([
-            'first_name'  => 'required|string|max:255',
-            'last_name'   => 'required|string|max:255',
-            'email'       => 'required|email',
+            // 'first_name'  => 'required|string|max:255',
+            // 'last_name'   => 'required|string|max:255',
+            // 'email'       => 'required|email',
             'password'    => 'required|string|min:8|confirmed'
         ]);
 
         auth()->guard('admin')->user()->update([
-            'first_name'    => $data['first_name'],
-            'last_name'     => $data['last_name'],
-            'email'         => $data['email'],
+            // 'first_name'    => $data['first_name'],
+            // 'last_name'     => $data['last_name'],
+            // 'email'         => $data['email'],
             'password'      => bcrypt($data['password'])
         ]);
 
 
         return back()
-                ->with('success', 'Profile updated');
+                ->with('success', 'Password changed.');
     }
 }

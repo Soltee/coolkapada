@@ -12,7 +12,7 @@
             </a>
             <button 
                 class="pb-3 mr-4 font-medium text-md border-b-2 border-c-light-blue font-bold">
-                    Profile
+                    Change Password
             </button>
         </div>
 
@@ -30,7 +30,7 @@
                         <p
                             class="pb-3 mr-4 font-medium text-md  "
                             >
-                                Change Info
+                                Change Password
                         </p>
                         <button type="submit" class="bg-gray-900 hover:opacity-75  text-gray-100 font-bold py-3 px-3 rounded focus:outline-none focus:shadow-outline">
                             {{ __('Change') }}
@@ -39,9 +39,7 @@
                        
                     </div>
                    
-                    <input id="type" type="hidden" name="type" value="other">
-
-                    <div class="flex flex-wrap mb-6">
+                    {{-- <div class="flex flex-wrap mb-6">
                         <label for="first_name" class="block text-gray-900 text-sm font-bold mb-2">
                             {{ __('First name') }}:
                         </label>
@@ -80,7 +78,21 @@
                                 {{ $message }}
                             </p>
                         @enderror
-                    </div>
+                    </div> --}}
+                    <div class="flex flex-wrap mb-6">
+                        <label for="email" class="block text-gray-900 text-sm font-bold mb-3">
+                           {{ __('E-Mail Address') }}: <span class="px-2 py-2 rounded bg-gray-300 text-gray-900">Disabled</span>
+                        </label>
+            
+                        <input disabled id="email" type="email" class="border border-gray-100 px-3 py-3 text-gray-500 rounded w-full @error('email') border-red-600 @enderror" name="email" value="{{ $auth->email }}" required autocomplete="email">
+            
+                        @error('email')
+                           <p class="text-red-600 text-xs italic mt-4">
+                                 {{ $message }}
+                           </p>
+                        @enderror
+                     </div>
+            
 
                     <div class="flex flex-wrap mb-6">
                         <label for="password" class="block text-gray-900 text-sm font-bold mb-2">
@@ -90,7 +102,7 @@
                         <input id="password" type="password" class="border border-gray-500 px-3 py-3 rounded w-full @error('password') border-c-red @enderror" name="password" required autocomplete="new-password">
 
                         @error('password')
-                            <p class="text-c-red text-xs italic mt-4">
+                            <p class="text-red-600 text-xs italic mt-4">
                                 {{ $message }}
                             </p>
                         @enderror
