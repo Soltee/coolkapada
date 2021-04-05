@@ -17,7 +17,4 @@ jobs:
         server: ftp.coolkapada.com
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /public_html/production.coolkapada/
-
-Requirements
-
+        server-dir: /public_html/production.coolkapada.com/
