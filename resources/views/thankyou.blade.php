@@ -1,5 +1,3 @@
-@extends('layouts.app')
-
 @section('head')
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
     <style>
@@ -8,7 +6,19 @@
 
 @endsection
 
-@section('content')
+<x-guest-layout>
+	<div class="">
+		<div class="flex justify-between md:justify-start items-center mb-2 w-full px-6 py-2">
+			<a href="/shop"><h4 class="text-sm opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">SHOP</h4></a>
+			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+			<a href="/bag">
+			  <h4 class="text-sm opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">BAG</h4>
+			</a>
+			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+			<h4 class="text-md font-semibold text-gray-900 ">THANK-YOU</h4>        
+		  
+		</div>
+  
     <div class="">
 	    
 	    <div class="px-6  py-3  flex  flex-col md:flex-row ">
@@ -16,15 +26,15 @@
 
 	    		<div class=" mx-4 mt-6">
 	        		<div class="flex items-center my-3">
-		    			<svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-c-light-green mr-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-	    				<p class="text-c-dark-gray leading-relaxed">{{ session('success') }}</p>
+		    			<svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-green-600 mr-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+	    				<p class="text-green-600 leading-relaxed">{{ session('success') }}</p>
 	    			</div>
 
 	    			<div class="my-5 border border-gray-400 rounded">
 	    				<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">
 			    			<h4 class="text-sm text-c-light-blue">Personal Info</h4>
 
-			    			<div class="my-5">
+			    			<div class="my-5 border-2 border-gray-400 px-2 py-2 rounded">
 				    			<div class="flex items-center mb-4">
 					    			<div class="md:w-1/2 md:mr-2 flex flex-col text-lg text-c-dark-gray">
 					    				{{ $order->first_name . ' ' . $order->last_name  }}
@@ -41,9 +51,9 @@
 			    		</div>
 
 			    		<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">
-			    			<h4 class="text-sm text-c-light-blue">Billing Info</h4>
+			    			<h4 class="text-sm text-c-light-blue ">Billing Info</h4>
 
-			    			<div class="my-5">
+			    			<div class="my-5 border-2 border-gray-400 px-2 py-2 rounded">
 			    				<div class="mb-4 flex flex-col text-lg text-c-dark-gray">
 					    			{{  $order->city }}			    	
 					    		</div>
@@ -64,8 +74,8 @@
 				    			<div class="flex flex-col mb-4">
 					    			<label  class=" relative flex flex-col">
 										
-										<div class=" mr-2 px-5 py-3 rounded-lg  border border-white text-gray-900 cursor-pointer border-green-500 flex items-center @error('payment_method') border-red-500  @enderror">
-											<svg xmlns="http://www.w3.org/2000/svg" class="rounded-full p-1 border border-green-600   w-8 h-8  text-green-600 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+										<div class=" mr-2 px-5 py-3 rounded-lg  border-2 border-white text-gray-900 cursor-pointer border-green-500 flex items-center @error('payment_method') border-red-500  @enderror">
+											<svg xmlns="http://www.w3.org/2000/svg" class="rounded-full p-1 border-2 border-green-600   w-8 h-8  text-green-600 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
 											<span class="text-md">Cash on Delivery</span>
 										</div>
 									</label>
@@ -134,8 +144,10 @@
 
 	    	</div>
 	        <div class="relative w-full md:w-1/2  p-5 ">
-	        	
-	        	<h5 class="">You may also like.</h5>
+	        	<div class="flex justify-between items-center">
+					<h5 class="">You may also like.</h5>
+
+	        	</div>
 	           	<div class="mt-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-6 ">
 	           		@forelse($products as $product)
 	           			<div class="w-full flex flex-col items-center mb-6">
@@ -156,10 +168,12 @@
 	           		@endforelse
 	           	</div>
 
-	           	<div class="mt-6 w-full flex justify-end">
-					<a href="/shop" class="px-10 py-3  rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Browse More</a>
+	           	<div class="mt-6 w-full flex ">
+					<a href="/shop" class="px-6 py-2 w-full text-center  rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Browse More</a>
+
 				</div>
 	        </div>
 	    </div>
     </div>
-@endsection
+	</div>
+</x-guest-layout>

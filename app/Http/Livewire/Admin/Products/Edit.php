@@ -60,7 +60,7 @@ class Edit extends Component
         ]);
 
         session()->flash('success', 'Product updated.');
-        return redirect()->to('/admin/products/' . $this->product->id . '/images/create');
+        return redirect()->to('/admin/products/' . $this->product->id);
                 
     }
 
@@ -76,5 +76,9 @@ class Edit extends Component
     {
         $this->showImages = false;
     }
+
+    /**
+     * Publish 
+     */
 
 }

@@ -28,101 +28,82 @@
 @section('content')
 		<div class="px-6  py-3 w-full">
 	        
-      <div class="flex justify-between items-center mb-8 w-full">
-        <div class="flex items-center">
+      <div class="flex justify-between md:justify-start items-center mb-8 w-full">
           <a href="/"><h4 class="text-md opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">HOME</h4></a>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
           <a href="/shop">
             <h4 class="text-md opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">SHOP</h4>
           </a>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          <h4 class="text-lg font-bold text-gray-900 ">BAG</h4>
-        </div>
-        
+          <h4 class="text-lg font-bold text-gray-900 ">BAG</h4>        
         
       </div>
 
       <!-- Cart -->
-      
-      <div class="flex flex-col ">
-        <div 
-            class="w-full mt-3 overflow-x-scroll w-full md:overflow-auto md:w-full">
-	        <table class="table-auto  w-full mb-8" >
-                <thead>
-                    <tr>
-                      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Action</th>
-                      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Photo</th>
-                      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Quantity</th>
-                      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Price</th>
-                      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Total</th>
-                    </tr>
-                </thead>
-               <tbody>
-                  @forelse($items as $item)
-                  <tr>
-                    <td class="border px-4 py-4">
-                      <div class="w-full xl:w-auto mb-3 xl:mb-0 ">
-                        <form action="{{ route('cart.remove', $item->id) }}" method="POST" accept-charset="utf-8">
-                          @csrf
-                          @method('DELETE')
-                        <button 
-                          onClick="return confirm('Are you sure?')"
-                          type="submit">
-                          <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash h-8 w-8 text-red-600 hover:opacity-80 cursor-pointer"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                            
-                          </button>
-                        </form>
-                      </div>
-                    </td>
-                    
-                    <td class="border px-4 py-4">
-                        <a class="w-full" href="/product/{{ $item->attributes->slug }}">
-                        <img  class="rounded-xl w-full h-40 md:w-24 md:h-24 object-center object-cover mr-3 mb-3 md:mb-0 hover:opacity-75" src="{{ asset($item->attributes->image_url) }}" >
-                        </a>
-                    </td>
-                    <td class="border px-4 py-4">
-                      <form action="{{ route('cart.update', $item->id) }}" method="POST" accept-charset="utf-8">
-                        @csrf
-                        @method('PATCH')
-                        <div class="flex items-center">
-                          <input type="number" name="quantity" class=" w-40  mr-3 px-4 py-2 rounded-l border  border-c-light-gray " value="{{ $item->quantity }}" >
-                          
-                          <button type="submit" class="px-3 py-2  w-40 rounded-r bg-gray-900  text-white text-xl cursor-pointer hover:opacity-50">
-                            <svg 
-                              xmlns="http://www.w3.org/2000/svg" 
-                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" 
-                              class="h-8 w-8 cursor-pointer text-yellow-600"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-				
-                          </button>
-                        </div>
-                      </form>
-                    </td>
-                    <td class="border px-4 py-4">Rs {{$item->price }}</td>
-                    <td class="border px-4 py-4 font-bold text-lg">Rs {{$item->price * $item->quantity}}</td>
-                    
-                  </tr>
-                  @empty
-                      <tr>
-                        
-                        <td class="border text-red-600 text-lg px-4 py-4">Bag</td>
-                        <td class="border text-red-600 text-lg px-4 py-4">is</td>
-                        <td class="border text-red-600 text-lg px-4 py-4">Empty</td>
-                        <td class="border text-red-600 text-lg px-4 py-4">
-                          <a href="/shop" class="px-6 py-3 rounded bg-gray-900 hover:opacity-75 text-white text-xl cursor-pointer">Browse Products</a>
-                        </td>
+      <div class="table w-full ">
+          <div class="w-full hidden md:block md:table-row mb-4">
+            <div class="md:table-cell px-2 py-2 border uppercase text-left text-gray-900 border-collapse font-bold"></div>
+            <div class="md:table-cell px-2 py-2 border uppercase text-left text-gray-900 border-collapse font-bold">Photo</div>
+            <div class="md:table-cell px-2 py-2 border font-bold uppercase text-left text-gray-900 border-collapse">Quantity</div>
+            <div class="md:table-cell px-2 py-2 border font-bold uppercase text-left text-gray-900 border-collapse">Price</div>
+            <div class="md:table-cell px-2 py-2 border font-bold uppercase text-left text-gray-900 border-collapse">Total</div>
+            
+          </div>
+          @forelse($items as $item)
 
-                      </tr>
-                  @endforelse
+            <div class="w-full flex flex-col md:flex-row md:justify-center md:items-center  md:table-row mb-6 border rounded">
+              <div class="md:table-cell px-2 py-2 border capitalize text-left text-gray-900 border-collapse font-thin">
+                <!-- Delete Item -->
+                <form action="{{ route('cart.remove', $item->id) }}" method="POST" accept-charset="utf-8">
+                  @csrf
+                  @method('DELETE')
+                  <button 
+                    onClick="return confirm('Are you sure?')"
+                    type="submit">
+                      <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash h-8 w-8 text-red-600 hover:opacity-80 cursor-pointer"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                      
+                  </button>
+                </form>
+              </div>
+              <div class="md:table-cell md:px-2 md:py-2 border capitalize text-left text-gray-900 border-collapse">
+                  <a class="w-full" href="/product/{{ $item->attributes->slug }}">
+                    <img  class="rounded-xl w-full md:w-32 md:h-32 object-center object-contain  hover:opacity-75" src="{{ asset($item->attributes->image_url) }}" >
+                    </a>
 
-                </tbody>
-			      </table>
-		</div>
+                </div>
+                <div class="md:table-cell px-2 py-2 border flex items-center capitalize text-left text-gray-900 border-collapse font-bold">
+                  <form action="{{ route('cart.update', $item->id) }}" method="POST" accept-charset="utf-8">
+                    @csrf
+                    @method('PATCH')
+                    <div class="flex items-center mr-3">
+                      <input type="number" name="quantity" class=" md:w-24 text-center  mr-3 px-4 py-2 rounded " value="{{ $item->quantity }}" >
+                      
+                      <button type="submit" class="cursor-pointer">
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" 
+                          class="h-8 w-8 cursor-pointer text-yellow-600"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+    
+                      </button>
+                    </div>
+                  </form>
 
+                  
+                </div>
 
+                <div class="md:table-cell px-2 py-2 border capitalize text-left text-gray-900 border-collapse font-thin">Rs {{ $item->price }}</div>
+                <div class="md:table-cell px-2 py-2 border capitalize text-left text-gray-900 border-collapse font-bold">Rs {{ $item->price * $item->quantity }}</div>
+                  
+                </div>
+          @empty
 
-	    	<!-- Cart Details -->
+          @endforelse
+        </div>
+      </div>
+        
+    	<!-- Cart Details -->
 	    	@if($total_qty)
-        	<div class="w-full  flex flex-col  border-gray-400 rounded  mt-5 xl:mt-0 border xl:relative">
+        	<div class="w-full flex flex-col px-6 border rounded">
         		<div class="flex justify-between items-center mb-4  w-full px-3 pt-3">
         			<h5 class="text-gray-800 text-md">SubTotal</h5>
         			<span class="text-gray-800 text-md">Rs {{ $sub }}</span>

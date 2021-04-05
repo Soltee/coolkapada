@@ -16,6 +16,7 @@ class WelcomeController extends Controller
     {
         $new  = Product::latest()
                     ->where('published', true)
+                    ->has('attributes')
                     ->with('media', 'images')
                     ->where('price', '>', '0')
                     ->take(3)

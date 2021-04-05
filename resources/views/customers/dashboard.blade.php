@@ -6,12 +6,12 @@
 
         <div class="flex items-center my-4">
             <button 
-                class="pb-3 mr-4 font-medium text-md border-b-2 border-c-light-blue font-bold"
+                class="pb-3 mr-4 font-medium text-md  font-bold"
                 >
-                    Orders
+                    Dashboard
             </button>
             <a href="{{ route('profile') }}"
-                class="pb-3 mr-4 font-medium text-md border-b-2 hover:border-c-light-blue hover:font-bold">
+                class="pb-3 mr-4 font-medium text-md hover:opacity-75 hover:font-bold">
                     Change Password
             </a>
         </div>

@@ -24,7 +24,10 @@ class Product extends Component
     public $size;
     public $price;
     public $quantity;
-    public $qty;
+    public $qty = 1;
+
+    public $addedId;
+    public $success;
 
     protected $rules = [
         'color' => 'required',
@@ -85,13 +88,13 @@ class Product extends Component
         ];
 
         $pd = P::findOrfail($this->p->id);
-        $qty = $this->qty ?? 1;
+        // $qty = $this->qty ?? 1;
 
         Cart::add([
                 'id'         => $pd->id,
                 'name'       => $pd->name,
                 'price'      => $this->price,
-                'quantity'   => $qty,
+                'quantity'   => $this->qty,
                 'attributes' => [
                     'product_id'  => $pd->id,
                     'slug'        => $pd->slug,
@@ -102,6 +105,9 @@ class Product extends Component
                     'size'        => $this->size,
                 ]
         ]);
+
+        $this->addedId  = $pd->id;
+        $this->success  = true;
 
         session()->flash('success', 'Item added to my bag.');
         return redirect($this->url);    

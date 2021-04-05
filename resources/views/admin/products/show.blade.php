@@ -37,33 +37,44 @@
     	<div class="my-4 flex flex-col md:flex-row">
     		<div class="w-full md:w-1/2">
     			<h5 class="mb-4 text-lg text-gray-800 px-2">General Info</h5>
-
 	    		<div class="flex items-center mb-6">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Name</label>
-		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">{{ $product->name  }}</h4>
+					<label for="" class=" border rounded px-4 py-2 md:w-1/3">Status</label>
+					
+					@if($product->published) 
+						<span class="px-3 py-2 bg-green-600 rounded-lg text-white"> PUBLISHED </span>
+					@else
+						<span class="px-3 py-2 bg-red-600 rounded-lg text-white" >
+							NOT PUBLISHED
+						</span>
+
+					@endif
+	    		</div>
+	    		<div class="flex items-center mb-6">
+		    		<label for="" class=" border rounded px-4 py-2 md:w-1/3">Name</label>
+		    		<h4 class="border rounded px-4 py-2 font-bold text-lg flex-1">{{ $product->name  }}</h4>
 				</div>
 				<div class="flex items-center mb-6">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Category</label>
-		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">
+		    		<label for="" class=" border rounded px-4 py-2 md:w-1/3">Category</label>
+		    		<h4 class="border rounded px-4 py-2 font-bold text-lg flex-1">
 						{{ $cat->name }} 
 					</h4>
 		    	</div>
 		    	
 		    	<div class="flex items-center mb-6">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Price</label>
-		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">
+		    		<label for="" class=" border rounded px-4 py-2 md:w-1/3">Price</label>
+		    		<h4 class="border rounded px-4 py-2 font-bold text-lg flex-1">
 						RS {{ $product->min }} @if($product->max) - {{ $product->max }} @endif NP 
 					</h4>
 		    	</div>
 		    	<div class="flex items-centerd mb-8">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Quantity</label>
-		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">
+		    		<label for="" class=" border rounded px-4 py-2 md:w-1/3">Quantity</label>
+		    		<h4 class="border rounded px-4 py-2 font-bold text-lg flex-1">
 						{{ $quantity }}
 					</h4>
 		    	</div>
 
 		    	<div class="w-full  my-6 flex">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Color</label>
+		    		<label for="" class=" border rounded px-4 py-2 md:w-1/3">Color</label>
 					<div class="flex flex-row items-center">
 						@forelse($images as $c)
 
@@ -83,7 +94,7 @@
 				</div>
 				
 				<div class="flex items-centerd mb-8">
-					<label for="" class=" border rounded px-4 py-3 md:w-1/3">Quantity</label>
+					<label for="" class=" border rounded px-4 py-2 md:w-1/3">Quantity</label>
 					<div class="flex items-center">
 						@forelse($sizes as $size)
 							<div class="px-3 py-2 border border-gray-300 rounded-lg mr-2">
@@ -99,19 +110,19 @@
 
 			 
 		    	<div class="flex items-center mb-8">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Created</label>
-		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">{{ $product->created_at->diffForHumans() }}</h4>
+		    		<label for="" class=" border rounded px-4 py-2 md:w-1/3">Created</label>
+		    		<h4 class="border rounded px-4 py-2 font-bold text-lg flex-1">{{ $product->created_at->diffForHumans() }}</h4>
 		    	</div>
                 <div class="flex items-center mb-8">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-1/3">Updated</label>
-		    		<h4 class="border rounded px-4 py-3 font-bold text-lg flex-1">{{ $product->updated_at->diffForHumans() }}</h4>
+		    		<label for="" class=" border rounded px-4 py-2 md:w-1/3">Updated</label>
+		    		<h4 class="border rounded px-4 py-2 font-bold text-lg flex-1">{{ $product->updated_at->diffForHumans() }}</h4>
 		    	</div>
 
 		    	
 		    </div>
 
 		    <div class="md:ml-4 w-full md:w-1/2">
-		    	
+		    	<h4 class="mb-2 text-md">Images</h4>
 		    	<div class="w-full flex ">
 			    	@forelse($images as $image)
 

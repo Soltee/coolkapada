@@ -22,6 +22,7 @@ class ShopController extends Controller
 
         $query    = Product::latest()
                     ->where('published', true)
+                    ->has('attributes')
                     ->with('media');
 
         if($category){

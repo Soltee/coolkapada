@@ -25,104 +25,99 @@
         @auth('admin')
             <div class="flex flex-col px-6 py-4 w-full">
             
-                <div class="flex flex-row justify-between w-full">
-                    <a class="hover:underline text-md text-white font-thin" href="/">Back to Site</a>
 
-                    <nav class="mb-4 flex-1">
-                        <div class="flex items-center justify-between md:justify-end">
-                            <svg
-                               id="menuIcon"
-                                xmlns="http://www.w3.org/2000/svg" class="md:hidden cursor-pointer w-8 h-8 text-blue-500 hover:opacity-75 " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lgmenu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <nav class="mb-3">
+                    <div class="flex items-center justify-between justify-end">
+                    
+                        <a class="hover:underline text-md text-white font-thin" href="/">Back to Site</a>
 
+                        <div class="flex items-center text-right">
+                            <div  x-data="{ lgmenu : false }" class=" md:block relative">
+                                <svg
+                                    x-on:click="lgmenu = !lgmenu" 
+                                    class="cursor-pointer w-8 h-8 text-gray-900 hover:opacity-75 ml-3 md:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lgmenu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+                                </svg>
+                                    <ul 
+                                        x-show.transition.50ms="lgmenu"
+                                        x-on:click.away="lgmenu = false"
 
-                            <div class="flex items-center text-right">
-                                <div  x-data="{ lgmenu : false }" class="hidden md:block relative">
-                                    <svg
-                                        x-on:click="lgmenu = !lgmenu" 
-                                        class="cursor-pointer w-8 h-8 text-gray-900 hover:opacity-75 ml-3 md:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lgmenu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
-                                    </svg>
-                                        <ul 
-                                            x-show.transition.50ms="lgmenu"
-                                            x-on:click.away="lgmenu = false"
+                                        class="absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start px-4 py-3 rounded w-40 z-30">
+        
+                                            <li class="list-none mb-3">
+                                                <a class="hover:underline text-md text-white font-thin {{ 
+                                                    (Route::currentRouteName() == 'admin.dashboard') ? 'underline' : 'text-white'
+                                                }}" href="/admin/dashboard">
+                                                Dashboard
+                                                </a>
+                                            </li> 
+                                            <li class="list-none mb-3">
+                                                <a class="hover:underline text-md text-white font-thin {{ 
+                                                    (Route::currentRouteName() == 'admin.categories') ? 'underline' : 'text-white'
+                                                }}" href="/admin/categories">
+                                                Category
+                                                </a>
+                                            </li>
+                                            <li class="list-none mb-3">
+                                                <a class="hover:underline text-md text-white font-thin {{ 
+                                                    (Route::currentRouteName() == 'admin.products') ? 'underline' : 'text-white'
+                                                }}" href="/admin/products">
+                                                Products
+                                                </a>
+                                            </li>
+                                            <li class="list-none mb-3">
+                                                <a class="hover:underline text-md text-white font-thin {{ 
+                                                    (Route::currentRouteName() == 'admin.orders') ? 'underline' : 'text-white'
+                                                }}" href="/admin/orders">
+                                                Orders
+                                                </a>
+                                            </li>
+                                            <li class="list-none mb-3">
+                                                <a class="hover:underline text-md text-white font-thin {{ 
+                                                    (Route::currentRouteName() == 'admin.customers') ? 'underline' : 'text-white'
+                                                }}" href="/admin/customers">
+                                                Customers
+                                                </a>
+                                            </li>
+                                            <li class="list-none mb-3">
+                                                <a class="hover:underline text-md text-white font-thin {{ 
+                                                    (Route::currentRouteName() == 'medias') ? 'underline' : 'text-white'
+                                                }}" href="/admin/medias">
+                                                Media
+                                                </a>
+                                            </li>
+                                            <li class="list-none mb-3">
+                                                <a class="hover:underline text-md text-white font-thin {{ 
+                                                    (Route::currentRouteName() == 'admin.profile') ? 'underline' : 'text-white'
+                                                }}" href="/admin/profile">
+                                                Profile
+                                                </a>
+                                            </li>
+                                            
+                                            <li class="list-none ">
+                                                <a href="{{ route('admin.logout') }}"
+                                                    class="no-underline hover:underline text-md text-white"
+                                                    onclick="event.preventDefault();
+                                                        if(confirm('Are you sure?'))
+                                                        {
+                                                            document.getElementById('logout-form').submit();
+                                                        }
+                                                    ">
+                                                        {{ __('Logout') }}
+                                                    </a>
 
-                                            class="absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start px-4 py-3 rounded w-40 z-30">
-         
-                                                <li class="list-none mb-3">
-                                                    <a class="hover:underline text-md text-white font-thin {{ 
-                                                        (Route::currentRouteName() == 'admin.dashboard') ? 'underline' : 'text-white'
-                                                    }}" href="/admin/dashboard">
-                                                    Dashboard
-                                                    </a>
-                                                </li> 
-                                                <li class="list-none mb-3">
-                                                    <a class="hover:underline text-md text-white font-thin {{ 
-                                                        (Route::currentRouteName() == 'admin.categories') ? 'underline' : 'text-white'
-                                                    }}" href="/admin/categories">
-                                                    Category
-                                                    </a>
-                                                </li>
-                                                <li class="list-none mb-3">
-                                                    <a class="hover:underline text-md text-white font-thin {{ 
-                                                        (Route::currentRouteName() == 'admin.products') ? 'underline' : 'text-white'
-                                                    }}" href="/admin/products">
-                                                    Products
-                                                    </a>
-                                                </li>
-                                                <li class="list-none mb-3">
-                                                    <a class="hover:underline text-md text-white font-thin {{ 
-                                                        (Route::currentRouteName() == 'admin.orders') ? 'underline' : 'text-white'
-                                                    }}" href="/admin/orders">
-                                                    Orders
-                                                    </a>
-                                                </li>
-                                                <li class="list-none mb-3">
-                                                    <a class="hover:underline text-md text-white font-thin {{ 
-                                                        (Route::currentRouteName() == 'admin.customers') ? 'underline' : 'text-white'
-                                                    }}" href="/admin/customers">
-                                                    Customers
-                                                    </a>
-                                                </li>
-                                                <li class="list-none mb-3">
-                                                    <a class="hover:underline text-md text-white font-thin {{ 
-                                                        (Route::currentRouteName() == 'medias') ? 'underline' : 'text-white'
-                                                    }}" href="/admin/medias">
-                                                    Media
-                                                    </a>
-                                                </li>
-                                                <li class="list-none mb-3">
-                                                    <a class="hover:underline text-md text-white font-thin {{ 
-                                                        (Route::currentRouteName() == 'admin.profile') ? 'underline' : 'text-white'
-                                                    }}" href="/admin/profile">
-                                                    Profile
-                                                    </a>
-                                                </li>
-                                                
-                                                <li class="list-none ">
-                                                    <a href="{{ route('admin.logout') }}"
-                                                        class="no-underline hover:underline text-md text-white"
-                                                        onclick="event.preventDefault();
-                                                            if(confirm('Are you sure?'))
-                                                            {
-                                                                document.getElementById('logout-form').submit();
-                                                            }
-                                                        ">
-                                                            {{ __('Logout') }}
-                                                        </a>
+                                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="hidden">
+                                                    {{ csrf_field() }}
+                                                </form>
 
-                                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="hidden">
-                                                        {{ csrf_field() }}
-                                                    </form>
-
-                                                </li>
-                                        </ul>
-                                </div>
-                                
-                                
+                                            </li>
+                                    </ul>
                             </div>
+                            
+                            
                         </div>
-                    </nav>
+                    </div>
+                </nav>
 
-                </div>
 
                 @yield('content')
 

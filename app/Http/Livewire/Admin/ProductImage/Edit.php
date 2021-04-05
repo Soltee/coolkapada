@@ -95,7 +95,10 @@ class Edit extends Component
             'published'  => !$this->product->published
         ]);
 
-        $this->message = 'Product visibility updated';
+        // $this->message = 'Product visibility updated';
+        session()->flash('success', 'Product visibility updated.');
+        return redirect('admin/products/'. $this->product->id);
+    
     }
 
     /**

@@ -6,7 +6,7 @@
 	<style>
 		.custom_radio input:checked + .radio_btn{border: 2px solid black;}
 		.custom_radio2 input:checked + .radio_btn2{border: 2px solid black;}
-    .imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}
+    	.imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}
 
 		/* [2] Transition property for smooth transformation of images */
 		.img-hover-zoom img {
@@ -23,7 +23,19 @@
 		.imgBlock:hover  .addBtn {
 			visibility: initial;
 		}
-		.addBtn{visibility: hidden;}
+		/* .tns-controls{ text-align: center; } */
+		@media screen and (max-width: 740px){
+			.tns-controls{
+				display: block;
+				position: absolute;
+				right: 0;
+				top: 0;
+				display: flex;justify-content: center;
+				margin: 0 4px 0 0;
+				text-align: center;
+			
+        }} 
+
 
 	</style>
 @endsection
@@ -49,7 +61,7 @@
 					<div class="relative imageDiv
 						 ">
 						<img id="featured" 
-						  class="focus-img shadow-lg cursor-move grabbable featured w-full object-cover object-center" src="{{ asset($product->media->image_url) }}">
+						  class="focus-img shadow-lg cursor-grab grabbable featured w-full object-contain object-center" src="{{ asset($product->media->image_url) }}">
 						<p 
 							class="text absolute top-0 right-0 flex justify-center items-center text-c-pink text-md">
 							Scroll in or out to zoom
@@ -60,12 +72,13 @@
 					</div>
 
 					@if($image_count > 1)
-					<div id="slide-wrapper w-full 
-						" >
+					<div 
+						id="slide-wrapper w-full " 
+						class="mt-2">
 						<div id="slider" class="flex flex-row">
 							@forelse($images as $img)
 								<img  
-								 class="thumbnail glightbox3 cursor-pointer w-16 h-16 border border-gray-300 md:w-24 md:h-24 object-cover object-center
+								 class="thumbnail glightbox3 cursor-pointer w-16 h-16 border border-gray-300 md:w-24 md:h-24 object-contain object-center
 									" 
 									src="{{ asset($img->media->image_url) }}"/>
 							@empty
@@ -108,26 +121,28 @@
 
 				<h5 class="text-lg font-light text-c-light-black mr-2 mb-6">Similar Products</h5>
 
-        <div class="  
-                similar hover:cursor-move           
-              ">
-              @forelse($similar as $p)
-                <div class="flex flex-col items-center">
-                    <div 
-						class="imgBlock relative w-full  cursor-pointer">
-						<div class="overflow-hidden">
-							<a class="" href="{{ route('product', $p->slug)}}">
-								<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->media->image_url) }}" alt="{{ $p->slug }}">
-							</a>
-						</div>
-					</div>
-					
-					<livewire:customer.product :p="$p->id" :url="'/product/'.$p->slug"/>
+				<div 
+					style="cursor: grab"
+					class="  
+						similar           
+					">
+					@forelse($similar as $p)
+						<div class="flex flex-col items-center">
+							<div 
+								class="imgBlock relative w-full  cursor-pointer shadow-md">
+								<div class="overflow-hidden">
+									<a class="" href="{{ route('product', $p->slug)}}">
+										<img  class="w-full mb-5 rounded object-cover hover:opacity-70 " src="{{ asset($p->media->image_url) }}" alt="{{ $p->slug }}">
+									</a>
+								</div>
+							</div>
+							
+							<livewire:customer.product :p="$p->id" :url="'/product/'.$p->slug"/>
 
-                </div>
-              @empty
-              @endforelse
-            </div>
+						</div>
+					@empty
+					@endforelse
+            	</div>
 			</div>
       
     </div>
@@ -167,16 +182,16 @@
         items: 1,
         responsive: {
           640: {
-            edgePadding: 20,
+            edgePadding: 40,
             gutter: 10,
             items: 3
           },
           700: {
-            // gutter: 30
+            gutter: 30
           },
           900: {
             items: 4,
-            gutter: 20
+            // gutter: 20
           },
           1080: {
             items: 4

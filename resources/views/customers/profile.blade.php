@@ -6,18 +6,19 @@
 
         <div class="flex items-center my-4">
             <a href="{{ route('dashboard') }}"
-                class="pb-3 mr-4 font-medium text-md border-b-2  hover:border-c-light-blue hover:font-bold "
+                class="pb-3 mr-4 font-medium text-md opacity-75 hover:opacty-100 
+                "
                 >
-                    Orders
+                    Dashboard
             </a>
             <button 
-                class="pb-3 mr-4 font-medium text-md border-b-2 border-c-light-blue font-bold">
+                class="pb-3 mr-4 font-medium text-md  font-bold">
                     Change Password
             </button>
         </div>
 
         <div
-            class=" w-full   px-5 rounded mt-2">
+            class=" w-full rounded mt-2">
         
             <div class="">
                 <form action="{{ route('customer.reset', $auth->id) }}" method="POST" accept-charset="utf-8">

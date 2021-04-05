@@ -13,8 +13,9 @@
         #heroImage {
         /*clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);*/
         }
-        .tns-controls {display: hidden;}
-        @media screen and (max-width: 620px){
+        /* .tns-controls {display: hidden;} */
+        .tns-controls{ text-align: center}
+        /* @media screen and (max-width: 620px){
         .tns-controls{
         display: block;
         position: absolute;
@@ -22,7 +23,7 @@
         top: 0;
         display: flex;justify-content: flex-end;
         margin: 0 4px 0 0;
-        }}
+        }} */
     </style>
 @endsection
 
@@ -31,17 +32,19 @@
     <div class="">
 
         <!-- Hero Section -->
-        <div class="relative">
-          <img data-src="/img/hero3.jpg" class="lozad h-96  object-cover object-top  w-full hero mt-3" alt="">
+        <div class="relative flex flex-col items-start md:items-center ">
+          <img data-src="/img/hero3.jpg" class="lozad h-96  object-cover object-top  w-full hero " alt="">
 
-          <div class="absolute bottom-0 left-0 right-0 bg-gray-900 px-8 py-8 max-w-xl mx-auto flex flex-col items-center rounded-tl rounded-tr">
-            <h1 class="text-2xl md:text-4xl font-bold text-white uppercase">
+          <div class="absolute bottom-0 left-0 right-0 bg-gray-900 px-8 py-8 max-w-xl mx-auto flex flex-col md:items-center rounded-tl rounded-tr">
+            <h1 class="text-3xl md:text-4xl font-bold text-white uppercase">
               Express your Intention
             </h1>
-            <p class="mt-2 text-lg text-center text-white">
+            <p class="mt-2 font-thin text-lg md:justify-center md:text-center text-white">
               Wide varieties of undergarments right at your doorstep.
-              {{-- With a vision to empower women, Coolkapada has been set up currently in Pokhara, providing various ranges of undergarments. --}}
             </p>
+            {{-- <p class="mt-2 text-lg text-center text-white">
+              With a vision to empower women, Coolkapada has been set up currently in Pokhara, providing various ranges of undergarments.
+            </p> --}}
           </div>
         </div>
         
@@ -50,12 +53,13 @@
           <div class="flex justify-between items-center mb-6">
             <h3 class="text-lg text-gray-900 font-semibold  relative">New Arrivals</h3>
             <div class="">
-              <a href="/shop" class="border-b border-gray-600 hover:border-black">View more</a>
+              <a href="/shop" class="border-b border-gray-600 hover:border-black hover:opacity-70">View more</a>
             </div>
           </div>
-            <div class="  
+            <div 
+              style="cursor: grab;"
+              class="  
                 arrivals
-                hover:cursor-move           
               ">
               @forelse($new as $p)
                 <div class="flex flex-col items-center">
@@ -72,7 +76,8 @@
                 </div>
               @empty
 
-                  <p class="ext-lg text-gray-900 font-semibold text-center">No products yet.</p>
+                  <p class="ext-lg text-gray-900 font-semibold text-center">
+                     Oops! We have low stocks right now.</p>
 
               @endforelse
             </div>
@@ -131,8 +136,8 @@
                 items: 3
             }
             },
-            controls : false,
-            // controlsPosition: top,
+            controls : true,
+            // controlsPosition: bottom,
             controlsText : [
                 '<svg class="w-8 h-8 md:hidden text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.05 9.293L6.343 10 12 15.657l1.414-1.414L9.172 10l4.242-4.243L12 4.343z"/></svg>', 
                 '<svg class="w-8 h-8 md:hidden text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>'

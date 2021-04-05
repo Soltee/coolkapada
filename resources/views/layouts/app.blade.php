@@ -26,7 +26,7 @@
             <div class="w-full px-6 py-4 lg:max-w-screen-2xl flex justify-between">
                 <!-- Left Side -->
                 <div class="flex items-center">
-                    <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-900 mr-4">
+                    <a href="{{ url('/') }}" class="text-lg md:text-xl font-semibold text-gray-900 mr-4">
                         {{ config('app.name') }}
                     </a>
 
@@ -35,11 +35,11 @@
                         @csrf
                         <div class="flex relative mr-6 ">
                             
-                            <div class="absolute left-0 top-0 mt-2 ml-4 text-purple-lighter">
+                            <div class="absolute left-0 top-0 mt-1 ml-2 text-purple-lighter">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-6 h-6 text-gray-200"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                           
                             </div>
-                            <input type="text" id="keyword" name="keyword" class="bg-purple-white shadow rounded-full w-full lg:w-56  border-0 pl-12 py-2 pr-3" placeholder="Search by name...">
+                            <input type="text" id="keyword" name="keyword" class=" rounded-full w-full lg:w-56  border border-gray-300 pl-10 py-1 pr-3" placeholder="Search by name...">
                         </div>
                           
                     </form>
@@ -56,7 +56,7 @@
                             }}" 
                         >
                                     
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                             
                             <span>{{ \Cart::getTotalQuantity() }}</span>
                     </a>
@@ -66,9 +66,10 @@
                         <div  x-data="{ lgmenu : false }" class="hidden md:block relative">
                             <svg
                                 x-on:click="lgmenu = !lgmenu" 
-                                class="cursor-pointer w-8 h-8 text-gray-900 hover:opacity-75 ml-3 md:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lgmenu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+                                class="cursor-pointer w-6 h-6 text-gray-900 hover:opacity-75 ml-3 md:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lgmenu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
                             </svg>
                                 <ul 
+                                    x-on:click.away="lgmenu = false;"
                                     x-show.transition.50ms="lgmenu"
                                     class="absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start px-4 py-3 rounded w-auto z-30">
 
@@ -86,11 +87,6 @@
                                             <a class="hover:opacity-75 text-md text-white font-thin {{ 
                                                 (Route::currentRouteName() == 'shop') ? 'opacity-75' : 'text-white'
                                             }}" href="/shop">Shop</a>
-                                        </li>
-                                         <li class="list-none mb-3 ">
-                                            <a class="mr-3  text-md font-thin text-white {{ 
-                                                (Route::currentRouteName() == 'contact') ? 'opacity-75' : ''
-                                            }}" href="/contact">Contact</a>
                                         </li>
                                         <li class="list-none ">
                                                 <a  href="{{ route('logout') }}" class="hover:opacity-75 mr-3  text-md font-thin text-white" 
@@ -113,7 +109,7 @@
                     @else
                         <li class="list-none">
                             <a  
-                                class="hover:opacity-75 bg-gray-900  no-underline px-4 py-2 rounded-full text-white {{ 
+                                class="hover:opacity-75 bg-gray-900  no-underline px-6 py-2 rounded-full text-white {{ 
                                 (Route::currentRouteName() == 'login') ? 'opacity-75' : ''
                                 }}" 
                                 href="{{ route('login') }}"
@@ -181,7 +177,7 @@
             </div>
 
             <!-- Small Screen Search -->
-            <form id="search" class="mb-6 md:hidden w-full px-6" method="GET" action="/shop">
+            <form id="search" class="mb-4 md:hidden w-full px-6" method="GET" action="/shop">
                 @csrf
                 <div class="flex relative  w-full">
                     
@@ -189,7 +185,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-6 h-6 text-gray-200"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                   
                     </div>
-                    <input type="text" id="keyword" name="keyword" class="bg-purple-white shadow rounded-full w-full  border-0 pl-12 py-2 pr-3" placeholder="Search by name...">
+                    <input type="text" id="keyword" name="keyword" class="  rounded-full w-full  border border-gray-300 pl-12 py-2 pr-3" placeholder="Search by name...">
                 </div>
                   
             </form>

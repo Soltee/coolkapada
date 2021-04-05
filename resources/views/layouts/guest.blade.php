@@ -12,14 +12,16 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        
+        @yield('head')
+        <style>
+            input.checked + .radio_btn{border 2px solid blue;}
+        </style>
         <!-- Scripts -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            {{-- @include('layouts.navigation') --}}
             @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])            
             
             <!-- Page Content -->

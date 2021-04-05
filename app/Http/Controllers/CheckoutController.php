@@ -93,8 +93,11 @@ class CheckoutController extends Controller
 
             $found     = Attribute::findOrfail($item->attributes->attributeId);
 
-            $found->quantity   = $found->quantity - $item->quantity;
-            $found->save();
+            $quantity   = $found->quantity - $item->quantity;
+            
+            $found->update([
+                'quantity' => $quantity
+            ]);
         }
         
 
@@ -102,7 +105,7 @@ class CheckoutController extends Controller
 
         return redirect()
                     ->route('thankyou', ['order' => $order->id])
-                    ->with('success', 'Thank you for purchasing our products.');
+                    ->with('success', 'Hurray! Your orders is being processed. And Thank you for purchasing our products.');
     }
 
 
@@ -114,14 +117,15 @@ class CheckoutController extends Controller
      */
     public function show(Order $order)
     {
-        if(!session('success')){
-            return redirect('/shop');
-        }
+        // if(!session('success')){
+        //     return redirect('/shop');
+        // }
 
         $items    = $order->items;
         $products = Product::latest()
+                            ->has('attributes')
                             ->with('media')
-                            ->take(6)
+                            ->take(3)
                             ->get();
       
         return view('thankyou', compact('order', 'items', 'products'));
