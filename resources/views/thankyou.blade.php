@@ -11,24 +11,25 @@
 		<div class="flex justify-between md:justify-start items-center mb-2 w-full px-6 py-2">
 			<a href="/shop"><h4 class="text-sm opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">SHOP</h4></a>
 			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-			<a href="/bag">
-			  <h4 class="text-sm opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">BAG</h4>
-			</a>
+			<h4 class="text-sm opacity-100 font-light text-gray-900 mr-2">CHECKOUT</h4>
 			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
 			<h4 class="text-md font-semibold text-gray-900 ">THANK-YOU</h4>        
 		  
 		</div>
   
-    <div class="">
-	    
-	    <div class="px-6  py-3  flex  flex-col md:flex-row ">
+    <div class="px-6  py-3">
+	    <div class="  flex  flex-col md:flex-row ">
 	    	<div class="w-full flex-1 md:w-1/2 md:mr-8 bg-gray-300">
 
 	    		<div class=" mx-4 mt-6">
 	        		<div class="flex items-center my-3">
-		    			<svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-green-600 mr-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+		    			<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-green-600 mr-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
 	    				<p class="text-green-600 leading-relaxed">{{ session('success') }}</p>
-	    			</div>
+					</div>
+					<div class="flex justify-center items-center">
+					
+						<a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a>
+					</div>
 
 	    			<div class="my-5 border border-gray-400 rounded">
 	    				<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">

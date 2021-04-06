@@ -17,7 +17,7 @@
                 <div class="flex items-center w-full">
                     <label for="" class=" border rounded-l px-4 py-3 w-1/2 md:w-auto">Status</label>
                     @if($order->is_paid)
-                        <button class="border px-4 py-3 text-white bg-green-600 rounded-r">Paid</button>
+                        <button class="border px-4 py-3 text-white bg-green-600 rounded-r">Completed</button>
                     @else
                         <button class="border px-4 py-3 text-white bg-yellow-600 rounded-r">On your way</button>
                     @endif

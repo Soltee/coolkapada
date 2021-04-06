@@ -33,6 +33,8 @@ Route::get('/checkout', [CheckoutController::class, 'index'])
                             ->name('checkout');
 Route::post('/checkout', [CheckoutController::class, 'store'])
                             ->name('checkout.store');
+//PDF Invoice
+Route::get('/invoice/{order}', [CheckoutController::class, 'download']);
 
 Route::get('/thankyou/{order}', [CheckoutController::class, 'show'])->name('thankyou');
 
@@ -46,6 +48,7 @@ Route::post('/bag/store', [BagController::class, 'store'])->name('bag.store');
 
 //Newsletter
 Route::post('/newsletter', [WelcomeController::class, 'newsletter']);
+
 
 Route::group(['middleware' => 'auth:customer'], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');

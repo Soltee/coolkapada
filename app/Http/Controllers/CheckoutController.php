@@ -9,6 +9,7 @@ use App\Models\Attribute;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class CheckoutController extends Controller
 {
@@ -41,7 +42,7 @@ class CheckoutController extends Controller
     {
         //get the request data
 
-        $this->validate($request, [
+        $data = $this->validate($request, [
             'first_name'        =>  'required|string' ,
             'last_name'         =>  'required|string' ,
             'email'             =>  'required|string|email' ,
@@ -55,28 +56,27 @@ class CheckoutController extends Controller
         //store order
         $user     = auth('customer')->user() ? auth('customer')->user()->id : null;
 
-        $shipping = (request()->city == 'pokhara') ? 0 : 50;
-        $grand = Cart::getTotal() + $shipping;
+        $shipping = (request()->city == 'pokhara') ? 0 : 0;
+        $grand    = Cart::getTotal() + $shipping;
 
         $order = Order::create([
             'customer_id'      => $user,
-            'first_name'       => request()->first_name,
-            'last_name'        => request()->last_name,
-            'email'            => request()->email,
-            'phone_number'     => request()->phone_number,
-            'city'             => request()->city,
-            'street_address'   => request()->street_address,
-            'house_number'     => request()->house_number,
-            'payment_method'   => request()->payment_method, 
+            'first_name'       => $data['first_name'],
+            'last_name'        => $data['last_name'],
+            'email'            => $data['email'],
+            'phone_number'     => $data['phone_number'],
+            'city'             => $data['city'],
+            'street_address'   => $data['street_address'],
+            'house_number'     => $data['house_number'],
+            'payment_method'   => $data['payment_method'], 
             'sub_total'        => Cart::getSubTotal(),
             'shipping'         => $shipping,
             'grand_total'      => $grand
         ]);
 
-
         //store order _items
         foreach(Cart::getContent() as $item){
-            OrderItem::create([
+            $items[] = OrderItem::create([
                 'order_id'       => $order->id,
                 'customer_id'    => $user ,
                 'product_id'     => $item->id,
@@ -99,7 +99,6 @@ class CheckoutController extends Controller
                 'quantity' => $quantity
             ]);
         }
-        
 
         Cart::clear();
 
@@ -117,9 +116,9 @@ class CheckoutController extends Controller
      */
     public function show(Order $order)
     {
-        // if(!session('success')){
-        //     return redirect('/shop');
-        // }
+        if(!session('success')){
+            return redirect('/shop');
+        }        
 
         $items    = $order->items;
         $products = Product::latest()
@@ -127,7 +126,23 @@ class CheckoutController extends Controller
                             ->with('media')
                             ->take(3)
                             ->get();
-      
+
+        
         return view('thankyou', compact('order', 'items', 'products'));
+    }
+
+    /**
+     * Download Invoice
+     */
+    public function download(Order $order)
+    {
+        $data = [
+            'order'  => $order,
+            'items'  => $order->items
+        ];
+        $pdf =  PDF::loadView('pdf.invoice', $data);
+        return $pdf->download('invoice.pdf');
+                         
+        
     }
 }
