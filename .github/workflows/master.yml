@@ -10,7 +10,10 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2.3.2
-    
+    - name: Composer Install
+      run: composer install --no-dev
+    - name: Key
+      run: php artisan key:generate
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
@@ -18,3 +21,4 @@ jobs:
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         server-dir: /public_html/production.coolkapada.com/
+    
