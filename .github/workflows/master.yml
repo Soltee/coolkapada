@@ -15,7 +15,7 @@ jobs:
     - name: CP ENV
       run: cp .env.ci .env
     - name: Key
-      run: php artisan key:generate
+      run: php artisan key:generate --force
     - name: migrate
       run: php artisan migrate:fresh --force
     - name: 📂 Sync files
