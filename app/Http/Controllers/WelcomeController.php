@@ -18,7 +18,6 @@ class WelcomeController extends Controller
                     ->where('published', true)
                     ->has('attributes')
                     ->with('media', 'images')
-                    ->where('price', '>', '0')
                     ->take(3)
                     ->get();
         return view('welcome', compact('new'));
