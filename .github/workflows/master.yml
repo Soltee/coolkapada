@@ -18,8 +18,10 @@ jobs:
       run: php artisan config:clear
     - name: Route Clear
       run: php artisan route:clear
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+    - name: Compile Css
+      run: npm run production
+    # - name: 📂 Sync files
+    #   uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ftp.coolkapada.com
         username: ${{ secrets.ftp_username }}
