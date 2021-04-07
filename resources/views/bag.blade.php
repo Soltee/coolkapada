@@ -21,7 +21,6 @@
 		.imgBlock:hover  .addBtn {
 			visibility: initial;
 		}
-		.addBtn{visibility: hidden;}
 
 	</style>
 @endsection

@@ -26,7 +26,7 @@
 	</style>
 @endsection
 @section('content')
-		<div class="px-6  py-3 w-full">
+	<div class="px-6  py-3 w-full">
 	        
       <div class="flex justify-between items-center mb-8 w-full">
         <div class="flex items-center">

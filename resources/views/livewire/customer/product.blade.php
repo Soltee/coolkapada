@@ -45,7 +45,7 @@
             
             <!-- Sizes -->
             @if($attributes)
-                <div class=" mt-6 flex flex-row  flex-wrap items-center">
+                <div class=" mt-4 flex flex-row  flex-wrap items-center">
                     @forelse($attributes as $a)
                     <div>
 
@@ -59,7 +59,7 @@
                                 value="{{ $a->size }}">
 
                             <span  
-                                class="radio_btn2 mr-2 px-3 py-2 hover:bg-gray-900 hover:text-white rounded  border-2 border-gray-200 text-gray-900 cursor-pointer hover:border-gray-400"
+                                class="radio_btn2 mr-2 px-3 py-2 hover:bg-gray-900 hover:text-white rounded  border-2 border-gray-300 text-gray-900 cursor-pointer hover:border-gray-400"
                                 >
                                 {{ $a->size }}
                             </span>
@@ -75,7 +75,7 @@
                     
                 </div> 
             @else
-                <div class="mt-6 flex flex-wrap w-full">
+                <div disabled class="mt-4 flex flex-wrap w-full opacity-70">
                     @foreach($sizes as $s)
 
                         <span  
@@ -90,7 +90,7 @@
             <!-- Stock or Out of Stock -->
             @if($price)    
                 @if($quantity > 0)
-                    <div class="mt-6 flex flex-col">
+                    <div class="mt-4 flex flex-col">
                         <input 
                             type="number" 
                             wire:model="qty" 

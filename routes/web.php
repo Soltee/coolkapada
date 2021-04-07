@@ -33,6 +33,9 @@ Route::get('/checkout', [CheckoutController::class, 'index'])
                             ->name('checkout');
 Route::post('/checkout', [CheckoutController::class, 'store'])
                             ->name('checkout.store');
+
+Route::get('faqs', [WelcomeController::class, 'faqs'])->name('faqs');
+
 //PDF Invoice
 Route::get('/invoice/{order}', [CheckoutController::class, 'download']);
 

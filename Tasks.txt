@@ -1,0 +1,17 @@
+- Production STEPS
+	- Compile TailwindCSS with laravel-mix
+	- Compress Head Section & JS in production
+
+- Feature :: Testimonials
+	- Google Reviews
+		- Make Google MY Business Page 
+			- Fill Data & Credentials
+		- Pull Revies from GOOGLE BUSINESS REVIEWS 
+
+	- FAQ Page
+		- Privacy Policy
+		- Terms of Use
+		- Donot sell my Information
+		- Returns Policy
+		- Payment Methods
+		- About US

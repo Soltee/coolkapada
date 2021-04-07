@@ -24,6 +24,14 @@ class WelcomeController extends Controller
     }
 
     /**
+     * FAQs
+     */
+    public function faqs()
+    {
+        return view('faqs');
+    }
+
+    /**
      * Newsletter Store
      */
     public function newsletter(Request $request)

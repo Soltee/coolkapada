@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
         @yield('head')
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -203,17 +203,17 @@
                 <!-- Social Medias -->
                 <div class="flex flex-col md:flex-row items-center justify-center mb-4">
                     <h2 class="mb-3 md:mb-0 md:mr-6 text-xl font-bold">
-                        Reach Us On
+                        REACH US ON
                     </h2>
                         <ul class="m-0 flex items-center">
                             <a href="https:://twitch.com" class="bg-gray-300  rounded-full hover:opacity-60 p-3 mr-4 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter w-8 h-8 text-gray-900"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter w-6 h-6 text-gray-900"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
                             </a>
                             <a href="https:://facebook.com" class="bg-gray-300  rounded-full hover:opacity-60 p-3 mr-4 ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                             </a>
                             <a href="https:://instagram.com" class="bg-gray-300  rounded-full hover:opacity-60 p-3 mr-4 ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                             </a>
                         </ul>
                 </div>
@@ -237,13 +237,20 @@
                         </a>
                     </li>
                     <li class="list-none mb-3 md:mb-0">
-                        <a href="/about-us" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
-                            About
+                        <a href="/dashboard" 
+                            class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
+                            {{ Route::currentRouteName() == 'dashboard' ? 'border-b border-gray-900' : ''}}
+                            ">
+                            My Account
+                        </a>
+                    <li class="list-none mb-3 md:mb-0">
+                        <a href="/faqs#about-us" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
+                            About Us
                         </a>
                     </li>
                     <li class="list-none mb-3 md:mb-0">
-                        <a href="/faqs#terms" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
-                            Terms of Use
+                        <a href="/faqs#shipping" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
+                            Shipping & Delivery
                         </a>
                     </li>
                     <li class="list-none mb-3 md:mb-0">
@@ -252,7 +259,11 @@
                         </a>
                     </li>
                     <li class="list-none mb-3 md:mb-0">
-                        <a href="/faqs" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
+                        <a href="/faqs" 
+                            class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
+                            {{ Route::currentRouteName() == 'faqs' ? 'border-b border-gray-900' : ''}}
+
+                            ">
                             FAQs
                         </a>
                     </li>
