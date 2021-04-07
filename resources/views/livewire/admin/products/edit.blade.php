@@ -79,8 +79,8 @@
                     
 
                     </div>
-
-                    <div
+                    
+                    {{-- <div
                         x-data="{openImages : @entangle('showImages')}" 
                         class="mb-3 w-full flex flex-wrap">
                         <div class="flex flex-col">
@@ -99,10 +99,11 @@
                         <div 
                             x-show.transition.50ms="openImages"
                             class="fixed inset-0 z-30 px-6 py-6 bg-gray-300">
-                            <livewire:admin.helpers.media from="products"/>
-                        </div>
+                     --}}        
+                     <livewire:admin.helpers.media from="products"/>
+                     {{--    </div>
                     </div>
-
+ --}}
                     
                 </div>
             </form>

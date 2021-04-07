@@ -31,8 +31,7 @@ class ShopController extends Controller
         }
 
         if($search){
-            $query  =   $query->where('name', 'LIKE' , "%".$search."%")
-                            ->orWhere('price', 'LIKE' , "%".$search."%");
+            $query  =   $query->where('name', 'LIKE' , "%".$search."%");
         }
     
     	$categories =   Category::latest()->take(6)->get();

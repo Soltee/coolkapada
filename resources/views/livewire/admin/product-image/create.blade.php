@@ -24,7 +24,7 @@
 
             <div class="flex justify-between items-center mb-10">
                 <div class="flex items-center">
-                    <a href="/admins/products/{{$product->id}}" class="text-xs font-thin hover:text-gray-900 mr-2 hover:font-bold">
+                    <a href="/admin/products/{{$product->id}}" class="text-xs font-thin hover:text-gray-900 mr-2 hover:font-bold">
                         {{$product->name}}
                     </a>
                     /
@@ -46,6 +46,10 @@
                     </div>
 
                     <div class="mb-5 w-full">
+                        @error('media')
+                            <p class="text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                    
                         <livewire:admin.helpers.media  from="productImage"/>
                     </div>
 

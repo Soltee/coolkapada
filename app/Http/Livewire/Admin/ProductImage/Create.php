@@ -8,10 +8,11 @@ use App\Models\ProductImage as I;
 
 class Create extends Component
 {
-    protected $listeners = ['mediaId', 'fromAttribute'];
-    protected $rules = [
-            'color'     => 'required|string'
-        ];
+    protected $listeners = ['receiveMedia', 'fromAttribute'];
+    // protected $rules = [
+    //         'media'     => 'required|string',
+    //         'color'     => 'required|string'
+    //     ];
         
     public $product;
     public $published;
@@ -40,8 +41,12 @@ class Create extends Component
 
     public function saveImage()
     {
+        // dd($this->media);
         $this->message = '';
-        $this->validate();
+        $this->validate([
+            'media'     => 'required',
+            'color'     => 'required|string'    
+        ]);
                 
         $image = $this->product->images()->create([
             'media_id'    =>  $this->media,
@@ -55,9 +60,10 @@ class Create extends Component
     /**
      * Get MediaId from Media Component
      */
-    public function mediaId($id)
+    public function receiveMedia($id)
     {
         $this->media = $id;
+        // dd($id);
     }
 
     /**

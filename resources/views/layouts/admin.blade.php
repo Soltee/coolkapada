@@ -59,21 +59,21 @@
                                             </li>
                                             <li class="list-none mb-3">
                                                 <a class="hover:underline text-md text-white font-thin {{ 
-                                                    (Route::currentRouteName() == 'admin.products') ? 'underline' : 'text-white'
+                                                    (Route::currentRouteName() == 'admin.products.view') ? 'underline' : 'text-white'
                                                 }}" href="/admin/products">
                                                 Products
                                                 </a>
                                             </li>
                                             <li class="list-none mb-3">
                                                 <a class="hover:underline text-md text-white font-thin {{ 
-                                                    (Route::currentRouteName() == 'admin.orders') ? 'underline' : 'text-white'
+                                                    (Route::currentRouteName() == 'admin.orders.view') ? 'underline' : 'text-white'
                                                 }}" href="/admin/orders">
                                                 Orders
                                                 </a>
                                             </li>
                                             <li class="list-none mb-3">
                                                 <a class="hover:underline text-md text-white font-thin {{ 
-                                                    (Route::currentRouteName() == 'admin.customers') ? 'underline' : 'text-white'
+                                                    (Route::currentRouteName() == 'admin.customers.view') ? 'underline' : 'text-white'
                                                 }}" href="/admin/customers">
                                                 Customers
                                                 </a>

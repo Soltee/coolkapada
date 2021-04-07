@@ -101,7 +101,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
             ->name('product.create');
     Route::get('/products/{product}', [ProductController::class, 'show'])
             ->name('admin.product');
-
     Route::post('/products', [ProductController::class, 'store'])
             ->name('admin.products.store');
     Route::patch('/products/{product}', [ProductController::class, 'update'])
@@ -110,7 +109,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
             ->name('admin.products.destroy');
 
     //product Image
-    Route::get('/products/{product}/images/create',[ProductImageController::class, 'create'])               
+    Route::get('/products/{product}/images/create',[ProductImageController::class, 'create'])
         ->name('product.image.create');
 
     //Medias

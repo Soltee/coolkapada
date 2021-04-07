@@ -93,19 +93,19 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * EDit  the  specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function update(Request $request, Product $product)
     {
-        $categories = Category::latest()->get();
-        $cat        = $product->category;
-        $images     = $product->images()->with('attributes');
-        $qty        = $product->attributes()->sum('quantity');
+        $product->update([
+            'published'  => !$product->published
+        ]);
 
-        return view('admin.products.edit', compact('product', 'categories', 'cat', 'qty', 'images'));
+        return back()->with('Visibility updated.');
+
     }
 
     /**
