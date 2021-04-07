@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <!-- Scripts -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-        <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
         @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
@@ -131,7 +130,7 @@
         @endauth
         
         <!-- Scripts -->
-        {{-- <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script> --}}
+        <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js"></script>
         @stack('scripts')
         @livewireScripts
@@ -140,9 +139,9 @@
             document.addEventListener('DOMContentLoaded', function(){
                 const observer = window.lozad();
                 observer.observe();
-                // var scroll = new SmoothScroll('a[href*="#"]',{
-                //     speed: 400
-                // });
+                var scroll = new SmoothScroll('a[href*="#"]',{
+                    speed: 400
+                });
 
             });
         </script>

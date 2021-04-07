@@ -19,15 +19,23 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $search = request()->search;
-
+        $search    = request()->search;
+        $published = request()->published;
 
         $query = Product::latest()
                         ->with('media');
         if($search){
             $query = $query->where('name', 'LIKE', '%'.$search.'%')
                             ->orWhere('price', 'LIKE', '%'.$search.'%');
-         }
+        }
+
+        if($published){
+            if($published == 'un'){
+                $query  = $query->orWhere('published', false);
+            } else {
+                $query  = $query->orWhere('published', true);  
+            } 
+        }
 
         $products = $query->paginate(8);
         $total    = $products->total();

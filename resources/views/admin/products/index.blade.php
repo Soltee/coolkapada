@@ -13,6 +13,11 @@
 
     				<div class="flex w-full flex-col md:flex-row">
 				        <input type="text"  class="focus:outline-none block  w-full bg-white rounded sm:rounded-r-none px-6 py-2 mb-2 sm:mb-0 border" name="search" placeholder="Name" value="{{ request()->search ?? '' }}" >
+				        <select name="published">
+                    	<option value="un">Not Published</option>
+                    	<option value="1">Published</option>
+                    </select>
+			        
 				        <button type="submit" class="focus:outline-none focus:bg-indigo-light  w-full sm:w-auto bg-gray-700 hover:bg-gray-900 rounded sm:rounded-l-none uppercase text-white font-bold tracking-wide py-2 px-6">Search</button>
 				    </div>
 

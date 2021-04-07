@@ -62,12 +62,12 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        foreach($customer->orders as $order){
-            foreach($order->items as $item){
-                $item->delete();
-            }
-            $order->delete();
-        }
+        // foreach($customer->orders as $order){
+        //     foreach($order->items as $item){
+        //         $item->delete();
+        //     }
+        //     $order->delete();
+        // }
 
         $customer->delete();
         

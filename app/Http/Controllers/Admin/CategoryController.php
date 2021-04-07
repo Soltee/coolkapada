@@ -59,7 +59,6 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        // dd('dd');
         $data = $request->validate([
             'name'  => 'required|string|min:3|unique:categories'
         ]);
@@ -80,12 +79,12 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         foreach($category->products() as $product){
-            //Images
             foreach($product->images() as $image){
-                File::delete($image->thumbnail);
+                foreach($image->attributes() as $attr){
+                    $attr->delete();
+                }
                 $image->delete();
             }
-            
             $product->delete();
         }
 

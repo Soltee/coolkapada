@@ -14,7 +14,6 @@ class Edit extends Component
     public $product;
 
     protected $rules = [
-            // 'category'     => 'required|string',
             'name'         => 'required|string',
             'description'  => 'required'
         ];
@@ -51,12 +50,7 @@ class Edit extends Component
     public function editProduct()
     {
         $this->validate();
-        // dd([
-        //     'category'     => $this->category,
-        //     'media_id'     => $this->media,
-        //     'name'         => $this->name,
-        //     'description'         => $this->description
-        // ]);
+        
         $this->product->update([
             'category_id'  => $this->category,
             'media_id'     => $this->media,
@@ -83,8 +77,5 @@ class Edit extends Component
         $this->showImages = false;
     }
 
-    /**
-     * Publish 
-     */
-
+   
 }

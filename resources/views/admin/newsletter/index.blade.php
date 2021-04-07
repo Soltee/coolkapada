@@ -12,7 +12,7 @@
 				    <tr>
 				      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Email</th>
 				      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Created At</th>
-				      <th class="px-4 py-2 text-left text-capitalize text-gray-600"></th>
+				      <th class="px-4 py-2 text-left text-capitalize text-gray-600">ACtion</th>
 				    </tr>
 				    </thead>
 				    <tbody>
@@ -62,8 +62,3 @@
 
     </div>
 @endsection
-
-@push('scripts')
-
-	
-@endpush

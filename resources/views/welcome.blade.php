@@ -9,21 +9,9 @@
           color: #fff;
         }
         .imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}
-
-        #heroImage {
-        /*clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);*/
-        }
         /* .tns-controls {display: hidden;} */
         .tns-controls{ text-align: center}
-        /* @media screen and (max-width: 620px){
-        .tns-controls{
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        display: flex;justify-content: flex-end;
-        margin: 0 4px 0 0;
-        }} */
+
     </style>
 @endsection
 
@@ -146,10 +134,7 @@
             arrowKeys: true
         });
 
-        // colorIds.addEventListener('click', function(e){
-        //   alet(e.target);
-        // });
-
+        
         //Newsletter
         let news_email = document.getElementById('news_email');
         const news_btn = document.getElementById('news_btn');
@@ -199,7 +184,3 @@
     </script>
 
 @endpush
-
-{{-- <div class="mb-4">
-  <input type="number" wire:model.defer="qty" class="px-4 py-4 md:py-2 rounded border-1 border-c-light-gray  w-full md:w-40 text-gray-900" value="1" min="1" max="{{ $quantity }}">
-</div> --}}

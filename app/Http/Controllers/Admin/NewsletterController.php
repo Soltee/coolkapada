@@ -26,8 +26,7 @@ class NewsletterController extends Controller
     public function destroy(Newsletter $newsletter)
     {
         $newsletter->delete();
-
         return back()
-            ->with('toast_success', 'Product deleted.');
+            ->with('toast_success', 'Email deleted.');
     }
 }

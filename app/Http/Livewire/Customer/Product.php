@@ -88,7 +88,6 @@ class Product extends Component
         ];
 
         $pd = P::findOrfail($this->p->id);
-        // $qty = $this->qty ?? 1;
 
         Cart::add([
                 'id'         => $pd->id,

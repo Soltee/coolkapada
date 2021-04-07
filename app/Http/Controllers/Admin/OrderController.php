@@ -16,16 +16,26 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $search = request()->search;
-
+        $keyword    = request()->keyword;
+        $paidOrNot = request()->paidOrNot;
 
         $query = Order::latest()->with('customer');
-        if($search){
-            $query = $query->where('first_name', 'LIKE', '%'.$search.'%')
-                            ->orWhere('last_name', 'LIKE', '%'.$search.'%')
-                            ->orWhere('email', 'LIKE', '%'.$search.'%')
-                            ->orWhere('phone_number', 'LIKE', '%'.$search.'%');
-         }
+
+        if($keyword){
+            $query = $query->where('first_name', 'LIKE', '%'.$keyword.'%')
+                            ->orWhere('last_name', 'LIKE', '%'.$keyword.'%')
+                            ->orWhere('email', 'LIKE', '%'.$keyword.'%')
+                            ->orWhere('phone_number', 'LIKE', '%'.$keyword.'%');
+        }
+
+        if($paidOrNot){
+            if($paidOrNot == 'unpaid'){
+                $query  = $query->orWhere('is_paid', false);
+            } else {
+                $query  = $query->orWhere('is_paid', true);  
+            } 
+        }
+
 
         $orders   = $query->paginate(8);
         $total    = $orders->total();
@@ -57,11 +67,13 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
+        // dd($order->grand_total);
+
         $order->update([
             'is_paid' => !$order->is_paid
         ]);
         
-        return back()->with('toast_success', 'Paid Successfully.');
+        return back()->with('success', 'Order set as Completed/Paid.');
     }
 
     /**
@@ -75,9 +87,10 @@ class OrderController extends Controller
         foreach ($order->items as $i) {
             $i->delete();
         }
+        
         $order->delete();
         return redirect('/admin/orders')
-                    ->with('toast_success', 'Deleted Successfully.');        
+                    ->with('toast_success', 'Order deleted Successfully.');        
     }
 
 }

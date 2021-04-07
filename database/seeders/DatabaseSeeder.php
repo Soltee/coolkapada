@@ -89,6 +89,7 @@ class DatabaseSeeder extends Seeder
             }
         }
 
+        \App\Models\Newsletter::factory(30)->create();
         // \App\Models\ProductImage::factory(80)->create();
         // \App\Models\Attribute::factory(400)->create();
         // \App\Models\Order::factory(200)->create();

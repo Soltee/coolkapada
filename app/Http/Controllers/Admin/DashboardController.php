@@ -15,29 +15,39 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $search = request()->search;
+        $month  = date('m');
+        // dd($month);
         //Orders
-        $today_orders       = Order::whereDate('created_at', today())->count();
-        $today_orders_amount = Order::whereDate('created_at', today())->sum('grand_total');
+        $today_orders         = Order::whereDate('created_at', today())->count();
+        $today_orders_amount  = Order::whereDate('created_at', today())->sum('grand_total');
 
+        //This Month Orders
+        // $today_orders         = Order::whereMonth('created_at', $month)->count();
+        // $today_orders_amount  = Order::whereMonth('created_at', $month)->sum('grand_total');
 
-        $pending_orders = Order::where('is_paid', false)->count();
-        $pending_orders_amount = Order::where('is_paid', false)->sum('grand_total');
+        $pending_orders         = Order::whereMonth('created_at', $month)
+                                            ->where('is_paid', false)->count();
+        $pending_orders_amount  = Order::whereMonth('created_at', $month)
+                                            ->where('is_paid', false)->sum('grand_total');
 
-        $paid_orders = Order::where('is_paid', true)->count();
-        $paid_orders_amount = Order::where('is_paid', true)->sum('grand_total');
+        $paid_orders        = Order::whereMonth('created_at', $month)
+                                    ->where('is_paid', true)->count();
+        $paid_orders_amount = Order::whereMonth('created_at', $month)
+                                    ->where('is_paid', true)->sum('grand_total');
 
-        $orders = Order::latest()->where('is_paid', false)->paginate(10);
+        $query = Order::latest()->where('is_paid', false);
+        if($search){
+            $query = $query->where('first_name', 'LIKE', '%'.$search.'%')
+                            ->orWhere('last_name', 'LIKE', '%'.$search.'%')
+                            ->orWhere('email', 'LIKE', '%'.$search.'%')
+                            ->orWhere('phone_number', 'LIKE', '%'.$search.'%');
+         }
 
-        // $orders = $paginate->items();
-        $previous = $orders->previousPageUrl();
-        $next     = $orders->nextPageUrl();
-        $total    = $orders->total();
+        $orders   = $query->paginate(5);        
         
-        //Products
-        $get_products = Product::all()->count();
-
-        //Customers
-        return view('admin.dashboard', compact( 'today_orders',  'today_orders_amount', 'pending_orders', 'pending_orders_amount', 'paid_orders', 'paid_orders_amount', 'orders' , 'previous', 'next', 'total'));
+        
+        return view('admin.dashboard', compact( 'today_orders',  'today_orders_amount', 'pending_orders', 'pending_orders_amount', 'paid_orders', 'paid_orders_amount', 'orders' ));
     }
 
     /**

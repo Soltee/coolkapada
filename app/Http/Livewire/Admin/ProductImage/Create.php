@@ -9,11 +9,7 @@ use App\Models\ProductImage as I;
 class Create extends Component
 {
     protected $listeners = ['receiveMedia', 'fromAttribute'];
-    // protected $rules = [
-    //         'media'     => 'required|string',
-    //         'color'     => 'required|string'
-    //     ];
-        
+    
     public $product;
     public $published;
 

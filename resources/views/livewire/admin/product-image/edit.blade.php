@@ -64,8 +64,8 @@
                                     <h3 class="ml-2 text-sm font-thin">Edit Image </h3>
                                 </div>
                                 <div class="flex items-center">
-                                    <button type="submit" class=" px-3 py-2 w-40 text-center t bg-gray-900 text-white cursor-pointer rounded-lg border border-gray-300 hover:bg-gray-700" >
-                                        Update &  Skip
+                                    <button type="submit" class=" px-3 py-2 mr-3 text-center t bg-gray-900 text-white cursor-pointer rounded-lg border border-gray-300 hover:bg-gray-700" >
+                                        Update & go to Attributes
                                     </button>
                                     <button  
                                         wire:click="skiptoAttribute" 
@@ -105,27 +105,3 @@
     </div>
 
 </div>
- <!-- Image -->
-{{-- <div
-    x-data="{openImages : @entangle('showImages')}" 
-    class="mb-3 w-full flex flex-wrap">
-
-    <div class="flex flex-col">
-        <x-label for="media" value="Image" />
-        <img 
-            style="border-color: {{ $color }}"
-            src="/{{ $media_url }}" 
-            class="w-32 rounded border-2 object-contain" />
-        <span 
-            x-on:click="openImages = !openImages" 
-            class="border border-gray-300 border border-gray-600 px-2 py-2 w-32 text-center mt-1 hover:bg-gray-900 cursor-pointer hover:text-white rounded">Choose Image</span>
-
-     </div>
-    
-    <div 
-        x-show.transition.50ms="openImages"
-        class="fixed inset-0 z-30 px-6 py-6 bg-gray-300">
-     --}}    
-    {{-- </div>
-</div>
- --}}

@@ -152,9 +152,9 @@
 <!-- JS -->
 @push('scripts')
 
-<script src="{{ asset('js/wheelzoom.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
-<script>
+	<script src="{{ asset('js/wheelzoom.min.js') }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+	<script>
     document.addEventListener('DOMContentLoaded', function () { 		
 
 

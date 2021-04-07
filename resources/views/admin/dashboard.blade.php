@@ -7,27 +7,42 @@
        		<div class="border-t-2 relative border-green-600 p-4 shadow rounded-lg">
        			<h2 class="mb-3">Today Orders</h2>
        			<h3 class="text-lg md:text-3xl font-bold text-gray-800 mb-3">Rs {{ $today_orders_amount }}</h3>
-       			<span>{{ $today_orders }} total</span>
+       			<span class="text-lg">{{ $today_orders }} total</span>
        			<span class="absolute top-0 right-0 mt-2 mr-2 ml-3 px-2 py-2 rounded-lg text-blue-600 text-lg font-bold text-white">New</span>
        		</div>
        		<div class="border-t-2 relative border-green-600 p-4 shadow rounded-lg">
        			<h2 class="mb-3">Paid Orders</h2>
        			<h3 class="text-lg md:text-3xl font-bold text-gray-800 mb-3">Rs {{ $paid_orders_amount }}</h3>
-       			<span>{{ $paid_orders }} total</span>
+       			<span class="text-lg">{{ $paid_orders }} total</span>
        			<span class="absolute top-0 right-0 mt-2 mr-2 ml-3 px-2 py-2 rounded-lg bg-green-400 text-white">Paid</span>
        		</div>
        		<div class="border-t-2 relative border-red-600 p-4 shadow rounded-lg">
        			<h2 class="mb-3">Pending Orders</h2>
        			<h3 class="text-lg md:text-3xl font-bold text-gray-800 mb-3">Rs {{ $pending_orders_amount }}</h3>
-       			<span>{{ $pending_orders }} total</span>
+       			<span class="text-lg">{{ $pending_orders }} total</span>
        			<span class="absolute top-0 right-0 mt-2 mr-2 ml-3 px-2 py-2 rounded-lg bg-red-400 text-white">Pending</span>
        		</div>
        </div>
 
    
        <div class="mt-16 mb-6 flex justify-between items-center">
-	       <h3 class="text-lg text-gray-700 fond-semibold">Orders</h3>
-	       <span class="text-lg text-gray-700 fond-bold">{{ $total }}</span>
+	       	<div class="flex items-center">
+		        <h3 class="text-lg text-gray-700 fond-semibold mr-3">Orders</h3>
+		        <form action="{{ route('admin.dashboard') }}" method="get" accept-charset="utf-8">
+    				@csrf
+	    			<div class="flex items-center w-full">
+
+	    				<div class="flex w-full flex-col md:flex-row">
+					        <input type="text"  class="focus:outline-none block  w-full bg-white rounded sm:rounded-r-none px-6 py-2 mb-2 sm:mb-0 border" name="search" placeholder="Name" value="{{ request()->search ?? '' }}" >
+					        <button type="submit" class="focus:outline-none focus:bg-indigo-light  w-full sm:w-auto bg-gray-700 hover:bg-gray-900 rounded sm:rounded-l-none uppercase text-white font-bold tracking-wide py-2 px-6">Search</button>
+					    </div>	
+						
+	    			</div>
+    			</form>
+
+	   		</div>
+
+	       <span class="text-lg text-gray-700 fond-bold">{{ $orders->total() }}</span>
 	   </div>
 	   <div class="overflow-x-scroll w-full md:overflow-auto md:w-full">
 	       <table class="w-full
@@ -64,20 +79,18 @@
 			      <td class="border px-4 py-4">
 					@if(!$order->is_paid)
 					
-						<a  
-							href="{{ route('admin.orders.update', $order->id) }}" 
-							class="border px-4 py-3 text-white bg-yellow-900 hover:bg-yellow-700 rounded" 
-							onClick="
-								event.preventDefault();
-								if(confirm('Are you sure?')){
-									document.getElementById('order-update-form').submit();
-								}
-						">
-							Set as Completed
-						</a>
-						<form id="order-update-form" action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="hidden">
+						<form id="order-update-form" action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="">
 							@csrf
 							@method('PATCH')
+							<button 
+								type="submit"  
+								class="border px-4 py-3 text-white bg-yellow-900 hover:bg-yellow-700 rounded" 
+								onClick="
+									return confirm('Are you sure?');
+							">
+								Set as Completed
+							</button>
+						
 						</form>
 				
 					@endif
@@ -96,8 +109,7 @@
 		</div>
 
 		<div class="my-6 flex justify-center items-center w-full px-4">
-			{{$orders->links()}}
-			
+			{{$orders->appends(request()->input())->links()}}
 		</div>
     </div>
 

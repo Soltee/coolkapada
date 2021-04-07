@@ -10,8 +10,6 @@
 			        <button type="submit" class="focus:outline-none focus:bg-indigo-light  w-full sm:w-auto bg-gray-900 hover:bg-gray-700 rounded sm:rounded-l-none uppercase text-white font-bold tracking-wide py-2 px-6">Search</button>
 			    </div>
 
-
-					
     		</form>
     			
     	

@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <!-- Scripts -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
         @livewireStyles
     </head>
     <body>
@@ -280,8 +280,7 @@
         </footer>
 
         <!-- Scripts -->
-        {{-- <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script> --}}
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js"></script> --}}
+        <script src="{{ asset('js/smooth-scroll.polyfill.min.js') }}"></script>
         @livewireScripts
         @stack('scripts')
         <script>
@@ -289,9 +288,9 @@
             document.addEventListener('DOMContentLoaded', function(){
                 const observer = window.lozad();
                 observer.observe();
-                // var scroll = new SmoothScroll('a[href*="#"]',{
-            //         speed: 400
-                // });
+                var scroll = new SmoothScroll('a[href*="#"]',{
+                    speed: 400
+                });
 
 
 

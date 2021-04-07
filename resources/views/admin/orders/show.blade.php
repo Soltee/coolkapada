@@ -6,12 +6,7 @@
     	<div class="flex flex-col md:flex-row justify-between   mb-6">
        		<div class="flex items-start flex-col w-full mb-2 md:mb-0">
        			<div class="flex items-center mb-2 w-full">
-	       			{{-- @if($customer)
-	       				<a href="{{ route('admin.customer', $order->customer->id) }}"class=" text-blue-500 hover:text-blue-500 w-1/2 md:w-auto">
-							   {{ $customer->first_name }} 
-							   {{ $customer->last_name }}
-	       				</a>
-	       			@endif --}}
+	       			
 	       		</div>
        			<div class="flex items-center w-full">
        				<label for="" class=" border rounded-l px-4 py-3 w-1/2 md:w-auto">Status</label>

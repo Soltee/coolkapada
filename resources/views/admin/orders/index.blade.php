@@ -6,8 +6,11 @@
     		<form action="{{ route('admin.orders.view') }}" method="get" accept-charset="utf-8">
     			@csrf
     			<div class="flex w-full flex-col md:flex-row">
-                    <input type="text"  class="focus:outline-none block  w-full bg-white rounded sm:rounded-r-none px-6 py-2 mb-2 sm:mb-0 border" name="search" placeholder="Name" value="{{ request()->search ?? '' }}" required="">
-                    
+                    <input type="text"  class="focus:outline-none block  w-full bg-white rounded sm:rounded-r-none px-6 py-2 mb-2 sm:mb-0 border" name="keyword" placeholder="Name" value="{{ request()->search ?? '' }}">
+                    <select name="paidOrNot">
+                    	<option value="unpaid">Not Paid</option>
+                    	<option value="1">Paid/Completed</option>
+                    </select>
 			        <button type="submit" class="focus:outline-none focus:bg-indigo-light  w-full sm:w-auto bg-gray-900 hover:bg-gray-700 rounded sm:rounded-l-none uppercase text-white font-bold tracking-wide py-2 px-6">Search</button>
 			    </div>
 
@@ -24,7 +27,9 @@
 			      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Name</th>
 			      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Phone Number</th>
 			      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Created At</th>
-			      <th class="px-4 py-2 text-left text-capitalize text-gray-600"></th>
+			      <th class="px-4 py-2 text-left text-capitalize text-gray-600">
+			      	
+			      </th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -47,20 +52,18 @@
 			      <td class="border px-4 py-4">{{$order->created_at->diffForHumans()}}</td>
 			      <td class="border px-4 py-4">
 					@if(!$order->is_paid)
-						<a  
-							href="{{ route('admin.orders.update', $order->id) }}" 
-							class="border px-4 py-3 text-white bg-yellow-900 hover:bg-yellow-700 rounded" 
-							onClick="
-								event.preventDefault();
-								if(confirm('Are you sure?')){
-									document.getElementById('order-update-form').submit();
-								}
-						">
-							Set as Completed
-						</a>
-						<form id="order-update-form" action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="hidden">
+						<form id="order-update-form" action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="">
 							@csrf
 							@method('PATCH')
+							<button 
+								type="submit"  
+								class="border px-4 py-3 text-white bg-yellow-900 hover:bg-yellow-700 rounded" 
+								onClick="
+									return confirm('Are you sure?');
+							">
+								Set as Completed
+							</button>
+						
 						</form>
 				
 			      	@endif

@@ -3,7 +3,6 @@
     <style>
         .imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}
 	</style>
-
 @endsection
 
 <x-guest-layout>
