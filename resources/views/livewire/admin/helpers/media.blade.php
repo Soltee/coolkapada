@@ -1,13 +1,6 @@
 <div>
     <div class="flex justify-end items-center mb-3">
-        {{-- <div class="flex">
-            <span
-                wire:click="goBack" 
-                class="font-thin hover:font-bold text-gray-900 mr-3 cursor-pointer">Back</span>
-            <x-label for="Image" :value="__('Image')" />
-        </div>
-         --}}
-         <div class="flex justify-end items-center">
+        <div class="flex justify-end items-center">
 
             @if($medias->previousPageUrl())
                 <span wire:click="previousPage" class="px-6 py-2 mr-3 text-gray-900 hover:bg-gray-900 hover:text-white cursor-pointer rounded-lg border border-gray-300" >

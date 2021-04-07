@@ -3,12 +3,19 @@
 @section('content')
     <div
         class="px-6  flex flex-col my-6">
-
-        <div class="flex items-center my-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center my-4">
                 <a href="/dashboard"><h4 class="text-md opacity-75 hover:opacity-100 font-light text-gray-900 mr-2 hover:text-gray-900 hover:text-lg">Orders</h4></a>
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
 
                 <h4 class="text-lg font-bold text-gray-900 ">{{ $order->house_number }}</h4>
+            </div>
+
+            <div class="flex justify-center items-center">
+                    
+                <a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a>
+            </div>
+
         </div>
 
         <div class="flex flex-col md:flex-row justify-between   mb-6">
