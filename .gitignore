@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+.phpintel
 .env
 .env.ci
 .env.backup
