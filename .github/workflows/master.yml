@@ -11,7 +11,7 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2.3.2
     - name: Composer Install
-      run: composer install --no-dev --no-script
+      run: composer install --no-dev --no-scripts
     - name: Composer Update
       run: composer update
     - name: Cache Clear
