@@ -248,43 +248,6 @@
             "time": "2020-12-18T03:01:17+00:00"
         },
         {
-            "name": "dnoegel/php-xdg-base-dir",
-            "version": "v0.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dnoegel/php-xdg-base-dir.git",
-                "reference": "8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dnoegel/php-xdg-base-dir/zipball/8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd",
-                "reference": "8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~7.0|~6.0|~5.0|~4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "XdgBaseDir\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "implementation of xdg base directory specification for php",
-            "support": {
-                "issues": "https://github.com/dnoegel/php-xdg-base-dir/issues",
-                "source": "https://github.com/dnoegel/php-xdg-base-dir/tree/v0.1.1"
-            },
-            "time": "2019-12-04T15:06:13+00:00"
-        },
-        {
             "name": "doctrine/inflector",
             "version": "2.0.3",
             "source": {
@@ -1096,16 +1059,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.34.0",
+            "version": "v8.36.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "81892ca110795a9c46c7e198cba7763bfd2af0bf"
+                "reference": "0debd8ad6b5aa1f61ccc73910adf049af4ca0444"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/81892ca110795a9c46c7e198cba7763bfd2af0bf",
-                "reference": "81892ca110795a9c46c7e198cba7763bfd2af0bf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/0debd8ad6b5aa1f61ccc73910adf049af4ca0444",
+                "reference": "0debd8ad6b5aa1f61ccc73910adf049af4ca0444",
                 "shasum": ""
             },
             "require": {
@@ -1260,7 +1223,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-03-23T15:12:51+00:00"
+            "time": "2021-04-07T12:37:22+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1584,16 +1547,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.4.1",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "b0cb782674673a67ddfd5910d2fcb5308bb32857"
+                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/b0cb782674673a67ddfd5910d2fcb5308bb32857",
-                "reference": "b0cb782674673a67ddfd5910d2fcb5308bb32857",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/2495387841a3eb03ac62b2c984ccd2574303285b",
+                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b",
                 "shasum": ""
             },
             "require": {
@@ -1644,7 +1607,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.4.1"
+                "source": "https://github.com/livewire/livewire/tree/v2.4.2"
             },
             "funding": [
                 {
@@ -1652,7 +1615,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-22T14:03:36+00:00"
+            "time": "2021-04-04T15:46:50+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1901,16 +1864,16 @@
         },
         {
             "name": "opis/closure",
-            "version": "3.6.1",
+            "version": "3.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5"
+                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
-                "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
+                "url": "https://api.github.com/repos/opis/closure/zipball/06e2ebd25f2869e54a306dda991f7db58066f7f6",
+                "reference": "06e2ebd25f2869e54a306dda991f7db58066f7f6",
                 "shasum": ""
             },
             "require": {
@@ -1960,9 +1923,9 @@
             ],
             "support": {
                 "issues": "https://github.com/opis/closure/issues",
-                "source": "https://github.com/opis/closure/tree/3.6.1"
+                "source": "https://github.com/opis/closure/tree/3.6.2"
             },
-            "time": "2020-11-07T02:01:34+00:00"
+            "time": "2021-04-09T13:42:10+00:00"
         },
         {
             "name": "phenx/php-font-lib",
@@ -2424,20 +2387,19 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.10.7",
+            "version": "v0.10.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "a395af46999a12006213c0c8346c9445eb31640c"
+                "reference": "e4573f47750dd6c92dca5aee543fa77513cbd8d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/a395af46999a12006213c0c8346c9445eb31640c",
-                "reference": "a395af46999a12006213c0c8346c9445eb31640c",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/e4573f47750dd6c92dca5aee543fa77513cbd8d3",
+                "reference": "e4573f47750dd6c92dca5aee543fa77513cbd8d3",
                 "shasum": ""
             },
             "require": {
-                "dnoegel/php-xdg-base-dir": "0.1.*",
                 "ext-json": "*",
                 "ext-tokenizer": "*",
                 "nikic/php-parser": "~4.0|~3.0|~2.0|~1.3",
@@ -2494,9 +2456,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.10.7"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.10.8"
             },
-            "time": "2021-03-14T02:14:56+00:00"
+            "time": "2021-04-10T16:23:39+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -5435,16 +5397,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.4.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546"
+                "reference": "f2b0969f2d9594704be74dbeb25b201570a98098"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546",
-                "reference": "ef0f5bce23b30b32d98fd9bb49c6fa37b40eb546",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/f2b0969f2d9594704be74dbeb25b201570a98098",
+                "reference": "f2b0969f2d9594704be74dbeb25b201570a98098",
                 "shasum": ""
             },
             "require": {
@@ -5488,7 +5450,7 @@
             ],
             "support": {
                 "issues": "https://github.com/facade/flare-client-php/issues",
-                "source": "https://github.com/facade/flare-client-php/tree/1.4.0"
+                "source": "https://github.com/facade/flare-client-php/tree/1.6.1"
             },
             "funding": [
                 {
@@ -5496,26 +5458,26 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-16T12:42:06+00:00"
+            "time": "2021-04-08T08:50:01+00:00"
         },
         {
             "name": "facade/ignition",
-            "version": "2.6.0",
+            "version": "2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "4be10a998815f77952b9eb983fb0b64c8a4defbb"
+                "reference": "a8201d51aae83addceaef9344592a3b068b5d64d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/4be10a998815f77952b9eb983fb0b64c8a4defbb",
-                "reference": "4be10a998815f77952b9eb983fb0b64c8a4defbb",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/a8201d51aae83addceaef9344592a3b068b5d64d",
+                "reference": "a8201d51aae83addceaef9344592a3b068b5d64d",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "facade/flare-client-php": "^1.3.7",
+                "facade/flare-client-php": "^1.6",
                 "facade/ignition-contracts": "^1.0.2",
                 "filp/whoops": "^2.4",
                 "illuminate/support": "^7.0|^8.0",
@@ -5573,7 +5535,7 @@
                 "issues": "https://github.com/facade/ignition/issues",
                 "source": "https://github.com/facade/ignition"
             },
-            "time": "2021-03-24T18:58:31+00:00"
+            "time": "2021-04-09T20:45:59+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -5630,16 +5592,16 @@
         },
         {
             "name": "fakerphp/faker",
-            "version": "v1.14.0",
+            "version": "v1.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FakerPHP/Faker.git",
-                "reference": "cd46398f42c2ab191ffb0b57c07e911c7c28eb25"
+                "reference": "ed22aee8d17c7b396f74a58b1e7fefa4f90d5ef1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/cd46398f42c2ab191ffb0b57c07e911c7c28eb25",
-                "reference": "cd46398f42c2ab191ffb0b57c07e911c7c28eb25",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/ed22aee8d17c7b396f74a58b1e7fefa4f90d5ef1",
+                "reference": "ed22aee8d17c7b396f74a58b1e7fefa4f90d5ef1",
                 "shasum": ""
             },
             "require": {
@@ -5662,6 +5624,11 @@
                 "ext-mbstring": "Required for multibyte Unicode string functionality."
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "v1.15-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Faker\\": "src/Faker/"
@@ -5684,22 +5651,22 @@
             ],
             "support": {
                 "issues": "https://github.com/FakerPHP/Faker/issues",
-                "source": "https://github.com/FakerPHP/Faker/tree/v1.14.0"
+                "source": "https://github.com/FakerPHP/Faker/tree/v.1.14.1"
             },
-            "time": "2021-03-29T08:56:34+00:00"
+            "time": "2021-03-30T06:27:33+00:00"
         },
         {
             "name": "filp/whoops",
-            "version": "2.11.0",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "f6e14679f948d8a5cfb866fa7065a30c66bd64d3"
+                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/f6e14679f948d8a5cfb866fa7065a30c66bd64d3",
-                "reference": "f6e14679f948d8a5cfb866fa7065a30c66bd64d3",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/d501fd2658d55491a2295ff600ae5978eaad7403",
+                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403",
                 "shasum": ""
             },
             "require": {
@@ -5749,7 +5716,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.11.0"
+                "source": "https://github.com/filp/whoops/tree/2.12.0"
             },
             "funding": [
                 {
@@ -5757,7 +5724,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-19T12:00:00+00:00"
+            "time": "2021-03-30T12:00:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -5868,16 +5835,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.4.9",
+            "version": "v1.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "935b453bf536b284d6fef7c1b5dd2ea52bca34c0"
+                "reference": "e46a3228da4e95a411a981ac807bd119ab2485fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/935b453bf536b284d6fef7c1b5dd2ea52bca34c0",
-                "reference": "935b453bf536b284d6fef7c1b5dd2ea52bca34c0",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/e46a3228da4e95a411a981ac807bd119ab2485fa",
+                "reference": "e46a3228da4e95a411a981ac807bd119ab2485fa",
                 "shasum": ""
             },
             "require": {
@@ -5924,7 +5891,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-03-23T17:29:26+00:00"
+            "time": "2021-04-06T14:00:39+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -6058,16 +6025,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v5.3.0",
+            "version": "v5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "aca63581f380f63a492b1e3114604e411e39133a"
+                "reference": "41b7e9999133d5082700d31a1d0977161df8322a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/aca63581f380f63a492b1e3114604e411e39133a",
-                "reference": "aca63581f380f63a492b1e3114604e411e39133a",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/41b7e9999133d5082700d31a1d0977161df8322a",
+                "reference": "41b7e9999133d5082700d31a1d0977161df8322a",
                 "shasum": ""
             },
             "require": {
@@ -6142,7 +6109,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-25T15:34:13+00:00"
+            "time": "2021-04-09T13:38:32+00:00"
         },
         {
             "name": "phar-io/manifest",
