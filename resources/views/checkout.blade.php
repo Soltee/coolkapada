@@ -179,11 +179,23 @@
 							</div>
 
 						</div>
+						<!-- Note --->
+						{{-- <div class="flex items-center mb-3 mx-6 px-2 py-2 rounded border border-transparent @error('checkbox') border-red-600 @enderror">
+							<input 
+								class="mr-3" 
+								type="checkbox"
+								name="check" value="">
+							<span class="">
+								All the information filled above are accurate. 
+							</span>
+										
+						</div>
+						 --}}
 						<div id="payBtn" class="fixed z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:hidden  md:flex m mb-8 d:justify-end mb-4">
 							<button  type="submit" class="px-10 py-4  w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now</button>
 						</div>
 						<div  class="hidden md:block z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:static  md:flex m mb-8 d:justify-end mb-4">
-							<button  type="submit" class="px-10 py-4  w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now</button>
+							<button  type="submit" class="px-10 py-4 mx-6 w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now</button>
 						</div>
 				</form>
 				
@@ -194,7 +206,7 @@
 					x-data="{ cart : true }"
 					class="mt-4">
 					<div class="flex justify-between items-center mb-6">
-						<h4 class="text-lg text-gray-800 ">Order Summary ( Rs {{ $total + $shipping }} )</h4>
+						<h4 class="text-lg text-gray-800 ">Order Summary ( {{ \Cart::getTotalQuantity() }} )</h4>
 
 						<svg
 							x-on:click="cart = !cart" 
@@ -239,11 +251,11 @@
 						</div>
 						<div class="flex justify-between items-center mb-4 px-3 ">
 							<h5 class="text-gray-800 text-md">Shipping</h5>
-							<span class="text-gray-800 text-md">Rs {{ $shipping }}</span>
+							<span class="text-gray-800 text-md">Free</span>
 						</div>
 						<div class="flex justify-between items-center mb-4 border-t border-gray-400 pt-3 px-3">
 							<h5 class="text-gray-800 text-lg">Grand Total</h5>
-							<span class="text-gray-800 text-xl font-bold">Rs {{ $total + $shipping }}</span>
+							<span class="text-gray-800 text-xl font-bold">Rs {{ $total }}</span>
 						</div>
 					</div>
 				</div>

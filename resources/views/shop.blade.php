@@ -36,7 +36,9 @@
         </div>
         
         <span class=" text-gray-900 ">
-          {{ $first . ' - ' . $last }} of {{ $count }} @if(request()->keyword) found @endif
+        	@if($count > 0)
+          	{{ $first . ' - ' . $last }} of {{ $count }} @if(request()->keyword) found @endif
+          	@endif
         </span>
       </div>
 
@@ -58,7 +60,7 @@
 				
 			</div>
 				@empty
-					<p class="font-thin text-md text-gray-900">
+					<p class="font-thin text-md text-red-600 text-center">
 						Oops! No products @if(request()->keyword) match the search term. @endif
 					</p>
 				@endforelse

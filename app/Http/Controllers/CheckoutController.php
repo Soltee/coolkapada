@@ -23,7 +23,7 @@ class CheckoutController extends Controller
         if( Cart::isEmpty() ){ return redirect('/shop'); }
         $cartCollection = Cart::getContent();
         $sub            = Cart::getSubTotal();
-        $shipping       = 25;
+        $shipping       = 'Free';
         $total          = Cart::getTotal();
         $order          = Order::first();
 
@@ -50,7 +50,8 @@ class CheckoutController extends Controller
             'city'              =>  'required|string' ,
             'street_address'    =>  'required|string' ,
             'house_number'      =>  'required|numeric' ,
-            'payment_method'    =>  'required|string'   
+            'payment_method'    =>  'required|string',   
+            // 'check'           =>  'required'   
         ]);
 
         //store order

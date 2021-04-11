@@ -85,16 +85,16 @@
 	    			</div>
 
 	    			<div 
-	    				x-data="{ open : true }"
+	    				x-data="{ openItem : true }"
 	    				class="">
 		    			<div class="flex justify-between items-center mb-6">
 				        	<h4 class="text-lg text-gray-800">Your Order (Rs {{ $order->grand_total }})</h4>
 				        	<svg
-				        		x-on:click="open = !open" 
+				        		x-on:click="openItem = !openItem" 
 				        		xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-800 font-bold cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
 				        </div>
 		        		<div 
-		        			x-show.transition.50ms="open" 
+		        			x-show.transition.50ms="openItem" 
 		        			class="mb-16">
 			        	@forelse($items as $item)
 			        		<div class="flex justify-between mb-5">

@@ -95,6 +95,13 @@
                   
                 </div>
           @empty
+              <div class="md:table-cell px-2 text-red-600 py-2 border capitalize text-left text-gray-900 border-collapse font-thin">My</div>
+              <div class="md:table-cell px-2 text-red-600 py-2 border capitalize text-left text-gray-900 border-collapse font-thin">Bag</div>
+              <div class="md:table-cell px-2 text-red-600 py-2 border capitalize text-left text-gray-900 border-collapse font-thin">is </div>
+              <div class="md:table-cell px-2 text-red-600 py-2 border capitalize text-left text-gray-900 border-collapse font-thin">Empty</div>
+              <div class="md:table-cell px-2 text-red-600 py-2 border capitalize text-left text-gray-900 border-collapse font-thin">
+                <a href="/shop" class="px-2 py-2 rounded bg-gray-900 hover:bg-gray-700 text-white">Browse Products</a>
+              </div>
 
           @endforelse
         </div>
