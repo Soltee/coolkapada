@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, UsesUuid;
 
     protected $guarded = [];
+    public $incrementing = false;
 
     public function products()
     {

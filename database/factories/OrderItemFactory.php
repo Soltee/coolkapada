@@ -39,7 +39,7 @@ class OrderItemFactory extends Factory
                 return  Arr::random($orders);
             },
             'product_id' => $product->id,
-            'image_url'  => $product->media->image_url,
+            // 'image_url'  => $product->media->image_url,
             'name'  => $product->name,
             'price' => $price,
             'qty'   => $qty,

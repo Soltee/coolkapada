@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Newsletter extends Model
 {
-    use HasFactory;
+    use HasFactory, UsesUuid;
+    public $incrementing = false;
 
     protected $guarded = [];
 }

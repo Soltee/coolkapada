@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/trix@1.3.1/dist/trix.css">
+<script src="https://cdn.jsdelivr.net/npm/trix@1.3.1/dist/trix.min.js"></script>
+    
 <div 
     x-data="{ editProduct : false }"
     class="">
@@ -65,7 +68,11 @@
                     <div class="mb-3 w-full">
                         <x-label for="description" value="Description" />
 
-                        <textarea id="description" 
+                        <input id="description" class="bg-white hidden w-full" type="text" wire:model.defer="description" 
+                        value="{{ old('description') ?? $description }}"  />
+                        <trix-editor input="description"></trix-editor>
+        
+                        {{-- <textarea id="description" 
                             class="bg-white w-full" 
                             wire:model.defer="description" 
                             value="{{ old('description') ?? $description }}  "
@@ -73,6 +80,7 @@
                             >
 
                         </textarea>
+                         --}}
                         @error('description')
                             <p class="mt-2 text-red-600">{{ $message }}</p>
                         @enderror

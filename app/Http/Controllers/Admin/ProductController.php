@@ -39,6 +39,11 @@ class ProductController extends Controller
 
         $products = $query->paginate(8);
         $total    = $products->total();
+        // dd($products);
+        // dd(Product::pluck('id')->toArray());
+        // dd(Product::with('category', 'media')->inRandomOrder()->take(6)->get());
+        // dd(Product::first()->media->image_url);
+
         return view('admin.products.index', compact('products', 'total'));
     }
 
@@ -69,6 +74,7 @@ class ProductController extends Controller
             'description'  => 'required'
         ]);
         
+        // dd($data);
         $product = Product::create([
             'category_id'  => $data['category'],
             'media_id'     => $data['media'],
@@ -77,6 +83,7 @@ class ProductController extends Controller
             'description'  => $data['description'] 
         ]);
 
+        // dd($product);
         return redirect()
                 ->route('product.image.create', [
                     'product' => $product->id

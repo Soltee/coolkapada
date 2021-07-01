@@ -47,47 +47,49 @@ class DatabaseSeeder extends Seeder
         \App\Models\Media::factory(100)->create();
         
 
-        $pds = \App\Models\Product::factory(40)->create();
-        foreach($pds as $p){
-            $rm = \Illuminate\Support\Arr::random([0,1,2,3]);
+        // $pds = \App\Models\Product::factory(40)->create();
+        // foreach($pds as $p){
+        //     $rm = \Illuminate\Support\Arr::random([0,1,2,3]);
 
-            $imgs = \App\Models\ProductImage::factory(3)->create([
-                'product_id' => $p->id
-            ]);
+        //     $imgs = \App\Models\ProductImage::factory(3)->create([
+        //         'product_id' => $p->id
+        //     ]);
 
-            foreach($imgs as $i){
-                \App\Models\Attribute::factory(3)->create([
-                        'product_image_id'   => $i->id,
-                        'product_id'        => $p->id
-                    ]);   
-            }
+        //     foreach($imgs as $i){
+        //         \App\Models\Attribute::factory(3)->create([
+        //                 'product_image_id'   => $i->id,
+        //                 'product_id'        => $p->id
+        //             ]);   
+        //     }
 
-            //Min Max Price
-            $min = $p->attributes()->min('price');
-            $max = $p->attributes()->max('price');
-            $p->update([
-                'min'   => $min,
-                'max'   => $max
-            ]);
+        //     //Min Max Price
+        //     $min = $p->attributes()->min('price');
+        //     $max = $p->attributes()->max('price');
+        //     $p->update([
+        //         'min'   => $min,
+        //         'max'   => $max
+        //     ]);
 
-            $cs    = \App\Models\Customer::inRandomOrder()
-                                        ->pluck('id')
-                                        ->toArray();
-            $csRm =  \Illuminate\Support\Arr::random($cs);
+        //     $cs    = \App\Models\Customer::inRandomOrder()
+        //                                 ->pluck('id')
+        //                                 ->toArray();
 
-            $ods = \App\Models\Order::factory($rm)->create([
-                'customer_id' => $csRm
-            ]);
+        //     $csRm =  \Illuminate\Support\Arr::random($cs);
 
-            foreach($ods as $o){
-                $rm = \Illuminate\Support\Arr::random([0,1,2,3]);
-                \App\Models\OrderItem::factory($rm)->create([
-                    'order_id'      => $o->id,
-                    'product_id'    => $p->id,
-                    'customer_id'   => $csRm
-                ]);
-            }
-        }
+        //     $ods = \App\Models\Order::factory($rm)->create([
+        //         'customer_id' => $csRm
+        //     ]);
+
+        //     foreach($ods as $o){
+        //         $rm = \Illuminate\Support\Arr::random([0,1,2,3]);
+        //         \App\Models\OrderItem::factory($rm)->create([
+        //             'order_id'      => $o->id,
+        //             'product_id'    => $p->id,
+        //             'customer_id'   => $csRm,
+        //             'image_url'     => $p->media->image_url,
+        //         ]);
+        //     }
+        // }
 
         \App\Models\Newsletter::factory(30)->create();
         // \App\Models\ProductImage::factory(80)->create();

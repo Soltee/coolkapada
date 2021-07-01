@@ -44,26 +44,36 @@
 
       <!-- Products -->
 		<div class="w-full grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-columns-4">
+
 		    @forelse($products as $product)
-			<div class="flex flex-col items-center mb-8">
-				<div 
-					class="imgBlock relative w-full  cursor-pointer">
-					<div class="overflow-hidden">
-						<a class="" href="{{ route('product', $product->slug)}}">
-							<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($product->media->image_url) }}" alt="{{ $product->slug }}">
-						</a>
+
+					<div class="flex flex-col items-center mb-8">
+						<div 
+							class="imgBlock relative w-full  cursor-pointer">
+							<div class="overflow-hidden">
+								<a class="" href="{{ route('product', $product->slug)}}">
+									<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($product->media->image_url) }}" alt="{{ $product->slug }}">
+								</a>
+							</div>
+									
+						</div>
+						
+						<livewire:customer.product :p="$product->id" :url="'/product/'.$product->slug"/>
+						
 					</div>
-							
-				</div>
-				
-					<livewire:customer.product :p="$product->id" :url="'/product/'.$product->slug"/>
-				
-			</div>
+
 				@empty
-					<p class="font-thin text-md text-red-600 text-center">
-						Oops! No products @if(request()->keyword) match the search term. @endif
-					</p>
+					<div class="flex flex-col items-center mb-8">
+
+						<p class="font-thin text-md text-red-600 text-center flex items-center w-full">
+							Oops! No products @if(request()->keyword) match the search term. @endif
+						</p>
+
+					</div>
+
+
 				@endforelse
+
 			</div>
 
           
@@ -78,9 +88,11 @@
 						</span>
 						
 				@endif
-			
-				<span class="px-6 py-3 mx-4 rounded  border-1 bg-gray-900 text-white">{{ $products->appends(request()->input())->currentPage() }}</span>
-			
+				
+        @if($count > 0)
+					<span class="px-6 py-3 mx-4 rounded  border-1 bg-gray-900 text-white">{{ $products->appends(request()->input())->currentPage() }}</span>
+				@endif
+
 				@if($products->appends(request()->input())->nextPageUrl())
 							<a class="px-6 py-3 rounded text-c-dark-gray border-1 hover:bg-gray-900 hover:text-white" href="{{ $products->appends(request()->input())->nextPageUrl()}}">
 							Next

@@ -15,6 +15,8 @@ class MediaController extends Controller
     public function index()
     {
         $medias = Media::latest()->paginate(8);
+        // dd(Media::pluck('id')->toArray());
+
         return view('admin.medias.index', compact('medias'));
     }
     
@@ -23,6 +25,10 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+          'files.*' => 'mimes:jpeg,jpg,png|max:2048'
+        ]);
+
         if($request->hasFile('files')){
 
             $images      = $request->file('files'); 

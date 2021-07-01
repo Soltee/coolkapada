@@ -14,6 +14,7 @@ class NewsletterController extends Controller
     public function  index()
     {
         $emails = Newsletter::latest()->paginate(10);
+        // dd(Newsletter::pluck('id')->toArray());
         return view('admin.newsletter.index', compact('emails'));
     }
 

@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductImage extends Model
 {
-    use HasFactory;
+    use HasFactory, UsesUuid;
+
 
     protected $guarded = [];
+    public $incrementing = false;
 
     public function product()
     {

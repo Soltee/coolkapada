@@ -9,10 +9,10 @@ use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, UsesUuid;
 
     protected $guarded = [];
-
+    public $incrementing = false;
     /**
      * The attributes that should be hidden for arrays.
      *

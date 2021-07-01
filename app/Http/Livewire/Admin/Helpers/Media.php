@@ -32,6 +32,7 @@ class Media extends Component
 
     public function passMedia($id)
     {
+        // dd($id);
         $this->emit('receiveMedia', $id);
     }
 

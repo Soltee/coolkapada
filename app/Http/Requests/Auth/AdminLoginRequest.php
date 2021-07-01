@@ -30,6 +30,7 @@ class AdminLoginRequest extends FormRequest
     public function rules()
     {
         return [
+            'g-recaptcha-response' => 'required',
             'email'                 => 'required|string|email',
             'password'              => 'required|string',
         ];
@@ -44,6 +45,15 @@ class AdminLoginRequest extends FormRequest
      */
     public function authenticate()
     {
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret'     => env('RECAPTCHA_V2_SECRET_KEY'),
+            'response'   => $this->input('g-recaptcha-response')
+        ]);
+
+        if($response->failed()){
+            return redirect()->back()->with('errors', 'Reacaptcha error.');
+        }
 
         $this->ensureIsNotRateLimited();
 

@@ -27,6 +27,8 @@ class CategoryController extends Controller
         $categories  =   $query->paginate(2);
         $total       =   $categories->total();
 
+        // dd(Category::pluck('id')->toArray());
+
         return view('admin.categories.index', compact('categories', 'total'));
     }
 

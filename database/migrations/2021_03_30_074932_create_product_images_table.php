@@ -14,9 +14,12 @@ class CreateProductImagesTable extends Migration
     public function up()
     {
         Schema::create('product_images', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id');
-            $table->foreignId('media_id');
+            $table->uuid('id')->primary();
+            $table->uuid('product_id');
+            $table->uuid('media_id');
+
+            // $table->foreignId('product_id');
+            // $table->foreignId('media_id');
             $table->string('color');
             $table->timestamps();
         });

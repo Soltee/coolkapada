@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, UsesUuid;
 
     protected $guarded = [];
 
+    public $incrementing = false;
     public function customer()
     {
     	return $this->belongsTo(Customer::class);

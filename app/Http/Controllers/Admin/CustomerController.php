@@ -30,6 +30,8 @@ class CustomerController extends Controller
         $customers  = $query->paginate(8);
         $total    = $customers->total();
 
+        // dd(Customer::pluck('id')->toArray());
+
         return view('admin.customers.index', compact('customers', 'total'));
     }
 

@@ -14,10 +14,14 @@ class CreateOrderItemsTable extends Migration
     public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id');
-            $table->foreignId('customer_id')->nullable();
-            $table->foreignId('product_id');
+            $table->uuid('id')->primary();
+            $table->uuid('order_id');
+            $table->uuid('customer_id')->nullable();
+            $table->uuid('product_id');
+
+            // $table->foreignId('order_id');
+            // $table->foreignId('customer_id')->nullable();
+            // $table->foreignId('product_id');
             $table->string('image_url');
             $table->string('name');
             $table->string('price');

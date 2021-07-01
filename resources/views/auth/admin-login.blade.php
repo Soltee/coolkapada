@@ -38,8 +38,11 @@
                 </label>
             </div>
 
+            <div class="block g-recaptcha mt-4 w-full" data-sitekey="{{ env('RECAPTCHA_V2_SITE_KEY') }}"></div>
+
+
             <div class="flex flex-col items-center justify-center mt-4">
-                <x-button class="ml-3 px-3 py-3 w-full mb-2">
+                <x-button class="px-3 py-3 w-full mb-2">
                     {{ __('Log in') }}
                 </x-button>
                 
