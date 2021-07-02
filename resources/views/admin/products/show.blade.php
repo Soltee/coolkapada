@@ -68,7 +68,7 @@
     	<div class="my-4 flex flex-col md:flex-row">
     		<div class="w-full md:w-1/2">
     			<h5 class="mb-1 text-lg text-gray-800 px-2">Cover Image</h5>
-    			<img class="w-32 h-32 object-contain mb-3" src="/{{ $product->media->image_url }}">
+    			<img class="w-32 h-32 object-contain mb-3" src="/{{ $media->image_url }}">
     			<h5 class="mb-4 text-lg text-gray-800 px-2">General Info</h5>
 	    		<div class="flex items-center mb-6">
 					<label for="" class=" border rounded px-4 py-2 md:w-1/3">Status</label>
@@ -161,17 +161,44 @@
 			    		href="/admin/products/{{ $product->id }}/images/create">Create More</a>
 			    </div>
 
-		    	<div class="w-full flex ">
+		    	<div class="w-full flex flex-wrap ">
 			    	@forelse($images as $image)
 
-						<livewire:admin.product-image.edit 
+			    		<a 
+			    			class="mr-3 mb-3" 
+			    			href="/admin/products/{{ $product->id }}/{{ $image->id }}">
+			    			<img 
+			                style="border-color: {{ $image->color}}"
+			                class=" w-32 h-32 object-contain mb-5  cursor-pointer
+			                    rounded-lg border-2 hover:opacity-70" 
+			                src="{{ asset($image->media->image_url) }}" >
+
+			            </a>
+
+			                {{-- <div class="flex flex-col absolute top-0 right-0">
+			                    <svg 
+			                        wire:click="deleteProductImage({{$image->id}})"
+			                        xmlns="http://www.w3.org/2000/svg"  
+			                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" 
+			                        class="feather feather-trash h-8 w-8 text-red-600 hover:opacity-80 cursor-pointer"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+
+			                </div> --}}
+
+			    		<!-- Livwire Image Edit-->
+						{{-- <livewire:admin.product-image.edit 
 							:product="$product"
 							:i="$image"
-						/>
+						/> --}}
 						
 			    	@empty
 
 			    	@endforelse
+		    	</div>
+
+
+		    	<!-- pagination -->
+		    	<div class="mt-5">
+		    		{{ $images->links() }}
 		    	</div>
 		    </div>
     	</div>

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Attribute;
 
 use Illuminate\Support\Str;
+
 class Create extends Component
 {
     public $image;
@@ -19,6 +20,7 @@ class Create extends Component
     public $price;
 
     public $message;
+    public $attr_id = '';
 
     public function mount(ProductImage $productImage)
     {
@@ -40,7 +42,7 @@ class Create extends Component
         $this->message = '';
 
         $this->validate([
-                'size'       => 'required|string',
+                'size'       => 'required|string|min:1|max:3',
                 'price'      => 'required|int',
                 'quantity'   => 'required|int',
             ]);
@@ -61,20 +63,7 @@ class Create extends Component
         $this->message   = 'Attribute Added';
     }
 
-    /**
-     * Delete Attribute
-     */
-    public function deleteAttribute($id)
-    {
-        $a = Attribute::findOrfail($id);
-        $a->delete();
-
-        if($this->product->has('attributes')){
-            $this->updateProductMinMax();
-        }
-
-        $this->message  = 'Attribute Deleted';
-    }
+    
 
     /**
      * Update Product Min and Max value 

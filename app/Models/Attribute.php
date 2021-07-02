@@ -19,4 +19,14 @@ class Attribute extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }

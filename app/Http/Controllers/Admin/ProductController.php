@@ -99,12 +99,13 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $media      = $product->media;
         $cat        = $product->category;
-        $images     = $product->images;
+        $images     = $product->images()->with('media')->paginate(6);
         $quantity   = $product->attributes()->sum('quantity');
         $sizes      = $product->attributes()->groupBy('size')->pluck('size');
 
-        return view('admin.products.show', compact('product', 'images', 'cat', 'quantity', 'sizes'));
+        return view('admin.products.show', compact('product', 'media', 'images', 'cat', 'quantity', 'sizes'));
     }
 
     /**
