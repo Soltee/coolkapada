@@ -29,33 +29,39 @@
                     </button>
 				</form>
 
-				@if($product->published) 
-					<form method="POST" action="{{ route('admin.products.update', $product->id) }}">
-						@csrf
-						@method('PATCH')
-	                    <button 
-	                        type="submit" 
-	                        onClick="return confirm('Are you sure?');"
-	                        >
-	                        	<span class="px-3 py-2 bg-gray-900 hover:b-gray-700 rounded-md text-white"> Unpublish </span>
+				@if($product->checkAttribute() > 0)
 
-	                    </button>
-					</form>
+					@if($product->published) 
+						<form method="POST" action="{{ route('admin.products.update', $product->id) }}">
+							@csrf
+							@method('PATCH')
+		                    <button 
+		                        type="submit" 
+		                        onClick="return confirm('Are you sure?');"
+		                        >
+		                        	<span class="px-3 py-2 bg-gray-900 hover:b-gray-700 rounded-md text-white"> Unpublish </span>
 
-				@else
-					<form method="POST" action="{{ route('admin.products.update', $product->id) }}">
-						@csrf
-						@method('PATCH')
-	                    <button 
-	                        type="submit" 
-	                        onClick="return confirm('Are you sure?');">
-	                        <span class="cursor-pointer px-3 py-2 bg-gray-900 hover:bg-gray-700 rounded-md text-white" >
-								Publish Now
-							</span>
-						</button>
-					</form>
+		                    </button>
+						</form>
 
+					@else
+						<form method="POST" action="{{ route('admin.products.update', $product->id) }}">
+							@csrf
+							@method('PATCH')
+		                    <button 
+		                        type="submit" 
+		                        onClick="return confirm('Are you sure?');">
+		                        <span class="cursor-pointer px-3 py-2 bg-gray-900 hover:bg-gray-700 rounded-md text-white" >
+									Publish Now
+								</span>
+							</button>
+						</form>
+
+						
+					@endif
 					
+				@else
+
 				@endif
 	    		
 

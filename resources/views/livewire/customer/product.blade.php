@@ -10,7 +10,9 @@
         </span>
     @else
         <h4 class="mt-3 text-lg font-bold">
-            RS {{ $min }} @if($max) - {{ $max }} @endif NP 
+            RS {{ $min }} +
+            {{-- @if($max) - {{ $max }} @endif  --}}
+            NP 
         </h4>
     @endif
 

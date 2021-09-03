@@ -118,7 +118,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
         ->name('product.image.store');
     Route::patch('/products/{productImage}/update', [ProductImageController::class, 'update'])
             ->name('product.image.update');
-    
+    Route::delete('/products/{productImage}/destroy', [ProductImageController::class, 'destroy'])
+            ->name('product.image.destroy');
+
 
     //Images Image
     Route::get('products/{product}/{productImage}', [ProductImageController::class, 'show'])->name('product.image.show');

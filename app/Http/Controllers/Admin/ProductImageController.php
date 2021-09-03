@@ -87,4 +87,38 @@ class ProductImageController extends Controller
         return view('admin.images.show', compact('product', 'productImage'));
     }
 
+    /*
+    * Delete ProductImage with its Attributes
+    */
+    public function destroy(ProductImage $productImage)
+    {
+
+        $imageProduct = $productImage->product;
+
+        foreach($productImage->attributes as $att)
+        {
+            $att->delete();
+        }
+
+        $productImage->delete();
+
+        //Update Product mIn and max value of Product
+        $min = $imageProduct->attributes()->min('price');
+        $max = $imageProduct->attributes()->max('price');
+
+        $imageProduct->update([
+            'min'   => $min,
+            'max'   => $max
+        ]);
+
+        //Return with success
+        return 
+            redirect()
+                ->route('admin.product', [
+                    'product'        => $imageProduct->id
+                ])
+                ->with('toast_success', 'Image with attributes removed.');
+    
+
+    }
 }

@@ -33,6 +33,12 @@ class Product extends Model
     }
 
 
+    //Return Attribute coount
+    public function checkAttribute()
+    {
+        return $this->attributes()->count();
+    }
+
     public function stock_level()
     {
         if($this->qty < 1){
@@ -57,5 +63,7 @@ class Product extends Model
         }
 
     }
+
+
 
 }
