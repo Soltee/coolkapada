@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Attribute;
+use App\Models\Media;
+use Illuminate\Support\Str;
 
 class ProductImageController extends Controller
 {
@@ -29,24 +31,38 @@ class ProductImageController extends Controller
         $data = $request->validate([
             '_product' => 'required|uuid',
             'color'    => 'required|string|min:3',
-            'media'    => 'required|uuid'
+            'media'    => 'mimes:jpeg,jpg,png|max:2048'
         ]);
 
         // dd($data);
+        if($request->hasFile('media')){
 
-        $image = ProductImage::create([
-            'product_id'     => $data['_product'],
-            'media_id'       => $data['media'],
-            'color'          => $data['color']
-        ]);
+            $image      = $request->file('media'); 
+        
+            $original   = 'md-' . 
+                            Str::random() . '.' . $image->getClientOriginalExtension();
 
-        return redirect()
-                ->route('product.image.show', [
-                    'product'        => $data['_product'],
-                    'productImage'   => $image->id
-                ])
-                ->with('toast_success', 'Image uploaded.');
+            $image->move(storage_path('app/public/products'), $original);
     
+            $path       = 'storage/products/' . $original;
+
+            // dd($path);
+            $mediaId    = Media::create([
+                            'image_url'  => $path,
+                            'thumbnail'  => $original
+                        ]);
+
+            $image = ProductImage::create([
+                'product_id'     => $data['_product'],
+                'media_id'       => $mediaId->id,
+                'color'          => $data['color']
+            ]);
+
+
+            return back()
+                ->with('toast_success', 'Product Image uploaded.');
+        }
+
     }
 
     /*

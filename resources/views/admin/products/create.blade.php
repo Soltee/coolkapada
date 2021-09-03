@@ -16,12 +16,20 @@
 				@csrf
 		
 				<div class="flex justify-between items-center">
-					<h4 class="text-md text-gray-700">New Product</h4>
-					<button type="submit" class="px-3 py-3 bg-gray-900 hover:bg-gray-700 text-white  rounded-lg ">Upload</button>
+					<div class="flex items-center">
+						{{-- <a href="/admin/products/{{$product->id}}" class="text-md font-thin hover:text-gray-900 mr-3 hover:font-bold border-b hover:border-blue-500">
+                        	{{$product->name}}
+                    	</a>
+ --}}
+                    	<h4 class="text-md bg-gray-700 text-white mr-3 border rounded-lg px-2 py-1">1. Product</h4>
+                    	<h4 class="text-md text-gray-700 mr-3">2. Image</h4>
+
+					</div>
+					<button type="submit" class="px-3 py-2 bg-gray-900 text-sm hover:bg-gray-700 text-white  rounded-lg ">Upload New Product</button>
 		
 				</div>
 				
-				<div class="">
+				<div class="mt-6">
 		
 					
 					<div class="mb-3 w-full">
@@ -54,7 +62,7 @@
 		
 					</div>
 
-					<!-- Email Address -->
+					<!-- Cover Image -->
 					<div class="mb-3 w-full">
 						
 						<livewire:admin.helpers.media from="products"/>
