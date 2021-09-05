@@ -1,5 +1,13 @@
 <div class="flex flex-col w-full">
-        
+     <div 
+        class="imgBlock relative w-full  cursor-pointer">
+        <div class="overflow-hidden">
+            <a class="" href="{{ route('product', $p->slug)}}">
+                <img  class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($cover) }}" alt="{{ $p->slug }}">
+            </a>
+        </div>
+      </div>
+                     
     
     <h2 class="mt-3 text-thin text-gray-700">
         {{ $p->name }}
@@ -29,9 +37,10 @@
               <input 
                 class=" hidden z-0" 
                 type="radio"
-                wire:click="attributes({{ $c->id }})"  
                 {{ ($loop->first) ? 'checked' : '' }} 
-                wire:model.defer="color" value="{{ $c->color }}">
+
+                wire:click="getAttributes({{$c->identifier_id}})"
+                value="{{ $c->color }}">
                 <span  class="radio_btn mr-2 px-4 py-4  rounded-full  border-2 border-white text-gray-900 cursor-pointer z-10" style="background-color: {{ $c->color }}"
                 >
                   
@@ -45,6 +54,7 @@
             @endforelse
             </div>		
             
+
             <!-- Sizes -->
             @if($attributes)
                 <div class=" mt-4 flex flex-row  flex-wrap items-center">
@@ -55,7 +65,7 @@
                             <input 
                                 class="hidden" 
                                 type="radio"  
-                                wire:click="qty({{ $a->id }}, {{ $a->price }}, {{ $a->quantity}})"
+                                wire:click="qty({{ $a->identifier_id }}, {{ $a->price }}, {{ $a->quantity}})"
                                 {{ ($loop->first) ? 'checked' : '' }} 
                                 wire:model.defer="size" 
                                 value="{{ $a->size }}">

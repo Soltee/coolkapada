@@ -15,6 +15,8 @@ class CreateAttributesTable extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->integer('identifier_id')->unique();
+
             $table->uuid('product_id');
             $table->uuid('product_image_id');
 

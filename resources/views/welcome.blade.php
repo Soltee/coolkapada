@@ -51,14 +51,6 @@
               ">
               @forelse($new as $p)
                 <div class="flex flex-col items-center">
-                  <div 
-                    class="imgBlock relative w-full  cursor-pointer">
-                    <div class="overflow-hidden">
-                        <a class="" href="{{ route('product', $p->slug)}}">
-                            <img  class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($p->media->image_url) }}" alt="{{ $p->slug }}">
-                        </a>
-                    </div>
-                  </div>
                   
                   <livewire:customer.product :p="$p->id" url="/" />
                 </div>

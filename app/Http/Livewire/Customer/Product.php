@@ -10,6 +10,7 @@ use Cart;
 
 class Product extends Component
 {   
+    public $cover;
     public $url;
     public $min;
     public $max;
@@ -38,7 +39,9 @@ class Product extends Component
 
     public function mount(P $p, $url)
     {
-
+        $image        = $p->images()->first();
+        // dd($image->media);
+        $this->cover  = $image->media->image_url;
         $this->url    = $url;
         $this->p      = $p;
         $this->images = $p->images;
@@ -56,21 +59,33 @@ class Product extends Component
         ]);
     }
 
-    public function attributes($color)
+    public function getAttributes($color)
     {
+        // dd($color);
+        $co = ProductImage::where('identifier_id', $color)->first();
+
         //Refresh Attributes
         $this->attributeId    = '';
         $this->price          = 0;
         $this->quantity       = 0;
 
         //Set Color And Attributes
-        $this->attributes = Attribute::where('product_image_id', $color)->get();
-        $this->colorId    = $color;
+
+        // $this->attributes = Attribute::where('product_image_id', $color)->get();
+        $this->attributes    = $co->attributes;
+        $this->colorId       = $color;
+
+        //Change the image cover
+        $this->cover         = $co->media->image_url; 
+
     }
 
     public function qty($attribute, $price, $quantity)
     {
-        $this->attributeId    = $attribute;
+        $attribute = Attribute::where('identifier_id', $attribute)->first();
+
+        // dd($attribute->price);
+        $this->attributeId    = $attribute->id;
         $this->price          = $price;
         $this->quantity       = $quantity;
     }
