@@ -104,10 +104,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
             ->name('product.create');
     Route::get('/products/{product}', [ProductController::class, 'show'])
             ->name('admin.product');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
+            ->name('admin.product.edit');
     Route::post('/products', [ProductController::class, 'store'])
             ->name('admin.products.store');
+
     Route::patch('/products/{product}', [ProductController::class, 'update'])
             ->name('admin.products.update');
+    Route::patch('/products/{product}/publish', [ProductController::class, 'publish'])
+            ->name('admin.products.publish');
+
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])
             ->name('admin.products.destroy');
 

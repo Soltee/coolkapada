@@ -60,7 +60,6 @@ class MediaController extends Controller
     public function destroy(Media $media)
     {
         if(File::exists($media->image_url)){
-            // dd($media->image_url);
             unlink($media->image_url);
         }
         

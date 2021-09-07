@@ -16,7 +16,15 @@
 	       	<h3 class="text-gray-900 text-lg">{{ $product->name }}</h3>
 
        		<div class="flex items-center">
-				<livewire:admin.products.edit :product="$product" />
+
+       			<a href="/admin/products/{{$product->id}}/edit" class="text-md font-thin hover:text-gray-900 mr-3 hover:font-bold border-b hover:border-blue-500">
+                     <svg 
+				        xmlns="http://www.w3.org/2000/svg" 
+				        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" 
+				        class="h-8 w-8 cursor-pointer text-yellow-600"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+
+                </a>
+				{{-- <livewire:admin.products.edit :product="$product" /> --}}
 
 				<form method="POST" action="{{ route('admin.products.destroy', $product->id) }}">
 					@csrf
@@ -32,7 +40,7 @@
 				@if($product->checkAttribute() > 0)
 
 					@if($product->published) 
-						<form method="POST" action="{{ route('admin.products.update', $product->id) }}">
+						<form method="POST" action="{{ route('admin.products.publish', $product->id) }}">
 							@csrf
 							@method('PATCH')
 		                    <button 
@@ -45,7 +53,7 @@
 						</form>
 
 					@else
-						<form method="POST" action="{{ route('admin.products.update', $product->id) }}">
+						<form method="POST" action="{{ route('admin.products.publish', $product->id) }}">
 							@csrf
 							@method('PATCH')
 		                    <button 

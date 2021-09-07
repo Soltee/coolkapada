@@ -126,18 +126,89 @@ class ProductController extends Controller
     }
 
     /**
+     * Show Edit page for Product
+    */
+    public function edit(Product $product)
+    {
+        $categories = Category::latest()->get();
+        return view('admin.products.edit', compact('categories', 'product'));
+    }
+
+    /**
      * EDit  the  specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Product $product)
+    {   
+
+        $data = $request->validate([
+            'category'     => 'required|string',
+            'name'         => 'required|string',
+            'description'  => 'required'
+        ]);
+
+
+        if($request->hasFile('cover')){
+
+
+            //Validate
+            $request->validate([
+                'cover'        => 'mimes:jpeg,jpg,png|max:2048'
+            ]);
+
+            //Remove previous cover image from db.
+            unlink($product->media->image_url);
+            $product->media->delete();
+
+
+            //Get & Upload
+            $image      = $request->file('cover'); 
+            // dd($image);
+            $original   = 'md-' . 
+                            Str::random() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(storage_path('app/public/products'), $original);
+    
+            $path       = 'storage/products/' . $original;
+
+            $mediaId    = Media::create([
+                            'image_url'  => $path,
+                            'thumbnail'  => $original
+                        ]);
+
+            $mediaArray = ['media_id'  => $mediaId->id];
+            
+        }   
+
+        $p  = $product->update(
+            array_merge([
+                'category_id'  => $data['category'],
+                'name'         => $data['name'],
+                'slug'         => Str::slug($data['name'], '-'),
+                'description'  => $data['description'] 
+            ],
+            $mediaArray ?? []
+        ));
+
+        return back()->with('success', 'Product updated.');
+
+    }
+
+    /**
+     * Publish / Unpublished  the  specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function publish(Request $request, Product $product)
     {
         $product->update([
             'published'  => !$product->published
         ]);
 
-        return back()->with('Visibility updated.');
+        return back()->with('success', 'Visibility updated.');
 
     }
 
@@ -154,6 +225,10 @@ class ProductController extends Controller
                 $a->delete();
             }
             
+            if(File::exists($image->image_url)){
+                unlink($image->image_url);
+            }
+    
             $image->delete();
         }
 
