@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Models\Category;
+use App\Models\Media;
 use App\Models\Product;
 use App\Models\ProductImage;
 
@@ -68,27 +69,43 @@ class ProductController extends Controller
     {
             
         $data = $request->validate([
-            'media'        => 'required|string',
+            'cover'        => 'mimes:jpeg,jpg,png|max:2048',
             'category'     => 'required|string',
             'name'         => 'required|string|unique:products',
             'description'  => 'required'
         ]);
         
-        // dd($data);
-        $product = Product::create([
-            'category_id'  => $data['category'],
-            'media_id'     => $data['media'],
-            'name'         => $data['name'],
-            'slug'         => Str::slug($data['name'], '-'),
-            'description'  => $data['description'] 
-        ]);
+        if($request->hasFile('cover')){
 
-        // dd($product);
-        return redirect()
-                ->route('product.image.create', [
-                    'product' => $product->id
-                ])
-                ->with('toast_success', 'Product uploaded.');
+            $image      = $request->file('cover'); 
+        
+            $original   = 'md-' . 
+                            Str::random() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(storage_path('app/public/products'), $original);
+    
+            $path       = 'storage/products/' . $original;
+
+            // dd($path);
+            $mediaId    = Media::create([
+                            'image_url'  => $path,
+                            'thumbnail'  => $original
+                        ]);
+
+            $product = Product::create([
+                'category_id'  => $data['category'],
+                'media_id'     => $mediaId->id,
+                'name'         => $data['name'],
+                'slug'         => Str::slug($data['name'], '-'),
+                'description'  => $data['description'] 
+            ]);
+
+            return redirect()
+                    ->route('product.image.create', [
+                        'product' => $product->id
+                    ])
+                    ->with('toast_success', 'Product uploaded.');
+        }
     }
 
     /**

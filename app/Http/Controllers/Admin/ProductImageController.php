@@ -60,8 +60,14 @@ class ProductImageController extends Controller
             ]);
 
 
-            return back()
-                ->with('toast_success', 'Product Image uploaded.');
+            return 
+
+                redirect()
+                    ->route('product.image.show', [
+                        'product'        => $data['_product'],
+                        'productImage'   => $image->id,
+                    ])    
+                    ->with('toast_success', 'Product Image uploaded.');
         }
 
     }

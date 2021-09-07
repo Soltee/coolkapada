@@ -12,7 +12,7 @@
     <div class="">
 		<div class="">
 
-			<form method="POST" action="/admin/products">
+			<form method="POST" action="/admin/products" enctype="multipart/form-data">
 				@csrf
 		
 				<div class="flex justify-between items-center">
@@ -65,9 +65,29 @@
 					<!-- Cover Image -->
 					<div class="mb-3 w-full">
 						
-						<livewire:admin.helpers.media from="products"/>
+						{{-- <livewire:admin.helpers.media from="products"/> --}}
 
 					</div>
+					<div class="flex  mb-6">
+                        <div class="flex flex-wrap w-full">
+                            <label for="files" class="block text-gray-700 text-sm font-bold mb-2">
+                                {{ __('Cover') }}
+                            </label>
+
+                            <input id="cover" type="file" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('cover') border-red-500 @enderror " name="cover" value="{{ old('cover') }}"  autofocus placeholder="">
+
+                            @error('cover')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+
+                    </div>
+                    <div id="coverImage" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 overflow-y-scroll mb-6">
+                        
+                    </div>
+                    
 		
 					
 				</div>
@@ -76,3 +96,51 @@
 		</div>    	
     </div>
 @endsection
+
+@push('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function(){
+            let allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
+            let readImages = document.getElementById('coverImage');
+            document.getElementById('cover').addEventListener('change', (e) => {
+                if (e.target.files[0]) {
+                    readImages.innerHTML = '';
+
+                    for( var i = 0; i < e.target.files.length; i++ ){
+                        const fsize = e.target.files[0].size;
+                        const file = Math.round((fsize / 1024));
+                        if (file >= 2048) {
+                            swal('File size too big. Please select less than 2mb.');
+                            return;
+                        } 
+
+                        const t = e.target.files[0].type.split('/').pop().toLowerCase();
+                        if (t != "jpeg" && t != "jpg" && t != "png") {
+                            swal('Only jpeg, jpg and png file.');
+                            return;
+                        } 
+
+                        var reader = new FileReader();
+                        
+                        reader.onload = function (e) {
+                            var img = document.createElement("img");
+                            img.class ="h-64";
+                            img.src = e.target.result;
+                            readImages.appendChild(img);
+                        }
+                        reader.readAsDataURL(e.target.files[0]);
+
+                    }
+                
+                }
+            });
+
+        });
+    </script>
+
+@endpush
+

@@ -21,7 +21,7 @@
 
                 <div class="flex items-center">
                     <!-- Image Color Edit -->
-                    <div 
+                    {{-- <div 
                         x-data="{ editImage : false }"
                         class="">
                         
@@ -70,7 +70,7 @@
                         </div>
 
 
-                    </div>
+                    </div> --}}
 
                     <!-- Image Delete with Attributes -->
                     <div class="ml-3 flex flex-col">
