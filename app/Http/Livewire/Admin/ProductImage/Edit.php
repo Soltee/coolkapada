@@ -104,14 +104,17 @@ class Edit extends Component
     /**
      * Delete Product Image with their all attributes
      */
-    public function deleteProductImage($id)
-    {
-        $i = I::findOrfail($id);
-        foreach($i->attributes as $a){
+    public function deleteProductImage()
+    {   
+
+        dd($this->image->attributes);
+        foreach($this->image->attributes as $a){
             $a->delete();
         }
-    
-        $i->delete();
+
+        unlink($this->image->media->image_url);
+
+        $this->image->delete();
 
         if($this->product->has('attributes')){
             $this->updateProductMinMax();

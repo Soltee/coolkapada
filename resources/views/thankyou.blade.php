@@ -27,7 +27,7 @@
 					</div>
 					<div class="flex justify-center items-center">
 					
-						<a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a>
+						{{-- <a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a> --}}
 					</div>
 
 	    			<div class="my-5 border border-gray-400 rounded">
@@ -151,16 +151,7 @@
 	           	<div class="mt-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-6 ">
 	           		@forelse($products as $product)
 	           			<div class="w-full flex flex-col items-center mb-6">
-							<div 
-							class="imgBlock relative w-full  cursor-pointer">
-								<div class="overflow-hidden">
-									<a class="" href="{{ route('product', $product->slug)}}">
-										<img  class="w-full mb-5 rounded object-cover hover:opacity-70 shadow" src="{{ asset($product->media->image_url) }}" alt="{{ $product->slug }}">
-									</a>
-								</div>
-						
-							</div>
-
+							
 							<livewire:customer.product :p="$product->id" url="/bag" />
 
 	           			</div>

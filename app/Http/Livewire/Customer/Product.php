@@ -18,6 +18,7 @@ class Product extends Component
     public $images;
     public $attributes;
     public $sizes = ['S', 'M', 'L'];
+    public $stock;
 
     public $color;
     public $colorId;
@@ -45,6 +46,7 @@ class Product extends Component
         $this->url    = $url;
         $this->p      = $p;
         $this->images = $p->images;
+        $this->stock  = $p->attributes()->sum('quantity');
 
         $this->min = $p->min;
         $this->max = $p->max;

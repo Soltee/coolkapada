@@ -118,11 +118,14 @@ class ProductImageController extends Controller
 
         $imageProduct = $productImage->product;
 
+        //Product Image Attribute Delete
         foreach($productImage->attributes as $att)
         {
             $att->delete();
         }
 
+        //Delete Product Image Linked with Media and delete the column
+        unlink($productImage->media->image_url);
         $productImage->delete();
 
         //Update Product mIn and max value of Product

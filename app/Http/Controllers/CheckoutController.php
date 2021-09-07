@@ -92,13 +92,9 @@ class CheckoutController extends Controller
                 'color'          => $item->attributes->color
             ]);
 
-            $found     = Attribute::findOrfail($item->attributes->attributeId);
+            $found     = Attribute::findOrfail($item->attributes->attributeId)->decrement('quantity');
 
-            $quantity   = $found->quantity - $item->quantity;
-            
-            $found->update([
-                'quantity' => $quantity
-            ]);
+
         }
 
         Cart::clear();
