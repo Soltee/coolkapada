@@ -13,20 +13,52 @@ class Show extends Component
     public $attribute;
     public $image;
 
+    public $size;
+    public $price;
+    public $qty;
+
     public $message;
 
     public function mount(Att $att, P $p, Image $image)
     {
         $this->product       = $p;
         $this->attribute     = $att;
+        $this->size          = $att->size;
+        $this->price         = $att->price;
+        $this->qty           = $att->quantity;
         $this->image         = $image;
     }
     
     public function render()
     {
         return view('livewire.admin.attribute.show', [
-            'att'    => $this->attribute
+            'size'     => $this->size,
+            'price'    => $this->price,
+            'qty'      => $this->qty,
         ]);
+    }
+
+    /**
+     * Update Attribute
+     */
+    public function editAttribute()
+    {
+        $this->validate([
+                'price'      => 'required|int',
+                'qty'        => 'required|int'
+            ]);
+
+        $this->attribute->update([
+            'price'     => $this->price,
+            'quantity'  => $this->qty
+        ]);
+
+        if($this->product->has('attributes')){
+            $this->updateProductMinMax();
+        }
+        
+        $this->message   = 'Attribute updated';
+
     }
 
     /**
@@ -34,8 +66,6 @@ class Show extends Component
      */
     public function deleteAttribute()
     {
-        // dd($this->image->id);
-        // dd('admin/products/'. $this->product->id . '/' . $this->image->id);
 
         $a = Att::findOrfail($this->attribute->id);
         $a->delete();
