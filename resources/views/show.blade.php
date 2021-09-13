@@ -55,7 +55,7 @@
 
 
       <div class="flex flex-col md:flex-row justify-around ">
-				<div class="w-full md:w-1/2 mt-4 
+				{{-- <div class="w-full md:w-1/2 mt-4 
 				 ">
 		
 					<div class="relative imageDiv
@@ -90,6 +90,7 @@
 					@endif
 					
 				</div>
+				 --}}
 				<div class="md:ml-8 w-full md:w-1/2 mt-4  md:py-0 flex flex-col">
 
 					<livewire:customer.product :p="$product->id" :url="'/product/'.$product->slug"/>
