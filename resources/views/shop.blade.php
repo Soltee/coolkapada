@@ -146,7 +146,11 @@
 
 						<div class="flex flex-col items-center mb-8">
 																
-							<livewire:customer.product :p="$product->id" :url="'/product/'.$product->slug"/>
+							<livewire:customer.product 
+									:p="$product->id" 
+									:url="'/product/'.$product->slug"                    
+									:from="'shop'"/>
+
 							
 						</div>
 

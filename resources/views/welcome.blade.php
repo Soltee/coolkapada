@@ -52,7 +52,11 @@
               @forelse($new as $p)
                 <div class="flex flex-col items-center">
                   
-                  <livewire:customer.product :p="$p->id" url="/" />
+                  <livewire:customer.product 
+                    :p="$p->id" 
+                    url="/"
+                    :from="'welcome'"/>
+
                 </div>
               @empty
 

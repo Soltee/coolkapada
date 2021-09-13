@@ -54,50 +54,13 @@
       </div>
 
 
-      <div class="flex flex-col md:flex-row justify-around ">
-				{{-- <div class="w-full md:w-1/2 mt-4 
-				 ">
-		
-					<div class="relative imageDiv
-						 ">
-						<img id="featured" 
-						  class="focus-img shadow-lg cursor-grab grabbable featured w-full object-contain object-center" src="{{ asset($product->media->image_url) }}">
-						<p 
-							class="text absolute top-0 right-0 flex justify-center items-center text-c-pink text-md">
-							Scroll in or out to zoom
-						</p>
-						@if($product->prev_price)	        				
-							<span class="bg-c-pink text-center text-white p-2 absolute top-0 left-0 -mt-4">{{ $product->price_level() }}% off</span>
-						@endif
-					</div>
+     <!-- Product Component-->
+			<livewire:customer.product 
+						:p="$product->id" 
+						:url="'/product/'.$product->slug"
+						:from="'single'"/>
 
-					@if($image_count > 1)
-					<div 
-						id="slide-wrapper w-full " 
-						class="mt-2">
-						<div id="slider" class="flex flex-row">
-							@forelse($images as $img)
-								<img  
-								 class="thumbnail glightbox3 cursor-pointer w-16 h-16 border border-gray-300 md:w-24 md:h-24 object-contain object-center
-									" 
-									src="{{ asset($img->media->image_url) }}"/>
-							@empty
-							@endforelse
-
-						</div>
-
-					</div>
-					@endif
-					
-				</div>
-				 --}}
-				<div class="md:ml-8 w-full md:w-1/2 mt-4  md:py-0 flex flex-col">
-
-					<livewire:customer.product :p="$product->id" :url="'/product/'.$product->slug"/>
-
-				</div>
-			</div>
-
+				
 
 			<div 
 				x-data="{ tab : 'detail' }"

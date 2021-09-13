@@ -10,6 +10,7 @@ use Cart;
 
 class Product extends Component
 {   
+    public $from;
     public $cover;
     public $url;
     public $min;
@@ -20,9 +21,9 @@ class Product extends Component
     public $sizes = ['S', 'M', 'L'];
     public $stock;
 
-    public $color;
-    public $colorId;
-    public $attributeId;
+    protected $color;
+    protected $colorId;
+    protected $attributeId;
     public $size;
     public $price;
     public $quantity;
@@ -38,8 +39,9 @@ class Product extends Component
         'qty'  => 'required',
     ];
 
-    public function mount(P $p, $url)
+    public function mount(P $p, $url, $from)
     {
+        $this->from   = $from;
         $image        = $p->images()->first();
         // dd($image->media);
         $this->cover  = $image->media->image_url;
