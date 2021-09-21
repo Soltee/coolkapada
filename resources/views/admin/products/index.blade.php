@@ -6,6 +6,16 @@
 @endsection
 @section('content')
     <div class="md:mr-3 w-full">
+    	<div class="flex items-center mb-2">
+           <a 
+              href="/admin/dashboard" 
+              class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Dashboard</a>
+           <span class="px-2">/</span>
+           
+           <h1 class="text-md text-gray-800 font-semibold ">Products</h1>
+
+        </div>
+    	
     	<div class="flex flex-col w-full md:flex-row justify-between mb-6">
     		<form action="{{ route('admin.products.view') }}" method="get" accept-charset="utf-8">
     			@csrf

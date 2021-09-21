@@ -19,16 +19,20 @@
 				@csrf
 				@method('PATCH')
 		
-				<div class="flex justify-between items-center">
-					<div class="flex items-center">
-	                    <a href="/admin/products/{{$product->id}}" class="text-xs font-thin hover:text-gray-900 mr-2 hover:font-bold  border-b border-transparent hover:border-black">
-	                        {{$product->name}}
+				<div class="flex flex-col md:flex-row justify-between md:items-center">
+					<div class="flex items-center mb-4 md:mb-0">
+			            <a 
+			              href="/admin/products" 
+			              class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Products</a>
+			           <span class="px-2">/</span>
+	        
+	                    <a href="/admin/products/{{$product->id}}" class="text-md font-thin hover:text-gray-900 mr-2 hover:font-bold  border-b border-transparent hover:border-black">
+							{{ \Str::limit($product->name, 6) }}
 	                    </a>
-	                    /
-	                    <h3 class="ml-2 text-sm font-thin">Image </h3>
+	                   
 	                </div>
                 
-                    <button type="submit" class="px-3 py-3 bg-gray-900 hover:bg-gray-700 text-white  rounded-lg">Edit</button>
+                    <button type="submit" class="px-5 py-2 bg-gray-900 hover:bg-gray-700 text-white  rounded-lg">Edit Product</button>
 
                 </div>
 

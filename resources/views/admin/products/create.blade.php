@@ -11,7 +11,16 @@
 @section('content')
     <div class="">
 		<div class="">
+			<div class="flex items-center mb-2">
+	            <a 
+	              href="/admin/products" 
+	              class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Products</a>
+	           <span class="px-2">/</span>
+	           
+	           <h1 class="text-md text-gray-800 font-semibold ">New</h1>
 
+	        </div>
+    	
 			<form method="POST" action="/admin/products" enctype="multipart/form-data">
 				@csrf
 		

@@ -1,4 +1,4 @@
- <div>
+ <div class="shadow-2xl mb-5">
     @if($message)
         <p class="text-green-600 mb-3"> {{ $message }} </p>
     @endif
@@ -7,16 +7,11 @@
         wire:submit.prevent="editAttribute">
             
         
-        <div class="flex mb-5 w-full">
-            <div class="mb-3 w-1/4 pr-3 border border-gray-300 py-2 px-3 rounded flex items-center">
+        <div class="flex flex-wrap w-full">
+            <div class="mb-3 w-1/4  border border-gray-300 py-2 px-3 rounded flex items-center">
                 {{ $size }}
-                {{-- <input 
-                        type="text"
-                        name="name"
-                        class="px-3 py-2 rounded-tl-lg rounded-tr-lg"
-                        value="{{ $att->size }}" />--}}
             </div>
-            <div class="mb-3 w-1/4 pr-3 border border-gray-300 py-2 px-3 rounded">
+            <div class="mb-3 md:w-1/4  border border-gray-300 py-2 px-3 rounded">
                 Rs  <input 
                         type="text"
                         wire:model.defer="price"
@@ -24,14 +19,14 @@
                         value="{{ $price }}" />
             
             </div>
-            <div class="mb-3 w-1/4 pr-3 border border-gray-300 py-2 px-3 rounded">
+            <div class="mb-3 md:w-1/4  border border-gray-300 py-2 px-3 rounded">
                 <input 
                         type="text"
                         wire:model.defer="qty"
                         class="px-3 py-2 rounded-tl-lg rounded-tr-lg"
                         value="{{ $qty }}" />
             </div>
-            <div class="mb-3 w-1/4 flex items-center py-2 px-2">
+            <div class="mb-3 md:w-1/4 flex items-center py-2 px-2">
 
                 <button type="submit" 
                         class="px-3 py-2 bg-gray-900 hover:bg-gray-700 text-white rounded-lg mr-3 ">

@@ -30,6 +30,9 @@ class ProductImageFactory extends Factory
                 $category = Product::inRandomOrder()->pluck('id')->toArray();
                 return  \Illuminate\Support\Arr::random($category);
             },
+            'identifier_id' => function(){
+                return random_int(1000, 10000000);
+            },
             'media_id' => function(){
                 $media = Media::inRandomOrder()->pluck('id')->toArray();
                 return  \Illuminate\Support\Arr::random($media);

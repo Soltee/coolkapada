@@ -3,24 +3,33 @@
 @section('content')
     <div class="w-full">
         <div class="mb-6">
+            <div class="flex items-center mb-6">
+               <a 
+                  href="/admin/dashboard" 
+                  class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Dashboard</a>
+               <span class="px-2">/</span>
+               <h1 class="text-md font-semibold text-gray-800 ">Medias</h1>
+
+            </div>
+            
             <form method="POST" action="/admin/medias" enctype="multipart/form-data">
                 @csrf
                 <div class="flex  mb-6">
-                    <div class="flex flex-wrap w-full">
+                    <div class="flex flex-col w-full">
                         <label for="files" class="block text-gray-700 text-sm font-bold mb-2">
-                            {{ __('Media') }}
+                            {{ __('Photos') }}
                         </label>
 
-                        <input id="files" type="file" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('files') border-red-500 @enderror " name="files[]" value="{{ old('files') }}"  autofocus placeholder="" multiple>
+                        <input id="files" type="file" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('files') border-red-500 @enderror " name="files[]" value="{{ old('files') }}"  autofocus required="" placeholder="" multiple>
 
                         @error('files')
                             <p class="text-red-500 text-xs italic mt-4">
                                 {{ $message }}
                             </p>
                         @enderror
-                    </div>
 
-                    <button type="submit" class="w-full md:w-56 mt-8 px-8 py-3 rounded bg-gray-900 hover:opacity-75 text-white ">Upload</button>
+                        <button type="submit" class="w-full mt-4 px-8 py-2 rounded bg-gray-900 hover:opacity-75 text-white ">Upload</button>
+                    </div>
 
                 </div>
                 <div id="imagesProduct" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 overflow-y-scroll mb-6">

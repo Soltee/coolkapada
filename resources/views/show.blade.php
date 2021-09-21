@@ -19,7 +19,7 @@
 		  opacity: 0.8;
 		}	
 		.imgBlock{transition: transform 0.3s ease-in-out;}
-		.imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}
+		.imgBlock:hover img{opacity: 0.7;}
 		.imgBlock:hover  .addBtn {
 			visibility: initial;
 		}
@@ -83,27 +83,59 @@
 			</div>
 			<div class="relative mt-16 mb-10">
 
-				<h5 class="text-lg font-light text-c-light-black mr-2 mb-6">Similar Products</h5>
+				<h5 class="text-lg font-semibold text-gray-800 mr-2 ">Similar Products</h5>
 
 				<div 
 					style="cursor: grab"
 					class="  
 						similar           
 					">
-					@forelse($similar as $p)
-						<div class="flex flex-col items-center">
-							<div 
-								class="imgBlock relative w-full  cursor-pointer shadow-md">
-								<div class="overflow-hidden">
-									<a class="" href="{{ route('product', $p->slug)}}">
-										<img  class="w-full mb-5 rounded object-cover hover:opacity-70 " src="{{ asset($p->media->image_url) }}" alt="{{ $p->slug }}">
-									</a>
-								</div>
-							</div>
-							
-							<livewire:customer.product :p="$p->id" :url="'/product/'.$p->slug"/>
+					@forelse($similar as $product)
+						<div class="flex flex-col items-center shadow rounded-lg">
+                <div 
+                    class="imgBlock relative w-full  cursor-pointer w-full">
+                    <div class="overflow-hidden">
+                        <a class="" 
+                            href="{{ route('product', $product->slug)}}">
+                            <img  
+                                class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70" 
+                                src="{{ asset($product->media->image_url) }}" 
+                                alt="{{ $product->slug }}">
+                        </a>
+                    </div>
+                </div>
+                      
+                <div class="pb-3 px-3">
 
-						</div>
+                    <div class="mt-3flex  justify-between items-center mb-2">
+                        <a class="" href="{{ route('product', $product->slug)}}">
+                            <h2 class="hover:font-bold cursor-pointe text-thin text-gray-700">
+                                {{ $product->name }} 
+                            </h2>
+                        </a>
+                        <h4 class="text-lg font-semibold">
+                            RS {{ $product->min }} +
+                            NP 
+                        </h4>
+
+                    </div>
+
+                    @if(!$product->attributes()->sum('quantity'))
+                        <div class="flex items-center">
+                            <span class="font-bold text-red-600">Out of Stock</span>
+                        </div>
+                    @endif
+
+                </div>
+              
+            </div>
+
+							{{-- <livewire:customer.product 
+								:from="'similar'"
+								:p="$p->id" 
+								:url="'/product/'.$p->slug"/>
+ --}}
+						
 					@empty
 					@endforelse
             	</div>

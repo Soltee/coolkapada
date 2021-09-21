@@ -14,7 +14,7 @@ class MediaController extends Controller
 {
     public function index()
     {
-        $medias = Media::latest()->paginate(8);
+        $medias = Media::latest()->paginate(9);
         // dd(Media::pluck('id')->toArray());
 
         return view('admin.medias.index', compact('medias'));

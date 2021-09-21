@@ -2,15 +2,26 @@
 
 @section('content')
     <div class="w-full">
-    	<div class="flex justify-between items-center  mb-6">
-    		<form action="{{ route('admin.customers.view') }}" method="get" accept-charset="utf-8">
-    			@csrf
-    			<div class="flex w-full flex-col md:flex-row">
-			        <input type="text"  class="focus:outline-none block  w-full bg-white rounded sm:rounded-r-none px-6 py-2 mb-2 sm:mb-0 border" name="search" placeholder="Name" value="{{ request()->search ?? '' }}" >
-			        <button type="submit" class="focus:outline-none focus:bg-indigo-light  w-full sm:w-auto bg-gray-900 hover:bg-gray-700 rounded sm:rounded-l-none uppercase text-white font-bold tracking-wide py-2 px-6">Search</button>
-			    </div>
+    	<div class="flex flex-col md:flex-row justify-between md:items-center  mb-6">
+    		<div class="flex items-center">
+               <a 
+                  href="/admin/dashboard" 
+                  class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Dashboard</a>
+               <span class="px-2">/</span>
+               <h1 class="text-md text-gray-800 font-semibold ">Customers</h1>
 
-    		</form>
+            </div>
+            
+            <div class="mt-2 md:mt-0">
+	    		<form action="{{ route('admin.customers.view') }}" method="get" accept-charset="utf-8">
+	    			@csrf
+	    			<div class="flex w-full flex-col md:flex-row">
+				        <input type="text"  class="focus:outline-none block  w-full bg-white rounded-t md:rounded-l md:rounded-t-none sm:rounded-r-none px-6 py-2 mb-2 sm:mb-0 border" name="search" placeholder="Name" value="{{ request()->search ?? '' }}" >
+				        <button type="submit" class="focus:outline-none focus:bg-indigo-light  w-full sm:w-auto bg-gray-900 hover:bg-gray-700 rounded sm:rounded-l-none uppercase text-white font-semibold tracking-wide py-2 px-6">Search</button>
+				    </div>
+
+	    		</form>
+	    	</div>
     			
     	
     	</div>

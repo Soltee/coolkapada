@@ -10,11 +10,24 @@
 
 @section('content')
     <div class="w-full">
+    	<a 
+			class="fixed right-0 bottom-0 -mb-12 -mr-12 bg-gray-900 hover:bg-gray-700 px-2 py-2  rounded cursor-pointer bg-gray-900 text-white font-bold  " 
+			href="/admin/products/create">
 
-    	<div class="flex justify-between   mb-6">
-       		
-	       	<h3 class="text-gray-900 text-lg">{{ $product->name }}</h3>
+				+ New
+		</a>
 
+    	<div class="flex flex-col md:flex-row justify-between  mb-4 md:mb-6">
+       		<div class="flex items-center mb-2">
+	           <a 
+	              href="/admin/products" 
+	              class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Products</a>
+	           <span class="px-2">/</span>
+	           
+	           <h1 class="text-md text-gray-800 font-semibold ">{{ \Str::limit($product->name, 6) }}</h1>
+
+	        </div>
+    	
        		<div class="flex items-center">
 
        			<a href="/admin/products/{{$product->id}}/edit" class="text-md font-thin hover:text-gray-900 mr-3 hover:font-bold border-b hover:border-blue-500">

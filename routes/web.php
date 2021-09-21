@@ -5,6 +5,9 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BagController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
 use App\Http\Controllers\Customer\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
@@ -17,6 +20,8 @@ use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/login',  [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 
 //Bag Cart
 Route::get('/bag', [BagController::class, 'index'])->name('cart');
@@ -53,6 +58,7 @@ Route::post('/bag/store', [BagController::class, 'store'])->name('bag.store');
 Route::post('/newsletter', [WelcomeController::class, 'newsletter']);
 
 
+//Customer Dashboard 
 Route::group(['middleware' => 'auth:customer'], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 

@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="w-full md:mr-4">
+    	<div class="flex items-center mb-2">
+           <a 
+              href="/admin/dashboard" 
+              class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Dashboard</a>
+           <span class="px-2">/</span>
+           
+           <h1 class="text-md text-gray-800 font-semibold ">Orders</h1>
+
+        </div>
     	<div class="flex justify-between items-center  mb-6">
     		<form action="{{ route('admin.orders.view') }}" method="get" accept-charset="utf-8">
     			@csrf

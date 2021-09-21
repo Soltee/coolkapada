@@ -4,6 +4,16 @@
     <div class="w-full">
     	<div class="">
 	    	
+	    	<div class="flex items-center mb-4">
+	           <a 
+	              href="/admin/dashboard" 
+	              class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Dashboard</a>
+	           <span class="px-2">/</span>
+	           
+	           <h1 class="text-md text-gray-800 font-semibold ">Newsletter</h1>
+
+	        </div>
+    	
 		    <!-- Emails Lists -->
 
 	   		<div class="overflow-x-scroll w-full md:overflow-auto md:w-full">

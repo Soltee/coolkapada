@@ -3,26 +3,41 @@
 @section('content')
     <div class="md:mr-3">
 
-    	<div class="flex justify-between   mb-6">
+    	<div class="flex justify-between   mb-6 items-center">
        		
-	       	<h3 class="text-gray-900 text-lg">{{ $customer->first_name  . ' ' . $customer->last_name }}</h3>
+       		<div class="flex items-center">
+               <a 
+                  href="/admin/dashboard" 
+                  class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Dashboard</a>
+               <span class="px-2">/</span>
+               <a 
+                  href="/admin/customers" 
+                  class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">
+                	Customers
+                </a>
+                <span class="px-2">/</span>
 
+               <h1 class="text-md text-gray-800 font-semibold ">{{ $customer->first_name }}</h1>
+
+            </div>
+            
        		<div class="flex items-center">
        			<div class="flex items-center mr-3">
-		    		<label for="" class=" border rounded px-4 py-3 md:w-32">Total Amount</label>
-		    		<h4 class="border rounded px-4 py-3 font-bold text-lg">Rs {{ $total_amount   }}</h4>
+		    		<label for="" class=" border rounded px-4 py-2 bg-gray-900 text-white">Total</label>
+		    		<h4 class="border rounded px-4 py-2">Rs {{ $total_amount   }}</h4>
 		    	</div>
 				<a  
-							href="{{ route('admin.customers.destroy', $customer->id) }}" 
-							class="borde rounded" 
-							onClick="
-								event.preventDefault();
-								if(confirm('Are you sure?')){
-									document.getElementById('customer-delete-form').submit();
-								}
-						">
-						<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash h-8 w-8 text-red-600 hover:opacity-80 cursor-pointer"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                    </a>
+						href="{{ route('admin.customers.destroy', $customer->id) }}" 
+						class="border rounded" 
+						onClick="
+							event.preventDefault();
+							if(confirm('Are you sure?')){
+								document.getElementById('customer-delete-form').submit();
+							}
+					">
+					<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash h-8 w-8 text-red-600 hover:opacity-80 cursor-pointer"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </a>
+
                     
                     <!-- Delete Form Hidden-->
                     <form id="customer-delete-form" action="{{ route('admin.customers.destroy', $customer->id) }}" method="POST" class="hidden">

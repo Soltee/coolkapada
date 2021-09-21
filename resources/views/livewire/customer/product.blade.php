@@ -16,15 +16,17 @@
             <div class=" w-full md:w-1/2">
             <div class="ml-3">
 
-                <h2 class="mt-3 text-thin text-gray-700">
-                    {{ $p->name }} 
-                </h2>
+                <a class="" href="{{ route('product', $p->slug)}}">
+                    <h2 class="hover:font-bold cursor-pointer mt-3 text-thin text-gray-700">
+                        {{ $p->name }} 
+                    </h2>
+                </a>
                 @if($price)
-                    <span class="mt-3 text-lg font-bold">
+                    <span class=" text-lg font-bold">
                         Rs {{ $price }} NP
                     </span>
                 @else
-                    <h4 class="mt-3 text-lg font-bold">
+                    <h4 class=" text-lg font-bold">
                         RS {{ $min }} +
                         {{-- @if($max) - {{ $max }} @endif  --}}
                         NP 
@@ -39,7 +41,7 @@
                         <div class="w-full flex flex-col">
 
                             <!-- Color -->
-                            <div class="w-full flex flex-row items-center mt-6">
+                            <div class="w-full flex flex-row items-center mt-2">
                             
                             @forelse($images as $c)
 
@@ -97,7 +99,7 @@
                                     
                                 </div> 
                             @else
-                                <div disabled class="mt-4 flex flex-wrap w-full opacity-70">
+                                {{-- <div disabled class="mt-4 flex flex-wrap w-full opacity-70">
                                     @foreach($sizes as $s)
 
                                         <span  
@@ -106,7 +108,7 @@
                                             {{ $s }}
                                         </span>
                                     @endforeach
-                                </div>
+                                </div> --}}
                         
                             @endif
                             <!-- Stock or Out of Stock -->
@@ -166,11 +168,11 @@
                 {{ $p->name }} 
             </h2>
             @if($price)
-                <span class="mt-3 text-lg font-bold">
+                <span class=" text-lg font-bold">
                     Rs {{ $price }} NP
                 </span>
             @else
-                <h4 class="mt-3 text-lg font-bold">
+                <h4 class=" text-lg font-bold">
                     RS {{ $min }} +
                     {{-- @if($max) - {{ $max }} @endif  --}}
                     NP 
@@ -185,7 +187,7 @@
                     <div class="w-full flex flex-col">
 
                         <!-- Color -->
-                        <div class="w-full flex flex-row items-center mt-6">
+                        <div class="w-full flex flex-row items-center mt-2">
                         
                         @forelse($images as $c)
 
@@ -243,7 +245,7 @@
                                 
                             </div> 
                         @else
-                            <div disabled class="mt-4 flex flex-wrap w-full opacity-70">
+                            {{-- <div disabled class="mt-4 flex flex-wrap w-full opacity-70">
                                 @foreach($sizes as $s)
 
                                     <span  
@@ -252,7 +254,7 @@
                                         {{ $s }}
                                     </span>
                                 @endforeach
-                            </div>
+                            </div> --}}
                     
                         @endif
                         <!-- Stock or Out of Stock -->

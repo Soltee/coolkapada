@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full">
-    	{{-- <h1 class="text-lg text-gray-800 mb-4">Dashboard</h1> --}}
+    	<h1 class="text-md text-gray-800 font-semibold mb-4">Dashboard</h1>
        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
        		<div class="border-t-2 relative border-green-600 p-4 shadow rounded-lg">
        			<h2 class="mb-3">Today Orders</h2>

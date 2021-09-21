@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->integer('sold')->nullable();
+            $table->integer('stock')->nullable();
             $table->integer('min')->nullable();
             $table->integer('max')->nullable();
             $table->text('description')->nullable();

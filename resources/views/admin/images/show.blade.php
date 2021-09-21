@@ -11,11 +11,14 @@
         <div class="mb-5">
 		    <div class="flex justify-between items-center">
                 <div class="flex items-center">
+                    <a 
+                      href="/admin/products" 
+                      class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Products</a>
+                   <span class="px-2">/</span>
+               
                     <a href="/admin/products/{{$product->id}}" class="text-md font-thin hover:text-gray-900 mr-3 hover:font-bold border-b hover:border-blue-500">
-                        {{$product->name}}
+                        {{ \Str::limit($product->name, 6) }}
                     </a>
-                    /
-                    <p class="text-gray-700 ml-3 font-thin text-sm"> Image </p>
                     
                 </div>
 

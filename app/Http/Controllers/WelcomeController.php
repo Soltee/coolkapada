@@ -18,8 +18,8 @@ class WelcomeController extends Controller
                     ->where('published', true)
                     ->has('attributes')
                     ->with('media', 'images')
-                    ->take(3)
-                    ->get();
+                    // ->take(3)
+                    ->paginate(9);
         return view('welcome', compact('new'));
     }
 

@@ -19,16 +19,22 @@
         </style>
         <!-- Scripts -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="bg-gray-100">
             @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])            
             
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                @yield('content')
+
+                {{-- {{ $slot }} --}}
             </main>
         </div>
+
+        @stack('scripts')
+        
 
     </body>
 </html>

@@ -3,11 +3,18 @@
 @section('content')
     <div class="w-full">
     	<div class="">
-	    	
+	    
 		    <div class="w-full  mt-4">
+		    	<div class="w-full mb-6 flex flex-col md:flex-row justify-between md:items-center">
+		    		<div class="flex items-center">
+			    		<a 
+			    			href="/admin/dashboard" 
+			    			class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Dashboard</a>
+			    		<span class="px-2">/</span>
+			    		<h1 class="text-md  font-semibold text-gray-800 ">Category</h1>
 
-		        <div class="w-full mb-6 flex flex-col md:flex-row justify-between md:items-center">
-			        <h3 class="text-lg text-gray-900 fond-bold w-full md:w-auto mb-3 md:mb-0">Categories {{ $total }}</h3>
+			    	</div>
+		       
 				    <div class="flex justify-between items-center w-full md:w-auto">
 			    		<form action="{{ route('admin.categories') }}" method="get" accept-charset="utf-8">
 			    			@csrf

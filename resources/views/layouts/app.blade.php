@@ -39,7 +39,12 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-6 h-6 text-gray-200"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                           
                             </div>
-                            <input type="text" id="keyword" name="keyword" class=" rounded-full w-full lg:w-56  border border-gray-300 pl-10 py-1 pr-3" placeholder="Search by name...">
+                            <input 
+                                type="text" 
+                                id="keyword" 
+                                name="keyword" 
+                                value="{{ request()->keyword }}" 
+                                class=" rounded-lg w-full lg:w-56  border border-gray-300 pl-10 py-1 pr-3" placeholder="Search by name...">
                         </div>
                           
                     </form>
@@ -48,11 +53,22 @@
 
                 <!-- Right -Side -->
                 <div class="flex items-center">
+                    <li class="list-none mr-4">
+                        <a class="hover:font-bold text-md font-thin {{ 
+                            (Route::currentRouteName() == 'welcome') ? 'font-bold' : 'text-gray-900'
+                        }}" href="/">Home</a>
+                    </li> 
+                    <li class="list-none mr-4">
+                        <a class="hover:font-bold text-md font-thin {{ 
+                            (Route::currentRouteName() == 'shop') ? 'font-bold' : 'text-gray-900'
+                        }}" href="/shop">Shop</a>
+                    </li>
+                                        
                     <a href="/bag"
                         x-data="{ cartDetails : false }"
                         class="mr-4 text-gray-900 flex items-center hover:opacity-75 
                             {{ 
-                                (Route::currentRouteName() == 'cart') ? 'opacity-75' : ''
+                                (Route::currentRouteName() == 'cart') ? 'font-bold' : ''
                             }}" 
                         >
                                     
@@ -107,19 +123,21 @@
                         </div>
                     
                     @else
-                        <li class="list-none">
+
+                        <li class="border-l border-gray-300 list-none">
                             <a  
-                                class="hover:opacity-75 bg-gray-900  no-underline px-6 py-2 rounded-full text-white {{ 
+                                class="hover:font-bold  font-thin no-underline px-6 py-2 rounded-lg text-gray-900 {{ 
                                 (Route::currentRouteName() == 'login') ? 'opacity-75' : ''
                                 }}" 
                                 href="{{ route('login') }}"
                             >
-                                {{ __('LOGIN') }}
+                                {{ __('MY ACCOUNT') }}
                             </a>
                         </li>
+
                     @endauth
 
-                    <!-- Small Screens -->
+                    <!-- Small Screens Links-->
                     @auth('customer')
                     <div  x-data="{ menu : false }" class="md:hidden relative">
                         <svg
@@ -185,7 +203,8 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-6 h-6 text-gray-200"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                   
                     </div>
-                    <input type="text" id="keyword" name="keyword" class="  rounded-full w-full  border border-gray-300 pl-12 py-2 pr-3" placeholder="Search by name...">
+                    <input type="text" id="keyword" name="keyword" 
+                        value="{{ request()->keyword }}" class="  rounded-lg w-full  border border-gray-300 pl-12 py-2 pr-3" placeholder="Search by name...">
                 </div>
                   
             </form>

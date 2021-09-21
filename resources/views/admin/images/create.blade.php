@@ -9,22 +9,26 @@
 @section('content')
     <div class="w-full">
 			
-        {{-- <livewire:admin.product-image.create key="{{ now() }}" :product="$product" /> --}}
-
         <form method="POST" action="{{ route('product.image.store') }}" enctype="multipart/form-data">
             @csrf
 
-            <div class="flex justify-between items-center mb-10">
-                <div class="flex items-center">
-                    <a href="/admin/products/{{$product->id}}" class="text-xs font-thin hover:text-gray-900 mr-2 hover:font-bold">
-                        {{$product->name}}
-                    </a>
-                    /
-                    <h3 class="ml-2 text-sm font-thin">Image </h3>
+            <div class="flex flex-col md:flex-row justify-between md:items-center mb-10">
+                <div class="flex items-center mb-4 md:mb-0">
+                        <a 
+                          href="/admin/products" 
+                          class="text-md text-gray-800 hover:opacity-70 border-b border-transparent hover:border-gray-900">Products</a>
+                       <span class="px-2">/</span>
+            
+                        <a href="/admin/products/{{$product->id}}" class="text-md font-thin hover:text-gray-900 mr-2 hover:font-bold  border-b border-transparent hover:border-black">
+                            {{ \Str::limit($product->name, 6) }}
+                        </a>
+
+                        <span class="px-2">/</span>
+                        <h3 class="font-bold">New Image Color</h3>
+
+                       
                 </div>
-                <button type="submit" class=" px-3 py-2 w-40 text-center text-gray-900 hover:bg-gray-900 hover:text-white cursor-pointer rounded-lg border border-gray-300" >
-                    Upload
-                </button>
+                
             </div>
 
                 <div class="flex flex-col">
@@ -33,20 +37,13 @@
                     <div class="mb-5 w-full">
                         <x-label for="color" :value="__('Color')" />
 
-                        <input id="color" class="block border border-gray-300 py-2 px-3 rounded mt-1 w-full" type="text" name="color" value="{{ old('color') }}"  />
+                        <input id="color" class="block border border-gray-300 py-2 px-3 rounded mt-1 w-full" type="text" name="color" value="{{ old('color') }}" placeholder="red, #cecefee" />
                         @error('color')
                             <p class="text-red-600 mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-5 w-full">
-                        @error('media')
-                            <p class="text-red-600 mt-1">{{ $message }}</p>
-                        @enderror
                     
-                        <livewire:admin.helpers.media  from="productImage"/>
-                    </div>
- --}}
                     <div class="flex  mb-6">
                         <div class="flex flex-wrap w-full">
                             <label for="files" class="block text-gray-700 text-sm font-bold mb-2">
@@ -67,6 +64,9 @@
                         
                     </div>
                     
+                    <button type="submit" class="mt-3 px-6 py-2 w-full text-center bg-gray-900 text-white hover:opacity-75 cursor-pointer rounded-lg border border-gray-300" >
+                    Upload
+                </button>
                 
                 </div>
         </form>
