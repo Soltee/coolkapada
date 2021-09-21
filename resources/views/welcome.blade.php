@@ -49,8 +49,8 @@
                 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6
               ">
               @forelse($new as $product)
-                <div class="flex flex-col mb-6 shadow rounded-lg">
-                    <div 
+                <div class="flex flex-col mb-6 ">
+                    {{-- <div 
                         class="imgBlock relative w-full  cursor-pointer w-full">
                         <div class="overflow-hidden">
                             <a class="" 
@@ -84,11 +84,11 @@
                             </div>
                         @endif
 
-                    </div>
-                  {{-- <livewire:customer.product 
-                    :p="$p->id" 
+                    </div> --}}
+                  <livewire:customer.product 
+                    :p="$product->id" 
                     url="/"
-                    :from="'welcome'"/> --}}
+                    :from="'welcome'"/>
 
                 </div>
               @empty

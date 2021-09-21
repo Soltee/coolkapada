@@ -99,7 +99,7 @@
                                     
                                 </div> 
                             @else
-                                {{-- <div disabled class="mt-4 flex flex-wrap w-full opacity-70">
+                                <div disabled class="mt-4 flex flex-wrap w-full opacity-70">
                                     @foreach($sizes as $s)
 
                                         <span  
@@ -108,7 +108,7 @@
                                             {{ $s }}
                                         </span>
                                     @endforeach
-                                </div> --}}
+                                </div>
                         
                             @endif
                             <!-- Stock or Out of Stock -->

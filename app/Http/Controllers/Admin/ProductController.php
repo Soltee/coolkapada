@@ -26,8 +26,7 @@ class ProductController extends Controller
         $query = Product::latest()
                         ->with('media');
         if($search){
-            $query = $query->where('name', 'LIKE', '%'.$search.'%')
-                            ->orWhere('price', 'LIKE', '%'.$search.'%');
+            $query = $query->where('name', 'LIKE', '%'.$search.'%');
         }
 
         if($published){

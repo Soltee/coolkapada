@@ -74,10 +74,9 @@ class Product extends Component
         $this->quantity       = 0;
 
         //Set Color And Attributes
-
-        // $this->attributes = Attribute::where('product_image_id', $color)->get();
         $this->attributes    = $co->attributes;
-        $this->colorId       = $color;
+        $this->colorId       = $co->id;
+        $this->color         = $co->color;
 
         //Change the image cover
         $this->cover         = $co->media->image_url; 
@@ -86,27 +85,21 @@ class Product extends Component
 
     public function qty($attribute, $price, $quantity)
     {
-        $attribute = Attribute::where('identifier_id', $attribute)->first();
+        $attribute = Attribute::where('identifier_id', $attribute)->firstOrfail();
 
-        // dd($attribute->price);
+        // dd($attribute->id);
         $this->attributeId    = $attribute->id;
         $this->price          = $price;
         $this->quantity       = $quantity;
+        $this->size           = $quantity;
+
+        // dd($this->attributeId);
     }
 
     public function store()
     {
-        $data = [
-            $this->p->id,
-            $this->colorId,
-            $this->color,
-            $this->attributeId,
-            $this->size,
-            $this->price,
-            $this->qty
-        ];
-
         $pd = P::findOrfail($this->p->id);
+        // dd($pd->id);
 
         Cart::add([
                 'id'         => $pd->id,

@@ -1,3 +1,4 @@
+@extends('layouts.guest')
 @section('head')
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
     <style>
@@ -5,7 +6,7 @@
 	</style>
 @endsection
 
-<x-guest-layout>
+@section('content')
 	<div class="">
 		<div class="flex justify-between md:justify-start items-center mb-2 w-full px-6 py-2">
 			<a href="/shop"><h4 class="text-sm opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">SHOP</h4></a>
@@ -16,155 +17,188 @@
 		  
 		</div>
   
-    <div class="px-6  py-3">
-	    <div class="  flex  flex-col md:flex-row ">
-	    	<div class="w-full flex-1 md:w-1/2 md:mr-8 bg-gray-300">
+	    <div class="px-6  py-3">
+		    <div class="  flex  flex-col md:flex-row ">
+		    	<div class="w-full flex-1 md:w-1/2 md:mr-8 bg-gray-300">
 
-	    		<div class=" mx-4 mt-6">
-	        		<div class="flex items-center my-3">
-		    			<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-green-600 mr-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-	    				<p class="text-green-600 leading-relaxed">{{ session('success') }}</p>
-					</div>
-					<div class="flex justify-center items-center">
-					
-						{{-- <a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a> --}}
-					</div>
+		    		<div class=" mx-4 mt-6">
+		        		<div class="flex items-center my-3">
+			    			<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-green-600 mr-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+		    				<p class="text-green-600 leading-relaxed">{{ session('success') }}</p>
+						</div>
+						<div class="flex justify-center items-center">
+						
+							{{-- <a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a> --}}
+						</div>
 
-	    			<div class="my-5 border border-gray-400 rounded">
-	    				<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">
-			    			<h4 class="text-sm text-c-light-blue">Personal Info</h4>
+		    			<div class="my-5 border border-gray-400 rounded">
+		    				<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">
+				    			<h4 class="text-sm text-c-light-blue">Personal Info</h4>
 
-			    			<div class="my-5 border-2 border-gray-400 px-2 py-2 rounded">
-				    			<div class="flex items-center mb-4">
-					    			<div class="md:w-1/2 md:mr-2 flex flex-col text-lg text-c-dark-gray">
-					    				{{ $order->first_name . ' ' . $order->last_name  }}
+				    			<div class="my-5 border-2 border-gray-400 px-2 py-2 rounded">
+					    			<div class="flex items-center mb-4">
+						    			<div class="md:w-1/2 md:mr-2 flex flex-col text-lg text-c-dark-gray">
+						    				{{ $order->first_name . ' ' . $order->last_name  }}
+						    			</div>
 					    			</div>
+					    			<div class="flex flex-col mb-4 text-lg text-c-dark-gray">
+						    			{{ $order->email }}
+						    		</div>
+						    		<div class="flex flex-col mb-4 text-lg text-c-dark-gray">
+						    			{{  $order->phone_number }}
+						    		</div>
 				    			</div>
-				    			<div class="flex flex-col mb-4 text-lg text-c-dark-gray">
-					    			{{ $order->email }}
-					    		</div>
-					    		<div class="flex flex-col mb-4 text-lg text-c-dark-gray">
-					    			{{  $order->phone_number }}
-					    		</div>
-			    			</div>
 
-			    		</div>
+				    		</div>
 
-			    		<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">
-			    			<h4 class="text-sm text-c-light-blue ">Billing Info</h4>
+				    		<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">
+				    			<h4 class="text-sm text-c-light-blue ">Billing Info</h4>
 
-			    			<div class="my-5 border-2 border-gray-400 px-2 py-2 rounded">
-			    				<div class="mb-4 flex flex-col text-lg text-c-dark-gray">
-					    			{{  $order->city }}			    	
-					    		</div>
-				    			<div class="flex flex-col items-start mb-4 text-lg text-c-dark-gray">
+				    			<div class="my-5 border-2 border-gray-400 px-2 py-2 rounded">
+				    				<div class="mb-4 flex flex-col text-lg text-c-dark-gray">
+						    			{{  $order->city }}			    	
+						    		</div>
+					    			<div class="flex flex-col items-start mb-4 text-lg text-c-dark-gray">
 
-					    			{{  $order->street_address }}	,
-					    			{{  $order->house_number }}
-				    	
+						    			{{  $order->street_address }}	,
+						    			{{  $order->house_number }}
+					    	
+					    			</div>
+					    			
+								</div>
+				    		</div>
+
+				    		<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">
+				    			<h4 class="text-sm text-c-light-blue">Payment Info</h4>
+
+				    			<div class="my-5">
+					    			<div class="flex flex-col mb-4">
+						    			<label  class=" relative flex flex-col">
+											
+											<div class=" mr-2 px-5 py-3 rounded-lg  border-2 border-white text-gray-900 cursor-pointer border-green-500 flex items-center @error('payment_method') border-red-500  @enderror">
+												<svg xmlns="http://www.w3.org/2000/svg" class="rounded-full p-1 border-2 border-green-600   w-8 h-8  text-green-600 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+												<span class="text-md">Cash on Delivery</span>
+											</div>
+										</label>
+						    		</div>
 				    			</div>
-				    			
-							</div>
-			    		</div>
+				    		</div>
+		    			</div>
 
-			    		<div class=" border-2 border-gray-300 rounded-lg p-3 mb-5">
-			    			<h4 class="text-sm text-c-light-blue">Payment Info</h4>
+		    			<div 
+		    				x-data="{ openItem : true }"
+		    				class="">
+			    			<div class="flex justify-between items-center mb-6">
+					        	<h4 class="text-lg text-gray-800">Your Order (Rs {{ $order->grand_total }})</h4>
+					        	<svg
+					        		x-on:click="openItem = !openItem" 
+					        		xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-800 font-bold cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+					        </div>
+			        		<div 
+			        			x-show.transition.50ms="openItem" 
+			        			class="mb-16">
+				        	@forelse($items as $item)
+				        		<div class="flex justify-between mb-5">
 
-			    			<div class="my-5">
-				    			<div class="flex flex-col mb-4">
-					    			<label  class=" relative flex flex-col">
-										
-										<div class=" mr-2 px-5 py-3 rounded-lg  border-2 border-white text-gray-900 cursor-pointer border-green-500 flex items-center @error('payment_method') border-red-500  @enderror">
-											<svg xmlns="http://www.w3.org/2000/svg" class="rounded-full p-1 border-2 border-green-600   w-8 h-8  text-green-600 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-											<span class="text-md">Cash on Delivery</span>
-										</div>
-									</label>
-					    		</div>
-			    			</div>
-			    		</div>
-	    			</div>
-
-	    			<div 
-	    				x-data="{ openItem : true }"
-	    				class="">
-		    			<div class="flex justify-between items-center mb-6">
-				        	<h4 class="text-lg text-gray-800">Your Order (Rs {{ $order->grand_total }})</h4>
-				        	<svg
-				        		x-on:click="openItem = !openItem" 
-				        		xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-800 font-bold cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-				        </div>
-		        		<div 
-		        			x-show.transition.50ms="openItem" 
-		        			class="mb-16">
-			        	@forelse($items as $item)
-			        		<div class="flex justify-between mb-5">
-
-			        			<img  class="image rounded w-40 mr-3" src="{{ asset($item->image_url) }}" alt="{{ $item->image_url }}">
-			        			<div class="flex flex-col my-4">
-				        			<div class="flex items-center justify-between mb-3">
-				        				<h3 class="mr-3 text-gray-800 text-lg mb-4" >
-				        					<span class="mr-2"> {{ $item->name }}</span> * 
-				        					<span class="ml-2 text-xl font-bold">{{ $item->qty }} </span>
-				        				</h3>
-				        				
-				        			</div>
-				        			<div class="flex items-center">
-					        			<span class="text-xl font-bold text-gray-800">Rs {{ $item->qty * $item->price }}</span>
+				        			<img  class="image rounded w-40 mr-3" src="{{ asset($item->image_url) }}" alt="{{ $item->image_url }}">
+				        			<div class="flex flex-col my-4">
+					        			<div class="flex items-center justify-between mb-3">
+					        				<h3 class="mr-3 text-gray-800 text-lg mb-4" >
+					        					<span class="mr-2"> {{ $item->name }}</span> * 
+					        					<span class="ml-2 text-xl font-bold">{{ $item->qty }} </span>
+					        				</h3>
+					        				
+					        			</div>
+					        			<div class="flex items-center">
+						        			<span class="text-xl font-bold text-gray-800">Rs {{ $item->qty * $item->price }}</span>
+						        		</div>
+					        				
 					        		</div>
-				        				
 				        		</div>
-			        		</div>
-			        	@empty
-			        	@endforelse
-			        	</div>
+				        	@empty
+				        	@endforelse
+				        	</div>
 
-			        </div>
+				        </div>
 
 
-			        	<!-- Order Details -->
-			        	<div class="flex flex-col border border-gray-400 rounded my-6">
-			        		<div class="flex justify-between items-center mb-4 px-3 pt-3">
-			        			<h5 class="text-gray-800 text-md">SubTotal</h5>
-			        			<span class="text-gray-800 text-md">Rs {{ $order->sub_total }}</span>
-			        		</div>
-			        		<div class="flex justify-between items-center mb-4 px-3 ">
-			        			<h5 class="text-gray-800 text-md">Discount</h5>
-			        			<span class="text-gray-800 text-md">Rs {{ $order->discount }}</span>
-			        		</div>
-			        		<div class="flex justify-between items-center mb-4 px-3 ">
-			        			<h5 class="text-gray-800 text-md">Shipping</h5>
-			        			<span class="text-gray-800 text-md">Rs 0</span>
-			        		</div>
-			        		<div class="flex justify-between items-center mb-4 border-t border-gray-400 pt-3 px-3">
-			        			<h5 class="text-gray-800 text-lg">Total</h5>
-			        			<span class="text-gray-800 text-xl font-bold">Rs {{ $order->grand_total }}</span>
-			        		</div>
-			        	</div>
-	        	</div>
+				        	<!-- Order Details -->
+				        	<div class="flex flex-col border border-gray-400 rounded my-6">
+				        		<div class="flex justify-between items-center mb-4 px-3 pt-3">
+				        			<h5 class="text-gray-800 text-md">SubTotal</h5>
+				        			<span class="text-gray-800 text-md">Rs {{ $order->sub_total }}</span>
+				        		</div>
+				        		<div class="flex justify-between items-center mb-4 px-3 ">
+				        			<h5 class="text-gray-800 text-md">Discount</h5>
+				        			<span class="text-gray-800 text-md">Rs {{ $order->discount }}</span>
+				        		</div>
+				        		<div class="flex justify-between items-center mb-4 px-3 ">
+				        			<h5 class="text-gray-800 text-md">Shipping</h5>
+				        			<span class="text-gray-800 text-md">Rs 0</span>
+				        		</div>
+				        		<div class="flex justify-between items-center mb-4 border-t border-gray-400 pt-3 px-3">
+				        			<h5 class="text-gray-800 text-lg">Total</h5>
+				        			<span class="text-gray-800 text-xl font-bold">Rs {{ $order->grand_total }}</span>
+				        		</div>
+				        	</div>
+		        	</div>
 
-	    	</div>
-	        <div class="relative w-full md:w-1/2  p-5 ">
-	        	<div class="flex justify-between items-center">
-					<h5 class="">You may also like.</h5>
+		    	</div>
+		        <div class="relative w-full md:w-1/2  p-5 ">
+		        	<div class="flex justify-between items-center">
+						<h5 class="">You may also like.</h5>
 
-	        	</div>
-	           	<div class="mt-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-6 ">
-	           		@forelse($products as $product)
-	           			<div class="w-full flex flex-col items-center mb-6">
-							
-							<livewire:customer.product :p="$product->id" url="/bag" />
+		        	</div>
+		           	<div class="mt-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-6 ">
+		           		@forelse($products as $product)
+		           			<div class="flex flex-col mb-6 shadow rounded-lg">
+			                    <div 
+			                        class="imgBlock relative w-full  cursor-pointer w-full">
+			                        <div class="overflow-hidden">
+			                            <a class="" 
+			                                href="{{ route('product', $product->slug)}}">
+			                                <img  
+			                                    class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70" 
+			                                    src="{{ asset($product->media->image_url) }}" 
+			                                    alt="{{ $product->slug }}">
+			                            </a>
+			                        </div>
+			                    </div>
+			                  
+			                    <div class="pb-3 px-3">
 
-	           			</div>
-	           		@empty
-	           		@endforelse
-	           	</div>
+			                        <div class=" mt-3 flex  justify-between items-center mb-2">
+			                            <a class="" href="{{ route('product', $product->slug)}}">
+			                                <h2 class="hover:font-bold cursor-pointe text-thin text-gray-700">
+			                                    {{ $product->name }} 
+			                                </h2>
+			                            </a>
+			                            <h4 class="text-lg font-semibold">
+			                                RS {{ $product->min }} +
+			                                NP 
+			                            </h4>
 
-	           	<div class="mt-6 w-full flex ">
-					<a href="/shop" class="px-6 py-2 w-full text-center  rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Browse More</a>
+			                        </div>
 
-				</div>
-	        </div>
+			                        @if(!$product->attributes()->sum('quantity'))
+			                            <div class="flex items-center">
+			                                <span class="font-bold text-red-600">Out of Stock</span>
+			                            </div>
+			                        @endif
+
+			                    </div>
+			                 
+			                </div>
+		           		@empty
+		           		@endforelse
+		           	</div>
+
+		           	<div class="mt-6 w-full flex ">
+						<a href="/shop" class="px-6 py-2 w-full text-center  rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Browse More</a>
+
+					</div>
+		        </div>
+		    </div>
 	    </div>
-    </div>
 	</div>
-</x-guest-layout>
+@endsection

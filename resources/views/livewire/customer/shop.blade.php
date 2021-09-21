@@ -111,7 +111,6 @@
             </div>
             
             <span class=" text-gray-900 ">
-                {{ $category }}
                 @if($total > 0)
                     Showing {{ $first . ' - ' . $last }} of {{ $total }}
                 @endif
@@ -119,10 +118,12 @@
         </div>
 
 
-        <div class="flex flex-col">
+        <div 
+            x-data="{ openQuickView: false }"
+            class="flex flex-col">
+
             <!-- Products -->
             <div class="w-full grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {{-- <div class="w-full flex flex-wrap"> --}}
 
                 @forelse($products as $product)
 
@@ -138,11 +139,41 @@
                                         alt="{{ $product->slug }}">
                                 </a>
                             </div>
+
+                            <div>
+                                <div
+                                    class="quick_view absolute inset-0 flex justify-center items-center"
+                                    >
+                                        <span 
+                                            class="rounded px-6 py-2 bg-gray-600 text-white hover:bg-gray-800 hover:text-white"
+                                            >Quick View</span>
+
+                                </div>
+                            </div>
+
+
                         </div>
-                      
+                        
+                        <!-- Product Quick View -->
+                        {{-- <div 
+                            x-show="openQuickView"
+                            class=" fixed inset-0 z-20 flex justify-center items-center">
+                            <div 
+                                x-on:click="openQuickView = !openQuickView"
+                                class="absolute inset-0 bg-green-100 opacity-70"></div>
+                            <div class="flex justify-center items-center shadow-xl rounded-lg">
+                                <livewire:customer.product 
+                                    :from="'single'"
+                                    :url="'/product/'.$product->slug"
+                                    :p="$product->id" 
+                                    />
+                            </div>
+                        </div> --}}
+
+                        <!-- Product Description -->
                         <div class="pb-3 px-3">
 
-                            <div class="mt-3flex  justify-between items-center mb-2">
+                            <div class="flex  justify-between items-center mb-2">
                                 <a class="" href="{{ route('product', $product->slug)}}">
                                     <h2 class="hover:font-bold cursor-pointe text-thin text-gray-700">
                                         {{ $product->name }} 
@@ -178,6 +209,7 @@
                 @endforelse
 
             </div>
+                            
 
             <!-- Pagination -->
 
@@ -190,37 +222,6 @@
                 </div>
 
             @endif
-
-
-
-            {{-- 
-            <div class=" flex justify-center items-center my-6">
-                @if($products->appends(request()->input())->previousPageUrl())
-                    <a class="px-6 py-3 rounded text-c-dark-gray border-1 hover:bg-gray-900 hover:text-white" href="{{ $products->appends(request()->input())->previousPageUrl()}}">
-                            Prev
-                        </a>
-                @else
-                    <span class="px-6 py-3 rounded text-transparent ">
-                            Prev
-                        </span>
-                        
-                @endif
-                
-                @if($count > 0)
-                    <span class="px-6 py-3 mx-4 rounded  border-1 bg-gray-900 text-white">{{ $products->appends(request()->input())->currentPage() }}</span>
-                @endif
-
-                @if($products->appends(request()->input())->nextPageUrl())
-                    <a class="px-6 py-3 rounded text-c-dark-gray border-1 hover:bg-gray-900 hover:text-white" href="{{ $products->appends(request()->input())->nextPageUrl()}}">
-                        Next
-                    </a>
-                @else
-                    <span class="px-6 py-3 rounded text-transparent ">
-                        Next
-                    </span>
-                @endif
-
-            </div> --}}
 
         </div>
     </div>

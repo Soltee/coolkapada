@@ -55,6 +55,7 @@
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Name</th>
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Price</th>
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Qty</th>
+			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Sold</th>
 			      <th class="px-2 py-2 text-left text-capitalize text-gray-600">Status</th>
 			    </tr>
 			  </thead>
@@ -82,7 +83,13 @@
 						<div class="flex flex-col font-bold">
 							{{ $product->attributes()->sum('quantity') }}
 					  	</div>
+					</td>
+					<td class="border px-2 py-4">
+						<div class="flex flex-col font-bold">
+							{{ $product->sold }}
+					  	</div>
 					</td>	
+						
 					<td class="border px-2 py-4">
 						@if($product->published) 
 							<span class="px-3 py-2 bg-green-600 rounded-lg text-white"> PUBLISHED </span>

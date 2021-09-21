@@ -195,49 +195,6 @@
 
 									<!-- khalti Payload -->
 									<div id="khaltiPayload"></div>
-									
-									<!--- Khalti Model -->
-									<div id="khaltiModel" class="hidden z-50 inset-0 fixed flex flex-col items-center justify-center">
-										<div class="bg-gray-300 max-w-4xl flex flex-col rounded-lg px-4 py-4 shadow-lg" >
-											<div class="flex justify-between items-end">
-												<div class="item active " style=" cursor: pointer;">
-													<img class="w-6 h-6" src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/icons/mywallet.svg" >
-													<span class="font-bold">Khalti Wallet</span>
-												</div>
-												<img id="closeCross" src="{{ asset('/img/close.svg') }}" alt="" class="flex justify-end w-4 cursor-pointer h-4" >
-											</div>
-												
-											<div>
-											<!-- Initiation Form -->
-											<div id="initiateConfirmForm">
-												<div class="mt-3">
-													<div class="flex flex-col mb-4">
-
-														<label for="house_number" class="mb-2 text-c-lighter-black text-sm">Mobile Number <span class="text-red-600">*</span></label>
-														<input id="customerNumber" type="number" name="house_number" class="px-6 py-2 rounded-lg border border-gray-300 " placeholder="9806678901" value="">	
-														
-													</div>
-													<div class="flex flex-col">
-														<label for="house_number" class="mb-2 text-c-lighter-black text-sm">Transaction Pin <span class="text-red-600">*</span></label>
-														<input id="customerPin" type="number" name="house_number" class="px-6 py-2 rounded-lg border border-gray-300 " placeholder="1234" value="">	
-													</div>
-
-													<div class="hidden flex flex-col mb-4">
-														<label for="house_number" class="mb-2 text-c-lighter-black text-sm">Confirmation Code <span class="text-red-600">*</span></label>
-														<input id="confirmCode" type="number" name="house_number" class="px-6 py-2 rounded-lg border border-gray-300 " placeholder="9806678901" value="">
-														
-													</div>
-
-													<div id="initiateConfirmFormBtn" class="px-6 py-2 mt-6 mb-1 mx-6 w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Send Now</div>
-
-												</div>
-											</div>
-
-											
-											</div>
-										</div>
-									</div>
-
 
 
 								</div>

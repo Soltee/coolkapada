@@ -19,7 +19,7 @@ class WelcomeController extends Controller
                     ->has('attributes')
                     ->with('media', 'images')
                     // ->take(3)
-                    ->paginate(9);
+                    ->paginate(6);
         return view('welcome', compact('new'));
     }
 

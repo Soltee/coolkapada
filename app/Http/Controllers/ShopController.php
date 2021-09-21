@@ -16,48 +16,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-
         return view('shop');
-        // $filter   = requestl_filter;
-     //    $category = request()->category;
-     //    $search   = request()->keyword;
-     //    $size     = request()->size;
-
-     //    $query    = Product::latest()
-     //                ->where('published', true)
-     //                ->has('attributes')
-     //                ->with('media');
-
-     //    if($category){
-     //        // $category   = Category::findOrfail($category);
-     //        $categories =   Category::latest()->paginate(6);
-     //        $query      =   $query->where('category_id', $category);
-     //    }
-
-     //    if($search){
-     //        $query  =   $query->where('name', 'LIKE' , "%".$search."%");
-     //    }
-
-     //    if($size){
-     //        $query   = $query->whereRelation('attributes', 'size', $size);
-     //    }
-    
-    	// $categories =   Category::latest()->take(6)->get();
-     //    $products   =   $query->paginate(9);
-     //    $sizes      =   [
-     //                        ['name' => 'Extra Small', 'symbol' => 'XS'],
-     //                        ['name' => 'Small', 'symbol' => 'S'],
-     //                        ['name' => 'Medium', 'symbol' => 'M'],
-     //                        ['name' => 'Large', 'symbol' => 'L'],
-     //                        ['name' => 'Extra Large', 'symbol' => 'XL']
-     //                    ];
-
-     //    $count      =   $products->total();
-     //    $first      =   $products->firstItem();
-     //    $last       =   $products->lastItem();
-    	
-     //    return view('shop', compact('categories','category', 'products', 'sizes', 'size', 'first', 'last', 'count'));
-
     }
 
     /*

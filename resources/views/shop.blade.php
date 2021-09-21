@@ -21,10 +21,13 @@
 		}	
 		.imgBlock{transition: transform 0.3s ease-in-out;}
 		.imgBlock:hover img{opacity: 0.7;}
-		.imgBlock:hover  .addBtn {
-			visibility: initial;
+		.imgBlock:hover  .quick_view {
+			/*visibility: initial;*/
+			/*visibility: initial;*/
 		}
 		.addBtn{visibility: hidden;}
+
+		.quick_view{visibility: hidden;}
 
 	</style>
 @endsection

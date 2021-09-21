@@ -52,7 +52,8 @@
                 </div>
 
                 <!-- Right -Side -->
-                <div class="flex items-center">
+                <div 
+                    class="flex items-center">
                     <li class="list-none mr-4">
                         <a class="hover:font-bold text-md font-thin {{ 
                             (Route::currentRouteName() == 'welcome') ? 'font-bold' : 'text-gray-900'
@@ -65,17 +66,19 @@
                     </li>
                                         
                     <a href="/bag"
-                        x-data="{ cartDetails : false }"
-                        class="mr-4 text-gray-900 flex items-center hover:opacity-75 
-                            {{ 
-                                (Route::currentRouteName() == 'cart') ? 'font-bold' : ''
-                            }}" 
-                        >
-                                    
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                            
-                            <span>{{ \Cart::getTotalQuantity() }}</span>
+                            class="mr-4 text-gray-900 flex items-center hover:opacity-75 
+                                {{ 
+                                    (Route::currentRouteName() == 'cart') ? 'font-bold' : ''
+                                }}" 
+                            >
+                                        
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                
+                                <span
+                                    x-on:click="openBag=!openBag;">{{ \Cart::getTotalQuantity() }}</span>
+
                     </a>
+
 
                     @auth('customer')
                            
@@ -94,16 +97,6 @@
                                                 (Route::currentRouteName() == 'dashboard') ? 'opacity-75' : ''
                                             }}" href="/dashboard">Dashboard</a>
                                         </li> 
-                                        <li class="list-none mb-3">
-                                            <a class="hover:opacity-75 text-md text-white font-thin {{ 
-                                                (Route::currentRouteName() == 'welcome') ? 'opacity-75' : 'text-white'
-                                            }}" href="/">Home</a>
-                                        </li> 
-                                        <li class="list-none mb-3">
-                                            <a class="hover:opacity-75 text-md text-white font-thin {{ 
-                                                (Route::currentRouteName() == 'shop') ? 'opacity-75' : 'text-white'
-                                            }}" href="/shop">Shop</a>
-                                        </li>
                                         <li class="list-none ">
                                                 <a  href="{{ route('logout') }}" class="hover:opacity-75 mr-3  text-md font-thin text-white" 
                                                 onclick="
