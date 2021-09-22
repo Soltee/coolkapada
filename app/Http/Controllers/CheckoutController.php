@@ -84,7 +84,7 @@ class CheckoutController extends Controller
         //     curl_setopt($ch, CURLOPT_POSTFIELDS,$args);
         //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        //     $headers = ['Authorization: Key '. env('KHALTI_SECRET_KEY') .''];
+        //     $headers = ['Authorization: Key ' .env('KHALTI_SECRET_KEY')];
         //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         //     // Response

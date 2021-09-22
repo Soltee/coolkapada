@@ -1,8 +1,8 @@
-{{-- <x-guest-layout> --}}
 @extends('layouts.guest')
 @section('content')
 	
-	 <div class="">
+	 <div class="overflow-auto">
+
 		<div class="flex justify-between md:justify-start items-center mb-2 w-full px-6 py-2">
 			<a href="/shop"><h4 class="text-sm opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">SHOP</h4></a>
 			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -175,27 +175,97 @@
 												{{-- {{ old('payment_method') ? 'checked' : '' }}  --}}
 												name="payment_method" value="cash-on-delivery">
 										
-											{{-- <svg xmlns="http://www.w3.org/2000/svg" class="rounded-full p-1 border svg   w-8 h-8  hover:text-green-600 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg> --}}
 											<span class="text-md">Cash on Delivery</span>
 										</div>
 									</label>
-									
-									<!--Khalti-->
-									<label id="payment-button"  class="mt-3 group custom_radio relative flex flex-col">
-										<div class="radio_btn mr-2 px-5 py-3 rounded-lg  border hover:border-blue text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
-											<input 
-												class="mr-3" 
-												type="radio"
-												  
-												name="payment_method" value="_khalti">
 										
-											<span class="text-md">Khalti Payment</span>
+					
+
+
+									<!--Khalti-->
+									<div 
+										x-data="{ openModalKhalti: false }" class="">
+										<label
+										 class="mt-3 group custom_radio relative flex flex-col">
+											<div 
+												x-on:click="openModalKhalti = true"
+										 		
+										 		class="radio_btn mr-2 px-5 py-3 rounded-lg  border hover:border-blue text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
+												<input 
+													class="mr-3" 
+													type="radio"
+													x-on:click="openModalKhalti = true"
+													name="payment_method" value="_khalti">
+											
+												<span 
+													x-on:click="openModalKhalti = true"
+													class="text-md">Khalti Payment</span>
+											</div>
+										</label>
+
+										<div class="khaltiPayload"></div>
+
+										<div 
+											x-show.transition.50ms="openModalKhalti"
+											class="fixed inset-0  rounded-lg flex flex-col  justify-center rounded-lg z-30">
+									        <div class="h-full w-full bg-gray-300 opacity-75">
+									            
+									        </div>
+									        <div class="absolute  bg-white left-0 right-0  mx-auto  max-w-xl shadow-lg rounded-lg p-6 z-30">
+
+									        	<div class="flex justify-end">
+													<img 
+														x-on:click="openModalKhalti = false"
+														src="/img/close.svg" class="h-4 w-4 cursor-pointer">
+												</div>
+
+
+												
+												<div class="flex justify-center items-center">
+													<div class="item active flex justify-center items-center" style="padding: 18px 12px 18px 0px; cursor: pointer;" >
+														<img src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/icons/mywallet.svg" style="height: 16px;">
+														<span class="ml-2 uppercase ">Khalti Wallet</span>
+													</div>
+												</div>
+
+												<div class="u">
+													<form class="ui form">
+														<div class="flex flex-col mb-4">
+															<label for="" class="text-xs mb-2">Khalti Mobile Number</label>
+															<input id="khaltiNum" class="px-3 py-2 shadow rounded" type="text" name="mobile" placeholder="Enter khalti registered number">
+														</div>
+														<div class="flex flex-col mb-4 ">
+															<label for="" class="text-xs mb-2">Khalti PIN</label>
+															<input id="pinCode" class="px-3 py-2 shadow rounded" type="password" name="transaction_pin" placeholder="Enter Khalti Pin">
+														</div>
+														<div class="confirmCodeDiv hidden flex flex-col mb-4 ">
+															<label for="" class="text-xs mb-2">Confirmation Code</label>
+															<input class="px-3 py-2 shadow rounded" type="password" name="confirmation_code" placeholder="Enter Confirmation Pin">
+														</div>
+
+														<div class="flex justify-center items-center">
+															<button class="bg-blue-450 hover:opacity-75 rounded px-3 py-2 text-white" 
+																type="button">
+																	Pay Rs. 11/-
+															</button>
+														</div>
+													</form>
+
+													<div class=" mt-4 flex  flex-col justify-center items-center">
+														<div 
+															class="border-t text-xs" style="text-transform: unset; color: rgb(120, 120, 120); ">Forgot your Khalti PIN?
+														</div>
+														<div style="text-align: center;">
+															<a 
+																class="uppercase text-sm" 
+																target="_blank" href="https://khalti.com/#/account/transaction_pin" style="text-decoration: none; color: rgb(93, 46, 142); letter-spacing: 0.06em;">Set KHALTI pin
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
-									</label>
-
-									<!-- khalti Payload -->
-									<div id="khaltiPayload"></div>
-
+									</div>
 
 								</div>
 								
@@ -274,15 +344,16 @@
 			
 			</div>
 		</div>
+
 	</div>
 
 
 @endsection
-{{-- </x-guest-layout> --}}
 
 @push('scripts')
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	{{-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> --}}
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
 
     <script>
         let amtInput             = document.getElementById('total_amt');
@@ -330,7 +401,7 @@
         var checkout = new KhaltiCheckout(config);
         btn.onclick = function () {
             // minimum transaction amount must be 10, i.e 1000 in paisa.
-            checkout.show({amount: amtInput.value * 100});
+            // checkout.show({amount: amtInput.value * 100});
         }
 
       //   let khaltiModel = document.getElementById('khaltiModel');
