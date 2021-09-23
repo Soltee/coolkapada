@@ -13,6 +13,74 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <style type="text/css">
+            .spinner {
+                margin: 100px auto;
+                width: 50px;
+                height: 40px;
+                text-align: center;
+                font-size: 10px;
+            }
+
+            .spinner>div {
+                background-color: #6886c5;
+                height: 100%;
+                width: 6px;
+                display: inline-block;
+
+                -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+                animation: sk-stretchdelay 1.2s infinite ease-in-out;
+            }
+
+            .spinner .rect2 {
+                -webkit-animation-delay: -1.1s;
+                animation-delay: -1.1s;
+            }
+
+            .spinner .rect3 {
+                -webkit-animation-delay: -1.0s;
+                animation-delay: -1.0s;
+            }
+
+            .spinner .rect4 {
+                -webkit-animation-delay: -0.9s;
+                animation-delay: -0.9s;
+            }
+
+            .spinner .rect5 {
+                -webkit-animation-delay: -0.8s;
+                animation-delay: -0.8s;
+            }
+
+            @-webkit-keyframes sk-stretchdelay {
+
+                0%,
+                40%,
+                100% {
+                    -webkit-transform: scaleY(0.4)
+                }
+
+                20% {
+                    -webkit-transform: scaleY(1.0)
+                }
+            }
+
+            @keyframes sk-stretchdelay {
+
+                0%,
+                40%,
+                100% {
+                    transform: scaleY(0.4);
+                    -webkit-transform: scaleY(0.4);
+                }
+
+                20% {
+                    transform: scaleY(1.0);
+                    -webkit-transform: scaleY(1.0);
+                }
+            }
+
+        </style>
         <!-- Scripts -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
         {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
@@ -64,21 +132,9 @@
                             (Route::currentRouteName() == 'shop') ? 'font-bold' : 'text-gray-900'
                         }}" href="/shop">Shop</a>
                     </li>
-                                        
-                    <a href="/bag"
-                            class="mr-4 text-gray-900 flex items-center hover:opacity-75 
-                                {{ 
-                                    (Route::currentRouteName() == 'cart') ? 'font-bold' : ''
-                                }}" 
-                            >
-                                        
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                                
-                                <span
-                                    x-on:click="openBag=!openBag;">{{ \Cart::getTotalQuantity() }}</span>
-
-                    </a>
-
+                    
+                    <!-- Shopping Bag -->
+                    <livewire:customer.bag />
 
                     @auth('customer')
                            
@@ -119,7 +175,7 @@
 
                         <li class="border-l border-gray-300 list-none">
                             <a  
-                                class="hover:font-bold  font-thin no-underline px-6 py-2 rounded-lg text-gray-900 {{ 
+                                class="hover:font-bold  font-thin no-underline py-2 rounded-lg text-gray-900 {{ 
                                 (Route::currentRouteName() == 'login') ? 'opacity-75' : ''
                                 }}" 
                                 href="{{ route('login') }}"
@@ -293,7 +349,7 @@
                     </div>
 
                     <a data-scroll href="#header" class="cursor-pointer">
-                        <svg class="h-8 w-8 p-2 text-white font-semibold bg-gray-900 hover:bg-gray-700 rounded-full" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <svg class="h-8 w-8 p-2 text-white font-semibold bg-gray-900 hover:bg-gray-900 rounded-full" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                             <path d="M9 3.828L2.929 9.899 1.515 8.485 10 0l.707.707 7.778 7.778-1.414 1.414L11 3.828V20H9V3.828z" /></svg>
                     </a>
                    

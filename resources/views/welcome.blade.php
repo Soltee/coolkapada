@@ -2,6 +2,7 @@
 @section('head')
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
     <style>
+        .custom_radio input:hover + .radio_btn{border: 2px solid green;}
         .custom_radio input:checked + .radio_btn{border: 2px solid green;}
         .custom_radio2 input:checked + .radio_btn2{
           border: 2px solid rgb(17, 24, 39);

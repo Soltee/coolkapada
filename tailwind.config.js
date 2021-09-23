@@ -5,7 +5,7 @@ module.exports = {
 
      './public/**/*.html',
 
-     './src/**/*.{js,jsx,ts,tsx,vue}',
+     './resources/views**/*.{blade.php}',
 
    ],
     theme:{

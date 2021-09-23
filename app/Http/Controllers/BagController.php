@@ -20,7 +20,6 @@ class BagController extends Controller
         $shipping    = 'FREE';
         $total_qty   = Cart::getTotalQuantity();
         $total       = Cart::getTotal();
-        // dd($items);
 
         return view('bag', compact('items', 'sub', 'shipping', 'total_qty', 'total'));
     }
@@ -99,6 +98,7 @@ class BagController extends Controller
 
         return  back()->with('success', 'Item removed from my bag.');
     }
+
     /**
      * Clear cart
      *
@@ -113,7 +113,7 @@ class BagController extends Controller
 
         Cart::clear();
 
-        return  back()->with('success', 'Bag cleared');
+        return  back()->with('success', 'Bag cleared.');
     }
 
 

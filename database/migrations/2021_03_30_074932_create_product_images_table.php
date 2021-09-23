@@ -19,8 +19,6 @@ class CreateProductImagesTable extends Migration
 
             $table->uuid('product_id');
             $table->uuid('media_id');
-            // $table->foreignId('product_id');
-            // $table->foreignId('media_id');
             $table->string('color');
             $table->timestamps();
         });

@@ -21,16 +21,18 @@ class Product extends Component
     public $sizes = ['S', 'M', 'L'];
     public $stock;
 
-    protected $color;
-    protected $colorId;
-    protected $attributeId;
+    public $selectedCover;
+    public $selectedImage;
+    public $color;
+    public $colorId;
+    public $attributeId;
     public $size;
     public $price;
     public $quantity;
     public $qty = 1;
 
     public $addedId;
-    public $success;
+    public $success = false;
 
     protected $rules = [
         'color' => 'required',
@@ -66,7 +68,12 @@ class Product extends Component
     public function getAttributes($color)
     {
         // dd($color);
-        $co = ProductImage::where('identifier_id', $color)->first();
+        $co = ProductImage::where('identifier_id', $color)
+                    ->with('media')
+                    ->firstOrfail();
+
+        //Refresh Success Message
+        $this->success         = false;
 
         //Refresh Attributes
         $this->attributeId    = '';
@@ -77,29 +84,30 @@ class Product extends Component
         $this->attributes    = $co->attributes;
         $this->colorId       = $co->id;
         $this->color         = $co->color;
+        $this->colorImage    = $co->color;
 
         //Change the image cover
         $this->cover         = $co->media->image_url; 
 
+        // dD($co);
+
     }
 
-    public function qty($attribute, $price, $quantity)
+    public function qty($attribute)
     {
         $attribute = Attribute::where('identifier_id', $attribute)->firstOrfail();
 
         // dd($attribute->id);
         $this->attributeId    = $attribute->id;
-        $this->price          = $price;
-        $this->quantity       = $quantity;
-        $this->size           = $quantity;
+        $this->price          = $attribute->price;
+        $this->size           = $attribute->size;
+        $this->quantity       = $attribute->quantity;
 
-        // dd($this->attributeId);
     }
 
     public function store()
     {
         $pd = P::findOrfail($this->p->id);
-        // dd($pd->id);
 
         Cart::add([
                 'id'         => $pd->id,
@@ -109,18 +117,34 @@ class Product extends Component
                 'attributes' => [
                     'product_id'  => $pd->id,
                     'slug'        => $pd->slug,
-                    'image_url'   => $pd->media->image_url,
+                    'cover_url'   => $pd->media->image_url,
+                    'image_url'   => $this->cover,
                     'colorId'     => $this->colorId,
                     'color'       => $this->color,
                     'attributeId' => $this->attributeId,
-                    'size'        => $this->size,
+                    'size'        => $this->size
                 ]
         ]);
 
-        $this->addedId  = $pd->id;
-        $this->success  = true;
+        $this->success        = true;
+        $this->attributes     = '';
+        $this->colorId        = '';
+        $this->color          = '';
+        $this->colorImage     = '';
 
-        session()->flash('success', 'Item added to my bag.');
-        return redirect($this->url);    
+        $this->price          = '';
+        $this->size           = '';
+        $this->quantity       = 1;
+
+        $this->emit('product_added');
+        // $this->success  = true;
+        // session()->flash('toast_success', 'Item added to my bag.');
+        // return redirect($this->url);    
+    }
+
+    /** Clear All Messages */
+    public function clearMessage()
+    {
+        $this->success = false;
     }
 }
