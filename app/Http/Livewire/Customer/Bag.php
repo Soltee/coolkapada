@@ -12,16 +12,6 @@ class Bag extends Component
 
     public function render()
     {
-       
-        // return view('livewire.customer.bag', [
-        //     'items'        => $this->readyToLoad ? Cart::getContent() : [],
-        //     'sub'          => $this->readyToLoad ? Cart::getSubTotal() : 0,
-        //     'shipping'     => $this->readyToLoad ? 'getshipping' : 0,
-        //     'total_qty'    => $this->readyToLoad ? Cart::getTotalQuantity() : 0,
-        //     'total'        => $this->readyToLoad ? Cart::getTotal() : 0,
-            
-        // ]);
-
         return view('livewire.customer.bag', [
             'items'        => Cart::getContent(),
             'sub'          => Cart::getSubTotal(),

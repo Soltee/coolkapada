@@ -60,45 +60,6 @@ class CheckoutController extends Controller
         $shipping = (request()->city == 'pokhara') ? 0 : 0;
         $grand    = Cart::getTotal() + $shipping;
 
-        // dd('dd');
-
-        //IF khalti , post request for verification
-        // if($data['payment_method'] === '_khalti')
-        // {
-        //     $khalti_data   = $this->validate([
-        //         '_token'   => 'required|string',
-        //         '_amt'     => 'required|numeric'
-        //     ]);
-
-        //     $args = http_build_query(array(
-        //         'token'   => $khalti_data['_token'],
-        //         'amount'  => $khalti_data['_amt']
-        //     ));
-
-        //     $url = "https://khalti.com/api/v2/payment/verify/";
-
-        //     # Make the call using API.
-        //     $ch = curl_init();
-        //     curl_setopt($ch, CURLOPT_URL, $url);
-        //     curl_setopt($ch, CURLOPT_POST, 1);
-        //     curl_setopt($ch, CURLOPT_POSTFIELDS,$args);
-        //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        //     $headers = ['Authorization: Key ' .env('KHALTI_SECRET_KEY')];
-        //     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        //     // Response
-        //     $response = curl_exec($ch);
-        //     $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        //     curl_close($ch);
-
-        //     if(!$status_code === 200) {
-        //         return redirect()->back()->with('error', 'There has been a server error. Please try again later or contact us.');
-        //     }
-
-        // }
-        // dd($order->id);
-
         $order = Order::create([
             'customer_id'      => $user,
             'first_name'       => $data['first_name'],
@@ -132,21 +93,18 @@ class CheckoutController extends Controller
                 'color'          => $item->attributes->color
             ]);
 
-            // $found     = Attribute::where('identifier_id' , $item->attributes->attributeId)->firstOrfail();
-            // dd($item);
-            // dd($item->attributes->color);
+            //Decrement Quantity
+            $attribute     = Attribute::findOrfail($item->attributes->attributeId)
+                                        ->decrement('quantity', $item->quantity);
 
-            // $found     = Attribute::findOrfail($item->attributes->attributeId)->decrement('quantity');
-            // $attr       = Attribute::find
+            //Update Product Sold Qty
             $product    = Product::findOrfail($item->id);
             $product->update(['sold' => $item->quantity]);
 
         }
 
 
-        // return redirect()->back()->with('toast_success', 'uu');
-
-        Cart::clear();
+        // Cart::clear();
 
         return redirect()
                     ->route('thankyou', ['order' => $order->id])
@@ -173,7 +131,6 @@ class CheckoutController extends Controller
                             ->take(3)
                             ->get();
 
-        // dd($order);
         return view('thankyou', compact('order', 'items', 'products'));
     }
 

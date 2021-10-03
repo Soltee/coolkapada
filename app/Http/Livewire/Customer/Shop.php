@@ -32,20 +32,10 @@ class Shop extends Component
 
     public function render()
     {        
-        // return view('livewire.customer.shop', [
-        //     'products'         => $paginate,
-        //     'categories'       => $this->categories,
-        //     'category'         => $this->category,
-
-        //     'count'            => $paginate->total(),
-        //     'first'            => $paginate->firstItem(),
-        //     'last'             => $paginate->lastItem()
-        // ]);
-
         return $this->renderProductsList();
     }
 
-    /* When Search */
+    /* */
     public function renderProductsList()
     {
         if($this->search){
@@ -67,7 +57,6 @@ class Shop extends Component
             if($this->category)
             {   
                 $query  = $query->where('category_id', $this->category);
-                // $this->category = Category::findOrfail($this->category)->name;
             }
 
             if($this->size){

@@ -34,20 +34,7 @@
 
             <div
                 >
-                <div 
-                    wire:loading
-                    class="absolute inset-0 h-full bg-gray-900 opacity-70 flex justify-center items-center">
-
-                    <div class="spinner">
-                        <div class="rect1"></div>
-                        <div class="rect2"></div>
-                        <div class="rect3"></div>
-                        <div class="rect4"></div>
-                        <div class="rect5"></div>
-                    </div>
-
-                </div>
-
+                
                 <!-- If Total > 0 -->
                 <div>
                     

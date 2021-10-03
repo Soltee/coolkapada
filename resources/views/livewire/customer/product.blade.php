@@ -49,10 +49,10 @@
                                     class=" hidden z-0" 
                                     type="radio"
                                     {{ ($color === $c->color) ? 'checked' : '' }} 
-                                    wire:click="getAttributes({{$c->identifier_id}})"
-                                    value="{{ $c->color }}">
-                                    <span  class="radio_btn mr-2 px-4 py-4  rounded-full text-gray-900 cursor-pointer z-10" style="background-color: {{ $c->color }}"
+                                    wire:click="getAttributes('{{$c->id}}')"
                                     >
+                                        <span  class="radio_btn mr-2 px-4 py-4  rounded-full text-gray-900 cursor-pointer z-10" style="background-color: {{ $c->color }}"
+                                        >
                                       
                                     </span>
                                     
@@ -75,7 +75,7 @@
                                                 <input 
                                                     class="hidden" 
                                                     type="radio"  
-                                                    wire:click="qty({{ $a->identifier_id }})"
+                                                    wire:click="qty('{{ $a->id }}')"
                                                     wire:model.defer="size" 
                                                     value="{{ $a->size }}">
 
@@ -144,9 +144,7 @@
                     @endif
 
                     @if($success)
-                        {{-- <div 
-                            class="absolute inset-0 flex justify-center items-center bg-gray-300 opacity-75">
-                        </div> --}}
+                        
 
                         <div
                             {{-- class="z-30 absolute inset-0 flex justify-center items-center" --}}
@@ -227,7 +225,7 @@
                             type="radio"
                             {{ ($color === $c->color) ? 'checked' : '' }} 
 
-                            wire:click="getAttributes({{$c->identifier_id}})"
+                            wire:click="getAttributes('{{$c->id}}')"
                             value="{{ $c->color }}">
                             <span  class="radio_btn mr-2 px-4 py-4  rounded-full  border-2 border-white text-gray-900 cursor-pointer z-10" style="background-color: {{ $c->color }}"
                             >
@@ -253,7 +251,7 @@
                                         <input 
                                             class="hidden" 
                                             type="radio"  
-                                            wire:click="qty({{ $a->identifier_id }})"
+                                            wire:click="qty('{{ $a->id }}')"
                                             wire:model.defer="size" 
                                             value="{{ $a->size }}">
 
@@ -313,9 +311,6 @@
             @endif
 
             @if($success)
-                {{-- <div 
-                    class="absolute inset-0 flex justify-center items-center bg-gray-300 opacity-75">
-                </div> --}}
 
                     <div
                         {{-- class="z-30 absolute inset-0 flex justify-center items-center" --}}

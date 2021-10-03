@@ -21,7 +21,7 @@
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full shadow-md" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full shadow-md" type="email" name="email" value="{{ old('email') ?? 'test@gmail.com' }}" required autofocus />
             </div>
 
             <!-- Password -->
@@ -31,6 +31,7 @@
                 <x-input id="password" class="block mt-1 w-full shadow-md"
                                 type="password"
                                 name="password"
+                                value="{{ old('password') ?? '11111111' }}"
                                 required autocomplete="current-password" />
             </div>
 

@@ -172,7 +172,6 @@
 												class="mr-3" 
 												type="radio"
 												checked  
-												{{-- {{ old('payment_method') ? 'checked' : '' }}  --}}
 												name="payment_method" value="cash-on-delivery">
 										
 											<span class="text-md">Cash on Delivery</span>
@@ -184,12 +183,13 @@
 
 									<!--Khalti-->
 									<div 
-										x-data="{ openModalKhalti: false }" class="">
+										x-data="{ openModalKhalti: false }" 
+										class="">
 										<label
 										 class="mt-3 group custom_radio relative flex flex-col">
 											<div 
 												x-on:click="openModalKhalti = true"
-										 		
+										 		id="payment-button"
 										 		class="radio_btn mr-2 px-5 py-3 rounded-lg  border hover:border-blue text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
 												<input 
 													class="mr-3" 
@@ -206,9 +206,11 @@
 										<div class="khaltiPayload"></div>
 
 										<div 
-											x-show.transition.50ms="openModalKhalti"
+											{{-- x-show.transition.50ms="openModalKhalti" --}}
 											class="fixed inset-0  rounded-lg flex flex-col  justify-center rounded-lg z-30">
-									        <div class="h-full w-full bg-gray-300 opacity-75">
+									        <div 
+												x-on:click="openModalKhalti = false"
+									        	class="h-full w-full bg-gray-300 opacity-75">
 									            
 									        </div>
 									        <div class="absolute  bg-white left-0 right-0  mx-auto  max-w-xl shadow-lg rounded-lg p-6 z-30">
@@ -229,26 +231,29 @@
 												</div>
 
 												<div class="u">
-													<form class="ui form">
-														<div class="flex flex-col mb-4">
-															<label for="" class="text-xs mb-2">Khalti Mobile Number</label>
-															<input id="khaltiNum" class="px-3 py-2 shadow rounded" type="text" name="mobile" placeholder="Enter khalti registered number">
-														</div>
-														<div class="flex flex-col mb-4 ">
-															<label for="" class="text-xs mb-2">Khalti PIN</label>
-															<input id="pinCode" class="px-3 py-2 shadow rounded" type="password" name="transaction_pin" placeholder="Enter Khalti Pin">
-														</div>
-														<div class="confirmCodeDiv hidden flex flex-col mb-4 ">
-															<label for="" class="text-xs mb-2">Confirmation Code</label>
-															<input class="px-3 py-2 shadow rounded" type="password" name="confirmation_code" placeholder="Enter Confirmation Pin">
-														</div>
+													<div class="flex flex-col mb-4">
+														<label for="" class="text-xs mb-2">Khalti Mobile Number</label>
+														<input id="khaltiNum" class="px-3 py-2 shadow rounded" type="text" name="mobile" placeholder="Enter khalti registered number">
+													</div>
+													<div class="flex flex-col mb-4 ">
+														<label for="" class="text-xs mb-2">Khalti PIN</label>
+														<input id="pinCode" class="px-3 py-2 shadow rounded" type="password" name="transaction_pin" placeholder="Enter Khalti Pin">
+													</div>
+													<div class="confirmCodeDiv hidden flex flex-col mb-4 ">
+														<label for="" class="text-xs mb-2">Confirmation Code</label>
+														<input 
+															id="confirmCode"
+															class="px-3 py-2 shadow rounded" type="password" name="confirmation_code" placeholder="Enter Confirmation Pin">
+													</div>
 
-														<div class="flex justify-center items-center">
-															<button class="bg-blue-450 hover:opacity-75 rounded px-3 py-2 text-white" 
-																type="button">
-																	Pay Rs. 11/-
-															</button>
-														</div>
+													<div class="flex justify-center items-center">
+														<button 
+															id="khaltiPayBtn"
+															class="bg-blue-450 hover:opacity-75 rounded px-3 py-2 text-white" 
+															type="button">
+																Pay Rs. {{ $total }}/-
+														</button>
+													</div>
 													</form>
 
 													<div class=" mt-4 flex  flex-col justify-center items-center">
@@ -279,6 +284,7 @@
 						<div  class="hidden md:block z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:static  md:flex m mb-8 d:justify-end mb-4">
 							<button  type="submit" class="px-10 py-4 mx-6 w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
 						</div>
+
 				</form>
 				
 			</div>
@@ -351,58 +357,174 @@
 @endsection
 
 @push('scripts')
-	{{-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> --}}
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
 
     <script>
-        let amtInput             = document.getElementById('total_amt');
+        let amtInput             = document.getElementById('total_amt').value;
         let khaltiPayloadDiv     = document.getElementById('khaltiPayload');
-        var btn                  = document.getElementById("payment-button");
-        var config = {
+        let btn                  = document.getElementById("payment-button");
 
-            "publicKey": "{{  env('KHALTI_PUBLIC_KEY') }}",
-            "productIdentity": "1234567890",
-            "productName": "Dragon",
-            "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
-            "paymentPreference": [
-                "KHALTI",
-                // "EBANKING",
-                "MOBILE_BANKING",
-                // "CONNECT_IPS",
-                // "SCT",
-                ],
-            "eventHandler": {
-                onSuccess (payload) {
-                    // hit merchant api for initiating verfication
-                    console.log(payload);
-                    let idxInput            = document.createElement('input');
-                    idxInput.setAttribute('type', 'hidden');
-                    idxInput.setAttribute('name', '_idx');
-                    idxInput.setAttribute('value', payload.idx);
+        btn.addEventListener('click', (e) => {
 
-                    let tokenInput  = document.createElement('input');
-                    tokenInput.setAttribute('type', 'hidden');
-                    tokenInput.setAttribute('name', '_token');
-                    tokenInput.setAttribute('value', payload.token);
+			const payBtn              = document.getElementById('khaltiPayBtn');
+	    	payBtn.addEventListener('click', async (e) => {
+	    		
+		    	const khaltiNum           = document.getElementById('khaltiNum');
+		    	const pinCode             = document.getElementById('pinCode');
+		    	khaltiNum.classList.remove('border', 'border-red-400');
+		    	pinCode.classList.remove('border', 'border-red-400');
+
+		    	//Validation
+	    		if (khaltiNum.value == "") {
+	        		khaltiNum.classList.add('border', 'border-red-400');
+				    return false;
+				}
+
+				if (pinCode.value == "") {
+	        		pinCode.classList.add('border', 'border-red-400');
+				    return false;
+				}
+
+				
+
+			   	let formData = new FormData();
+		    	formData.append('amount', amtInput*100);
+		    	formData.append('transaction_pin', pinCode.value);
+		    	formData.append('mobile', khaltiNum.value);
+		    	formData.append('public_key', `{{  env('KHALTI_PUBLIC_KEY') }}`);
+		    	formData.append('product_identity', 'unknown');
+		    	formData.append('product_name', 'unknown');
+		    	formData.append('product_name', 'unknown');
+	    	
+	    
+				//Initiate Post Request
+
+				// try {
+				// 	let initiation_api =  `{{  env('KHALTI_SERVER') }}/api/v2/payment/initiate/`;
+			 //        let { data } = await axios.post(initiation_api, formData);
+			      	
+			 //      	console.log(data, initiation_api);
+			 //        if(data && data.token){
+			 //        	alert(data.token);
+			 //        }
+    //   			} catch (err) {
+    //   				swal('Server error.Please try again.', 'error');
+    //   			}
+        
+
+				// fetch()
+	    		axios.post('https://khalti.com/api/v2/payment/initiate/', formData)
+				.then((response) => {
+				    console.log(response);
+	        		confirmCodeDiv   = document.querySelector('confirmCodeDiv');
+
+	        		//Remove Error class if 200 success
+	        		if(response.token){
+	        			khaltiNum.classList.remove('border', 'border-red-400');
+	        			pinCode.classList.remove('border', 'border-red-400');
+
+	        			confirmCodeDiv.classList.remove('hidden');
+	        		}
+
+				    
+	    			payBtn.addEventListener('click', (e) => {
+
+	    				let confirmCode       = document.getElementById('confirmCode');
+
+	    				//Validation
+		        		if (confirmCode.value == "") {
+			        		confirmCode.classList.add('border', 'border-red-400');
+						    return false;
+						}
+
+					    //New Form Data
+					    let newFormData = new FormData();
+			        	newFormData.append('transaction_pin', pinCode.value);
+			        	newFormData.append('confirmation_code', confirmCode.value);
+			        	newFormData.append('public_key', `"${{  env('KHALTI_PUBLIC_KEY') }}"`);
+			        	newFormData.append('token', response.token);
+
+						//Confirm Post Request
+			        	axios.post('http://khalti.com/api/v2/payment/confirm/',newformData)
+			        	.then((response) => {
+			        		console.log(response);
+			        		//Remove Error class if 200 success
+			        		if(response.token){
+			        			confirmCode.classList.remove('border', 'border-red-400');
+			        			confirmCode.classList.remove('border', 'border-red-400');
+			        		}
+
+		        		    let tokenInput  = document.createElement('input');
+		                    tokenInput.setAttribute('type', 'hidden');
+		                    tokenInput.setAttribute('name', '_token');
+		                    tokenInput.setAttribute('value', payload.token);
+
+		                    khaltiPayloadDiv.appendChild(tokenInput);
+			                 
+			        	}).catch(function (error) {
+						    console.log(error);
+						    swal('Server error.Please try again.', 'error');
+						});
+					});
+
+
+
+	        	}).catch(function (error) {
+				    console.log(error);
+				    swal('Server error.Please try again.', 'error');
+				});
+
+
+	        });
+
+        });
+
+        // var config = {
+
+        //     "publicKey": "{{  env('KHALTI_PUBLIC_KEY') }}",
+        //     "productIdentity": "1234567890",
+        //     "productName": "Dragon",
+        //     "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+        //     "paymentPreference": [
+        //         "KHALTI",
+        //         // "EBANKING",
+        //         "MOBILE_BANKING",
+        //         // "CONNECT_IPS",
+        //         // "SCT",
+        //         ],
+        //     "eventHandler": {
+        //         onSuccess (payload) {
+        //             // hit merchant api for initiating verfication
+        //             console.log(payload);
+        //             let idxInput            = document.createElement('input');
+        //             idxInput.setAttribute('type', 'hidden');
+        //             idxInput.setAttribute('name', '_idx');
+        //             idxInput.setAttribute('value', payload.idx);
+
+        //             let tokenInput  = document.createElement('input');
+        //             tokenInput.setAttribute('type', 'hidden');
+        //             tokenInput.setAttribute('name', '_token');
+        //             tokenInput.setAttribute('value', payload.token);
                     
-                },
-                onError (error) {
-                    console.log(error);
-                    swal('Horray!', error.detail, 'error');
+        //         },
+        //         onError (error) {
+        //             console.log(error);
+        //             swal('Horray!', error.detail, 'error');
 
-                },
-                onClose () {
-                    console.log('widget is closing');
-                }
-            }
-        };
+        //         },
+        //         onClose () {
+        //             console.log('widget is closing');
+        //         }
+        //     }
+        // };
 
-        var checkout = new KhaltiCheckout(config);
-        btn.onclick = function () {
-            // minimum transaction amount must be 10, i.e 1000 in paisa.
-            // checkout.show({amount: amtInput.value * 100});
-        }
+        // var checkout = new KhaltiCheckout(config);
+        // btn.onclick = function () {
+        //     // minimum transaction amount must be 10, i.e 1000 in paisa.
+        //     checkout.show({amount: amtInput.value * 100});
+        // }
 
       //   let khaltiModel = document.getElementById('khaltiModel');
 

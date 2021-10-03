@@ -49,8 +49,6 @@ class Create extends Component
 
         //Create Attr
         $a = $this->image->attributes()->create([
-            'identifier_id'  => random_int(100, 100000),
-
             'product_id' => $this->product->id,
             'size'       => Str::upper($this->size),
             'price'      => $this->price,

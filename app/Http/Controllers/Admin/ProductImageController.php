@@ -53,7 +53,6 @@ class ProductImageController extends Controller
                         ]);
 
             $image = ProductImage::create([
-                'identifier_id'  => random_int(100, 100000),
                 'product_id'     => $data['_product'],
                 'media_id'       => $mediaId->id,
                 'color'          => $data['color']

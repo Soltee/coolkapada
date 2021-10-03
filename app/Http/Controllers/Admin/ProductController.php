@@ -39,10 +39,6 @@ class ProductController extends Controller
 
         $products = $query->paginate(8);
         $total    = $products->total();
-        // dd($products);
-        // dd(Product::pluck('id')->toArray());
-        // dd(Product::with('category', 'media')->inRandomOrder()->take(6)->get());
-        // dd(Product::first()->media->image_url);
 
         return view('admin.products.index', compact('products', 'total'));
     }

@@ -65,12 +65,10 @@ class Product extends Component
         ]);
     }
 
-    public function getAttributes($color)
+    public function getAttributes($colorId)
     {
-        // dd($color);
-        $co = ProductImage::where('identifier_id', $color)
-                    ->with('media')
-                    ->firstOrfail();
+        $co = ProductImage::with('media')
+                    ->findOrfail($colorId);
 
         //Refresh Success Message
         $this->success         = false;
@@ -89,13 +87,12 @@ class Product extends Component
         //Change the image cover
         $this->cover         = $co->media->image_url; 
 
-        // dD($co);
-
     }
 
-    public function qty($attribute)
+    public function qty($attributeId)
     {
-        $attribute = Attribute::where('identifier_id', $attribute)->firstOrfail();
+        // $attribute = Attribute::where('identifier_id', $attribute)->firstOrfail();
+        $attribute = Attribute::findOrfail($attributeId);
 
         // dd($attribute->id);
         $this->attributeId    = $attribute->id;

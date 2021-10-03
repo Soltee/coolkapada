@@ -45,8 +45,6 @@ class Item extends Component
 
         Cart::remove($this->itemId);
         $this->emitUp('item_removed');
-        // session()->flash('toast_success', 'Item removed from bag.');
-        // return redirect($this->url);    
     
     }
 }

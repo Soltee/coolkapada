@@ -15,20 +15,20 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', '/checkout'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'checkout/*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://khalti.com'],
+    'allowed_origins' => ['khalti.com', 'https://khalti.com'],
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['Access-Control-Allow-Origin'],
 
     'exposed_headers' => [],
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];

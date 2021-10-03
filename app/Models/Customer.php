@@ -51,4 +51,9 @@ class Customer extends Authenticatable
     {
     	return $this->hasMany(OrderItem::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

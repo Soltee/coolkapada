@@ -32,6 +32,11 @@ class Product extends Model
     	return $this->hasMany(Attribute::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
 
     //Return Attribute coount
     public function checkAttribute()

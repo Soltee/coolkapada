@@ -30,7 +30,6 @@ class ShopController extends Controller
         $images           =  $product->images()
                                     ->with('media')
                                     ->get();
-        // dd($images->count());
         $image_count      =  $images->count();
 
         $auth             = Auth::guard('customer')->user() ? Auth::guard('customer')->user()->id : null;
