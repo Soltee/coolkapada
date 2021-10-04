@@ -212,7 +212,7 @@
 
 
 
-			wheelzoom(document.querySelector('.featured'));
+			// wheelzoom(document.querySelector('.featured'));
 
 	
 	});

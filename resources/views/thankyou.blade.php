@@ -77,7 +77,9 @@
 											
 											<div class=" mr-2 px-5 py-3 rounded-lg  border-2 border-white text-gray-900 cursor-pointer border-green-500 flex items-center @error('payment_method') border-red-500  @enderror">
 												<svg xmlns="http://www.w3.org/2000/svg" class="rounded-full p-1 border-2 border-green-600   w-8 h-8  text-green-600 mr-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-												<span class="text-md">Cash on Delivery</span>
+												<span class="text-md">
+													{{ $order->payment_method }}
+												</span>
 											</div>
 										</label>
 						    		</div>

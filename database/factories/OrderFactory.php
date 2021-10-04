@@ -38,9 +38,8 @@ class OrderFactory extends Factory
             'street_address' => $this->faker->streetAddress ,
             'house_number' => $this->faker->unique(true)->numberBetween($min = 500, $max = 1200) ,
             'payment_method' => function(){
-                $methods = ['khalti', 'e-sewa', 'cash-on-delivery'];
+                $methods = ['khalti', 'stripe', 'cash-on-delivery'];
                 return Arr::random($methods);
-                // $table->enum('payment_method', ['khalti', 'e-sewa', 'cash-on-delivery']);
             },
             'payment_id' => $this->faker->bankAccountNumber,
             'sub_total' => $this->faker->unique(true)->numberBetween($min = 100, $max = 300),

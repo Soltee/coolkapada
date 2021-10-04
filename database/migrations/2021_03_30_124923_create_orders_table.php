@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('city');
             $table->string('street_address');
             $table->string('house_number');
-            $table->enum('payment_method', ['khalti', 'e-sewa', 'cash-on-delivery']);
+            $table->enum('payment_method', ['khalti', 'stripe', 'cash-on-delivery']);
             $table->string('payment_id')->nullable();
             $table->integer('sub_total');
             $table->integer('discount')->nullable();

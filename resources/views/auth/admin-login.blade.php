@@ -17,7 +17,7 @@
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full px-2 py-2 shadow" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full px-2 py-2 shadow" type="email" name="email" value="{{ old('email')?? 'kamal@gmail.com' }}" required autofocus />
             </div>
 
             <!-- Password -->
@@ -27,6 +27,7 @@
                 <x-input id="password" class="block mt-1 w-full px-2 py-2 shadow"
                                 type="password"
                                 name="password"
+                                value="11111111"
                                 required autocomplete="current-password" />
             </div>
 

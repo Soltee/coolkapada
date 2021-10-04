@@ -117,7 +117,7 @@ class CheckoutService
 
         }
 
-        // Cart::clear();
+        Cart::clear();
 
         return $order;
 
