@@ -1,4 +1,10 @@
 @extends('layouts.guest')
+
+@section('head')
+	<script src="https://js.stripe.com/v3/"></script>
+
+@endsection
+
 @section('content')
 	
 	 <div class="overflow-auto">
@@ -17,7 +23,7 @@
 		<div class="px-6 flex flex-col lg:flex-row justify-center my-4 w-full">
 
 			<div class="w-full lg:w-1/2 md:mr-8">
-				<form method="POST" action="{{ route('checkout.store') }}">   
+				<form id="checkoutForm" method="POST" action="{{ route('checkout.store') }}">   
 					@csrf		
 
 					<input id="total_amt" type="hidden" name="_amt" value="{{  $total }}">
@@ -158,131 +164,76 @@
 				
 						</div>
 
-						<div  class=" flex flex-col border border-lighter-black rounded-lg p-3 mb-4">
-							<h3 class="mt-2 mb-3">
-								<span class="mr-2 border px-3 py-2 border-gray-400 rounded-full text-md text-gray-900">3</span> 
-								<span class="text-md text-gray-900 font-semibold">Payment Info</span>
-							</h3>
+						<div
+							x-data="{ tab:'cash' }" 
+							>
+							
+							<div  class=" flex flex-col border border-lighter-black rounded-lg p-3 mb-4">
+								<h3 class="mt-2 mb-3">
+									<span class="mr-2 border px-3 py-2 border-gray-400 rounded-full text-md text-gray-900">3</span> 
+									<span class="text-md text-gray-900 font-semibold">Payment Info</span>
+								</h3>
 
-							<div class="mt-5 mb-2">
-								<div class="flex flex-col">
-									<label  class="custom_radio relative flex flex-col">
-										<div class="radio_btn mr-2 px-5 py-3 rounded-lg  border text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
-											<input 
-												class="mr-3" 
-												type="radio"
-												checked  
-												name="payment_method" value="cash-on-delivery">
-										
-											<span class="text-md">Cash on Delivery</span>
-										</div>
-									</label>
-										
-					
-
-
-									<!--Khalti-->
-									<div 
-										x-data="{ openModalKhalti: false }" 
-										class="">
-										<label
-										 class="mt-3 group custom_radio relative flex flex-col">
-											<div 
-												x-on:click="openModalKhalti = true"
-										 		id="payment-button"
-										 		class="radio_btn mr-2 px-5 py-3 rounded-lg  border hover:border-blue text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
+								<div class="mt-5 mb-2">
+									<div class="flex flex-col">
+										<label  class="custom_radio relative flex flex-col">
+											<div class="radio_btn mr-2 px-5 py-3 rounded-lg  border text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
 												<input 
 													class="mr-3" 
 													type="radio"
-													x-on:click="openModalKhalti = true"
-													name="payment_method" value="_khalti">
+													checked  
+													name="payment_method" value="cash-on-delivery">
 											
-												<span 
-													x-on:click="openModalKhalti = true"
-													class="text-md">Khalti Payment</span>
+												<span class="text-md">Cash on Delivery</span>
 											</div>
 										</label>
-
-										<div class="khaltiPayload"></div>
-
-										<div 
-											{{-- x-show.transition.50ms="openModalKhalti" --}}
-											class="fixed inset-0  rounded-lg flex flex-col  justify-center rounded-lg z-30">
-									        <div 
-												x-on:click="openModalKhalti = false"
-									        	class="h-full w-full bg-gray-300 opacity-75">
-									            
-									        </div>
-									        <div class="absolute  bg-white left-0 right-0  mx-auto  max-w-xl shadow-lg rounded-lg p-6 z-30">
-
-									        	<div class="flex justify-end">
-													<img 
-														x-on:click="openModalKhalti = false"
-														src="/img/close.svg" class="h-4 w-4 cursor-pointer">
-												</div>
-
-
+											
+										<div
+											class="mt-3">
+											<label  class="custom_radio relative flex flex-col">
+												<div
+													x-on:click="tab='stripe';"
+													id="stripeSelect" 
+													class="radio_btn mr-2 px-5 py-3 rounded-lg  border text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
+													<input 
+														class="stripeRadio mr-3" 
+														type="radio"  
+														name="payment_method" 
+														value="stripe">
 												
-												<div class="flex justify-center items-center">
-													<div class="item active flex justify-center items-center" style="padding: 18px 12px 18px 0px; cursor: pointer;" >
-														<img src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/icons/mywallet.svg" style="height: 16px;">
-														<span class="ml-2 uppercase ">Khalti Wallet</span>
-													</div>
+													<span class="text-md">Stripe Payments</span>
 												</div>
+											</label>
 
-												<div class="u">
-													<div class="flex flex-col mb-4">
-														<label for="" class="text-xs mb-2">Khalti Mobile Number</label>
-														<input id="khaltiNum" class="px-3 py-2 shadow rounded" type="text" name="mobile" placeholder="Enter khalti registered number">
-													</div>
-													<div class="flex flex-col mb-4 ">
-														<label for="" class="text-xs mb-2">Khalti PIN</label>
-														<input id="pinCode" class="px-3 py-2 shadow rounded" type="password" name="transaction_pin" placeholder="Enter Khalti Pin">
-													</div>
-													<div class="confirmCodeDiv hidden flex flex-col mb-4 ">
-														<label for="" class="text-xs mb-2">Confirmation Code</label>
-														<input 
-															id="confirmCode"
-															class="px-3 py-2 shadow rounded" type="password" name="confirmation_code" placeholder="Enter Confirmation Pin">
-													</div>
-
-													<div class="flex justify-center items-center">
-														<button 
-															id="khaltiPayBtn"
-															class="bg-blue-450 hover:opacity-75 rounded px-3 py-2 text-white" 
-															type="button">
-																Pay Rs. {{ $total }}/-
-														</button>
-													</div>
-													</form>
-
-													<div class=" mt-4 flex  flex-col justify-center items-center">
-														<div 
-															class="border-t text-xs" style="text-transform: unset; color: rgb(120, 120, 120); ">Forgot your Khalti PIN?
-														</div>
-														<div style="text-align: center;">
-															<a 
-																class="uppercase text-sm" 
-																target="_blank" href="https://khalti.com/#/account/transaction_pin" style="text-decoration: none; color: rgb(93, 46, 142); letter-spacing: 0.06em;">Set KHALTI pin
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
 										</div>
-									</div>
 
+										
+
+									</div>
+									
 								</div>
-								
+
 							</div>
 
-						</div>
-						
-						<div id="payBtn" class="fixed z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:hidden  md:flex m mb-8 d:justify-end mb-4">
-							<button  type="submit" class="px-10 py-4  w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
-						</div>
-						<div  class="hidden md:block z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:static  md:flex m mb-8 d:justify-end mb-4">
-							<button  type="submit" class="px-10 py-4 mx-6 w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
+							<!-- Buttons -->
+							<div class="">
+								<div 
+									x-show.transition50ms="tab==='stripe'"
+									class="mb-4 p-3 border rounded-lg mx-6 border-gray-300">
+									<div id="card-element"><!--Stripe.js injects the Card Element--></div>
+
+								    <p id="card-error" role="alert"></p>
+								</div>
+							 
+								<div class="payBtn fixed z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:hidden  md:flex m mb-8 d:justify-end mb-4">
+									<button  type="submit" class="px-10 py-4  w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
+								</div>
+								<div  class="payBtn hidden md:block z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:static  md:flex m mb-8 d:justify-end mb-4">
+									<button  type="submit" class="px-10 py-4 mx-6 w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
+								</div>
+
+							</div>
+
 						</div>
 
 				</form>
@@ -359,252 +310,73 @@
 @push('scripts')
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
-
     <script>
-        let amtInput             = document.getElementById('total_amt').value;
-        let khaltiPayloadDiv     = document.getElementById('khaltiPayload');
-        let btn                  = document.getElementById("payment-button");
+		var stripe = Stripe("{{ env('STRIPE_PUBLIC_KEY') }}");
 
-        btn.addEventListener('click', (e) => {
+	    // Create an instance of Elements.
+        var elements = stripe.elements();
 
-			const payBtn              = document.getElementById('khaltiPayBtn');
-	    	payBtn.addEventListener('click', async (e) => {
-	    		
-		    	const khaltiNum           = document.getElementById('khaltiNum');
-		    	const pinCode             = document.getElementById('pinCode');
-		    	khaltiNum.classList.remove('border', 'border-red-400');
-		    	pinCode.classList.remove('border', 'border-red-400');
+        // Custom styling can be passed to options when creating an Element.
+        // (Note that this demo uses a wider set of styles than the guide below.)
+        var style = {
+            base: {
+                color: '#32325d',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
 
-		    	//Validation
-	    		if (khaltiNum.value == "") {
-	        		khaltiNum.classList.add('border', 'border-red-400');
-				    return false;
-				}
+        // Create an instance of the card Element.
+        var card = elements.create('card', { style: style });
 
-				if (pinCode.value == "") {
-	        		pinCode.classList.add('border', 'border-red-400');
-				    return false;
-				}
+        // Add an instance of the card Element into the `card-element` <div>.
+        card.mount('#card-element');
 
-				
+	    card.on("change", function (event) {
 
-			   	let formData = new FormData();
-		    	formData.append('amount', amtInput*100);
-		    	formData.append('transaction_pin', pinCode.value);
-		    	formData.append('mobile', khaltiNum.value);
-		    	formData.append('public_key', `{{  env('KHALTI_PUBLIC_KEY') }}`);
-		    	formData.append('product_identity', 'unknown');
-		    	formData.append('product_name', 'unknown');
-		    	formData.append('product_name', 'unknown');
-	    	
+	      // Disable the Pay button if there are no card details in the Element
+
+	      document.querySelector("button").disabled = event.empty;
+
+	      document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+
+	    });
+
 	    
-				//Initiate Post Request
+	   	let form    = document.getElementById('checkoutForm');
+	    form.addEventListener('submit', (e) => {
+	       	let stripeChecked  = document.querySelector('.stripeRadio').checked;
+	    	if(stripeChecked){
 
-				// try {
-				// 	let initiation_api =  `{{  env('KHALTI_SERVER') }}/api/v2/payment/initiate/`;
-			 //        let { data } = await axios.post(initiation_api, formData);
-			      	
-			 //      	console.log(data, initiation_api);
-			 //        if(data && data.token){
-			 //        	alert(data.token);
-			 //        }
-    //   			} catch (err) {
-    //   				swal('Server error.Please try again.', 'error');
-    //   			}
-        
+	         	e.preventDefault();
+	      		stripe.createToken(card).then((result) => {
+                    if (result.error) {
+                        // Inform the user if there was an error.
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        let tokenInput    = document.createElement('input');
+                        tokenInput.setAttribute('type', 'hidden');
+                        tokenInput.setAttribute('name', 'token');
+                        tokenInput.setAttribute('value', result.token.id);
+                        form.appendChild(tokenInput);
+                        form.submit();
+                    }
+                });
 
-				// fetch()
-	    		axios.post('https://khalti.com/api/v2/payment/initiate/', formData)
-				.then((response) => {
-				    console.log(response);
-	        		confirmCodeDiv   = document.querySelector('confirmCodeDiv');
+	      	}
+	    });
+	    
 
-	        		//Remove Error class if 200 success
-	        		if(response.token){
-	        			khaltiNum.classList.remove('border', 'border-red-400');
-	        			pinCode.classList.remove('border', 'border-red-400');
-
-	        			confirmCodeDiv.classList.remove('hidden');
-	        		}
-
-				    
-	    			payBtn.addEventListener('click', (e) => {
-
-	    				let confirmCode       = document.getElementById('confirmCode');
-
-	    				//Validation
-		        		if (confirmCode.value == "") {
-			        		confirmCode.classList.add('border', 'border-red-400');
-						    return false;
-						}
-
-					    //New Form Data
-					    let newFormData = new FormData();
-			        	newFormData.append('transaction_pin', pinCode.value);
-			        	newFormData.append('confirmation_code', confirmCode.value);
-			        	newFormData.append('public_key', `"${{  env('KHALTI_PUBLIC_KEY') }}"`);
-			        	newFormData.append('token', response.token);
-
-						//Confirm Post Request
-			        	axios.post('http://khalti.com/api/v2/payment/confirm/',newformData)
-			        	.then((response) => {
-			        		console.log(response);
-			        		//Remove Error class if 200 success
-			        		if(response.token){
-			        			confirmCode.classList.remove('border', 'border-red-400');
-			        			confirmCode.classList.remove('border', 'border-red-400');
-			        		}
-
-		        		    let tokenInput  = document.createElement('input');
-		                    tokenInput.setAttribute('type', 'hidden');
-		                    tokenInput.setAttribute('name', '_token');
-		                    tokenInput.setAttribute('value', payload.token);
-
-		                    khaltiPayloadDiv.appendChild(tokenInput);
-			                 
-			        	}).catch(function (error) {
-						    console.log(error);
-						    swal('Server error.Please try again.', 'error');
-						});
-					});
-
-
-
-	        	}).catch(function (error) {
-				    console.log(error);
-				    swal('Server error.Please try again.', 'error');
-				});
-
-
-	        });
-
-        });
-
-        // var config = {
-
-        //     "publicKey": "{{  env('KHALTI_PUBLIC_KEY') }}",
-        //     "productIdentity": "1234567890",
-        //     "productName": "Dragon",
-        //     "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
-        //     "paymentPreference": [
-        //         "KHALTI",
-        //         // "EBANKING",
-        //         "MOBILE_BANKING",
-        //         // "CONNECT_IPS",
-        //         // "SCT",
-        //         ],
-        //     "eventHandler": {
-        //         onSuccess (payload) {
-        //             // hit merchant api for initiating verfication
-        //             console.log(payload);
-        //             let idxInput            = document.createElement('input');
-        //             idxInput.setAttribute('type', 'hidden');
-        //             idxInput.setAttribute('name', '_idx');
-        //             idxInput.setAttribute('value', payload.idx);
-
-        //             let tokenInput  = document.createElement('input');
-        //             tokenInput.setAttribute('type', 'hidden');
-        //             tokenInput.setAttribute('name', '_token');
-        //             tokenInput.setAttribute('value', payload.token);
-                    
-        //         },
-        //         onError (error) {
-        //             console.log(error);
-        //             swal('Horray!', error.detail, 'error');
-
-        //         },
-        //         onClose () {
-        //             console.log('widget is closing');
-        //         }
-        //     }
-        // };
-
-        // var checkout = new KhaltiCheckout(config);
-        // btn.onclick = function () {
-        //     // minimum transaction amount must be 10, i.e 1000 in paisa.
-        //     checkout.show({amount: amtInput.value * 100});
-        // }
-
-      //   let khaltiModel = document.getElementById('khaltiModel');
-
-      //   btn.addEventListener('click', (e) => {
-      //   	let closeCross  = document.getElementById('closeCross');
-
-      //   	khaltiModel.classList.remove('hidden');
-      //   	closeCross.addEventListener('click', (w) => {
-      //   		khaltiModel.classList.add('hidden');
-      //   	});
-
-      //   	//Form 
-	     //    let initiateConfirmBtn = document.getElementById('initiateConfirmFormBtn');
-
-	     //    initiateConfirmBtn.addEventListener('click', (e) => {
-
-	     //    	let customerNumber    = document.getElementById('customerNumber').value;
-	     //    	let customerPin       = document.getElementById('customerPin').value;
-
-	     //    	let formData = new FormData();
-	     //    	formData.append('amount', amtInput.value*100);
-	     //    	formData.append('transaction_pin', customerPin);
-	     //    	formData.append('mobile', 'customerNumber');
-	     //    	formData.append('public_key', `"${{  env('KHALTI_PUBLIC_KEY') }}"`);
-	     //    	formData.append('product_identity', 'unknown');
-	     //    	formData.append('product_name', 'unknown');
-	     //    	formData.append('product_name', 'unknown');
-
-	        
-	     //    	axios.post('https://khalti.com/api/v2/payment/initiate/', formData)
-				  // .then(function (response) {
-				  //   console.log(response);
-
-				  //   let confirmCode       = document.getElementById('confirmCode').value;
-
-				  //   let newFormData = new FormData();
-		    //     	newFormData.append('transaction_pin', customerPin);
-		    //     	newFormData.append('confirmation_code', confirmCode);
-		    //     	newFormData.append('public_key', `"${{  env('KHALTI_PUBLIC_KEY') }}"`);
-		    //     	newFormData.append('token', response.token);
-
-
-
-				  //   axios.post('http://khalti.com/api/v2/payment/confirm/', newformData)
-					 //  .then(function (payload) {
-					 //    console.log(payload);
-
-					 //    let tokenInput  = document.createElement('input');
-	     //                tokenInput.setAttribute('type', 'hidden');
-	     //                tokenInput.setAttribute('name', '_token');
-	     //                tokenInput.setAttribute('value', payload.token);
-
-	     //                khaltiPayloadDiv.appendChild(tokenInput);
-	                    
-					 //  })
-					 //  .catch(function (error) {
-					 //    console.log(error);
-					 //    swal('Please try again', 'error');
-
-					 //  });
-
-
-
-				  // })
-				  // .catch(function (error) {
-				  //   console.log(error);
-				  //   swal('Please try again', 'error');
-
-				  // });
-
-
-	     //    });
-
-      //   });
-
-        
-        
     </script>
-
-
 @endpush
 
 

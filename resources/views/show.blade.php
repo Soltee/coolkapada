@@ -77,13 +77,8 @@
 			</div>
 
 			<div id="tab-contents mt-6 w-full">
-		        {{-- <div 
-		        	x-show.transition.in.duration.200ms.out.duration.50ms="tab == 'detail'"
-		        	class="tabtxt text-gray-900 active w-full leading-relaxed">
-		        	{!! $product->description !!}
-		        </div> --}}
+		        
 		        <div 
-		        	{{-- x-show.transition.in.duration.200ms.out.duration.50ms="tab == 'reviews'" --}}
 		        	class="tabtxt text-gray-900 active w-full leading-relaxed">
 		        	
 		        	<!--- Product Review Livewire Component -->
@@ -96,6 +91,7 @@
 		</div>
 
 
+		<!-- Similar Products -->
 		<div class="relative mt-16 mb-10">
 
 			<h5 class="text-lg font-semibold text-gray-800 mr-2 ">Similar Products</h5>
@@ -166,24 +162,24 @@
 
     	let thumbnails = document.getElementsByClassName('thumbnail')
 
-		let activeImages = document.getElementsByClassName('active')
+			let activeImages = document.getElementsByClassName('active')
 
-		for (var i=0; i < thumbnails.length; i++){
+			for (var i=0; i < thumbnails.length; i++){
 
-			thumbnails[i].addEventListener('mouseover', function(){
-				// console.log(activeImages)
-				
-				if (activeImages.length > 0){
-					activeImages[0].classList.remove('active')
-				}
+				thumbnails[i].addEventListener('mouseover', function(){
+					// console.log(activeImages)
+					
+					if (activeImages.length > 0){
+						activeImages[0].classList.remove('active')
+					}
 
-				this.classList.add('active')
-				let img = document.getElementById('featured');
-				img.src = this.src;
-			})
-		}
+					this.classList.add('active')
+					let img = document.getElementById('featured');
+					img.src = this.src;
+				})
+			}
 
-		var slider = tns({
+			var slider = tns({
         container: '.similar',
         items: 1,
         responsive: {
@@ -216,7 +212,7 @@
 
 
 
-		wheelzoom(document.querySelector('.featured'));
+			wheelzoom(document.querySelector('.featured'));
 
 	
 	});

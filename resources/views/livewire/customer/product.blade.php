@@ -8,7 +8,7 @@
                 class="imgBlock relative w-full  cursor-pointer w-full md:w-1/2">
                     <div class="overflow-hidden">
                         <a class="" href="{{ route('product', $p->slug)}}">
-                            <img  class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($cover) }}" alt="{{ $p->slug }}">
+                            <img  class="featured w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 cursor-move shadow" src="{{ asset($cover) }}" alt="{{ $p->slug }}">
                         </a>
                     </div>
                 </div>

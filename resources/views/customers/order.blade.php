@@ -13,7 +13,7 @@
 
             <div class="flex justify-center items-center">
                     
-                <a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a>
+                {{-- <a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a> --}}
             </div>
 
         </div>
