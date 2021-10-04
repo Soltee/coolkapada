@@ -18,11 +18,11 @@ Laravel is a ecommerce web application built using laravel and livewire:
 - Pass  : 11111111
 
 
-- ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/Landing.png)
-- ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/Shop.png)
-- ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/bag.png)
-- ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/bag-modal.png)
-- ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/checkout.png)
-- ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/thank.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/Landing.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/Shop.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/bag.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/bag-modal.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/checkout.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/thank.png)
 
-- ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/admin-dashboard.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/admin-dashboard.png)
