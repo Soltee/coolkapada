@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
 	        'remember_token'     => \Illuminate\Support\Str::random(10),
         ]);
         
-        \App\Models\Customer::factory(10)->create();
+        \App\Models\Customer::factory(2)->create();
 
         \App\Models\Category::factory()->create(['name' => 'Tops', 'slug'  => 'tops']);
         \App\Models\Category::factory()->create(['name' => 'Dressess', 'slug' => 'dress']);
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Category::factory()->create(['name' => 'Leggings', 'slug' => 'leggings']);
 
 
-        for ($i=0; $i <= 50 ; $i++) { 
+        for ($i=0; $i <= 10 ; $i++) { 
             $url    =  Arr::random([
                     'storage/products/dress1.webp',
                     'storage/products/dress2.webp',
@@ -111,7 +111,7 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        $pds = \App\Models\Product::factory(40)->create();
+        $pds = \App\Models\Product::factory(20)->create();
         foreach($pds as $p){
             $rm = \Illuminate\Support\Arr::random([0,1,2,3]);
 
@@ -157,7 +157,7 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        \App\Models\Newsletter::factory(10)->create();
+        \App\Models\Newsletter::factory(12)->create();
         \App\Models\Review::factory(100)->create();
         // \App\Models\ProductImage::factory(80)->create();
         // \App\Models\Attribute::factory(400)->create();

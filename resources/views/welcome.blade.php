@@ -29,11 +29,8 @@
               Express your Intention
             </h1>
             <p class="mt-2 font-thin text-lg md:justify-center md:text-center text-white">
-              Wide varieties of undergarments right at your doorstep.
+              Wide varieties of clothes right at your doorstep.
             </p>
-            {{-- <p class="mt-2 text-lg text-center text-white">
-              With a vision to empower women, Coolkapada has been set up currently in Pokhara, providing various ranges of undergarments.
-            </p> --}}
           </div>
         </div>
         
