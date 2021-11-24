@@ -28,7 +28,7 @@
             <h1 class="text-3xl md:text-4xl font-bold text-white uppercase">
               Express your Intention
             </h1>
-            <p class="mt-2 font-thin text-lg md:justify-center md:text-center text-white">
+            <p class=" font-medium text-lg md:justify-center md:text-center text-white">
               Wide varieties of clothes right at your doorstep.
             </p>
           </div>

@@ -47,7 +47,7 @@
             <button 
               onClick="return confirm('Are you sure?')"
               type="submit"
-              class="bg-red-400 text-white rounded px-4 py-2 hover:bg-red-500">
+              class="bg-red-400 text-white rounded px-4 py-1 hover:bg-red-500">
                 Clear Bag                
             </button>
           </form>
@@ -145,7 +145,7 @@
 
     
 	    		<div class="fixed z-20 bottom-0 left-0 right-0 px-6 xl:px-0 w-full xl:mb-4 xl:relative xl:static  flex flex-col md:flex-row md:justify-end items-center xl:mb-0 py-5 xl:py-0 bg-gray-400 xl:mt-10 xl:px-3 xl:bg-white">
-	    			<a href="/checkout" class="px-10 py-4  w-full xl:w-64 rounded bg-gray-900 hover:opacity-75 text-white text-xl cursor-pointer  xl:mb-0 text-center">Checkout Now</a>
+	    			<a href="/checkout" class="px-10 py-2  w-full xl:w-64 rounded bg-gray-900 hover:opacity-75 text-white text-xl cursor-pointer  xl:mb-0 text-center">Checkout Now</a>
 	    		</div>
         	</div>
         	@endif

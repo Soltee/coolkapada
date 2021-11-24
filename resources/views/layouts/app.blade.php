@@ -95,7 +95,44 @@
                 <!-- Left Side -->
                 <div class="flex items-center">
                     <a href="{{ url('/') }}" class="text-lg md:text-xl font-semibold text-gray-900 mr-4">
-                        {{ config('app.name') }}
+                        <svg class="h-10" viewBox="0 0 97 22">
+                          <defs>
+                            <style>
+                              .cls-1 {
+                                fill: #f86f15;
+                                font-size: 20px;
+                                font-family: AdobeArabic-Bold, Adobe Arabic;
+                                font-weight: 700;
+                              }
+
+                              .cls-2, .cls-3 {
+                                fill: none;
+                                stroke: #f86f15;
+                              }
+
+                              .cls-3 {
+                                stroke-linecap: round;
+                                stroke-linejoin: round;
+                              }
+                            </style>
+                          </defs>
+                          <g id="CC" transform="translate(-611 -86)">
+                            <text id="coolkapada" class="cls-1" transform="translate(638 101)"><tspan x="0" y="0">coolkapada</tspan></text>
+                            <g id="Symbol_1_1" data-name="Symbol 1 – 1" transform="translate(-437.5 -303.5)">
+                              <line id="Line_1" data-name="Line 1" class="cls-2" y2="12" transform="translate(1071.5 394.5)"/>
+                            </g>
+                            <g id="shopping-cart" transform="translate(610 87)">
+                              <circle id="Ellipse_14" data-name="Ellipse 14" class="cls-3" cx="1" cy="1" r="1" transform="translate(6.5 17.5)"/>
+                              <circle id="Ellipse_15" data-name="Ellipse 15" class="cls-3" cx="1" cy="1" r="1" transform="translate(13.5 17.5)"/>
+                              <path id="Path_29" data-name="Path 29" class="cls-3" d="M1.5,1.5h3l2,11c.145.792.254,1.015,1,1h8c.746.015.855-.208,1-1l1-7H4.5"/>
+                            </g>
+                          </g>
+                        </svg>
+
+                        {{-- <img 
+                            
+                            src="/img/ck_logo.svg" alt="Coolkapada Logo">
+ --}}
                     </a>
 
                     <!-- Large Screen Search-->
@@ -120,140 +157,49 @@
                 </div>
 
                 <!-- Right -Side -->
-                <div 
-                    class="flex items-center">
-                    <li class="list-none mr-4">
-                        <a class="hover:font-bold text-md font-thin {{ 
-                            (Route::currentRouteName() == 'welcome') ? 'font-bold' : 'text-gray-900'
-                        }}" href="/">Home</a>
-                    </li> 
-                    <li class="list-none mr-4">
-                        <a class="hover:font-bold text-md font-thin {{ 
-                            (Route::currentRouteName() == 'shop') ? 'font-bold' : 'text-gray-900'
-                        }}" href="/shop">Shop</a>
-                    </li>
-                    
-                    <!-- Shopping Bag -->
-                    <livewire:customer.bag />
+                {{-- <div
+                    x-data="{isOpenMenu:false}"
+                    class="md:hidden">
+                    <!-- Small Screen -->
 
-                    @auth('customer')
-                           
-                        <div  x-data="{ lgmenu : false }" class="hidden md:block relative">
-                            <svg
-                                x-on:click="lgmenu = !lgmenu" 
-                                class="cursor-pointer w-6 h-6 text-gray-900 hover:opacity-75 ml-3 md:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lgmenu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
-                            </svg>
-                                <ul 
-                                    x-on:click.away="lgmenu = false;"
-                                    x-show.transition.50ms="lgmenu"
-                                    class="absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start px-4 py-3 rounded w-auto z-30">
+                    <svg 
+                        x-show.transition.50ms="isOpenMenu"
+                        x-on:click="isOpenMenu = !isOpenMenu"
+                        class="cursor-pointer block md:hidden h-6 w-6 hover:opacity-60 text-gray-900 object-cover object-center" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" ><path d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    <svg 
+                        x-show.transition.50ms="!isOpenMenu" 
+                        x-on:click="isOpenMenu = !isOpenMenu"
+                        class="cursor-pointer block md:hidden h-6 w-6 hover:opacity-60 text-gray-900 object-cover object-center" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                        </svg>
 
-                                        <li class="list-none mb-3">
-                                            <a class="hover:opacity-75 mr-3  text-md font-thin text-white {{ 
-                                                (Route::currentRouteName() == 'dashboard') ? 'opacity-75' : ''
-                                            }}" href="/dashboard">Dashboard</a>
-                                        </li> 
-                                        <li class="list-none ">
-                                                <a  href="{{ route('logout') }}" class="hover:opacity-75 mr-3  text-md font-thin text-white" 
-                                                onclick="
-                                                    event.preventDefault();
-                                                    if(confirm('Are you sure?')){
-                                                     document.getElementById('logout-form').submit();
-                                                    }
-                                                ">
-                                                    
-                                                    Logout
-                                                </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                                {{ csrf_field() }}
-                                            </form>
-                                        </li>
-                                </ul>
-                        </div>
-                    
-                    @else
+                    <div 
+                        x-show.transition.50ms="isOpenMenu"
+                        class="z-10 md:hidden absolute top-0 mt-12 right-0 bg-white w-48 px-6 py-6 rounded-tl rounded-bl">
 
-                        <li class="border-l border-gray-300 list-none">
-                            <a  
-                                class="hover:font-bold  font-thin no-underline py-2 rounded-lg text-gray-900 {{ 
-                                (Route::currentRouteName() == 'login') ? 'opacity-75' : ''
-                                }}" 
-                                href="{{ route('login') }}"
-                            >
-                                {{ __('MY ACCOUNT') }}
-                            </a>
-                        </li>
+                        @include('components.nav-menu')
 
-                    @endauth
 
-                    <!-- Small Screens Links-->
-                    @auth('customer')
-                    <div  x-data="{ menu : false }" class="md:hidden relative">
-                        <svg
-                            x-on:click="menu = !menu" 
-                            xmlns="http://www.w3.org/2000/svg" class="cursor-pointer w-8 h-8 text-gray-900 hover:opacity-75 ml-3 md:ml-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                        <ul 
-                            x-show.transition.50ms="menu"
-                            x-on:click.away="menu = false"
-                            class="md:hidden absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start  px-4 py-3 w-auto z-30">
-                            <!-- Mobile User Auth COntrol -->
-                            @auth('customer')
-                                <li class="list-none mb-3">
-                                    <a class="hover:opacity-75 mr-3  text-md font-thin text-white {{ 
-                                        (Route::currentRouteName() == 'dashboard') ? 'opacity-75' : ''
-                                    }}" href="/dashboard">Dashboard</a>
-                                </li> 
-                                <li class="list-none mb-3">
-                                    <a class="hover:opacity-75 text-md text-white font-thin {{ 
-                                        (Route::currentRouteName() == 'welcome') ? 'opacity-75' : 'text-white'
-                                    }}" href="/">Home</a>
-                                </li> 
-                                <li class="list-none mb-3">
-                                    <a class="hover:opacity-75 text-md text-white font-thin {{ 
-                                        (Route::currentRouteName() == 'shop') ? 'opacity-75' : 'text-white'
-                                    }}" href="/shop">Shop</a>
-                                </li>
-                                    
-                                <li class="list-none">
-                                        <a  href="{{ route('logout') }}" class="hover:opacity-75 mr-3  text-md font-thin text-white" 
-                                        onclick="
-                                            event.preventDefault();
-                                            if(confirm('Are you sure?'))
-                                            {
-                                                document.getElementById('logout-form').submit();
-                                            }
-                                        ">
-                                            
-                                            Logout
-                                        </a>
-                                </li>
-                                
-                                
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                    {{ csrf_field() }}
-                                </form>
-                                    
-                                @endauth
-
-                                
-                        </ul>
                     </div>
-                    @endauth
 
-                </div>
+                </div>--}}
+    
+                @include('components.nav-menu')
+
             </div>
 
             <!-- Small Screen Search -->
-            <form id="search" class="mb-4 md:hidden w-full px-6" method="GET" action="/shop">
+            <form id="search" class="mb-3 md:hidden w-full px-6" method="GET" action="/shop">
                 @csrf
                 <div class="flex relative  w-full">
                     
-                    <div class="absolute left-0 top-0 mt-2 ml-4 text-purple-lighter">
+                    <div class="absolute left-0 top-0 mt-1 ml-2 text-purple-lighter">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-6 h-6 text-gray-200"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                   
                     </div>
                     <input type="text" id="keyword" name="keyword" 
-                        value="{{ request()->keyword }}" class="  rounded-lg w-full  border border-gray-300 pl-12 py-2 pr-3" placeholder="Search by name...">
+                        value="{{ request()->keyword }}" class="  rounded-lg w-full  border border-gray-300 pl-10 py-1 pr-3" placeholder="Search by name...">
                 </div>
                   
             </form>
@@ -269,28 +215,28 @@
      
             <div  class=" flex flex-col px-6 py-6">
                 <!-- Social Medias -->
-                <div class="flex flex-col md:flex-row items-center justify-center mb-4">
-                    <h2 class="mb-3 md:mb-0 md:mr-6 text-xl font-bold">
+                <div class="flex flex-col md:flex-row items-center justify-center">
+                    <h2 class="mb-3 md:mb-0 md:mr-6 text-xl font-bold text-gray-900">
                         REACH US ON
                     </h2>
                         <ul class="m-0 flex items-center">
-                            <a href="https:://twitch.com" class="bg-gray-300  rounded-full hover:opacity-60 p-3 mr-4 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter w-6 h-6 text-gray-900"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                            <a href="https:://twitch.com" class="border brder-transparent hover:border-gray-900  rounded-full  p-1 mr-4 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter w-6 h-6 text-gray-900"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
                             </a>
-                            <a href="https:://facebook.com" class="bg-gray-300  rounded-full hover:opacity-60 p-3 mr-4 ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            <a href="https:://facebook.com" class="border border-transparent hover:border-gray-900  rounded-full p-1 mr-4 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                             </a>
-                            <a href="https:://instagram.com" class="bg-gray-300  rounded-full hover:opacity-60 p-3 mr-4 ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            <a href="https:://instagram.com" class="border border-transparent hover:border-gray-900  rounded-full  p-1 mr-4 ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                             </a>
                         </ul>
                 </div>
 
                 <!-- Menus -->
-                <ul class="m-0 flex flex-col md:flex-row md:justify-center my-6 md:items-center">
+                <ul class="m-0 flex flex-col md:flex-row md:justify-center my-2 md:items-center">
                     <li class="list-none mb-3 md:mb-0">
                         <a href="/" 
-                            class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
+                            class="mr-4 text-md mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
                             {{ Route::currentRouteName() == 'welcome' ? 'border-b border-gray-900' : ''}}"
                             >
                             Home
@@ -298,7 +244,7 @@
                     </li>
                     <li class="list-none mb-3 md:mb-0">
                         <a href="/shop" 
-                            class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
+                            class="mr-4 text-md mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
                             {{ Route::currentRouteName() == 'shop' ? 'border-b border-gray-900' : ''}}
                             ">
                             Shop
@@ -306,29 +252,29 @@
                     </li>
                     <li class="list-none mb-3 md:mb-0">
                         <a href="/dashboard" 
-                            class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
+                            class="mr-4 text-md mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
                             {{ Route::currentRouteName() == 'dashboard' ? 'border-b border-gray-900' : ''}}
                             ">
                             My Account
                         </a>
                     <li class="list-none mb-3 md:mb-0">
-                        <a href="/faqs#about-us" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
+                        <a href="/faqs#about-us" class="mr-4 text-md mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
                             About Us
                         </a>
                     </li>
                     <li class="list-none mb-3 md:mb-0">
-                        <a href="/faqs#shipping" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
+                        <a href="/faqs#shipping" class="mr-4 text-md mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
                             Shipping & Delivery
                         </a>
                     </li>
                     <li class="list-none mb-3 md:mb-0">
-                        <a href="/faqs#privacy" class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
+                        <a href="/faqs#privacy" class="mr-4 text-md mr-3 text-gray-900 border-b border-transparent hover:border-gray-900">
                             Privacy Policy
                         </a>
                     </li>
                     <li class="list-none mb-3 md:mb-0">
                         <a href="/faqs" 
-                            class="mr-4 text-lg mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
+                            class="mr-4 text-md mr-3 text-gray-900 border-b border-transparent hover:border-gray-900
                             {{ Route::currentRouteName() == 'faqs' ? 'border-b border-gray-900' : ''}}
 
                             ">
@@ -340,7 +286,7 @@
 
                 <!-- Copyright  & Links -->
                 
-                <hr class="text-gray-900 w-full my-5 text-c-lighter-black">
+                <hr class="text-gray-900 w-full my-2 text-c-lighter-black">
         
                 <div class="flex justify-center items-center 
                      ">

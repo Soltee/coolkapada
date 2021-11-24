@@ -2,9 +2,10 @@ module.exports = {
   theme:{
     extend :{
       colors : {
-        'yellow' : {
+        'gray' : {
           450 : '#ffa500',
-          650 : '#faa61a'
+          // 900 : '#faa61a',
+          900 : '#f86f15',
         },
         'blue' : {
           450 : '#5c2d91',

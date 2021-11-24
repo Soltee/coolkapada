@@ -11,11 +11,11 @@
 
 		<div class="flex justify-between md:justify-start items-center mb-2 w-full px-6 py-2">
 			<a href="/shop"><h4 class="text-sm opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">SHOP</h4></a>
-			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" ><polyline points="9 18 15 12 9 6"></polyline></svg>
 			<a href="/bag">
 			  <h4 class="text-sm opacity-75 hover:opacity-100 font-light text-gray-900 mr-2">BAG</h4>
 			</a>
-			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-c-light-gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mr-2 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" ><polyline points="9 18 15 12 9 6"></polyline></svg>
 			<h4 class="text-md font-semibold text-gray-900 ">CHECKOUT</h4>        
 		  
 		</div>
@@ -36,8 +36,8 @@
 
 							<div class="mt-5 mb-3">
 								<div class="flex flex-col lg:flex-row items-center mb-4">
-									<div class="w-full lg:w-1/2 lg:mr-2 flex flex-col mb-4 md:mb-0">
-										<label for="first_name" class="mb-2 text-c-lighter-black text-sm">First name</label>
+									<div class="w-full lg:w-1/2 lg:mr-2 flex flex-col mb-10 md:mb-0">
+										<label for="first_name" class="text-gray-900 text-xs">First name</label>
 										@if($auth)
 											<input type="text" name="first_name" value="{{ old('first_name') ?? $auth->first_name }}" class="px-6 py-3 rounded-lg border border-gray-300 @error('first_name') border-red-500  @enderror" placeholder="Shraddha">
 										@else
@@ -53,7 +53,7 @@
 										
 									</div>
 									<div class="w-full lg:w-1/2  lg:ml-2 flex flex-col mt-4 md:mt-0">
-										<label for="last_name" class="mb-2 text-c-lighter-black text-sm">Last name</label>
+										<label for="last_name" class="text-gray-900 text-xs">Last name</label>
 										@if($auth)
 
 											<input type="text" name="last_name" value="{{ old('last_name') ?? $auth->last_name }}" class="px-6 py-3 rounded-lg border border-gray-300 @error('last_name') border-red-500  @enderror" placeholder="Shrestha">
@@ -82,7 +82,7 @@
 									</div>
 								</div>
 								<div class="flex flex-col mb-4">
-									<label for="email" class="mb-2 text-c-lighter-black text-sm">Email</label>
+									<label for="email" class="text-gray-900 text-xs">Email</label>
 									@if($auth)
 										<input type="email" name="email" value="{{ old('email') ?? $auth->email }}" class="px-6 py-3 rounded-lg border border-gray-300 @error('email') border-red-500  @enderror" placeholder="shraddha@gmail.com">
 
@@ -98,7 +98,7 @@
 									</div>
 								</div>
 								<div class="flex flex-col mb-4">
-									<label for="phone_number" class="mb-2 text-c-lighter-black text-sm">Phone number</label>
+									<label for="phone_number" class="text-gray-900 text-xs">Phone number</label>
 									<div class="flex items-center">
 										<span class="p-3 w-16 border border-lighter-black rounded-lg w-auto">+977</span>
 										<input type="number" name="phone_number"  value="{{ (old('phone_number')) ?? ''  }}" class="px-6 py-3 rounded-lg border w-48 border-lighter-black  @error('phone_number') border-red-500  @enderror" placeholder="980*******">
@@ -121,14 +121,14 @@
 
 							<div class="mt-5 mb-3">
 								<div class="mb-4 flex flex-col">
-									<label for="city" class="mb-2 text-c-lighter-black text-sm">City</label>
+									<label for="city" class="text-gray-900 text-xs">City</label>
 									<select name="city" class="px-4 py-3 rounded-lg">
 										<option class="" value="pokhara">Pokhara</option>
 									</select>
 								</div>
 								<div class="box-content flex  flex-col lg:flex-row lg:items-center mb-4">
 									<div class="lg:w-1/2 lg:mr-2 flex flex-col mb-4 lg:mb-0">
-										<label for="street_address" class="mb-2 text-c-lighter-black text-sm">Full Street(Tol) Address</label>
+										<label for="street_address" class="text-gray-900 text-xs">Full Street(Tol) Address</label>
 										<input type="text" name="street_address" value="{{ old('street_address') ?? '' }}" class="px-6 py-3 rounded-lg border border-gray-300 @error('street_address') border-red-500  @enderror" placeholder="Birauta, 17 Smaj Ghar">
 										<div class="md:hidden mb-2  flex flex-col">
 											@error('street_address')
@@ -137,7 +137,7 @@
 										</div>
 									</div>
 									<div class="lg:w-1/2  lg:ml-2 flex flex-col">
-										<label for="house_number" class="mb-2 text-c-lighter-black text-sm">House Number</label>
+										<label for="house_number" class="text-gray-900 text-xs">House Number</label>
 										<input type="number" name="house_number" class="px-6 py-3 rounded-lg border border-gray-300 @error('house_number') border-red-500  @enderror" placeholder="4598" value="{{ old('house_number') ?? '' }}">	
 										<div class="md:hidden mb-2  flex flex-col">
 											@error('house_number')
@@ -177,7 +177,9 @@
 								<div class="mt-5 mb-2">
 									<div class="flex flex-col">
 										<label  class="custom_radio relative flex flex-col">
-											<div class="radio_btn mr-2 px-5 py-3 rounded-lg  border text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
+											<div 
+												x-on:click="tab='cash';"
+												class="radio_btn mr-2 px-5 py-3 rounded-lg  border text-gray-900 cursor-pointer hover:border-blue-500 flex items-center @error('payment_method') border-red-500  @enderror">
 												<input 
 													class="mr-3" 
 													type="radio"
@@ -226,10 +228,10 @@
 								</div>
 							 
 								<div class="payBtn fixed z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:hidden  md:flex m mb-8 d:justify-end mb-4">
-									<button  type="submit" class="px-10 py-4  w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
+									<button  type="submit" class="px-10 py-2  w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
 								</div>
 								<div  class="payBtn hidden md:block z-20 bottom-0 left-0 right-0 px-6 md:px-0 w-full md:relative md:static  md:flex m mb-8 d:justify-end mb-4">
-									<button  type="submit" class="px-10 py-4 mx-6 w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
+									<button  type="submit" class="px-10 py-2 mx-6 w-full rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Pay Now | Rs {{ $total }}</button>
 								</div>
 
 							</div>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97 22">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f86f15;
+        font-size: 20px;
+        font-family: AdobeArabic-Bold, Adobe Arabic;
+        font-weight: 700;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke: #f86f15;
+      }
+
+      .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="CC" transform="translate(-611 -86)">
+    <text id="coolkapada" class="cls-1" transform="translate(638 101)"><tspan x="0" y="0">coolkapada</tspan></text>
+    <g id="Symbol_1_1" data-name="Symbol 1 – 1" transform="translate(-437.5 -303.5)">
+      <line id="Line_1" data-name="Line 1" class="cls-2" y2="12" transform="translate(1071.5 394.5)"/>
+    </g>
+    <g id="shopping-cart" transform="translate(610 87)">
+      <circle id="Ellipse_14" data-name="Ellipse 14" class="cls-3" cx="1" cy="1" r="1" transform="translate(6.5 17.5)"/>
+      <circle id="Ellipse_15" data-name="Ellipse 15" class="cls-3" cx="1" cy="1" r="1" transform="translate(13.5 17.5)"/>
+      <path id="Path_29" data-name="Path 29" class="cls-3" d="M1.5,1.5h3l2,11c.145.792.254,1.015,1,1h8c.746.015.855-.208,1-1l1-7H4.5"/>
+    </g>
+  </g>
+</svg>

@@ -3,8 +3,10 @@
 @section('auth')
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                Coolkapada
+            <a href="/" class="bg-gray-900">
+                <img 
+                    class="h-16 w-24"
+                    src="/img/ck_logo.svg" alt="Coolkapada Logo">
             </a>
         </x-slot>
         <!-- Validation Errors -->
