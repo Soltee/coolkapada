@@ -23,6 +23,7 @@ class Shop extends Component
             ['name' => 'Large', 'symbol' => 'L'],
             ['name' => 'Extra Large', 'symbol' => 'XL']
         ];
+    public $showDropdown = false;
 
     public function mount()
     {
@@ -84,18 +85,24 @@ class Shop extends Component
     */
     public function filterByCategory()
     {
-        $this->goToPage(1);
+        $this->showDropdown = false;
+        // $this->goToPage(1);
     }
 
     public function filterBySize()
     {
-        $this->goToPage(1);
+        $this->showDropdown = false;
     }
 
     public function resetFilters()
     {
         $this->category   = '';
         $this->size       = '';
+    }
+
+    public function toggleFilters()
+    {
+        //$this->showDropdown = !$this->showDropdown;
     }
 
     
