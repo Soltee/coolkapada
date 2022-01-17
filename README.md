@@ -2,7 +2,7 @@
 
 ## About 
 
-Laravel is a ecommerce web application built using laravel and livewire:
+Coolkapada is a ecommerce web application built using laravel and livewire:
 
 ## Steps to Reproduce
 
