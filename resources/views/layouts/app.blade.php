@@ -292,7 +292,7 @@
                 <div class="flex justify-center items-center 
                      ">
                     <div class="mr-3">
-                        <span class="text-gray-900 text-xs text-c-light-gray">&copy; 2020 All Right Reserved.</span>
+                        <span class="text-gray-900 text-xs text-c-light-gray">&copy; 2022 All Right Reserved.</span>
                     </div>
 
                     <a data-scroll href="#header" class="cursor-pointer">
