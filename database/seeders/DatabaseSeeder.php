@@ -15,6 +15,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // \App\Models\Admin::create([
+        //     'first_name'         => 'Prabin',
+        //     'last_name'          => 'grg',
+        //     'email'              => 'soltee.13@gmail.com',
+        //     'email_verified_at'  => now(),
+        //     'password'           => bcrypt('22222222'),
+        //     // 'password' => bcrypt('#$rvU_@$%URT'),
+        //     'remember_token'     => \Illuminate\Support\Str::random(10),
+        // ]);
+        // \App\Models\Customer::create([
+        //    'first_name'         => 'Test',
+        //     'last_name'          => 'test',
+        //     'email'              => 'test@gmail.com',
+        //     'email_verified_at'  => now(),
+        //     'password'           => bcrypt('11111111'),
+        //     // 'password' => bcrypt('#$rvU_@$%URT'),
+        //     'remember_token'     => \Illuminate\Support\Str::random(10),
+        // ]);
+
         \App\Models\Admin::factory()->create([
             'first_name'         => 'Kamal',
 	        'last_name'          => 'Grg',
@@ -53,9 +72,16 @@ class DatabaseSeeder extends Seeder
         \App\Models\Category::factory()->create(['name' => 'Swims', 'slug' => 'swims']);
         \App\Models\Category::factory()->create(['name' => 'Leggings', 'slug' => 'leggings']);
 
+        // \App\Models\Category::create(['name' => 'Tops', 'slug'  => 'tops']);
+        // \App\Models\Category::create(['name' => 'Dressess', 'slug' => 'dress']);
+        // \App\Models\Category::create(['name' => 'Jeans', 'slug' => 'jeans']);
+        // \App\Models\Category::create(['name' => 'Shorts', 'slug' => 'shorts']);
+        // \App\Models\Category::create(['name' => 'Swims', 'slug' => 'swims']);
+        // \App\Models\Category::create(['name' => 'Leggings', 'slug' => 'leggings']);
+
 
         for ($i=0; $i <= 10 ; $i++) { 
-            $url    =  Arr::random([
+            $url    =  \Illuminate\Support\Arr::random([
                     'storage/products/dress1.webp',
                     'storage/products/dress2.webp',
                     'storage/products/dress3.webp',
