@@ -77,15 +77,28 @@
 			</div>
 
 			<div id="tab-contents mt-6 w-full">
-		        
+		    <!--- Description -->
+		    <div 
+        	x-show="tab === 'detail'"
+        	x-transition.duration.60ms
+        	class="tab text-gray-800 active w-full leading-relaxed">
+        	
+        	{{ $product->description }}
+        	
+        </div>
+
+		      <!-- Reviews -->
 		        <div 
-		        	class="tabtxt text-gray-900 active w-full leading-relaxed">
+		        	x-show="tab === 'reviews'"
+		        	x-transition.duration.60ms
+		        	class="tab text-gray-900 active w-full leading-relaxed">
 		        	
 		        	<!--- Product Review Livewire Component -->
 		        	<livewire:customer.product-review 
 		        		:product="$product->id"
 		        		/>
 		        </div>
+		   
 		        
 		    </div>
 		</div>
@@ -144,7 +157,7 @@
 					
 				@empty
 				@endforelse
-        	</div>
+      </div>
 		</div>
       
     </div>

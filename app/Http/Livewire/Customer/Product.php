@@ -45,7 +45,7 @@ class Product extends Component
     {
         $this->from   = $from;
         $image        = $p->images()->first();
-        // dd($image->media);
+
         $this->cover  = $image->media->image_url;
         $this->url    = $url;
         $this->p      = $p;
@@ -123,7 +123,14 @@ class Product extends Component
                 ]
         ]);
 
-        $this->success        = true;
+        //Dispatch Success Message
+        $this->dispatchBrowserEvent('product-added', [
+            "type"       => "success",
+            "title"      => "Product added to the bag.",
+            "text"       => ""
+        ]);
+
+        //Reset 
         $this->attributes     = '';
         $this->colorId        = '';
         $this->color          = '';
@@ -133,10 +140,9 @@ class Product extends Component
         $this->size           = '';
         $this->quantity       = 1;
 
+        //Emit for Cart Model
         $this->emit('product_added');
-        // $this->success  = true;
-        // session()->flash('toast_success', 'Item added to my bag.');
-        // return redirect($this->url);    
+ 
     }
 
     /** Clear All Messages */

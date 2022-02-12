@@ -65,7 +65,8 @@ class Shop extends Component
             }
 
             $products   = $query->latest()
-                                ->paginate($this->pageSize);
+                                ->paginate($this->pageSize)
+                                ;
         }
 
         return view('livewire.customer.shop', [

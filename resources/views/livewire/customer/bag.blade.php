@@ -19,7 +19,8 @@
 
     <!-- Livewire Shoping shopBag -->
     <div 
-        x-show.transition.50ms="shopBag"
+        x-show="shopBag"
+        x-.transition.duration.50ms
         class="z-30 fixed inset-0 flex justify-end">
         <div class="hidden md:block absolute left-0 top-0 bottom-0 md:w-1/2 flex flex-col bg-white h-screen bg-gray-100 opacity-70 py-6 px-4 sm:px-6">
         </div>

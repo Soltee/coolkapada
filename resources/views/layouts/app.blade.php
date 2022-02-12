@@ -7,7 +7,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="shortcut icon" type="image/jpg" href="/img/ck_logo.svg"/>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.9.0/dist/cdn.min.js" defer></script>
         @yield('head')
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">

@@ -18,7 +18,7 @@ class WelcomeController extends Controller
                     ->where('published', true)
                     ->has('attributes')
                     ->with('media', 'images')
-                    ->paginate(6);
+                    ->paginate(6)->lazy();
         return view('welcome', compact('new'));
     }
 

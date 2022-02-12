@@ -24,22 +24,22 @@ class ShopController extends Controller
     */
 	public function show($slug)
 	{   
-        $product          =  Product::where('slug', $slug)
-                                ->with('media')
-                                ->first();
-        $images           =  $product->images()
+        $product        =  Product::where('slug', $slug)
+                                ->with('media', 'category')
+                                ->firstOrfail();
+        $images         =  $product->images()
                                     ->with('media')
                                     ->get();
-        $image_count      =  $images->count();
+        $image_count    =  $images->count();
 
-        $auth             = Auth::guard('customer')->user() ? Auth::guard('customer')->user()->id : null;
-
-        $similar          =  $product->category
+        $auth           =  Auth::guard('customer')->user() ? 
+                                Auth::guard('customer')->user()->id : null;
+        $similar        =  $product->category
                                     ->products()
                                         ->inRandomOrder()
                                         ->where('id', '!=' , $product->id)
                                         ->with('media')
-                                        ->take(10)
+                                        ->take(8)
                                         ->get();
 		return view('show', compact('product', 'image_count', 'images', 'auth', 'similar'));
 	}

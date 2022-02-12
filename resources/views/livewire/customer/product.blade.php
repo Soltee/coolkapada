@@ -345,3 +345,17 @@
             
  
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+    window.addEventListener('product-added', event => {
+        swal({
+          title: event.detail.title,
+          text: event.detail.text,
+          icon: event.detail.type,
+          button: "Close",
+        });
+
+    })
+
+</script>
