@@ -48,41 +48,7 @@
               ">
               @forelse($new as $product)
                 <div class="flex flex-col mb-6 ">
-                    {{-- <div 
-                        class="imgBlock relative w-full  cursor-pointer w-full">
-                        <div class="overflow-hidden">
-                            <a class="" 
-                                href="{{ route('product', $product->slug)}}">
-                                <img  
-                                    class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70" 
-                                    src="{{ asset($product->media->image_url) }}" 
-                                    alt="{{ $product->slug }}">
-                            </a>
-                        </div>
-                    </div>
-                  
-                    <div class="pb-3 px-3">
-
-                        <div class=" mt-3 flex  justify-between items-center mb-2">
-                            <a class="" href="{{ route('product', $product->slug)}}">
-                                <h2 class="hover:font-bold cursor-pointe text-thin text-gray-700">
-                                    {{ $product->name }} 
-                                </h2>
-                            </a>
-                            <h4 class="text-lg font-semibold">
-                                RS {{ $product->min }} +
-                                NP 
-                            </h4>
-
-                        </div>
-
-                        @if(!$product->attributes()->sum('quantity'))
-                            <div class="flex items-center">
-                                <span class="font-bold text-red-600">Out of Stock</span>
-                            </div>
-                        @endif
-
-                    </div> --}}
+                
                   <livewire:customer.product 
                     :p="$product->id" 
                     url="/"
@@ -130,37 +96,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function(){
-
-        // var slider2 = tns({
-        //     container: '.arrivals',
-        //     items: 1,
-        //     responsive: {
-        //     640: {
-        //         edgePadding: 20,
-        //         gutter: 12,
-        //         items: 1
-        //     },
-        //     700: {
-        //         // gutter: 30
-        //     },
-        //     900: {
-        //         items: 2,
-        //         gutter: 20
-        //     },
-        //     1200: {
-        //         items: 3
-        //     }
-        //     },
-        //     controls : true,
-        //     // controlsPosition: bottom,
-        //     controlsText : [
-        //         '<svg class="w-8 h-8 md:hidden text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.05 9.293L6.343 10 12 15.657l1.414-1.414L9.172 10l4.242-4.243L12 4.343z"/></svg>', 
-        //         '<svg class="w-8 h-8 md:hidden text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>'
-        //     ],
-        //     mouseDrag : true,
-        //     arrowKeys: true
-        // });
-
         
         //Newsletter
         let news_email = document.getElementById('news_email');

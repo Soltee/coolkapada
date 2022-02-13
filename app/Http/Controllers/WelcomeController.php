@@ -17,7 +17,6 @@ class WelcomeController extends Controller
         $new  = Product::latest()
                     ->where('published', true)
                     ->has('attributes')
-                    ->with('media', 'images')
                     ->paginate(6)->lazy();
         return view('welcome', compact('new'));
     }

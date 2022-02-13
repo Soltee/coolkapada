@@ -25,12 +25,8 @@ class ShopController extends Controller
 	public function show($slug)
 	{   
         $product        =  Product::where('slug', $slug)
-                                ->with('media', 'category')
+                                ->with('category')
                                 ->firstOrfail();
-        $images         =  $product->images()
-                                    ->with('media')
-                                    ->get();
-        $image_count    =  $images->count();
 
         $auth           =  Auth::guard('customer')->user() ? 
                                 Auth::guard('customer')->user()->id : null;
@@ -41,6 +37,6 @@ class ShopController extends Controller
                                         ->with('media')
                                         ->take(8)
                                         ->get();
-		return view('show', compact('product', 'image_count', 'images', 'auth', 'similar'));
+		return view('show', compact('product', 'auth', 'similar'));
 	}
 }
