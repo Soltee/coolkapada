@@ -27,8 +27,6 @@ class CategoryController extends Controller
         $categories  =   $query->paginate(2);
         $total       =   $categories->total();
 
-        // dd(Category::pluck('id')->toArray());
-
         return view('admin.categories.index', compact('categories', 'total'));
     }
 
@@ -42,13 +40,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name'  => 'required|string|min:3|unique:categories'
+            'name'  => 'required|string|min:3|unique:categories',
+            'parent_id' => 'nullable|string|exists:categories,id'
         ]);
 
-        Category::create([
+
+        if($request->parent_id){
+
+            $parentIDArray = ['parent_id' => $data['parent_id']];
+
+        }
+
+        Category::create(array_merge([
             'name'       => $data['name'],
             'slug'       => Str::slug($data['name'])
-        ]);
+        ], $parentIDArray ?? []));
 
         return back()->with('toast_success', 'Created');
     }

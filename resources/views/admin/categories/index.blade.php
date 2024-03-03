@@ -33,20 +33,42 @@
                 <div class="w-full mb-6 ">
 		    		<form action="{{ route('admin.categories.store') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 	    			@csrf
-	    			<div class="flex flex-col items-center">
-	    				<div class="flex flex-wrap mb-6 w-full">
-                            <label for="name" class="block w-full text-gray-900 text-sm font-bold mb-2">
-                                {{ __('Name') }}:
-                            </label>
+	    			<div class="flex flex-col">
+	    				<div class="flex items-center">
+		    				<div class="flex flex-wrap mb-6 w-full p-2">
+	                            <label for="parent" class="block w-full text-gray-900 text-sm font-bold mb-2">
+	                                {{ __('Parent') }}: Note : Cannot change after created
+	                            </label>
 
-                            <input id="name" type="name" class="border border-gray-500  px-3 py-2 rounded w-full @error('name') border-red-600 @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+	                            <select name="parent_id" class="border border-gray-500  px-3 py-3 rounded w-full @error('parent_id') border-red-600 @enderror">
+	                            	<option value="">Select Parent Category</option>
+	                            	@forelse($categories as $category)
+	                            		<option value="{{ $category->id }}">
+	                            			{{ $category->name }}
+	                            		</option>
+	                            	@empty
+	                            	@endforelse
+	                            </select>
+	                            @error('parent_id')
+	                                <p class="text-c-red text-xs italic mt-4">
+	                                    {{ $message }}
+	                                </p>
+	                            @enderror
+	                        </div>
+	                       	<div class="flex flex-wrap mb-6 w-full p-2">
+	                            <label for="name" class="block w-full text-gray-900 text-sm font-bold mb-2">
+	                                {{ __('Name') }}:
+	                            </label>
 
-                            @error('name')
-                                <p class="text-c-red text-xs italic mt-4">
-                                    {{ $message }}
-                                </p>
-                            @enderror
-                        </div>
+	                            <input id="name" type="name" class="border border-gray-500  px-3 py-2 rounded w-full @error('name') border-red-600 @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+	                            @error('name')
+	                                <p class="text-c-red text-xs italic mt-4">
+	                                    {{ $message }}
+	                                </p>
+	                            @enderror
+	                        </div>	
+	                    </div>
 	    				<button type="submit" class="px-3 py-3 w-full  rounded-lg bg-gray-900 hover:bg-gray-700 text-white">
 			    			Create
 			    		</button>
@@ -62,6 +84,7 @@
 				    <thead>
 				    <tr>
 				      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Name</th>
+				      <th class="px-4 py-2 text-left text-capitalize text-gray-600">About</th>
 				      <th class="px-4 py-2 text-left text-capitalize text-gray-600">Created At</th>
 				      <th class="px-4 py-2 text-left text-capitalize text-gray-600"></th>
 				    </tr>
@@ -90,6 +113,23 @@
                                 </form>
                             </div>
                         </td>
+
+				        <td class="border px-4 py-4">
+				        	
+				        	<div class="">
+				        		@if(!$category->parent_id)
+				        		<div class="">
+				        			<label class="text-md text-gray-800">Children - </label>
+				        			<span class="text-bold">{{ $category->childrenCount() }}</span>
+				        		</div>
+				        		@else
+				        		<div class="">
+				        			<label class="text-md text-gray-800">Parent - </label>
+				        			<span class="text-bold">{{ $category->parent->name }}</span>
+				        		</div>
+				        		@endif
+				        	</div>
+				        </td>
 				        <td class="border px-4 py-4">{{ $category->created_at->diffForHumans() }}</td>
 				        
                         <td class="border px-4 py-4">
