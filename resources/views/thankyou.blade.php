@@ -28,7 +28,7 @@
 						</div>
 						<div class="flex justify-center items-center">
 						
-							{{-- <a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a> --}}
+							<a class="px-2 py-2 text-center hover:text-blue-600 text-blue-500" href="/invoice/{{ $order->id }}"> Download Invoice </a> 
 						</div>
 
 		    			<div class="my-5 border border-gray-400 rounded">
@@ -147,6 +147,8 @@
 
 		    	</div>
 		        <div class="relative w-full md:w-1/2  p-5 ">
+
+		        	@if(count($products) > 1)
 		        	<div class="flex justify-between items-center">
 						<h5 class="">You may also like.</h5>
 
@@ -199,6 +201,12 @@
 						<a href="/shop" class="px-6 py-2 w-full text-center  rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Browse More</a>
 
 					</div>
+					@else
+						<div class="mt-6 w-full flex ">
+							<a href="/shop" class="px-6 py-2 w-full text-center  rounded bg-gray-900 hover:opacity-75 text-white text-lg cursor-pointer">Shop More</a>
+
+						</div>
+					@endif
 		        </div>
 		    </div>
 	    </div>
