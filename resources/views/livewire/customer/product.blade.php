@@ -7,9 +7,15 @@
             <div 
                 class="imgBlock relative w-full  cursor-pointer w-full md:w-1/2">
                     <div class="overflow-hidden">
-                        <a class="" href="{{ route('product', $p->slug)}}">
-                            <img  class="featured w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 cursor-move shadow" src="{{ asset($cover) }}" alt="{{ $p->slug }}">
+                       @if(Route::currentRouteName() != 'product')
+                        <a class="" 
+                            href="{{  route('product', $p->slug)  }}">
+                            <img  class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($cover) }}" alt="{{ $p->slug }}">
                         </a>
+                        @else
+                            <img  class="featured z-50 w-full mb-5  object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($cover) }}" alt="{{ $p->slug }}">
+
+                        @endif
                     </div>
                 </div>
 
@@ -51,7 +57,8 @@
                                     {{ ($color === $c->color) ? 'checked' : '' }} 
                                     wire:click="getAttributes('{{$c->id}}')"
                                     >
-                                        <span  class="radio_btn mr-2 px-4 py-4  rounded-full text-gray-900 cursor-pointer z-10" style="background-color: {{ $c->color }}"
+                                        <span  class="radio_btn mr-2 px-4 py-4  rounded-full text-gray-900 cursor-pointer z-10 border border-gray-900" 
+                                        style="background-color: {{ $c->color }}"
                                         >
                                       
                                     </span>
@@ -182,10 +189,16 @@
         <div 
             class="imgBlock relative w-full  cursor-pointer">
             <div class="overflow-hidden">
+
+                @if(Route::currentRouteName() != 'product')
                 <a class="" 
-                    href="{{ route('product', $p->slug)}}">
+                    href="{{  route('product', $p->slug)  }}">
                     <img  class="w-full mb-5 h-72 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($cover) }}" alt="{{ $p->slug }}">
                 </a>
+                @else
+                    <img  class="featured w-full mb-5 object-top object-fit rounded object-cover hover:opacity-70 shadow" src="{{ asset($cover) }}" alt="{{ $p->slug }}">
+
+                @endif
                 
             </div>
         </div>

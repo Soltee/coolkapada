@@ -81,8 +81,18 @@
                 }
             }
 
+            .radio_btn {
+                border: 1px solid gray ;
+            }
         </style>
         <!-- Scripts -->
+        <script src="
+        https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js
+        "></script>
+        <link href="
+        https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/style.min.css
+        " rel="stylesheet">
+
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
         {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
         @livewireStyles
@@ -318,11 +328,9 @@
                     speed: 400
                 });
 
-                console.log(document.getElementById("cartBox"))
-                document.getElementById("cartIcon").addEventListener('mouseover' ,() => {
-                    console.log("click")
-                    document.getElementById('cartBox').classList.toggle("hidden")
-                })
+
+                mediumZoom([...document.querySelectorAll('.featured')])
+
 
 
 

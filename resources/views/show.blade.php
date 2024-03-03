@@ -6,10 +6,10 @@
 	<style>
 		.custom_radio input:checked + .radio_btn{border: 2px solid black;}
 		.custom_radio2 input:checked + .radio_btn2{border: 2px solid black;}
-    	.imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}
+/*    	.imgBlock:hover img{opacity: 0.8; transform: scale(1.2);}*/
 
 		/* [2] Transition property for smooth transformation of images */
-		.img-hover-zoom img {
+		/*.img-hover-zoom img {
 		  transition: transform .5s ease;
 		}
 
@@ -17,9 +17,9 @@
 		.img-hover-zoom:hover img {
 		  /*transform: scale(1.05);*/
 		  opacity: 0.8;
-		}	
+		}	*/
 		.imgBlock{transition: transform 0.3s ease-in-out;}
-		.imgBlock:hover img{opacity: 0.7;}
+		.imgBlock:hover img{opacity: 0.9;}
 		.imgBlock:hover  .addBtn {
 			visibility: initial;
 		}
@@ -167,30 +167,30 @@
 <!-- JS -->
 @push('scripts')
 
-	<script src="{{ asset('js/wheelzoom.min.js') }}"></script>
+	<!-- <script src="{{ asset('js/wheelzoom.min.js') }}"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
 	<script>
     document.addEventListener('DOMContentLoaded', function () { 		
 
 
-    	let thumbnails = document.getElementsByClassName('thumbnail')
+    	// let thumbnails = document.getElementsByClassName('thumbnail')
 
-			let activeImages = document.getElementsByClassName('active')
+			// let activeImages = document.getElementsByClassName('active')
 
-			for (var i=0; i < thumbnails.length; i++){
+			// for (var i=0; i < thumbnails.length; i++){
 
-				thumbnails[i].addEventListener('mouseover', function(){
-					// console.log(activeImages)
+			// 	thumbnails[i].addEventListener('mouseover', function(){
+			// 		// console.log(activeImages)
 					
-					if (activeImages.length > 0){
-						activeImages[0].classList.remove('active')
-					}
+			// 		if (activeImages.length > 0){
+			// 			activeImages[0].classList.remove('active')
+			// 		}
 
-					this.classList.add('active')
-					let img = document.getElementById('featured');
-					img.src = this.src;
-				})
-			}
+			// 		this.classList.add('active')
+			// 		let img = document.getElementById('featured');
+			// 		img.src = this.src;
+			// 	})
+			// }
 
 			var slider = tns({
         container: '.similar',

@@ -16,6 +16,10 @@
         @yield('head')
         <style>
             input.checked + .radio_btn{border 2px solid blue;}
+            .radio_btn {
+                border: 1px solid gray !important;
+            }
+
         </style>
         <!-- Scripts -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
