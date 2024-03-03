@@ -7,7 +7,7 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="shortcut icon" type="image/jpg" href="/img/ck_logo.svg"/>
-        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.9.0/dist/cdn.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.9.0/dist/cdn.min.js" ></script>
         @yield('head')
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -158,7 +158,7 @@
                 </div>
 
                 <!-- Right -Side -->
-                {{-- <div
+                <div
                     x-data="{isOpenMenu:false}"
                     class="md:hidden">
                     <!-- Small Screen -->
@@ -184,7 +184,7 @@
 
                     </div>
 
-                </div>--}}
+                </div>
     
                 @include('components.nav-menu')
 
@@ -317,6 +317,13 @@
                 var scroll = new SmoothScroll('a[href*="#"]',{
                     speed: 400
                 });
+
+                console.log(document.getElementById("cartBox"))
+                document.getElementById("cartIcon").addEventListener('mouseover' ,() => {
+                    console.log("click")
+                    document.getElementById('cartBox').classList.toggle("hidden")
+                })
+
 
 
 
