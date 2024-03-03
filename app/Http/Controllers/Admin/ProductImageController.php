@@ -31,15 +31,22 @@ class ProductImageController extends Controller
         $data = $request->validate([
             '_product' => 'required|uuid',
             'color'    => 'required|string|min:3',
-            'media'    => 'required|mimes:jpeg,jpg,png|max:2048'
+            'media'    => 'required|image|max:2048'
         ]);
 
 
 
         $image      = $request->file('media'); 
     
+        $extension  = $image->getClientOriginalExtension();
+
         $original   = 'md-' . 
-                        Str::random() . '.' . $image->getClientOriginalExtension();
+                        Str::random() . '.' . $extension;
+
+        if(!in_array($extension, ['jpg', 'png', 'jpeg'])) {
+
+            return back()->withErrors(['cover' => 'Cover image must be of type: jpg, jpeg or png.']);
+        }
 
         $image->move(storage_path('app/public/products'), $original);
 
