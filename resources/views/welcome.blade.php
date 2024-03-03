@@ -9,10 +9,28 @@
           background-color: rgb(17, 24, 39);
           color: #fff;
         }
+        .hero {
+            border-bottom-right-radius: 200px;
+        }
+
+
+        .womenwear-banner {
+
+            border-bottom-left-radius: 200px;
+
+        }
         .imgBlock:hover img{opacity: 0.7; }
         /* .tns-controls {display: hidden;} */
         .tns-controls{ text-align: center}
 
+        .men-banner {
+            transform: rotateY(180deg);
+            border-bottom-left-radius: 200px;
+        }
+        #menwear-section {
+            background-color: #C2D9AD;
+            border-bottom-right-radius: 200px;
+        }
     </style>
 @endsection
 
@@ -22,7 +40,7 @@
 
         <!-- Hero Section -->
         <div class="relative flex flex-col items-start md:items-center ">
-          <img data-src="/img/banner2.webp" class="lozad h-96  object-cover object-top  w-full hero " alt="">
+          <img data-src="/img/banner2.webp" class="lozad h-96  object-cover object-left  w-full hero " alt="">
 
           <!-- <div class="absolute bottom-0 left-0 right-0 bg-gray-900 px-8 py-8 max-w-xl mx-auto flex flex-col md:items-center rounded-tl rounded-tr">
             <h1 class="text-3xl md:text-4xl font-bold text-white uppercase">
@@ -37,7 +55,7 @@
         <!-- Latest Arrivals -->
         <div class="relative flex flex-col justify-between my-8 px-6 ">
           <div class="flex justify-between items-center mb-6">
-            <h3 class="text-lg text-gray-900 font-semibold  relative">Latest</h3>
+            <h3 class="text-lg text-gray-900 font-semibold  relative">New Arrival</h3>
             <div class="">
               <a href="/shop" class="border-b border-gray-600 hover:border-black hover:opacity-70">View more</a>
             </div>
@@ -63,24 +81,66 @@
               @endforelse
             </div>
         </div>
+
+        <div class="relative flex flex-col justify-between my-8 px-6 ">
+            <div class="w-full">
+                <img src="/img/banner1.webp" class="womenwear-banner w-full h-84 md:h-auto object-left object-cover " alt="">
+            </div>
+        </div>
+
+        <!-- Men Wear Arrivals -->
+        <div  class="relative flex flex-col justify-between my-12 px-6 ">
+            <div class="flex flex-col md:flex-row">
+           
+
+            <div 
+              class="w-full md:w-1/2  
+                grid grid-cols-1 gap-6 md:h-screen
+                overflow-y-auto 
+              ">
+              @forelse($new as $product)
+                <div class="flex flex-col mb-6 md:h-auto">
+                
+                  <livewire:customer.product 
+                    :p="$product->id" 
+                    url="/"
+                    :from="'welcome'"/>
+
+                </div>
+              @empty
+
+                  <p class="ext-lg text-gray-900 font-semibold text-center">
+                     Oops! We have low stocks right now.</p>
+
+              @endforelse
+            </div>
+
+             <div id="menwear-section"  class="w-full md:w-1/2">
+                <img src="/img/menwear.webp" class="men-banner h-screen   object-cover " alt="">
+            </div>
+        </div>
+
+        </div>
        
         <!--- Newsletter -->
-        <div class="mt-24 px-6  bg-gray-900">
-            <div class="max-w-2xl mx-auto rounded py-8  md:px-6 flex flex-col items-center">
-              <div class="flex flex-col mb-3 w-full">
-                <h2 class="text-white z-20 text-xl md:text-2xl mb-2 font-bold">Join Our Newsletter</h2>
+        <div class="mt-24 px-6  bg-gray-900 relative">
+            <div class="w-full rounded py-12  md:px-6 flex flex-col items-left">
+              <div class="flex flex-col mb-3 md:w-2/3">
+                <h2 class="text-white z-20 text-xl md:text-4xl mb-2 font-bold">Join Our Newsletter</h2>
                 <p class="text-md text-white">Latest news and updates in your inbox.</p>
               </div>
 
       
-              <div class="mt-4 max-w-2xl w-full flex flex-row items-center justify-center">
-                <input id="news_email" type="email"  class="focus:outline-none w-full bg-white rounded  px-3 py-3 pr-24 sm:mb-0 border"  placeholder="Enter your email" >
-                <button id="news_btn" class="focus:outline-none w-40   bg-gray-900 hover:opacity-75 rounded uppercase text-white font-bold tracking-wide py-3 px-3 md:px-6 text-center cursor-pointer"
+              <div class="mt-4 md:w-2/3 flex flex-row items-left justify-center">
+                <input id="news_email" type="email"  class="focus:outline-none w-full bg-white rounded  px-3 py-4 pr-24 sm:mb-0 border"  placeholder="Enter your email" >
+                <button id="news_btn" class="focus:outline-none w-40 my-2 mr-6 md:mr-12  bg-gray-900 hover:opacity-75 rounded uppercase text-white font-bold tracking-wide py-3 px-3 md:px-6 text-center cursor-pointer"
                   style="margin-left:-10.1rem;">Join Now</button>
              </div>
                 
               </p>
             </div>
+
+            <img src="/img/newsletter.png" class="h-80 hidden md:block  absolute right-10 bottom-0" />
 
         </div>
         

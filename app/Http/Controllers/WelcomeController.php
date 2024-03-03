@@ -14,11 +14,28 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $new  = Product::latest()
+        $new    = Product::latest()
                     ->where('published', true)
                     ->has('attributes')
-                    ->paginate(6)->lazy();
-        return view('welcome', compact('new'));
+                    ->inRandomOrder()
+                    ->paginate(3)->lazy();
+        $men    = Product::latest()
+                    ->where('published', true)
+                    ->whereHas("category", function($query) {
+                        $query->where('name', '=', 'Men');
+                    })
+                    ->has('attributes')
+                    ->paginate(3)->lazy();        
+
+        $women    = Product::latest()
+                    ->where('published', true)
+                    ->whereHas("category", function($query) {
+                        $query->where('name', '=', 'Women');
+                    })
+                    ->has('attributes')
+                    ->paginate(3)->lazy();
+
+        return view('welcome', compact('new', 'women', 'men'));
     }
 
     /**
