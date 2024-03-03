@@ -12,6 +12,11 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <style type="text/css">
@@ -106,44 +111,9 @@
                 <!-- Left Side -->
                 <div class="flex items-center">
                     <a href="{{ url('/') }}" class="text-lg md:text-xl font-semibold text-gray-900 mr-4">
-                        <svg class="h-10" viewBox="0 0 97 22">
-                          <defs>
-                            <style>
-                              .cls-1 {
-                                fill: #f86f15;
-                                font-size: 20px;
-                                font-family: AdobeArabic-Bold, Adobe Arabic;
-                                font-weight: 700;
-                              }
+                        
 
-                              .cls-2, .cls-3 {
-                                fill: none;
-                                stroke: #f86f15;
-                              }
-
-                              .cls-3 {
-                                stroke-linecap: round;
-                                stroke-linejoin: round;
-                              }
-                            </style>
-                          </defs>
-                          <g id="CC" transform="translate(-611 -86)">
-                            <text id="coolkapada" class="cls-1" transform="translate(638 101)"><tspan x="0" y="0">coolkapada</tspan></text>
-                            <g id="Symbol_1_1" data-name="Symbol 1 – 1" transform="translate(-437.5 -303.5)">
-                              <line id="Line_1" data-name="Line 1" class="cls-2" y2="12" transform="translate(1071.5 394.5)"/>
-                            </g>
-                            <g id="shopping-cart" transform="translate(610 87)">
-                              <circle id="Ellipse_14" data-name="Ellipse 14" class="cls-3" cx="1" cy="1" r="1" transform="translate(6.5 17.5)"/>
-                              <circle id="Ellipse_15" data-name="Ellipse 15" class="cls-3" cx="1" cy="1" r="1" transform="translate(13.5 17.5)"/>
-                              <path id="Path_29" data-name="Path 29" class="cls-3" d="M1.5,1.5h3l2,11c.145.792.254,1.015,1,1h8c.746.015.855-.208,1-1l1-7H4.5"/>
-                            </g>
-                          </g>
-                        </svg>
-
-                        {{-- <img 
-                            
-                            src="/img/ck_logo.svg" alt="Coolkapada Logo">
- --}}
+                        @include("components.logo")
                     </a>
 
                     <!-- Large Screen Search-->
@@ -178,12 +148,7 @@
                         x-on:click="isOpenMenu = !isOpenMenu"
                         class="cursor-pointer block md:hidden h-6 w-6 hover:opacity-60 text-gray-900 object-cover object-center" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" ><path d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
-                    <svg 
-                        x-show.transition.50ms="!isOpenMenu" 
-                        x-on:click="isOpenMenu = !isOpenMenu"
-                        class="cursor-pointer block md:hidden h-6 w-6 hover:opacity-60 text-gray-900 object-cover object-center" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                        </svg>
+
 
                     <div 
                         x-show.transition.50ms="isOpenMenu"
