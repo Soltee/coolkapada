@@ -147,7 +147,7 @@ class DatabaseSeeder extends Seeder
                         ]);
        
 
-        $super_admin = User::factory())->create([
+        $super_admin = User::factory()->create([
             'first_name'        => 'super-admin',
             'last_name'         => 'admin',
             'email'             => 'admin@example.com',
