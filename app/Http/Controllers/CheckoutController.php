@@ -68,6 +68,7 @@ class CheckoutController extends Controller
         $products = Product::latest()
                             ->has('attributes')
                             ->with('media')
+                            ->whereNotIn("id", $order->items->pluck("product_id")->toArray())
                             ->take(3)
                             ->get();
 
