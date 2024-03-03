@@ -26,8 +26,8 @@ class CategoryController extends Controller
 
         $categories  =   $query->paginate(2);
         $total       =   $categories->total();
-
-        return view('admin.categories.index', compact('categories', 'total'));
+        $allCategories = Category::get();
+        return view('admin.categories.index', compact('categories', 'total', 'allCategories'));
     }
 
 
