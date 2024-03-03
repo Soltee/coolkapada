@@ -12,6 +12,13 @@ Coolkapada is a ecommerce web application built using laravel and livewire:
 - Touch database/database.sqlite Or Mysql
 - Php artisan key:generate
 - Php artisan migrate:fresh --seed
+- Add Google Recaptch V2 Keys
+   RECAPTCHA_V2_SITE_KEY=
+   RECAPTCHA_V2_SECRET_KEY=
+
+- Add stripe keys
+STRIPE_PUBLIC_KEY=
+STRIPE_SECRET_KEY=
 
 ## Admin Credentials (localhost:8000/admin/login)
 - Email : kamal@gmail.com
