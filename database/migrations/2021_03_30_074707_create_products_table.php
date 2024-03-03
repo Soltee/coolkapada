@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('category_id');
+            $table->uuid('subcategory_id')->nullable();
             $table->uuid('media_id');
             $table->string('name');
             $table->string('slug')->unique();

@@ -45,21 +45,51 @@
 						<x-label for="name" :value="__('Name')" />
 		
 						<input id="name" class="block border border-gray-300 py-2 px-3 rounded mt-1 w-full" type="text" name="name" value="{{ old('name') }}"  />
+
+						@error("name")
+							<p class="text-red-600 text-xs italic mt-4">
+                                {{ $message }}
+                            </p>
+						@enderror
 					</div>
-					<div class="mb-3 w-full">
-						<x-label for="category" :value="__('Category')" />
-						<div class="inline-block relative w-full">
-							<select name="category" class="block appearance-none w-full bg-white border-r-lg border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-								@forelse($categories as $category)
-									<option value="{{ $category->id }}">{{ $category->name }}</option>
-								@empty
-								@endforelse
-							</select>
-							<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-								<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+					<div class="mb-3 w-full flex flex-col md:flex-row">
+						<div class="w-full mb-3 md:mb-0 md:w-1/2">
+							<x-label for="category" :value="__('Category')" />
+							<div class="inline-block relative w-full">
+								<select id="category" name="category" class="block appearance-none w-full bg-white border-r-lg border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+									<option value="">Select Category</option>
+									@forelse($parents as $category)
+										<option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+									@empty
+									@endforelse
+								</select>
+
+								<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+									<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+								</div>
 							</div>
+							@error("category")
+							<p class="text-red-600 text-xs italic mt-4">
+                                {{ $message }}
+                            </p>
+							@enderror
+						</div>
+
+						<div class="w-full md:w-1/2">
+							<x-label for="subcategory" :value="__('SubCategory')" />
+							<div class="inline-block relative w-full">
+								<select id="subcategory" name="subcategory" class="block appearance-none w-full bg-white border-r-lg border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+
+<!-- 									@forelse($subcategories as $sub)
+										<option value="{{ $sub['id'] }}">{{ $sub['name'] }}</option>
+									@empty
+									@endforelse -->
+								</select>
+								<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+									<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+								</div>
 							</div>
-		
+						</div>
 							
 					</div>
 					<div class="mb-3 w-full">
@@ -74,8 +104,6 @@
 					<!-- Cover Image -->
 					<div class="mb-3 w-full">
 						
-						{{-- <livewire:admin.helpers.media from="products"/> --}}
-
 					</div>
 					<div class="flex  mb-6">
                         <div class="flex flex-wrap w-full">
@@ -147,6 +175,31 @@
                 
                 }
             });
+
+
+
+
+            //Subcategory Select
+            document.getElementById("category").addEventListener("change", (e) => {
+            	const subCategories = <?php echo $subcategoriesEncoded; ?> || [];
+            	console.log(subCategories)
+            	const filteredSubCategories = Object.values(subCategories)?.filter(category => category.parent_id === e.target.value);
+
+
+            	const subcategorySelectInput = document.getElementById("subcategory");
+            	subcategorySelectInput.textContent = '';
+            	console.log(subcategorySelectInput)
+
+            	filteredSubCategories?.map(category => {
+
+            		const option = document.createElement("option");
+            		option.value = category.id  
+            		option.textContent = category.name
+
+	            	subcategorySelectInput.appendChild(option)
+
+            	})
+            })
 
         });
     </script>

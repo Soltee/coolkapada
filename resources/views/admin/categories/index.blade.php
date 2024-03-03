@@ -42,7 +42,7 @@
 
 	                            <select name="parent_id" class="border border-gray-500  px-3 py-3 rounded w-full @error('parent_id') border-red-600 @enderror">
 	                            	<option value="">Select Parent Category</option>
-	                            	@forelse($categories as $category)
+	                            	@forelse($allCategories as $category)
 	                            		<option value="{{ $category->id }}">
 	                            			{{ $category->name }}
 	                            		</option>

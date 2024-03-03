@@ -51,7 +51,16 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::latest()->get();
-        return view('admin.products.create', compact('categories'));
+        $parents    = array_filter($categories->toArray(), function($category){
+            return !$category['parent_id'];
+        });
+
+        $subcategories   = array_filter($categories->toArray(), function($category){
+            return $category['parent_id'];
+        });
+        $subcategoriesEncoded = json_encode($subcategories, true);
+
+        return view('admin.products.create', compact('categories', 'parents', 'subcategories', 'subcategoriesEncoded'));
     }
 
     /**
@@ -62,20 +71,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-            
-        $data = $request->validate([
-            'cover'        => 'mimes:jpeg,jpg,png|max:2048',
-            'category'     => 'required|string',
-            'name'         => 'required|string|unique:products',
-            'description'  => 'required'
-        ]);
         
+        $data = $request->validate([
+            'category'     => 'required|string|exists:categories,id',
+            'subcategory'  => 'nullable|string|exists:categories,id',
+            'name'         => 'required|string|unique:products',
+            'description'  => 'nullable'
+        ]);
+
+
         if($request->hasFile('cover')){
 
             $image      = $request->file('cover'); 
-        
+            
+            $extension  = $image->getClientOriginalExtension();
+
             $original   = 'md-' . 
-                            Str::random() . '.' . $image->getClientOriginalExtension();
+                            Str::random() . '.' . $extension;
+
+            if(!in_array($extension, ['jpg', 'png', 'jpeg'])) {
+
+                return back()->withErrors(['cover' => 'Cover image must be of type: jpg, jpeg or png.']);
+            }
 
             $image->move(storage_path('app/public/products'), $original);
     
@@ -87,20 +104,26 @@ class ProductController extends Controller
                             'thumbnail'  => $original
                         ]);
 
-            $product = Product::create([
-                'category_id'  => $data['category'],
-                'media_id'     => $mediaId->id,
-                'name'         => $data['name'],
-                'slug'         => Str::slug($data['name'], '-'),
-                'description'  => $data['description'] 
-            ]);
+            $mediaIdArray = ['media_id' => $mediaId->id];
 
-            return redirect()
-                    ->route('product.image.create', [
-                        'product' => $product->id
-                    ])
-                    ->with('toast_success', 'Product uploaded.');
         }
+
+        if($request->subcategory){
+            $subcategoryIDArray = ['subcategory_id' => $request->subcategory];
+        }
+
+        $product = Product::create(array_merge([
+            'category_id'  => $data['category'],
+            'name'         => $data['name'],
+            'slug'         => Str::slug($data['name'], '-'),
+            'description'  => $data['description'] 
+        ], $mediaIdArray ?? [], $subcategoryIDArray ?? []));
+
+        return redirect()
+                ->route('product.image.create', [
+                    'product' => $product->id
+                ])
+                ->with('toast_success', 'Product uploaded.');
     }
 
     /**
