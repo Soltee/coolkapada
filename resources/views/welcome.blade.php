@@ -22,16 +22,16 @@
 
         <!-- Hero Section -->
         <div class="relative flex flex-col items-start md:items-center ">
-          <img data-src="/img/hero3.jpg" class="lozad h-96  object-cover object-top  w-full hero " alt="">
+          <img data-src="/img/banner2.webp" class="lozad h-96  object-cover object-top  w-full hero " alt="">
 
-          <div class="absolute bottom-0 left-0 right-0 bg-gray-900 px-8 py-8 max-w-xl mx-auto flex flex-col md:items-center rounded-tl rounded-tr">
+          <!-- <div class="absolute bottom-0 left-0 right-0 bg-gray-900 px-8 py-8 max-w-xl mx-auto flex flex-col md:items-center rounded-tl rounded-tr">
             <h1 class="text-3xl md:text-4xl font-bold text-white uppercase">
               Express your Intention
             </h1>
             <p class=" font-medium text-lg md:justify-center md:text-center text-white">
               Wide varieties of clothes right at your doorstep.
             </p>
-          </div>
+          </div> -->
         </div>
         
         <!-- Latest Arrivals -->
