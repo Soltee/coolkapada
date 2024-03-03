@@ -31,43 +31,41 @@ class ProductImageController extends Controller
         $data = $request->validate([
             '_product' => 'required|uuid',
             'color'    => 'required|string|min:3',
-            'media'    => 'mimes:jpeg,jpg,png|max:2048'
+            'media'    => 'required|mimes:jpeg,jpg,png|max:2048'
         ]);
 
-        // dd($data);
-        if($request->hasFile('media')){
 
-            $image      = $request->file('media'); 
-        
-            $original   = 'md-' . 
-                            Str::random() . '.' . $image->getClientOriginalExtension();
 
-            $image->move(storage_path('app/public/products'), $original);
+        $image      = $request->file('media'); 
     
-            $path       = 'storage/products/' . $original;
+        $original   = 'md-' . 
+                        Str::random() . '.' . $image->getClientOriginalExtension();
 
-            // dd($path);
-            $mediaId    = Media::create([
-                            'image_url'  => $path,
-                            'thumbnail'  => $original
-                        ]);
+        $image->move(storage_path('app/public/products'), $original);
 
-            $image = ProductImage::create([
-                'product_id'     => $data['_product'],
-                'media_id'       => $mediaId->id,
-                'color'          => $data['color']
-            ]);
+        $path       = 'storage/products/' . $original;
+
+        // dd($path);
+        $mediaId    = Media::create([
+                        'image_url'  => $path,
+                        'thumbnail'  => $original
+                    ]);
+
+        $image = ProductImage::create([
+            'product_id'     => $data['_product'],
+            'media_id'       => $mediaId->id,
+            'color'          => $data['color']
+        ]);
 
 
-            return 
+        return 
 
-                redirect()
-                    ->route('product.image.show', [
-                        'product'        => $data['_product'],
-                        'productImage'   => $image->id,
-                    ])    
-                    ->with('toast_success', 'Product Image uploaded.');
-        }
+            redirect()
+                ->route('product.image.show', [
+                    'product'        => $data['_product'],
+                    'productImage'   => $image->id,
+                ])    
+                ->with('toast_success', 'Product Image uploaded.');
 
     }
 
