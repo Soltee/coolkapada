@@ -62,6 +62,9 @@
 			      <td class="border px-4 py-4">{{$customer->created_at->diffForHumans()}}</td>
 			    </tr>
 			    @empty
+			    	<tr>
+				        <td class="border px-4 py-4 text-center" colspan="5">No customer available.</td>
+				    </tr>
 			    @endforelse
 
 			  </tbody>

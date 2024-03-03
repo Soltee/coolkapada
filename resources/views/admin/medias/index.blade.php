@@ -58,6 +58,7 @@
                 </div>
 		
             @empty
+                <div class=" px-4 py-4 text-center" colspan="5">No medias.</div>
             @endforelse
                     
 			

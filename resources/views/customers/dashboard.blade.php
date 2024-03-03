@@ -52,7 +52,7 @@
 			    </tr>
 			    @empty
 		    		<tr  class="">
-		    			<td class="border px-4 py-4">
+		    			<td class="border px-4 py-4" colspan="5">
                             <div class="flex flex-col items-center">
                                 <svg class="w-12 md:w-16 text-c-red mb-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM6.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm2.16 6H4.34a6 6 0 0 1 11.32 0z"/></svg>
                                 <p class="text-c-red text-xl py-3 text-left">No orders yet.</p>

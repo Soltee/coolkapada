@@ -80,6 +80,9 @@
 			      </td>
 			    </tr>
 			    @empty
+			    		<tr>
+					        <td class="border px-4 py-4 text-center" colspan="5">No order available.</td>
+					    </tr>
 			    @endforelse
 
 			  </tbody>

@@ -151,7 +151,7 @@
 				    </tr>
 				    @empty
 				    	<tr>
-					        <td class="border px-4 py-4">No category</td>
+					        <td class="border px-4 py-4 text-center" colspan="4">No category</td>
 					    </tr>
 				    @endforelse
 

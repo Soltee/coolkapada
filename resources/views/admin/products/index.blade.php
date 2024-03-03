@@ -61,7 +61,6 @@
 			  </thead>
 			  <tbody>
 			  	@forelse($products as $product)
-			  	{{-- {{$product->media}} --}}
 			    <tr>
 			      <td class="border px-2 py-4">
 			      	<a href="{{ route('admin.product', $product->id) }}">
@@ -102,6 +101,11 @@
 					</td>			  
 				  </tr>
 			    @empty
+
+		    	<tr class="text-center">
+		    		<td colspan="6">No Product Added.</td>
+		    	</tr>
+		    	
 			    @endforelse
 
 			  </tbody>
