@@ -42,9 +42,11 @@ class Create extends Component
         $this->message = '';
 
         $this->validate([
-                'size'       => 'required|string|min:1|max:3',
+                'size'       => 'required|string|min:1|max:3|in:XS,S,M,L,XL,2XL,3XL',
                 'price'      => 'required|int',
                 'quantity'   => 'required|int',
+            ], [
+                'size.in' => 'The selected size must be one of these, XS,S,M,L,XL,2XL,3XL'
             ]);
 
         //Create Attr
