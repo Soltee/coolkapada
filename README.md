@@ -25,8 +25,9 @@ STRIPE_SECRET_KEY=
 - Pass  : 11111111
 
 #Screenshots
-![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/Landing.png)
-![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/Shop.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/screenshots/Desktop.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/screenshots/shop.png)
+![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/screenshots/single-product.png)
 ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/bag.png)
 ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/bag-modal.png)
 ![](https://raw.githubusercontent.com/soltee/coolkapada/master/public/img/checkout.png)
