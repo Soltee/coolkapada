@@ -67,7 +67,6 @@
 
 
 <!-- Small Screens Links-->
-@auth('customer')
 <div  x-data="{ menu : false }" class="md:hidden relative">
     <svg
         x-on:click="menu = !menu" 
@@ -77,9 +76,7 @@
         x-on:click.away="menu = false"
         class="md:hidden absolute right-0 top-0 mt-12 bg-gray-900 right-0 m-0 flex flex-col items-start  px-4 py-3 w-auto z-30 rounded">
         <!-- Mobile User Auth COntrol -->
-        @auth('customer')
-            
-            <li class="list-none mb-3">
+        <li class="list-none mb-3">
                 <a class="hover:opacity-60 text-md text-white font-thin {{ 
                     (Route::currentRouteName() == 'welcome') ? 'opacity-60' : 'text-white'
                 }}" href="/">Home</a>
@@ -92,6 +89,8 @@
 
             <!-- Shopping Bag -->
             <livewire:customer.bag />
+
+        @auth('customer')
             
             <li class="list-none mt-2 mb-3">
                 <a class="hover:opacity-60 mr-3  text-md font-thin text-white {{ 
@@ -118,9 +117,21 @@
                 {{ csrf_field() }}
             </form>
                 
-            @endauth
+        @else
+
+        <li class="list-none">
+            <a  
+                class=" font-thin no-underline py-2 rounded-lg text-white {{ 
+                (Route::currentRouteName() == 'login') ? 'opacity-60' : ''
+                }}" 
+                href="{{ route('login') }}"
+            >
+                {{ __('ACCOUNT') }}
+            </a>
+        </li>
+
+        @endauth
 
             
     </ul>
 </div>
-@endauth
